@@ -49,24 +49,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client\BaseClient.cs" />
+    <Compile Include="Clients\Insurers\AuthorizationClient.cs" />
+    <Compile Include="Infra\BaseClient.cs" />
     <Compile Include="Config\Configuration.cs" />
-    <Compile Include="Exceptions\RequestException.cs" />
-    <Compile Include="Models\Authentication.cs" />
-    <Compile Include="Models\Requests\PolicyException.cs" />
-    <Compile Include="Models\Requests\RequestData.cs" />
-    <Compile Include="Models\Requests\RequestError.cs" />
-    <Compile Include="Models\Requests\ServiceException.cs" />
-    <Compile Include="Models\Requests\StringEnum.cs" />
+    <Compile Include="Config\IConfiguration.cs" />
+    <Compile Include="Infra\Exceptions\ServiceException.cs" />
+    <Compile Include="Infra\Exceptions\UnknownException.cs" />
+    <Compile Include="Infra\Utils\CustomDateConverter.cs" />
+    <Compile Include="Infra\Utils\RestSharpJsonNetSerializer.cs" />
+    <Compile Include="Infra\Exceptions\RequestException.cs" />
+    <Compile Include="Infra\Authentication.cs" />
+    <Compile Include="Infra\RequestData.cs" />
+    <Compile Include="Infra\RequestError.cs" />
+    <Compile Include="Infra\StringEnum.cs" />
+    <Compile Include="Models\Insurers\Base\BaseAuthorization.cs" />
+    <Compile Include="Models\Insurers\Base\ClaimItemDetail.cs" />
+    <Compile Include="Models\Insurers\Diagnosis.cs" />
+    <Compile Include="Models\Insurers\DoctorInfo.cs" />
+    <Compile Include="Models\Insurers\Base\ItemDetail.cs" />
+    <Compile Include="Models\Insurers\Policy.cs" />
+    <Compile Include="Models\Insurers\Requests\AuthorizationRequest.cs" />
+    <Compile Include="Models\Insurers\Responses\AuthorizationResponse.cs" />
+    <Compile Include="Models\Insurers\Responses\ClaimResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Converters\" />
     <Folder Include="Listeners\" />
-    <Folder Include="Models\Responses\" />
+    <Folder Include="Models\Providers\" />
     <Folder Include="Retrievers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
