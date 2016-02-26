@@ -1,9 +1,8 @@
 ﻿using System.Reflection;
 using log4net;
 using Newtonsoft.Json;
-using OsiguSDK.Infra;
 
-namespace OsiguSDK.Config
+namespace OsiguSDK.Core.Config
 {
     public class Configuration : IConfiguration
     {
@@ -15,17 +14,17 @@ namespace OsiguSDK.Config
         /// </summary>
         public Configuration()
         {
-            Authentication = new Authentication();
+            Authentication = new Authentication.Authentication();
             BaseUrl = "https://api.paycodenetwork.com/v1";
         }
 
         /// <summary>
-        /// Initialize configuration object using the 'OAuth' Authentication </summary>
-        /// <param name="accessToken"> - 'OAuth' Authentication Access Token </param>
+        /// Initialize configuration object using the 'OAUTH' Authentication </summary>
+        /// <param name="accessToken"> - 'OAUTH' Authentication Access Token </param>
         public Configuration(string accessToken)
             : base() 
         {
-            Authentication = new Authentication {AccessToken = accessToken, Type = Authentication.AuthType.OAuth};
+            Authentication = new Authentication.Authentication {AccessToken = accessToken, Type = Core.Authentication.Authentication.AuthType.OAUTH};
         }
 
    
@@ -33,7 +32,7 @@ namespace OsiguSDK.Config
         /// Object containing Authentication data </summary>
         /// <returns> Authentication </returns>
         [JsonProperty(PropertyName = "authentication")]
-        public Authentication Authentication { get; set; }
+        public Authentication.Authentication Authentication { get; set; }
 
         /// <summary>
         /// Base URL containing host name and port of the API server </summary>
