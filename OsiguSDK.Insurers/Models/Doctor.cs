@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace OsiguSDK.Insurers.Models
 {
-    public class DoctorInfo
+    public class Doctor
     {
 
         /// <summary>

@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{923EBC43-1FCE-4A9B-8078-C719DD57690F}</ProjectGuid>
+    <ProjectGuid>{55F0F8D8-DA6A-421C-8F01-FC8A6D5457DA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OsiguSDK.Insurers</RootNamespace>
-    <AssemblyName>OsiguSDK.Insurers</AssemblyName>
+    <RootNamespace>OsiguSDK.Providers</RootNamespace>
+    <AssemblyName>OsiguSDK.Providers</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -31,12 +29,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -55,25 +49,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clients\ExpressAuthorizationClient.cs" />
     <Compile Include="Clients\AuthorizationsClient.cs" />
     <Compile Include="Clients\ClaimsClient.cs" />
-    <Compile Include="Clients\ProductsClient.cs" />
-    <Compile Include="Models\Diagnosis.cs" />
-    <Compile Include="Models\Doctor.cs" />
-    <Compile Include="Models\Policy.cs" />
-    <Compile Include="Models\Requests\ModifyAuthorizationRequest.cs" />
-    <Compile Include="Models\Requests\CreateAuthorizationRequest.cs" />
-    <Compile Include="Models\Requests\SubmitProductRequest.cs" />
-    <Compile Include="Models\ExpressAuthorization.cs" />
+    <Compile Include="Clients\InsurersClient.cs" />
     <Compile Include="Models\Authorization.cs" />
     <Compile Include="Models\Claim.cs" />
-    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\Invoice.cs" />
+    <Compile Include="Models\Insurer.cs" />
+    <Compile Include="Models\Policy.cs" />
+    <Compile Include="Models\QueueStatus.cs" />
+    <Compile Include="Models\Requests\CreateClaimRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OsiguSDK\OsiguSDK.Core.csproj">
@@ -81,6 +67,10 @@
       <Name>OsiguSDK.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

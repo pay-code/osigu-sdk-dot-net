@@ -1,15 +1,14 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
-using log4net.Config;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("osigu-sdk-dot-net-examples")]
+[assembly: AssemblyTitle("OsiguSDK.Providers")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("osigu-sdk-dot-net-examples")]
+[assembly: AssemblyProduct("OsiguSDK.Providers")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +19,7 @@ using log4net.Config;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("113d4bba-cd53-44e1-9cf1-78cee64bce0a")]
+[assembly: Guid("4a98e636-b8ca-4862-b270-5c8bb661dc71")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -34,5 +33,3 @@ using log4net.Config;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-
-[assembly: XmlConfigurator(ConfigFile = "log4net.config", Watch = true)]

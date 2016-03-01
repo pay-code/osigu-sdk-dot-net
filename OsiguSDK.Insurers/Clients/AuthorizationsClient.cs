@@ -2,8 +2,8 @@
 using OsiguSDK.Core.Client;
 using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Requests;
+using OsiguSDK.Insurers.Models;
 using OsiguSDK.Insurers.Models.Requests;
-using OsiguSDK.Insurers.Models.Responses;
 using RestSharp;
 
 namespace OsiguSDK.Insurers.Clients
@@ -15,25 +15,25 @@ namespace OsiguSDK.Insurers.Clients
         {
         }
 
-        public AuthorizationResponse CreateAuthorization(AuthorizationRequest request)
+        public Authorization CreateAuthorization(CreateAuthorizationRequest request)
         {            
             var urlBuilder = new StringBuilder("/insurers/").Append(Configuration.Slug).Append("/authorizations");
             var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, request);           
-            return ExecuteMethod<AuthorizationResponse>(requestData);
+            return ExecuteMethod<Authorization>(requestData);
         }
 
-        public AuthorizationResponse GetSingleAuthorization(string id)
+        public Authorization GetSingleAuthorization(string id)
         {
             var urlBuilder = new StringBuilder("/insurers/").Append(Configuration.Slug).Append("/authorizations/").Append(id);
             var requestData = new RequestData(urlBuilder.ToString(), Method.GET, null, null);
-            return ExecuteMethod<AuthorizationResponse>(requestData);
+            return ExecuteMethod<Authorization>(requestData);
         }
 
-        public AuthorizationResponse ModifyAuthorization(string id, AuthorizationRequest request)
+        public Authorization ModifyAuthorization(string id, CreateAuthorizationRequest request)
         {
             var urlBuilder = new StringBuilder("/insurers/").Append(Configuration.Slug).Append("/authorizations/").Append(id);
             var requestData = new RequestData(urlBuilder.ToString(), Method.PUT, null, null);
-            return ExecuteMethod<AuthorizationResponse>(requestData);            
+            return ExecuteMethod<Authorization>(requestData);            
         }
 
         public void VoidAuthorization(string id)

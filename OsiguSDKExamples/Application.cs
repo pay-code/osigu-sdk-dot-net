@@ -3,8 +3,8 @@ using System.Linq;
 using AutoMapper;
 using OsiguSDK.Core.Authentication;
 using OsiguSDK.Core.Config;
+using OsiguSDK.Insurers.Models;
 using OsiguSDK.Insurers.Models.Requests;
-using OsiguSDK.Insurers.Models.Responses;
 using IConfiguration = OsiguSDK.Core.Config.IConfiguration;
 
 namespace OsiguSDKExamples
@@ -20,7 +20,7 @@ namespace OsiguSDKExamples
             };
 
             //automapper configs
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<AuthorizationResponse, AuthorizationRequest>()).CreateMapper();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Authorization, CreateAuthorizationRequest>()).CreateMapper();
 
 
             //////////////////////////////////////////////////
@@ -33,7 +33,7 @@ namespace OsiguSDKExamples
 
             //MODIFY THE AUTHORIZATION
             authorizationResponse.AuthorizationDate = DateTime.Now.AddDays(-1);
-            var modificationResponse = authorizationExamples.ModifyTheAuthorization(authorizationResponse.Id, mapper.Map<AuthorizationRequest>(authorizationResponse));
+            var modificationResponse = authorizationExamples.ModifyTheAuthorization(authorizationResponse.Id, mapper.Map<CreateAuthorizationRequest>(authorizationResponse));
 
 
             //VOID THE AUTHORIZATION

@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using OsiguSDK.Insurers.Models.Base;
 
-namespace OsiguSDK.Insurers.Models.Responses
+namespace OsiguSDK.Insurers.Models
 {
-    public class ClaimResponse
+    public class Claim
     {
         [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }
@@ -50,6 +49,42 @@ namespace OsiguSDK.Insurers.Models.Responses
         /// Authorized products or services
         /// </summary>
         [JsonProperty(PropertyName = "items")]
-        public List<ClaimItemDetail> Items { get; set; }
+        public List<ClaimItem> Items { get; set; }
+
+        public class ClaimItem
+        {
+            /// <summary>
+            /// Insurer product code
+            /// </summary>
+            [JsonProperty(PropertyName = "product_id")]
+            public string ProductId { get; set; }
+
+            /// <summary>
+            /// Insurer's product code, if the product was substituted
+            /// </summary>
+            [JsonProperty(PropertyName = "substitute_product_id")]
+            public string SubstituteProductId { get; set; }
+
+            /// <summary>
+            /// Product name
+            /// </summary>
+            [JsonProperty(PropertyName = "name")]
+            public string Name { get; set; }
+
+            /// <summary>
+            /// quantity claimed
+            /// </summary>
+            [JsonProperty(PropertyName = "quantity")]
+            public int Quantity { get; set; }
+            
+            /// <summary>
+            /// product price
+            /// </summary>
+            [JsonProperty(PropertyName = "price")]
+            public decimal Price { get; set; }
+            
+            [JsonProperty(PropertyName = "coinsurance_percentage")]
+            public decimal CoInsurancePercentage { get; set; }
+        }
     }
 }

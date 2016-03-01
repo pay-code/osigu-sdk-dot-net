@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using OsiguSDK.Insurers.Models.Base;
 
-namespace OsiguSDK.Insurers.Models.Responses
+namespace OsiguSDK.Insurers.Models
 {
-    public class AuthorizationExpressResponse 
+    public class ExpressAuthorization 
     {
 
         [JsonProperty(PropertyName = "id")]
@@ -16,16 +15,13 @@ namespace OsiguSDK.Insurers.Models.Responses
 
         [JsonProperty(PropertyName = "policy_holder")]
         public PolicyHolderInfo PolicyHolder { get; set; }
-
-
+        
         [JsonProperty(PropertyName = "status")]
         public string Status { get; set; }
         
-        
         [JsonProperty(PropertyName = "items")]
-        public List<Item> Items { get; set; }
-
-
+        public List<ExpressAuthItem> Items { get; set; }
+        
         [JsonProperty(PropertyName = "invoice")]
         public Invoice InvoiceDetails { get; set; }
 
@@ -67,9 +63,23 @@ namespace OsiguSDK.Insurers.Models.Responses
             public DateTime DateOfBirth { get; set; }
         }
 
-        public class Item : ItemDetail
+        public class ExpressAuthItem
         {
+            /// <summary>
+            /// Insurer product code
+            /// </summary>
+            [JsonProperty(PropertyName = "product_id")]
+            public string ProductId { get; set; }
+         
+            /// <summary>
+            /// quantity claimed
+            /// </summary>
+            [JsonProperty(PropertyName = "quantity")]
+            public int Quantity { get; set; }
 
+            /// <summary>
+            /// product price
+            /// </summary>
             [JsonProperty(PropertyName = "price")]
             public decimal Price { get; set; }
 
@@ -81,8 +91,7 @@ namespace OsiguSDK.Insurers.Models.Responses
         {
             [JsonProperty(PropertyName = "document_number")]
             public string DocumentNumber { get; set; }
-
-
+            
             [JsonProperty(PropertyName = "document_date")]
             public DateTime DocumentDate { get; set; }
 
