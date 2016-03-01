@@ -41,8 +41,6 @@ namespace OsiguSDK.Providers.Models
         [JsonProperty(PropertyName = "updated_at")]
         public DateTime UpdatedAt { get; set; }
 
-       
-
         /// <summary>
         /// Policy information
         /// </summary>
@@ -75,9 +73,5 @@ namespace OsiguSDK.Providers.Models
             [JsonProperty(PropertyName = "quantity")]
             public int Quantity { get; set; }
         }
-
-    
-     
-
     }
 }

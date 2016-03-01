@@ -26,6 +26,10 @@ namespace OsiguSDK.Insurers.Models
 
         public class DoctorSpecialty
         {
+
+            /// <summary>
+            /// Speciality description
+            /// </summary>
             [JsonProperty(PropertyName = "name")]
             public string Name { get; set; }
         }
