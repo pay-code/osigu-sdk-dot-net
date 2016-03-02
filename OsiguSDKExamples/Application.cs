@@ -55,7 +55,11 @@ namespace OsiguSDKExamples
 
 
             //GET A SINGLE CLAIM
-            var claim = claimExamples.GetSingleClaim(authorizationResponse.Id, claimList.Content.First().Id);
+            if (claimList.Content.ToList().Count > 0)
+            {
+                var claim = claimExamples.GetSingleClaim(authorizationResponse.Id, claimList.Content.First().Id);
+            }
+                
 
         }
     }
