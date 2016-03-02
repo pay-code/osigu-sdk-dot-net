@@ -88,7 +88,7 @@ namespace OsiguSDK.Core.Client
         /// </summary>
         /// <param name="requestData"></param>
         /// <returns> IRestResponse </returns>
-        private IRestResponse SendRequest(RequestData requestData)
+        protected IRestResponse SendRequest(RequestData requestData)
         {
             var request = CreateRequest(requestData);
             if (Logger.IsDebugEnabled)
@@ -353,6 +353,13 @@ namespace OsiguSDK.Core.Client
             }  
         }
 
+        protected string GetLocationHeader(IRestResponse response)
+        {
+            var locationHeader = response.Headers.FirstOrDefault(x => x.Name.ToLower() == "location");
+            var locationUrl = locationHeader != null ? locationHeader.Value.ToString() : "";
+            return locationUrl;
+        }
+
         protected string GetIdFromResourceUrl(string resourceUrl)
         {
             var id = "";
@@ -365,7 +372,16 @@ namespace OsiguSDK.Core.Client
                 }
             }
 
-            return id;
+            var locationUri = new Uri(resourceUrl);
+
+            if (Logger.IsDebugEnabled)
+            {
+                Logger.Debug("GetIdFromResourceUrl resourceUrl:" + resourceUrl + " IdFromResource: " + id + " Using Uri Segments Id: " + locationUri.Segments.Last());
+            }
+                
+            
+            //return only the id of the queue resource
+            return locationUri.Segments.Last();
         }
 
         private string GetAuthorizationHeader(string username, string password)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace OsiguSDK.Providers.Models
@@ -51,9 +52,9 @@ namespace OsiguSDK.Providers.Models
         /// Authorized products or services
         /// </summary>
         [JsonProperty(PropertyName = "items")]
-        public AuthorizedItems Items { get; set; }
+        public List<Item> Items { get; set; }
 
-        public class AuthorizedItems
+        public class Item
         {
             /// <summary>
             /// insurer authorized product code

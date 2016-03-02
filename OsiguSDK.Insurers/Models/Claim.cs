@@ -37,12 +37,6 @@ namespace OsiguSDK.Insurers.Models
         public decimal Amount { get; set; }
 
         /// <summary>
-        /// Minimum amount to be purchased in order to be eligible for claim
-        /// </summary>
-        [JsonProperty(PropertyName = "minimum")]
-        public decimal Minimum { get; set; }
-
-        /// <summary>
         /// fixed amount of copayment the insured will need to pay
         /// </summary>
         [JsonProperty(PropertyName = "copayment")]
@@ -71,9 +65,9 @@ namespace OsiguSDK.Insurers.Models
         /// Authorized products or services
         /// </summary>
         [JsonProperty(PropertyName = "items")]
-        public List<ClaimItem> Items { get; set; }
+        public List<Item> Items { get; set; }
 
-        public class ClaimItem
+        public class Item
         {
             /// <summary>
             /// Insurer product code

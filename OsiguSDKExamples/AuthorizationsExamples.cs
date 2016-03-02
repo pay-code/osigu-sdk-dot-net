@@ -61,14 +61,14 @@ namespace OsiguSDKExamples
                         DateOfBirth = DateTime.Now.AddYears(-15)
                     }
                 },
-                Items = new List<ItemDetail>()
+                Items = new List<CreateAuthorizationRequest.Item>()
                 {
-                    new ItemDetail()
+                    new CreateAuthorizationRequest.Item()
                     {
                         ProductId = "101",
                         Quantity = 1
                     },
-                    new ItemDetail()
+                    new CreateAuthorizationRequest.Item()
                     {
                         ProductId = "100",
                         Quantity = 5

@@ -1,22 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace OsiguSDK.Providers.Models.Requests
 {
-    public class CreateClaimRequest
+    public class AddOrModifyItemsExpressAuthorization
     {
-        /// <summary>
-        /// Authorization pin code for creating the claim
-        /// </summary>
-        [JsonProperty(PropertyName = "pin")]
-        public string Pin { get; set; }
-
+       
         /// <summary>
         /// List of claimed items 
         /// </summary>
         [JsonProperty(PropertyName = "items")]
         public List<Item> Items { get; set; }
-        
+
         public class Item
         {
             /// <summary>
@@ -25,12 +24,6 @@ namespace OsiguSDK.Providers.Models.Requests
             [JsonProperty(PropertyName = "product_id")]
             public string ProductId { get; set; }
 
-            /// <summary>
-            /// provider's product code, if the product was substituted
-            /// </summary>
-            [JsonProperty(PropertyName = "substitute_product_id")]
-            public string SubstituteProductId { get; set; }
-           
             /// <summary>
             /// quantity claimed
             /// </summary>

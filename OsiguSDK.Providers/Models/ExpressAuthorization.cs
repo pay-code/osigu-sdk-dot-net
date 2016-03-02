@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace OsiguSDK.Insurers.Models
+namespace OsiguSDK.Providers.Models
 {
     public class ExpressAuthorization 
     {
@@ -13,10 +13,10 @@ namespace OsiguSDK.Insurers.Models
         public string Id { get; set; }
         
         /// <summary>
-        /// Provider's name 
+        /// Insurer's name 
         /// </summary>
-        [JsonProperty(PropertyName = "provider")]
-        public string ProviderName { get; set; }
+        [JsonProperty(PropertyName = "insurer")]
+        public string InsurerName { get; set; }
 
         /// <summary>
         /// Policy holder information

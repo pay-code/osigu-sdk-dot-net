@@ -77,9 +77,9 @@ namespace OsiguSDK.Insurers.Models
         /// Authorized products or services
         /// </summary>
         [JsonProperty(PropertyName = "items")]
-        public AuthorizedItems Items { get; set; }
+        public List<Item> Items { get; set; }
 
-        public class AuthorizedItems
+        public class Item
         {
             /// <summary>
             /// insurer authorized product code
