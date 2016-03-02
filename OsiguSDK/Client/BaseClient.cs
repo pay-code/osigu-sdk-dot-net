@@ -186,7 +186,7 @@ namespace OsiguSDK.Core.Client
             request.AddHeader("Accept", "*/*");
             request.Method = requestData.RequestMethod;
 
-            if (requestData.RequestMethod == Method.POST)
+            if (requestData.RequestMethod == Method.POST || requestData.RequestMethod ==  Method.PUT || requestData.RequestMethod == Method.PATCH)
             {
                 request.AddHeader("content-type", requestData.ContentType);
 
