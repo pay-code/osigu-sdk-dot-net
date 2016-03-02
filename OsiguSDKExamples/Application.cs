@@ -20,7 +20,11 @@ namespace OsiguSDKExamples
             };
 
             //automapper configs
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Authorization, CreateAuthorizationRequest>()).CreateMapper();
+            var mapper = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Authorization, CreateAuthorizationRequest>();
+                cfg.CreateMap<Authorization.Item, CreateAuthorizationRequest.Item>()
+;            }).CreateMapper();
 
 
             //////////////////////////////////////////////////

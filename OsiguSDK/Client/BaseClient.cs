@@ -93,7 +93,7 @@ namespace OsiguSDK.Core.Client
             var request = CreateRequest(requestData);
             if (Logger.IsDebugEnabled)
             {
-                Logger.Debug(requestData);
+                Logger.Debug(JsonConvert.SerializeObject(requestData));
             }
             
             return _client.Execute(request);

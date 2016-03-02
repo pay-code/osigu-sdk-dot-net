@@ -5,6 +5,11 @@ namespace OsiguSDK.Insurers.Models
 {
     public class Doctor
     {
+        /// <summary>
+        /// Country code of the doctor
+        /// </summary>
+        [JsonProperty(PropertyName = "country_code")]
+        public string CountryCode { get; set; }
 
         /// <summary>
         /// Name of the doctor

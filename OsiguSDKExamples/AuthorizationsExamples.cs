@@ -34,6 +34,7 @@ namespace OsiguSDKExamples
                 },
                 Doctor = new Doctor()
                 {
+                    CountryCode = "GT",
                     Name = "Wade Wilson",
                     MedicalLicense = "MG20100211-4567",
                     Specialties = new List<Doctor.DoctorSpecialty>()

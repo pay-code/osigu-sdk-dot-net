@@ -32,7 +32,7 @@ namespace OsiguSDK.Insurers.Clients
         public Authorization ModifyAuthorization(string id, CreateAuthorizationRequest request)
         {
             var urlBuilder = new StringBuilder("/insurers/").Append(Configuration.Slug).Append("/authorizations/").Append(id);
-            var requestData = new RequestData(urlBuilder.ToString(), Method.PUT, null, null);
+            var requestData = new RequestData(urlBuilder.ToString(), Method.PUT, null, request);
             return ExecuteMethod<Authorization>(requestData);            
         }
 
