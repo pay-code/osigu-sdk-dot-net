@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OsiguSDK.Core", "OsiguSDK\OsiguSDK.Core.csproj", "{F2F02262-31EF-4D91-BDBF-852495F55ED6}"
 EndProject
@@ -10,6 +10,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OsiguSDK.Examples", "OsiguSDK.Examples\OsiguSDK.Examples.csproj", "{EC3EC759-3BA6-4F3A-9FC0-A7AD6B0D3F3C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OsiguSDK.Providers", "OsiguSDK.Providers\OsiguSDK.Providers.csproj", "{55F0F8D8-DA6A-421C-8F01-FC8A6D5457DA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2DC1E84F-55EA-48B3-9F79-786BBC649139}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OsiguSDK.SpecificationTests", "OsiguSDK.SpecificationTests\OsiguSDK.SpecificationTests.csproj", "{3826AEAA-6455-43EF-B332-635AE7C87497}"
 EndProject
