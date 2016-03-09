@@ -1,8 +1,7 @@
-﻿using System;
-using OsiguSDK.Core.Config;
+﻿using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Models;
 using OsiguSDK.Insurers.Clients;
-using OsiguSDK.Insurers.Models.Responses;
+using OsiguSDK.Insurers.Models;
 
 namespace OsiguSDKExamples
 {
@@ -14,12 +13,12 @@ namespace OsiguSDKExamples
             _client = new ClaimsClient(config);
         }
 
-        public Pagination<ClaimResponse> GetListOfClaims(string authorizationId)
+        public Pagination<Claim> GetListOfClaims(string authorizationId)
         {
             return _client.GetListOfClaims(authorizationId);
         }
 
-        public ClaimResponse GetSingleClaim(string authorizationId, int claimId)
+        public Claim GetSingleClaim(string authorizationId, int claimId)
         {
             return _client.GetSingleClaim(authorizationId, claimId);
         }

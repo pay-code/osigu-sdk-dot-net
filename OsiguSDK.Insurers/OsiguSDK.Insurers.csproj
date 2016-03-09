@@ -35,6 +35,10 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -51,27 +55,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clients\AuthorizationExpressClient.cs" />
+    <Compile Include="Clients\ExpressAuthorizationClient.cs" />
     <Compile Include="Clients\AuthorizationsClient.cs" />
     <Compile Include="Clients\ClaimsClient.cs" />
     <Compile Include="Clients\ProductsClient.cs" />
-    <Compile Include="Models\Base\BaseAuthorization.cs" />
-    <Compile Include="Models\Base\BaseProduct.cs" />
-    <Compile Include="Models\Base\ClaimItemDetail.cs" />
-    <Compile Include="Models\Base\ItemDetail.cs" />
     <Compile Include="Models\Diagnosis.cs" />
-    <Compile Include="Models\DoctorInfo.cs" />
+    <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\Policy.cs" />
-    <Compile Include="Models\Requests\AuthorizationRequest.cs" />
-    <Compile Include="Models\Requests\ProductRequest.cs" />
-    <Compile Include="Models\Responses\AuthorizationExpressResponse.cs" />
-    <Compile Include="Models\Responses\AuthorizationResponse.cs" />
-    <Compile Include="Models\Responses\ClaimResponse.cs" />
-    <Compile Include="Models\Responses\ProductResponse.cs" />
+    <Compile Include="Models\Requests\ModifyAuthorizationRequest.cs" />
+    <Compile Include="Models\Requests\CreateAuthorizationRequest.cs" />
+    <Compile Include="Models\Requests\SubmitProductRequest.cs" />
+    <Compile Include="Models\ExpressAuthorization.cs" />
+    <Compile Include="Models\Authorization.cs" />
+    <Compile Include="Models\Claim.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

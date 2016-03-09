@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace OsiguSDK.Insurers.Models.Base
+namespace OsiguSDK.Insurers.Models.Requests
 {
-    public abstract class BaseAuthorization
+    public class CreateAuthorizationRequest 
     {
         /// <summary>
         /// Insurer's unique authorization code/number 
@@ -35,7 +35,7 @@ namespace OsiguSDK.Insurers.Models.Base
         /// Doctor responsible of the diagnosis
         /// </summary>
         [JsonProperty(PropertyName = "doctor")]
-        public DoctorInfo DoctorInfo { get; set; }
+        public Doctor Doctor { get; set; }
 
         /// <summary>
         /// Policy information
@@ -43,11 +43,25 @@ namespace OsiguSDK.Insurers.Models.Base
         [JsonProperty(PropertyName = "policy")]
         public Policy Policy { get; set; }
 
-
         /// <summary>
         /// Authorized products or services
         /// </summary>
         [JsonProperty(PropertyName = "items")]
-        public List<ItemDetail> Items { get; set; }
+        public List<Item> Items { get; set; }
+
+        public class Item
+        {
+            /// <summary>
+            /// insurer authorized product code
+            /// </summary>
+            [JsonProperty(PropertyName = "product_id")]
+            public string ProductId { get; set; }          
+
+            /// <summary>
+            /// quantity authorized
+            /// </summary>
+            [JsonProperty(PropertyName = "quantity")]
+            public int Quantity { get; set; }
+        }
     }
 }

@@ -5,11 +5,11 @@ using log4net.Config;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("OsiguSDK.Insurers")]
+[assembly: AssemblyTitle("OsiguSDK.Providers")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("OsiguSDK.Insurers")]
+[assembly: AssemblyProduct("OsiguSDK.Providers")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using log4net.Config;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("54c2fad1-6968-4bda-8a81-4a6e972c5e6b")]
+[assembly: Guid("4a98e636-b8ca-4862-b270-5c8bb661dc71")]
 
 // Version information for an assembly consists of the following four values:
 //

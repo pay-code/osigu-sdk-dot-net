@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EC3EC759-3BA6-4F3A-9FC0-A7AD6B0D3F3C}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{55F0F8D8-DA6A-421C-8F01-FC8A6D5457DA}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OsiguSDKExamples</RootNamespace>
-    <AssemblyName>OsiguSDKExamples</AssemblyName>
+    <RootNamespace>OsiguSDK.Providers</RootNamespace>
+    <AssemblyName>OsiguSDK.Providers</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -29,17 +29,16 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject>
-    </StartupObject>
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper">
-      <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -50,25 +49,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application.cs" />
-    <Compile Include="ClaimsExamples.cs" />
-    <Compile Include="AuthorizationsExamples.cs" />
+    <Compile Include="Clients\AuthorizationsClient.cs" />
+    <Compile Include="Clients\ClaimsClient.cs" />
+    <Compile Include="Clients\ExpressAuthorizationClient.cs" />
+    <Compile Include="Clients\InsurersClient.cs" />
+    <Compile Include="Clients\ProductsClient.cs" />
+    <Compile Include="Clients\QueueClient.cs" />
+    <Compile Include="Models\Authorization.cs" />
+    <Compile Include="Models\Claim.cs" />
+    <Compile Include="Models\ExpressAuthorization.cs" />
+    <Compile Include="Models\Invoice.cs" />
+    <Compile Include="Models\Insurer.cs" />
+    <Compile Include="Models\Policy.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\QueueStatus.cs" />
+    <Compile Include="Models\Requests\AddOrModifyItemsExpressAuthorization.cs" />
+    <Compile Include="Models\Requests\CreateClaimRequest.cs" />
+    <Compile Include="Models\Requests\CreateExpressAuthorizationRequest.cs" />
+    <Compile Include="Models\Requests\SubmitProductRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OsiguSDK.Insurers\OsiguSDK.Insurers.csproj">
-      <Project>{923ebc43-1fce-4a9b-8078-c719dd57690f}</Project>
-      <Name>OsiguSDK.Insurers</Name>
-    </ProjectReference>
     <ProjectReference Include="..\OsiguSDK\OsiguSDK.Core.csproj">
       <Project>{f2f02262-31ef-4d91-bdbf-852495f55ed6}</Project>
       <Name>OsiguSDK.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

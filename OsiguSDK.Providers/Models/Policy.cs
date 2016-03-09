@@ -1,0 +1,61 @@
+﻿using System;
+using Newtonsoft.Json;
+
+namespace OsiguSDK.Providers.Models
+{
+    public class Policy
+    {
+
+        /// <summary>
+        /// 2-character IS0-3166-1 code (EJ. GT, US)
+        /// </summary>
+        [JsonProperty(PropertyName = "country_code")]
+        public string CountryCode { get; set; }
+
+        /// <summary>
+        /// Policy number
+        /// </summary>
+        [JsonProperty(PropertyName = "number")]
+        public string Number { get; set; }
+
+        /// <summary>
+        /// Policy certificate number
+        /// </summary>
+        [JsonProperty(PropertyName = "certificate")]
+        public string Certificate { get; set; }
+
+        /// <summary>
+        /// Policy expiration date
+        /// </summary>
+        [JsonProperty(PropertyName = "expiration_date")]
+        public DateTime ExpirationDate { get; set; }
+
+        
+        /// <summary>
+        /// Policy holder information
+        /// </summary>
+        [JsonProperty(PropertyName = "policy_holder")]
+        public PolicyHolderInfo PolicyHolder { get; set; }
+
+        public class PolicyHolderInfo
+        {
+            /// <summary>
+            /// Policy holder's unique identification code (combination of policy number + policy certificate or carnet number)
+            /// </summary>
+            [JsonProperty(PropertyName = "id")]
+            public string Id { get; set; }
+
+            /// <summary>
+            /// name of the beneficiary
+            /// </summary>
+            [JsonProperty(PropertyName = "name")]
+            public string Name { get; set; }
+
+            /// <summary>
+            /// Date of birth of the policy holder
+            /// </summary>
+            [JsonProperty(PropertyName = "date_of_birth")]
+            public DateTime DateOfBirth { get; set; }
+        }
+    }
+}

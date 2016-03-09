@@ -3,12 +3,12 @@ using OsiguSDK.Core.Client;
 using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Models;
 using OsiguSDK.Core.Requests;
-using OsiguSDK.Insurers.Models.Responses;
+using OsiguSDK.Insurers.Models;
 using RestSharp;
 
 namespace OsiguSDK.Insurers.Clients
 {
-    public class AuthorizationExpressClient : BaseClient
+    public class ExpressAuthorizationClient : BaseClient
     {
 
         public enum ExpressAuthorizationStatus
@@ -20,22 +20,22 @@ namespace OsiguSDK.Insurers.Clients
             PAID
         }
 
-        public AuthorizationExpressClient(IConfiguration configuration) : base(configuration)
+        public ExpressAuthorizationClient(IConfiguration configuration) : base(configuration)
         {
         }
 
-        public AuthorizationExpressResponse GetSingleAuthorization(string id)
+        public ExpressAuthorization GetSingleAuthorization(string id)
         {
             var urlBuilder = new StringBuilder("/insurers/").Append(Configuration.Slug).Append("/authorizations/express/").Append(id);
             var requestData = new RequestData(urlBuilder.ToString(), Method.GET, null, null);
-            return ExecuteMethod<AuthorizationExpressResponse>(requestData);
+            return ExecuteMethod<ExpressAuthorization>(requestData);
         }
 
-        public Pagination<AuthorizationExpressResponse> GetListOfAuthorizationExpress(ExpressAuthorizationStatus status = ExpressAuthorizationStatus.INSURER_PENDING_REVIEW,  int? page = 0, int? size = 25)
+        public Pagination<ExpressAuthorization> GetListOfAuthorizationExpress(ExpressAuthorizationStatus status = ExpressAuthorizationStatus.INSURER_PENDING_REVIEW,  int? page = 0, int? size = 25)
         {
             var urlBuilder = new StringBuilder("/insurers/").Append(Configuration.Slug).Append("/authorizations/express").Append("?status=").Append(status.ToString().ToLower()).Append("&page=").Append(page).Append("&size=").Append(size); ;
             var requestData = new RequestData(urlBuilder.ToString(), Method.GET, null, null);
-            return ExecuteMethod<Pagination<AuthorizationExpressResponse>>(requestData);
+            return ExecuteMethod<Pagination<ExpressAuthorization>>(requestData);
         }
 
         public void ApproveExpressAuthorization(string id)
