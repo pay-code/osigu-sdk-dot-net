@@ -58,7 +58,7 @@ namespace OsiguSDK.Providers.Clients
             ExecuteMethod(requestData);
         }
 
-        public ExpressAuthorization CompleteExpressAuthorization(string expressAuthorizationId)
+        public ExpressAuthorization GetSingleExpressAuthorization(string expressAuthorizationId)
         {
             var urlBuilder = new StringBuilder("/providers/").Append(Configuration.Slug).Append("/authorizations/express/").Append(expressAuthorizationId);
             var requestData = new RequestData(urlBuilder.ToString(), Method.GET,null,null);

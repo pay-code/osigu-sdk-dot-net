@@ -8,6 +8,7 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OsiguSDK.Insurers", "OsiguSDK.Insurers\OsiguSDK.Insurers.csproj", "{923EBC43-1FCE-4A9B-8078-C719DD57690F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OsiguSDK.Examples", "OsiguSDK.Examples\OsiguSDK.Examples.csproj", "{EC3EC759-3BA6-4F3A-9FC0-A7AD6B0D3F3C}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OsiguSDK.Providers", "OsiguSDK.Providers\OsiguSDK.Providers.csproj", "{55F0F8D8-DA6A-421C-8F01-FC8A6D5457DA}"
 EndProject
 Global

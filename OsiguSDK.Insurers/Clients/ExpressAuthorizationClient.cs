@@ -31,7 +31,7 @@ namespace OsiguSDK.Insurers.Clients
             return ExecuteMethod<ExpressAuthorization>(requestData);
         }
 
-        public Pagination<ExpressAuthorization> GetListOfAuthorizationExpress(ExpressAuthorizationStatus status = ExpressAuthorizationStatus.INSURER_PENDING_REVIEW,  int? page = 0, int? size = 25)
+        public Pagination<ExpressAuthorization> GetListOfAuthorizationsExpress(ExpressAuthorizationStatus status = ExpressAuthorizationStatus.INSURER_PENDING_REVIEW,  int? page = 0, int? size = 25)
         {
             var urlBuilder = new StringBuilder("/insurers/").Append(Configuration.Slug).Append("/authorizations/express").Append("?status=").Append(status.ToString().ToLower()).Append("&page=").Append(page).Append("&size=").Append(size); ;
             var requestData = new RequestData(urlBuilder.ToString(), Method.GET, null, null);
