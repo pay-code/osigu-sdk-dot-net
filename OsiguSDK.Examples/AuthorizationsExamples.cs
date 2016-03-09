@@ -79,7 +79,7 @@ namespace OsiguSDKExamples
             };
 
 
-            var response = _client.CreateAuthorization(createAuthRequest);
+            AuthorizationResponse response = _client.CreateAuthorization(createAuthRequest);
             return response;
         }
 
