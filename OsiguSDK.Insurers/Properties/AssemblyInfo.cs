@@ -6,9 +6,9 @@ using log4net.Config;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("OsiguSDK.Insurers")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Osigu SDK for insurers")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("OSIGU")]
 [assembly: AssemblyProduct("OsiguSDK.Insurers")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
