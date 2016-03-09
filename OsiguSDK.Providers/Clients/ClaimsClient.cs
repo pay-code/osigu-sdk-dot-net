@@ -56,7 +56,7 @@ namespace OsiguSDK.Providers.Clients
         public Claim GetSingleClaim(string claimId)
         {
             var urlBuilder = new StringBuilder("/providers/").Append(Configuration.Slug).Append("/claims/").Append(claimId);
-            var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null,null);
+            var requestData = new RequestData(urlBuilder.ToString(), Method.GET, null,null);
 
             return ExecuteMethod<Claim>(requestData);
         }
@@ -64,7 +64,7 @@ namespace OsiguSDK.Providers.Clients
         public Pagination<Claim> GetListOfClaims(int? page = 0, int? size = 25)
         {
             var urlBuilder = new StringBuilder("/providers/").Append(Configuration.Slug).Append("/claims").Append("?page=").Append(page).Append("&size=").Append(size);
-            var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, null);
+            var requestData = new RequestData(urlBuilder.ToString(), Method.GET, null, null);
 
             return ExecuteMethod<Pagination<Claim>>(requestData);
         }
