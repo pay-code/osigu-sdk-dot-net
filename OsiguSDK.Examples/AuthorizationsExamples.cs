@@ -25,8 +25,8 @@ namespace OsiguSDKExamples
             var createAuthRequest = new CreateAuthorizationRequest()
             {
                 ReferenceId = "ACJ12398-1233",
-                AuthorizationDate = DateTime.Now,
-                ExpiresAt = DateTime.Now.AddMonths(1),
+                AuthorizationDate = DateTime.UtcNow,
+                ExpiresAt = DateTime.UtcNow.AddMonths(1),
                 Diagnoses = new List<Diagnosis>()
                 {
                     new Diagnosis() {Name = "Gastroenteritis"},
@@ -50,7 +50,7 @@ namespace OsiguSDKExamples
                     CountryCode = "GT",
                     Number = "55222",
                     Certificate = "0000011255",
-                    ExpirationDate = DateTime.Now.AddYears(1),
+                    ExpirationDate = DateTime.UtcNow.AddYears(1),
                     InsuranceCompanyName = "Roble",
                     PolicyHolder = new Policy.PolicyHolderInfo()
                     {
@@ -59,7 +59,7 @@ namespace OsiguSDKExamples
                         Email = "william.smith@gmail.com",
                         Cellphone = "(734) 555-1212",
                         Owner = true,
-                        DateOfBirth = DateTime.Now.AddYears(-15)
+                        DateOfBirth = DateTime.UtcNow.AddYears(-15)
                     }
                 },
                 Items = new List<CreateAuthorizationRequest.Item>()

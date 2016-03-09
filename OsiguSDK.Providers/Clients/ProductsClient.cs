@@ -43,6 +43,5 @@ namespace OsiguSDK.Providers.Clients
             var requestData = new RequestData(urlBuilder.ToString(), Method.GET, null, null);
             return ExecuteMethod<Pagination<Product>>(requestData);
         }
-
     }
 }

@@ -37,7 +37,7 @@ namespace OsiguSDK.Insurers.Clients
         }
 
 
-        public Pagination<Product> GetListOfProducts(string productId)
+        public Pagination<Product> GetListOfProducts()
         {
             var urlBuilder = new StringBuilder("/insurers/").Append(Configuration.Slug).Append("/products");
             var requestData = new RequestData(urlBuilder.ToString(), Method.GET, null, null);
