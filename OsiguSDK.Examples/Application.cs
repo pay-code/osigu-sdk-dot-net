@@ -11,6 +11,10 @@ namespace OsiguSDKExamples
 {
     class Application
     {
+        static void Main(string[] args)
+        {
+            
+        }
 /*        static void Main(string[] args)
         {
             IConfiguration configInsurer = new Configuration()
