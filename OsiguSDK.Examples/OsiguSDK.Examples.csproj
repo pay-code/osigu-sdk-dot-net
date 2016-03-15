@@ -53,9 +53,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application.cs" />
+    <Compile Include="AuthorizationExpressProviderExamples.cs" />
+    <Compile Include="AuthorizationsProviderExample.cs" />
     <Compile Include="ClaimsExamples.cs" />
     <Compile Include="AuthorizationsExamples.cs" />
+    <Compile Include="ClaimsProviderExamples.cs" />
+    <Compile Include="ExpressAuthorizationClientExample.cs" />
+    <Compile Include="InsurersProviderExample.cs" />
+    <Compile Include="ProductsExample.cs" />
+    <Compile Include="ProductsProviderExamples.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueueProviderExample.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OsiguSDK.Insurers\OsiguSDK.Insurers.csproj">
