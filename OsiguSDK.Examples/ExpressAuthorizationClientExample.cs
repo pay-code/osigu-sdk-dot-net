@@ -21,7 +21,7 @@ namespace OsiguSDKExamples
 
         public Pagination<ExpressAuthorization> GetListOfAuthorizationExpress(ExpressAuthorizationClient.ExpressAuthorizationStatus status = ExpressAuthorizationClient.ExpressAuthorizationStatus.INSURER_PENDING_REVIEW, int? page = 0, int? size = 25)
         {
-            return _client.GetListOfAuthorizationExpress(status, page, size);
+            return _client.GetListOfAuthorizationsExpress(status, page, size);
         }
 
         public void ApproveExpressAuthorization(string id)

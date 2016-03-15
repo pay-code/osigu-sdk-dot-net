@@ -13,10 +13,6 @@ namespace OsiguSDKExamples
     {
         static void Main(string[] args)
         {
-            
-        }
-/*        static void Main(string[] args)
-        {
             IConfiguration configInsurer = new Configuration()
             {
                 BaseUrl = "https://sandbox.paycodenetwork.com/v1",
@@ -179,7 +175,7 @@ namespace OsiguSDKExamples
 
             // GET LIST OF PRODUCTS
             var getListProductsResponse = productExamples.GetListOfProducts();
-        }*/
+        }
     }
 }
 
