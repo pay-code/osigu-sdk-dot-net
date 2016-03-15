@@ -85,9 +85,9 @@ this.ScenarioSetup(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Outline example")]
-        [NUnit.Framework.TestCaseAttribute("1", "asdf", "123", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("2", "123", "234", new string[0])]
-        public virtual void OutlineExample(string testId, string value, string values, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("1", "asdf", "123", "OK", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("2", "123", "234", "BadRequest", new string[0])]
+        public virtual void OutlineExample(string testId, string value, string values, string expectedResult, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Outline example", exampleTags);
 #line 13
@@ -101,10 +101,12 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "TestId",
-                        "Value"});
+                        "Value",
+                        "ExpectedResult"});
             table1.AddRow(new string[] {
                         string.Format("{0}", testId),
-                        string.Format("{0}", value)});
+                        string.Format("{0}", value),
+                        string.Format("{0}", expectedResult)});
 #line 17
  testRunner.Then("the possible results should be the expected", ((string)(null)), table1, "Then ");
 #line hidden
