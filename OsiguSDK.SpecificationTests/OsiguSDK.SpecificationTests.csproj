@@ -67,6 +67,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Products\Insurer.GetListProducts.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Insurer.GetListProducts.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Products\InsurerGetListProductsSteps.cs" />
     <Compile Include="Products\Provider.SubmitProduct.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -90,6 +96,10 @@
       <LastGenOutput>ExampleTest.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
+    <None Include="Products\Insurer.GetListProducts.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Insurer.GetListProducts.feature.cs</LastGenOutput>
+    </None>
     <None Include="Products\Provider.SubmitProduct.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Provider.SubmitProduct.feature.cs</LastGenOutput>
