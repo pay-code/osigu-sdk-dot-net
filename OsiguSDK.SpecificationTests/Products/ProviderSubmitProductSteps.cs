@@ -11,7 +11,6 @@ namespace OsiguSDK.SpecificationTests.Products
     {
         private ProductsClient _client { get; set; }
         private SubmitProductRequest _request { get; set; }
-        //private readonly Fixture _fixture = new Fixture();
         [Given(@"I have the provider products client")]
         public void GivenIHaveTheProviderProductsClient()
         {
@@ -21,14 +20,8 @@ namespace OsiguSDK.SpecificationTests.Products
         [Given(@"the submit a product request")]
         public void GivenTheSubmitAProductRequest()
         {
-            //_request = _fixture.Create<SubmitProductRequest>();
-            _request = new SubmitProductRequest
-            {
-                FullName = "Dexlansoprazole 30 capsules of Dexilant 60mg",
-                Manufacturer = "Takeda Pharmaceuticals",
-                Name = "Dexlansoprazole",
-                ProductId = "M215"
-            };
+            _request = Tools.Fixture.Create<SubmitProductRequest>();
+            _request.ProductId = _request.ProductId.Substring(0, 25);
         }
 
         [When(@"I request the submit a product endpoint")]
