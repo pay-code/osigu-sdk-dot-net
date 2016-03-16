@@ -18,8 +18,8 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         private Pagination<Product> listOfProducts { get; set; } 
         private string errorMessage { get; set; }
 
-        [Given(@"I have the insurer products client whit an invalid token")]
-        public void GivenIHaveTheInsurerProductsClientWhitAnInvalidToken()
+        [Given(@"I have the insurer products client with an invalid token")]
+        public void GivenIHaveTheInsurerProductsClientWithAnInvalidToken()
         {
             _insurerClient = new ProductsClient(new Configuration
             {
@@ -28,6 +28,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
                 Authentication = new Authentication("noOAuthToken :(")
             });
         }
+
 
         [Given(@"I have the insurer products client with an invalid slug")]
         public void GivenIHaveTheInsurerProductsClientWithAnInvalidSlug()
@@ -44,7 +45,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         [Given(@"I have the insurer products client")]
         public void GivenIHaveTheInsurerProductsClient()
         {
-            _insurerClient = new ProductsClient(Tools.ConfigInsurersSandbox);
+            _insurerClient = new ProductsClient(Tools.ConfigInsurer1Development);
         }
 
         [When(@"I make the get list of products request to the endpoint")]
