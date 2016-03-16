@@ -14,14 +14,13 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
     [Binding]
     public class InsurerGetListOfProductsSteps
     {
-        private ProductsClient _insurerClient { get; set; }
         private Pagination<Product> listOfProducts { get; set; } 
         private string errorMessage { get; set; }
 
         [Given(@"I have the insurer products client with an invalid token")]
         public void GivenIHaveTheInsurerProductsClientWithAnInvalidToken()
         {
-            _insurerClient = new ProductsClient(new Configuration
+            Tools.productsInsurerClient = new ProductsClient(new Configuration
             {
                 BaseUrl = Tools.ConfigInsurer1Development.BaseUrl,
                 Slug = Tools.ConfigInsurer1Development.Slug,
@@ -33,7 +32,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         [Given(@"I have the insurer products client with an invalid slug")]
         public void GivenIHaveTheInsurerProductsClientWithAnInvalidSlug()
         {
-            _insurerClient = new ProductsClient(new Configuration
+            Tools.productsInsurerClient = new ProductsClient(new Configuration
             {
                 BaseUrl = Tools.ConfigInsurer1Development.BaseUrl,
                 Slug = "another_slug",
@@ -45,7 +44,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         [Given(@"I have the insurer products client")]
         public void GivenIHaveTheInsurerProductsClient()
         {
-            _insurerClient = new ProductsClient(Tools.ConfigInsurer1Development);
+            Tools.productsInsurerClient = new ProductsClient(Tools.ConfigInsurer1Development);
         }
 
         [When(@"I make the get list of products request to the endpoint")]
@@ -53,7 +52,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         {
             try
             {
-               listOfProducts = _insurerClient.GetListOfProducts();
+               listOfProducts = Tools.productsInsurerClient.GetListOfProducts();
             }
             catch (Exception exception)
             {
