@@ -87,12 +87,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Provider.GetAuthorization.feature</DependentUpon>
     </Compile>
+    <Compile Include="Products\InsurerGetListOfProductsSteps.cs" />
     <Compile Include="Products\Insurer.GetListProducts.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Insurer.GetListProducts.feature</DependentUpon>
     </Compile>
-    <Compile Include="Products\InsurerGetListProductsSteps.cs" />
     <Compile Include="Products\Provider.SubmitProduct.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
