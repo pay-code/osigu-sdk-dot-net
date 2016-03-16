@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using FluentAssertions;
 using OsiguSDK.Core.Authentication;
 using OsiguSDK.Core.Config;
@@ -8,10 +9,10 @@ using OsiguSDK.Providers.Models.Requests;
 using Ploeh.AutoFixture;
 
 
-namespace OsiguSDK.SpecificationTests.Products
+namespace OsiguSDK.SpecificationTests.Products.Provider
 {
     [Binding]
-    public class ProviderSubmitProductSteps
+    public class SubmitProductSteps
     {
         private ProductsClient _client { get; set; }
         private SubmitProductRequest _request { get; set; }
@@ -152,6 +153,52 @@ namespace OsiguSDK.SpecificationTests.Products
             errorMessage2.Should().Contain("name");
         }
 
+        [Given(@"the submit a product request with missing fields")]
+        public void GivenTheSubmitAProductRequestWithMissingFields(Table scenario)
+        {
+            var scenarioValues = scenario.Rows.ToList().First();
+            var missingField = scenarioValues["MissingField"];
+
+            _request = Tools.Fixture.Create<SubmitProductRequest>();
+            _request.ProductId = _request.ProductId.Substring(0, 25);
+
+            switch (missingField)
+            {
+                case "ProductId":
+                    _request.ProductId = string.Empty;
+                    break;
+                case "Name":
+                    _request.Name = string.Empty;
+                    break;
+                case "Full Name":
+                    _request.FullName = string.Empty;
+                    break;
+                case "Manufacturer":
+                    _request.ProductId = string.Empty;
+                    break;
+                default:
+                    ScenarioContext.Current.Pending();
+                    break;
+            }
+        }
+
+        [Then(@"the result should be missing field")]
+        public void ThenTheResultShouldBeMissingField()
+        {
+            errorMessage.Should().Contain("missing");
+        }
+
+        [When(@"the product is removed")]
+        public void WhenTheProductIsRemoved()
+        {
+            _client.SubmitRemoval(_request.ProductId);
+        }
+
+        [Then(@"the result should be ok")]
+        public void ThenTheResultShouldBeOk()
+        {
+            errorMessage.Should().BeEmpty();
+        }
 
     }
 }

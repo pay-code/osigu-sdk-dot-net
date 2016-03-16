@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace OsiguSDK.SpecificationTests.Products
+namespace OsiguSDK.SpecificationTests.Products.Provider
 {
     using TechTalk.SpecFlow;
     
@@ -24,7 +24,7 @@ namespace OsiguSDK.SpecificationTests.Products
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "Provider.SubmitProduct.feature"
+#line 1 "SubmitProduct.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
@@ -140,6 +140,61 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Then("the result should be ok on the first", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 30
  testRunner.And("the result should be error because of repeated name on the second", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Required Fields missing")]
+        [NUnit.Framework.TestCaseAttribute("1", "ProductId", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("2", "Name", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("3", "Full Name", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("4", "Manufacturer", new string[0])]
+        public virtual void RequiredFieldsMissing(string testId, string missingField, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Required Fields missing", exampleTags);
+#line 32
+this.ScenarioSetup(scenarioInfo);
+#line 33
+ testRunner.Given("I have the provider products client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "TestId",
+                        "MissingField"});
+            table1.AddRow(new string[] {
+                        string.Format("{0}", testId),
+                        string.Format("{0}", missingField)});
+#line 34
+ testRunner.And("the submit a product request with missing fields", ((string)(null)), table1, "And ");
+#line 37
+ testRunner.When("I request the submit a product endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 38
+ testRunner.Then("the result should be missing field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Submit new product successfully")]
+        public virtual void SubmitNewProductSuccessfully()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Submit new product successfully", ((string[])(null)));
+#line 47
+this.ScenarioSetup(scenarioInfo);
+#line 48
+ testRunner.Given("I have the provider products client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 49
+ testRunner.And("the submit a product request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 50
+ testRunner.When("I request the submit a product endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 51
+ testRunner.Then("the result should be ok", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 52
+ testRunner.When("the product is removed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 53
+ testRunner.And("I request the submit a product endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 54
+ testRunner.Then("the result should be ok", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

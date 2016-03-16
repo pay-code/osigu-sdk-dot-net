@@ -29,5 +29,28 @@ Scenario: Product with the Same Name Already Exists
 	Then the result should be ok on the first
 	And the result should be error because of repeated name on the second
 
+Scenario Outline: Required Fields missing
+	Given I have the provider products client
+	And the submit a product request with missing fields
+	| TestId   | MissingField   |
+	| <TestId> | <MissingField> |
+	When I request the submit a product endpoint
+	Then the result should be missing field
+
+Scenarios:
+	| TestId | MissingField |
+	| 1      | ProductId    |
+	| 2      | Name         |
+	| 3      | Full Name    |
+	| 4      | Manufacturer |
+
+Scenario: Submit new product successfully
+	Given I have the provider products client
+	And the submit a product request
+	When I request the submit a product endpoint
+	Then the result should be ok
+	When the product is removed
+	And I request the submit a product endpoint
+	Then the result should be ok
 
 
