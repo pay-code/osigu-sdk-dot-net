@@ -9,7 +9,7 @@ using TechTalk.SpecFlow;
 using OsiguSDK.Core.Models;
 using OsiguSDK.Insurers.Models;
 
-namespace OsiguSDK.SpecificationTests.Products
+namespace OsiguSDK.SpecificationTests.Products.Insurer
 {
     [Binding]
     public class InsurerGetListOfProductsSteps

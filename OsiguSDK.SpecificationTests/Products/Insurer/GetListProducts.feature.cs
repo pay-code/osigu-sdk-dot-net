@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace OsiguSDK.SpecificationTests.Products
+namespace OsiguSDK.SpecificationTests.Products.Insurer
 {
     using TechTalk.SpecFlow;
     
@@ -24,7 +24,7 @@ namespace OsiguSDK.SpecificationTests.Products
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "Insurer.GetListProducts.feature"
+#line 1 "GetListProducts.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]

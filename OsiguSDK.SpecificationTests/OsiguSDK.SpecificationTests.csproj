@@ -87,18 +87,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Provider.GetAuthorization.feature</DependentUpon>
     </Compile>
-    <Compile Include="Products\InsurerGetListOfProductsSteps.cs" />
-    <Compile Include="Products\Insurer.GetListProducts.feature.cs">
+    <Compile Include="Products\Insurer\GetListOfProductsSteps.cs" />
+    <Compile Include="Products\Insurer\GetListProducts.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Insurer.GetListProducts.feature</DependentUpon>
+      <DependentUpon>GetListProducts.feature</DependentUpon>
     </Compile>
-    <Compile Include="Products\Provider.SubmitProduct.feature.cs">
+    <Compile Include="Products\Provider\SubmitProduct.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Provider.SubmitProduct.feature</DependentUpon>
+      <DependentUpon>SubmitProduct.feature</DependentUpon>
     </Compile>
-    <Compile Include="Products\ProviderSubmitProductSteps.cs" />
+    <Compile Include="Products\Provider\SubmitProductSteps.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="ExampleTest.feature.cs">
       <AutoGen>True</AutoGen>
@@ -121,13 +121,13 @@
       <LastGenOutput>ExampleTest.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
-    <None Include="Products\Insurer.GetListProducts.feature">
+    <None Include="Products\Insurer\GetListProducts.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Insurer.GetListProducts.feature.cs</LastGenOutput>
+      <LastGenOutput>GetListProducts.feature.cs</LastGenOutput>
     </None>
-    <None Include="Products\Provider.SubmitProduct.feature">
+    <None Include="Products\Provider\SubmitProduct.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Provider.SubmitProduct.feature.cs</LastGenOutput>
+      <LastGenOutput>SubmitProduct.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
