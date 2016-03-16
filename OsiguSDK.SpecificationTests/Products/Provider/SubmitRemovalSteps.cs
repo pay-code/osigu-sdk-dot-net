@@ -12,7 +12,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         private ProductsClient _client { get; set; }
         private SubmitProductRequest _request { get; set; }
 
-        private string _productId { get; set; };
+        private string _productId { get; set; }
         private string errorMessage { get; set; }
 
         [Given(@"a product created")]
