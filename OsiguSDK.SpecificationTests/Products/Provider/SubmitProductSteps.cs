@@ -14,22 +14,19 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
     [Binding]
     public class SubmitProductSteps
     {
-        private ProductsClient _client { get; set; }
-        private SubmitProductRequest _request { get; set; }
-
         private string errorMessage { get; set; }
         private string errorMessage2 { get; set; }
 
         [Given(@"I have the provider products client")]
         public void GivenIHaveTheProviderProductsClient()
         {
-            _client = new ProductsClient(Tools.ConfigProviderBranch1Development);
+            Tools.ProductsProviderClient = new ProductsClient(Tools.ConfigProviderBranch1Development);
         }
 
         [Given(@"I have the provider products client without authorization")]
         public void GivenIHaveTheProviderProductsClientWithoutAuthorization()
         {
-            _client = new ProductsClient(new Configuration
+            Tools.ProductsProviderClient = new ProductsClient(new Configuration
             {
                 BaseUrl = Tools.ConfigProviderBranch1Development.BaseUrl,
                 Slug = Tools.ConfigProviderBranch1Development.Slug,
@@ -40,7 +37,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         [Given(@"I have the provider products client without valid slug")]
         public void GivenIHaveTheProviderProductsClientWithoutValidSlug()
         {
-            _client = new ProductsClient(new Configuration
+            Tools.ProductsProviderClient = new ProductsClient(new Configuration
             {
                 BaseUrl = Tools.ConfigProviderBranch1Development.BaseUrl,
                 Slug = "another_slug",
@@ -52,8 +49,8 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         [Given(@"the submit a product request")]
         public void GivenTheSubmitAProductRequest()
         {
-            _request = Tools.Fixture.Create<SubmitProductRequest>();
-            _request.ProductId = _request.ProductId.Substring(0, 25);
+            Tools.SubmitProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
+            Tools.SubmitProductRequest.ProductId = Tools.SubmitProductRequest.ProductId.Substring(0, 25);
         }
 
         [When(@"I request the submit a product endpoint")]
@@ -61,15 +58,15 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         {
             try
             {
-                _client.SubmitProduct(_request);
+                Tools.ProductsProviderClient.SubmitProduct(Tools.SubmitProductRequest);
             }
             catch (Exception exception)
             {
                 errorMessage = exception.Message;
             }
-            
+
         }
-        
+
         [Then(@"the result should be unauthorized")]
         public void ThenTheResultShouldBeUnauthorized()
         {
@@ -88,7 +85,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         {
             try
             {
-                _client.SubmitProduct(_request);
+                Tools.ProductsProviderClient.SubmitProduct(Tools.SubmitProductRequest);
                 errorMessage = string.Empty;
             }
             catch (Exception exception)
@@ -99,8 +96,8 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             try
             {
                 var newRequest = Tools.Fixture.Create<SubmitProductRequest>();
-                newRequest.ProductId = _request.ProductId;
-                _client.SubmitProduct(newRequest);
+                newRequest.ProductId = Tools.SubmitProductRequest.ProductId;
+                Tools.ProductsProviderClient.SubmitProduct(newRequest);
             }
             catch (Exception exception)
             {
@@ -125,7 +122,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         {
             try
             {
-                _client.SubmitProduct(_request);
+                Tools.ProductsProviderClient.SubmitProduct(Tools.SubmitProductRequest);
                 errorMessage = string.Empty;
             }
             catch (Exception exception)
@@ -136,9 +133,9 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             try
             {
                 var newRequest = Tools.Fixture.Create<SubmitProductRequest>();
-                _request.ProductId = _request.ProductId.Substring(0, 25);
-                newRequest.Name = _request.Name;
-                _client.SubmitProduct(newRequest);
+                Tools.SubmitProductRequest.ProductId = Tools.SubmitProductRequest.ProductId.Substring(0, 25);
+                newRequest.Name = Tools.SubmitProductRequest.Name;
+                Tools.ProductsProviderClient.SubmitProduct(newRequest);
             }
             catch (Exception exception)
             {
@@ -159,22 +156,22 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             var scenarioValues = scenario.Rows.ToList().First();
             var missingField = scenarioValues["MissingField"];
 
-            _request = Tools.Fixture.Create<SubmitProductRequest>();
-            _request.ProductId = _request.ProductId.Substring(0, 25);
+            Tools.SubmitProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
+            Tools.SubmitProductRequest.ProductId = Tools.SubmitProductRequest.ProductId.Substring(0, 25);
 
             switch (missingField)
             {
                 case "ProductId":
-                    _request.ProductId = string.Empty;
+                    Tools.SubmitProductRequest.ProductId = string.Empty;
                     break;
                 case "Name":
-                    _request.Name = string.Empty;
+                    Tools.SubmitProductRequest.Name = string.Empty;
                     break;
                 case "Full Name":
-                    _request.FullName = string.Empty;
+                    Tools.SubmitProductRequest.FullName = string.Empty;
                     break;
                 case "Manufacturer":
-                    _request.ProductId = string.Empty;
+                    Tools.SubmitProductRequest.ProductId = string.Empty;
                     break;
                 default:
                     ScenarioContext.Current.Pending();
@@ -191,7 +188,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         [When(@"the product is removed")]
         public void WhenTheProductIsRemoved()
         {
-            _client.SubmitRemoval(_request.ProductId);
+            Tools.ProductsProviderClient.SubmitRemoval(Tools.SubmitProductRequest.ProductId);
         }
 
         [Then(@"the result should be ok")]
