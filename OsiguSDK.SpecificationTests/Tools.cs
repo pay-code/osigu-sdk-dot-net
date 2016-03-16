@@ -1,7 +1,8 @@
 ﻿using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Authentication;
+using OsiguSDK.Providers.Clients;
+using OsiguSDK.Providers.Models.Requests;
 using Ploeh.AutoFixture;
-using TechTalk.SpecFlow;
 
 
 namespace OsiguSDK.SpecificationTests
@@ -9,6 +10,10 @@ namespace OsiguSDK.SpecificationTests
     public static class Tools
     {
         public static readonly Fixture Fixture = new Fixture();
+
+        public static ProductsClient ProductsProviderClient { get; set; }
+        public static SubmitProductRequest SubmitProductRequest { get; set; }
+
         public static IConfiguration ConfigInsurersSandbox { get
         {
             return _configInsurersSandbox ?? (_configInsurersSandbox = new Configuration
