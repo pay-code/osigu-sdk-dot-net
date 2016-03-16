@@ -15,10 +15,10 @@ Scenario Outline: Outline example
 	And I have the values <Values> to my request 
 	When I request the endpoint
 	Then the possible results should be the expected
-	| TestId   | Value   |
-	| <TestId> | <Value> |
+	| TestId   | Value   | ExpectedResult   |
+	| <TestId> | <Value> | <ExpectedResult> |
 
 Scenarios: 
-	| TestId | Value | Values    |
-	| 1      | asdf  | 123     |
-	| 2      | 123   | 234 |
+	| TestId | Value | Values | ExpectedResult |
+	| 1      | asdf  | 123    | OK             |
+	| 2      | 123   | 234    | BadRequest     |

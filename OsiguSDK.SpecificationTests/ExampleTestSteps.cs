@@ -3,7 +3,9 @@ using OsiguSDK.Insurers.Models;
 using OsiguSDK.Insurers.Models.Requests;
 using OsiguSDK.Insurers.Clients;
 using FluentAssertions;
-using OsiguSDK.Core.Config;
+using NHibernate.Util;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace OsiguSDK.SpecificationTests
 {
@@ -13,10 +15,10 @@ namespace OsiguSDK.SpecificationTests
         ProductsClient _productClient { get; set; }
         SubmitProductRequest _request { get; set; }
         Product _response { get; set; }
+
         [Given(@"I am a valid user")]
         public void GivenIAmAValidUser()
         {
-
             _productClient = new ProductsClient(Tools.ConfigInsurersSandbox);
         }
         
@@ -43,7 +45,8 @@ namespace OsiguSDK.SpecificationTests
         public void ThenTheResultShouldTheExpected()
         {
             _response.Should().NotBeNull();
-            _response.Name.Should().Be("asdfasdf");
+            _response.Should().Be(new Product(), "there should be a new product");
+            _response.Name.Should().Be(_request.Name,"{0} was the name I send to the request",_request.Name);
             _response.Status.Should().NotBeEmpty();
             _response.Status.Should()
                 .Be("Pending Review", "the product should be inserted correctly {0} {1}", "asdf", "qwerty");
@@ -55,10 +58,11 @@ namespace OsiguSDK.SpecificationTests
         }
 
         [Then(@"the possible results should be the expected")]
-        public void ThenThePossibleResultsShouldBeTheExpected()
+        public void ThenThePossibleResultsShouldBeTheExpected(Table scenarios)
         {
-            ScenarioContext.Current.Pending();
+            var scenario = scenarios.Rows.ToList().First();
+            var x = scenario["ExpectedResult"];
+            var y = scenario[0];
         }
-
     }
 }
