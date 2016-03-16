@@ -1,5 +1,6 @@
 ﻿using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Authentication;
+using Ploeh.AutoFixture;
 using TechTalk.SpecFlow;
 
 
@@ -7,6 +8,7 @@ namespace OsiguSDK.SpecificationTests
 {
     public static class Tools
     {
+        public static readonly Fixture Fixture = new Fixture();
         public static IConfiguration ConfigInsurersSandbox { get
         {
             return _configInsurersSandbox ?? (_configInsurersSandbox = new Configuration
@@ -90,15 +92,5 @@ namespace OsiguSDK.SpecificationTests
 
         private static IConfiguration _configProviderBranch2Development;
 
-    }
-
-    [Binding]
-    public class GenericSteps
-    {
-        [Given(@"an unauthorized provider user")]
-        public void GivenAnUnauthorizedProviderUser()
-        {
-            //TODO: 
-        }
     }
 }
