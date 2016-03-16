@@ -93,14 +93,4 @@ namespace OsiguSDK.SpecificationTests
         private static IConfiguration _configProviderBranch2Development;
 
     }
-
-    [Binding]
-    public class GenericSteps
-    {
-        [Given(@"an unauthorized provider user")]
-        public void GivenAnUnauthorizedProviderUser()
-        {
-            //TODO: 
-        }
-    }
 }
