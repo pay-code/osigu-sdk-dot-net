@@ -4,7 +4,7 @@
 	I want to send an authorized request to get them
 
 Scenario: Submit a request with an invalid token
-	Given I have the insurer products client whit an invalid token
+	Given I have the insurer products client with an invalid token
 	When I make the get list of products request to the endpoint
 	Then the result should be unauthorized for get a list of products
 

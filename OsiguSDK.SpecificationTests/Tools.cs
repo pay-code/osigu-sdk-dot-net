@@ -14,6 +14,9 @@ namespace OsiguSDK.SpecificationTests
         public static ProductsClient ProductsProviderClient { get; set; }
         public static ProductsClient ProductsProductsClientWithNoPermission { get; set; }
         public static SubmitProductRequest SubmitProductRequest { get; set; }
+        public static Insurers.Clients.ProductsClient productsInsurerClient { get; set; }
+
+
 
         public static IConfiguration ConfigInsurersSandbox { get
         {

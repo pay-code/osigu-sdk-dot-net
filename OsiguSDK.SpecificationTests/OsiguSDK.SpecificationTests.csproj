@@ -87,11 +87,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Provider.GetAuthorization.feature</DependentUpon>
     </Compile>
+    <Compile Include="Products\Insurer\GetAProductSteps.cs" />
     <Compile Include="Products\Insurer\GetListOfProductsSteps.cs" />
     <Compile Include="Products\Insurer\GetListProducts.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GetListProducts.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Insurer\GetProduct.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetProduct.feature</DependentUpon>
     </Compile>
     <Compile Include="Products\Provider\SubmitProduct.feature.cs">
       <AutoGen>True</AutoGen>
@@ -130,6 +136,10 @@
     <None Include="Products\Insurer\GetListProducts.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GetListProducts.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Products\Insurer\GetProduct.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetProduct.feature.cs</LastGenOutput>
     </None>
     <None Include="Products\Provider\SubmitProduct.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
