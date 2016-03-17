@@ -67,10 +67,26 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
 
         }
 
+        [When(@"I request the submit a removal endpoint without permission")]
+        public void WhenIRequestTheSubmitARemovalEndpointWithoutPermission()
+        {
+            try
+            {
+                Tools.ProductsProductsClientWithNoPermission.SubmitProduct(Tools.SubmitProductRequest);
+            }
+            catch (Exception exception)
+            {
+                errorMessage = exception.Message;
+            }
+        }
+
+
         [Then(@"the result should be unauthorized")]
         public void ThenTheResultShouldBeUnauthorized()
         {
-            errorMessage.Should().Contain("Server failed to authenticate the request. Make sure the value of the Authorization header is formed correctly including the signature");
+            errorMessage.Should()
+                .Contain(
+                    "Server failed to authenticate the request. Make sure the value of the Authorization header is formed correctly including the signature");
         }
 
         [Then(@"the result should be no permission")]

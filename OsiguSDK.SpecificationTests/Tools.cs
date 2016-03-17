@@ -12,6 +12,7 @@ namespace OsiguSDK.SpecificationTests
         public static readonly Fixture Fixture = new Fixture();
 
         public static ProductsClient ProductsProviderClient { get; set; }
+        public static ProductsClient ProductsProductsClientWithNoPermission { get; set; }
         public static SubmitProductRequest SubmitProductRequest { get; set; }
 
         public static IConfiguration ConfigInsurersSandbox { get
