@@ -110,6 +110,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SubmitRemoval.feature</DependentUpon>
     </Compile>
+    <Compile Include="Products\Insurer\SubmitRemovalSteps.cs" />
     <Compile Include="Products\Provider\SubmitProduct.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
