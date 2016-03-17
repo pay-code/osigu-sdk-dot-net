@@ -17,13 +17,13 @@ Scenario: Submit a request with an invalid product id
 	Given I have the insurer products client
 	And I have an invalid product id
 	When I make the get a product request to the endpoint
-	Then the result should be ok
+	Then i have a 404 response of getting that product
 	And a message error because the product does not exist
 
 Scenario: Submit a request with a valid product id
 	Given I have the insurer products client
 	And I have the request data for a new product
 	When I make the add a product insurer request to the endpoint
-	Then the response should be ok with code 204
+	Then i have a 200 response of adding that product
 	When I make the get a product request to the endpoint
 	Then the result should be the product information

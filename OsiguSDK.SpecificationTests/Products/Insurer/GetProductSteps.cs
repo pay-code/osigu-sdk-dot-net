@@ -40,7 +40,13 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
             }
             
         }
-        
+
+        [Then(@"i have a (.*) response of getting that product")]
+        public void ThenIHaveAResponseOfGettingThatProduct(int p0)
+        {
+            
+        }
+
         [Then(@"the result should be unauthorized for getting a product")]
         public void ThenTheResultShouldBeUnauthorizedForGettingAProduct()
         {

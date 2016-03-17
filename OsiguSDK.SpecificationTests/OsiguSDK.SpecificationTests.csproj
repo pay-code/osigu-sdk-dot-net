@@ -105,6 +105,11 @@
       <DependentUpon>SubmitProduct.feature</DependentUpon>
     </Compile>
     <Compile Include="Products\Insurer\SubmitProductSteps.cs" />
+    <Compile Include="Products\Insurer\SubmitRemoval.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SubmitRemoval.feature</DependentUpon>
+    </Compile>
     <Compile Include="Products\Provider\SubmitProduct.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -150,6 +155,10 @@
     <None Include="Products\Insurer\SubmitProduct.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SubmitProduct.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Products\Insurer\SubmitRemoval.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SubmitRemoval.feature.cs</LastGenOutput>
     </None>
     <None Include="Products\Provider\SubmitProduct.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
