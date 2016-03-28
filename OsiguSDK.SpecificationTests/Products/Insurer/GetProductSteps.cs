@@ -41,22 +41,29 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
             
         }
 
-        [Then(@"i have a (.*) response of getting that product")]
-        public void ThenIHaveAResponseOfGettingThatProduct(int p0)
+        [Then(@"I have an error response of getting that product")]
+        public void ThenIHaveAnErrorResponseOfGettingThatProduct()
         {
-            
+            errorMessage.Should().Contain("Product not found");
         }
+
+        [Then(@"I have an ok response of adding that product")]
+        public void ThenIHaveAnOkResponseOfAddingThatProduct()
+        {
+            errorMessage.Should().BeEmpty();
+        }
+
 
         [Then(@"the result should be unauthorized for getting a product")]
         public void ThenTheResultShouldBeUnauthorizedForGettingAProduct()
         {
-            errorMessage.Should().Contain("Server failed to authenticate the request. Make sure the value of the Authorization header is formed correctly including the signature");
+            errorMessage.Should().Contain("You don't have permission to access this resource");
         }
 
         [Then(@"the result should be access denied for getting a product")]
         public void ThenTheResultShouldBeAccessDeniedForGettingAProduct()
         {
-            errorMessage.Should().Contain("You don’t have permission to access this resource");
+            errorMessage.Should().Contain("Access denied");
         }
 
         [Then(@"a message error because the product does not exist")]
@@ -64,6 +71,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         {
             errorMessage.Should().Contain("Not Found");
         }
+        
 
         [Then(@"the result should be the product information")]
         public void ThenTheResultShouldBeTheProductInformation()

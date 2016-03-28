@@ -13,7 +13,7 @@ Scenario: Submit a request with an invalid slug
 	When I make the get list of products request to the endpoint
 	Then the result should be access denied for get a list of products
 
-Scenario: Submit a valid request without parameters
+Scenario: Submit a valid request
 	Given I have the insurer products client
 	When I make the get list of products request to the endpoint
 	Then the results should be list of products

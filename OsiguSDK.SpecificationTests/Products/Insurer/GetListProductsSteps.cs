@@ -63,13 +63,13 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         [Then(@"the result should be unauthorized for get a list of products")]
         public void ThenTheResultShouldBeUnauthorizedForGetAListOfProducts()
         {
-            errorMessage.Should().Contain("Server failed to authenticate the request. Make sure the value of the Authorization header is formed correctly including the signature");
+            errorMessage.Should().Contain("You don't have permission to access this resource");
         }
 
         [Then(@"the result should be access denied for get a list of products")]
         public void ThenTheResultShouldBeAccessDeniedForGetAListOfProducts()
         {
-            errorMessage.Should().Contain("You don’t have permission to access this resource");
+            errorMessage.Should().Contain("Access denied");
         }
 
         [Then(@"the results should be list of products")]

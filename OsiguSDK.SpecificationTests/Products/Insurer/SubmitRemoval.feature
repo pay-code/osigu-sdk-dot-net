@@ -25,9 +25,9 @@ Scenario: Request remove a product with an invalid status
 	When I make the add a product insurer request to the endpoint
 	Then i have a 200 response of adding that product
 	When I make the remove a product request to the endpoint
-	Then the response should be ok with code 204 
+	Then the response should be ok for removing the product
 	When I make the remove a product request to the endpoint
-	Then the response should be ok with code 404 
+	Then the response should be an error for removing the product
 
 Scenario: Request remove a valid product
 	Given I have the insurer products client
@@ -35,4 +35,4 @@ Scenario: Request remove a valid product
 	When I make the add a product insurer request to the endpoint
 	Then i have a 200 response of adding that product
 	When I make the remove a product request to the endpoint
-	Then the response should be ok with code 204 
+	Then the response should be ok for removing the product

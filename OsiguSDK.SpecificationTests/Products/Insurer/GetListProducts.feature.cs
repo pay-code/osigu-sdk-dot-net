@@ -99,10 +99,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Submit a valid request without parameters")]
-        public virtual void SubmitAValidRequestWithoutParameters()
+        [NUnit.Framework.DescriptionAttribute("Submit a valid request")]
+        public virtual void SubmitAValidRequest()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Submit a valid request without parameters", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Submit a valid request", ((string[])(null)));
 #line 16
 this.ScenarioSetup(scenarioInfo);
 #line 17
