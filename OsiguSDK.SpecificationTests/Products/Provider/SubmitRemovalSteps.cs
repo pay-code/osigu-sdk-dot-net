@@ -1,5 +1,5 @@
-﻿using System;
-using FluentAssertions;
+﻿using FluentAssertions;
+using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Providers.Clients;
 using OsiguSDK.Providers.Models.Requests;
 using Ploeh.AutoFixture;
@@ -30,7 +30,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             {
                 Tools.ProductsProviderClient.SubmitProduct(Tools.SubmitProductRequest);
             }
-            catch (Exception exception)
+            catch (ServiceException exception)
             {
                 Tools.ErrorMessage = exception.Message;
             }
@@ -44,7 +44,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             {
                 Tools.ProductsProviderClient.SubmitRemoval(_productId);
             }
-            catch (Exception exception)
+            catch (ServiceException exception)
             {
                 Tools.ErrorMessage = exception.Message;
             }

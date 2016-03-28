@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using FluentAssertions;
 using OsiguSDK.Core.Authentication;
 using OsiguSDK.Core.Config;
@@ -7,7 +6,7 @@ using TechTalk.SpecFlow;
 using OsiguSDK.Providers.Clients;
 using OsiguSDK.Providers.Models.Requests;
 using Ploeh.AutoFixture;
-
+using OsiguSDK.Core.Exceptions;
 
 namespace OsiguSDK.SpecificationTests.Products.Provider
 {
@@ -57,7 +56,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             {
                 Tools.ProductsProviderClient.SubmitProduct(Tools.SubmitProductRequest);
             }
-            catch (Exception exception)
+            catch (ServiceException exception)
             {
                 Tools.ErrorMessage = exception.Message;
             }
@@ -71,7 +70,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             {
                 Tools.ProductsProductsClientWithNoPermission.SubmitProduct(Tools.SubmitProductRequest);
             }
-            catch (Exception exception)
+            catch (ServiceException exception)
             {
                 Tools.ErrorMessage = exception.Message;
             }
@@ -99,7 +98,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
                 Tools.ProductsProviderClient.SubmitProduct(Tools.SubmitProductRequest);
                 Tools.ErrorMessage = string.Empty;
             }
-            catch (Exception exception)
+            catch (ServiceException exception)
             {
                 Tools.ErrorMessage = exception.Message;
             }
@@ -110,7 +109,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
                 newRequest.ProductId = Tools.SubmitProductRequest.ProductId;
                 Tools.ProductsProviderClient.SubmitProduct(newRequest);
             }
-            catch (Exception exception)
+            catch (ServiceException exception)
             {
                 Tools.ErrorMessage2 = exception.Message;
             }
@@ -136,7 +135,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
                 Tools.ProductsProviderClient.SubmitProduct(Tools.SubmitProductRequest);
                 Tools.ErrorMessage = string.Empty;
             }
-            catch (Exception exception)
+            catch (ServiceException exception)
             {
                 Tools.ErrorMessage = exception.Message;
             }
@@ -148,7 +147,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
                 newRequest.Name = Tools.SubmitProductRequest.Name;
                 Tools.ProductsProviderClient.SubmitProduct(newRequest);
             }
-            catch (Exception exception)
+            catch (ServiceException exception)
             {
                 Tools.ErrorMessage2 = exception.Message;
             }

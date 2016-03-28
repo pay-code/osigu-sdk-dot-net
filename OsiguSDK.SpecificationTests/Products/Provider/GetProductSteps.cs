@@ -1,4 +1,4 @@
-﻿using System;
+﻿using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Providers.Models.Requests;
 using Ploeh.AutoFixture;
 using TechTalk.SpecFlow;
@@ -24,7 +24,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
                     ? Tools.SubmitProductRequest.ProductId
                     : "anyProduct");
             }
-            catch (Exception exception)
+            catch (ServiceException exception)
             {
                 Tools.ErrorMessage = exception.Message;
             }

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using OsiguSDK.Core.Exceptions;
 using TechTalk.SpecFlow;
 
 namespace OsiguSDK.SpecificationTests.Products.Provider
@@ -13,7 +13,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             {
                 Tools.ProductsProviderClient.GetListOfProducts();
             }
-            catch (Exception exception)
+            catch (ServiceException exception)
             {
                 Tools.ErrorMessage = exception.Message;
             }

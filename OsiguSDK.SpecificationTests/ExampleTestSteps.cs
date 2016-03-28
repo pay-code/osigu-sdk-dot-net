@@ -2,9 +2,6 @@
 using OsiguSDK.Insurers.Models;
 using OsiguSDK.Insurers.Models.Requests;
 using OsiguSDK.Insurers.Clients;
-using FluentAssertions;
-using NHibernate.Util;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace OsiguSDK.SpecificationTests

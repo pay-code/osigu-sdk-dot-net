@@ -1,6 +1,5 @@
-﻿using System;
-using FluentAssertions;
-using OsiguSDK.Insurers.Clients;
+﻿using FluentAssertions;
+using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Insurers.Models;
 using OsiguSDK.Insurers.Models.Requests;
 using Ploeh.AutoFixture;
@@ -21,7 +20,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
             {
                 Tools.submitInsurerProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
             }
-            catch (Exception exception)
+            catch (ServiceException exception)
             {
                 errorMessage = exception.Message;
             }
@@ -34,7 +33,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
             {
                 _responseProduct = Tools.productsInsurerClient.GetSingleProduct(Tools.submitInsurerProductRequest.ProductId);
             }
-            catch (Exception exception)
+            catch (ServiceException exception)
             {
                 errorMessage = exception.Message;
             }
