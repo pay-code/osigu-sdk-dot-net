@@ -1,4 +1,7 @@
-﻿using FluentAssertions;
+﻿using System;
+using System.Linq;
+using FluentAssertions;
+using log4net.Util;
 using OsiguSDK.Core.Authentication;
 using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Exceptions;
@@ -52,7 +55,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
             {
                listOfProducts = Tools.productsInsurerClient.GetListOfProducts();
             }
-            catch (ServiceException exception)
+            catch (Exception exception)
             {
                 errorMessage = exception.Message;
             }
