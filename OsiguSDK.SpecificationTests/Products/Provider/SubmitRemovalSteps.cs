@@ -30,7 +30,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             {
                 Tools.ProductsProviderClient.SubmitProduct(Tools.SubmitProductRequest);
             }
-            catch (ServiceException exception)
+            catch (RequestException exception)
             {
                 Tools.ErrorMessage = exception.Message;
             }
@@ -44,7 +44,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             {
                 Tools.ProductsProviderClient.SubmitRemoval(_productId);
             }
-            catch (ServiceException exception)
+            catch (RequestException exception)
             {
                 Tools.ErrorMessage = exception.Message;
             }

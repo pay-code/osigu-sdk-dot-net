@@ -52,7 +52,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
             {
                listOfProducts = Tools.productsInsurerClient.GetListOfProducts();
             }
-            catch (ServiceException exception)
+            catch (RequestException exception)
             {
                 errorMessage = exception.Message;
             }

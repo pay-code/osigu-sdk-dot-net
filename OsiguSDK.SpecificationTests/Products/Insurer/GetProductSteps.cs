@@ -20,7 +20,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
             {
                 Tools.submitInsurerProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
             }
-            catch (ServiceException exception)
+            catch (RequestException exception)
             {
                 errorMessage = exception.Message;
             }
@@ -33,7 +33,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
             {
                 _responseProduct = Tools.productsInsurerClient.GetSingleProduct(Tools.submitInsurerProductRequest.ProductId);
             }
-            catch (ServiceException exception)
+            catch (RequestException exception)
             {
                 errorMessage = exception.Message;
             }
