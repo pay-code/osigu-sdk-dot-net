@@ -47,7 +47,7 @@ namespace OsiguSDK.SpecificationTests
             {
                 return _configInsurer1Development ?? (_configInsurer1Development = new Configuration
                 {
-                    BaseUrl = "https://dev.paycodenetwork.com",
+                    BaseUrl = "https://dev.paycodenetwork.com/v1",
                     Slug = "test-insurer",
                     Authentication = new Authentication("eyJhbGciOiJIUzI1NiJ9.eyJlbnRpdHlfdHlwZSI6IklOU1VSRVIiLCJ1c2VyX25hbWUiOiJJTlNVUkVSLTEiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZW50aXR5X2lkIjoxLCJhdXRob3JpdGllcyI6WyJST0xFX0lOU1VSRVIiXSwianRpIjoiZDVlM2ZjYWUtYjg5Yi00ZjI2LWFhMWUtYWU2NjcxZTk5YTk0Iiwic2x1ZyI6InRlc3QtaW5zdXJlciIsImNsaWVudF9pZCI6Im9zaWd1X2luc3VyZXJzX2FwcCJ9.zin1h7secwEYXCLJzKPVnyQiyo3otWDSoiVtkFY21PQ")
                 });
@@ -62,7 +62,7 @@ namespace OsiguSDK.SpecificationTests
             {
                 return _configInsurer2Development ?? (_configInsurer2Development = new Configuration
                 {
-                    BaseUrl = "https://dev.paycodenetwork.com",
+                    BaseUrl = "https://dev.paycodenetwork.com/v1",
                     Slug = "test-insurer-2",
                     Authentication = new Authentication("eyJhbGciOiJIUzI1NiJ9.eyJlbnRpdHlfdHlwZSI6IklOU1VSRVIiLCJ1c2VyX25hbWUiOiJJTlNVUkVSLTIiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZW50aXR5X2lkIjoyLCJhdXRob3JpdGllcyI6WyJST0xFX0lOU1VSRVIiXSwianRpIjoiMjAyODNmYTMtOWY1Ny00OTFmLWI3MGUtYmY2OWU1N2ZhODg5Iiwic2x1ZyI6InRlc3QtaW5zdXJlci0yIiwiY2xpZW50X2lkIjoib3NpZ3VfaW5zdXJlcnNfYXBwIn0.3EOhYFU6OttPF_5Yob-S0yKy5gnF8NjLJ_qbsv_cU2Y")
                 });
