@@ -112,9 +112,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 19
  testRunner.When("I make the get a product request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 20
- testRunner.Then("i have a 404 response of getting that product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 21
- testRunner.And("a message error because the product does not exist", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("I have an error response of getting that product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -124,19 +122,19 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void SubmitARequestWithAValidProductId()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Submit a request with a valid product id", ((string[])(null)));
-#line 23
+#line 22
 this.ScenarioSetup(scenarioInfo);
-#line 24
+#line 23
  testRunner.Given("I have the insurer products client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 25
+#line 24
  testRunner.And("I have the request data for a new product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 26
+#line 25
  testRunner.When("I make the add a product insurer request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 26
+ testRunner.Then("I have an ok response of adding that product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 27
- testRunner.Then("i have a 200 response of adding that product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 28
  testRunner.When("I make the get a product request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 29
+#line 28
  testRunner.Then("the result should be the product information", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
