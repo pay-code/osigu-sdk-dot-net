@@ -9,7 +9,15 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         [When(@"I make the get list of provider products request to the endpoint")]
         public void WhenIMakeTheGetListOfProviderProductsRequestToTheEndpoint()
         {
-            ScenarioContext.Current.Pending();
+            try
+            {
+                Tools.ProductsProviderClient.GetListOfProducts();
+            }
+            catch (Exception exception)
+            {
+                Tools.ErrorMessage = exception.Message;
+            }
+            
         }
     }
 }

@@ -11,7 +11,6 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
     public class SubmitARemovalSteps
     {
         private string _productId { get; set; }
-        private string errorMessage { get; set; }
 
         [Given(@"I have the provider products client without the required permission")]
         public void GivenIHaveTheProviderProductsClientWithoutTheRequiredPermission()
@@ -27,7 +26,15 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             Tools.SubmitProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
             Tools.SubmitProductRequest.ProductId = Tools.SubmitProductRequest.ProductId.Substring(0, 25);
             _productId = Tools.SubmitProductRequest.ProductId;
-            Tools.ProductsProviderClient.SubmitProduct(Tools.SubmitProductRequest);
+            try
+            {
+                Tools.ProductsProviderClient.SubmitProduct(Tools.SubmitProductRequest);
+            }
+            catch (Exception exception)
+            {
+                Tools.ErrorMessage = exception.Message;
+            }
+            
         }
 
         [When(@"I request the submit a removal endpoint")]
@@ -39,26 +46,26 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             }
             catch (Exception exception)
             {
-                errorMessage = exception.Message;
+                Tools.ErrorMessage = exception.Message;
             }
         }
 
         [Then(@"the result should be product don't exists")]
         public void ThenTheResultShouldBeProductDonTExists()
         {
-            errorMessage.Should().Contain("exist");
+            Tools.ErrorMessage.Should().Contain("exist");
         }
 
         [Then(@"the result should be product status error")]
         public void ThenTheResultShouldBeProductStatusError()
         {
-            errorMessage.Should().Contain("status");
+            Tools.ErrorMessage.Should().Contain("status");
         }
 
         [Then(@"the result should be product deleted successfully")]
         public void ThenTheResultShouldBeProductDeletedSuccessfully()
         {
-            errorMessage.Should().BeEmpty();
+            Tools.ErrorMessage.Should().BeEmpty();
         }
     }
 }

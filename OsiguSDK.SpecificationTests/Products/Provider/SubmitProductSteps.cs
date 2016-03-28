@@ -14,9 +14,6 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
     [Binding]
     public class SubmitProductSteps
     {
-        private string errorMessage { get; set; }
-        private string errorMessage2 { get; set; }
-
         [Given(@"I have the provider products client")]
         public void GivenIHaveTheProviderProductsClient()
         {
@@ -62,7 +59,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             }
             catch (Exception exception)
             {
-                errorMessage = exception.Message;
+                Tools.ErrorMessage = exception.Message;
             }
 
         }
@@ -76,7 +73,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             }
             catch (Exception exception)
             {
-                errorMessage = exception.Message;
+                Tools.ErrorMessage = exception.Message;
             }
         }
 
@@ -84,15 +81,13 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         [Then(@"the result should be unauthorized")]
         public void ThenTheResultShouldBeUnauthorized()
         {
-            errorMessage.Should()
-                .Contain(
-                    "Server failed to authenticate the request. Make sure the value of the Authorization header is formed correctly including the signature");
+            Tools.ErrorMessage.Should().Be("You don't have permission to access this resource");
         }
 
         [Then(@"the result should be no permission")]
         public void ThenTheResultShouldBeNoPermission()
         {
-            errorMessage.Should().Contain("You don’t have permission to access this resource");
+            Tools.ErrorMessage.Should().Contain("Access is denied");
         }
 
 
@@ -102,11 +97,11 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             try
             {
                 Tools.ProductsProviderClient.SubmitProduct(Tools.SubmitProductRequest);
-                errorMessage = string.Empty;
+                Tools.ErrorMessage = string.Empty;
             }
             catch (Exception exception)
             {
-                errorMessage = exception.Message;
+                Tools.ErrorMessage = exception.Message;
             }
 
             try
@@ -117,20 +112,20 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             }
             catch (Exception exception)
             {
-                errorMessage2 = exception.Message;
+                Tools.ErrorMessage2 = exception.Message;
             }
         }
 
         [Then(@"the result should be ok on the first")]
         public void ThenTheResultShouldBeOkOnTheFirst()
         {
-            errorMessage.Should().BeEmpty();
+            Tools.ErrorMessage.Should().BeEmpty();
         }
 
         [Then(@"the result should be error on the second")]
         public void ThenTheResultShouldBeErrorOnTheSecond()
         {
-            errorMessage2.Should().Contain("id");
+            Tools.ErrorMessage2.Should().Contain("id");
         }
 
         [When(@"I request the submit a product endpoint twice with the same name")]
@@ -139,11 +134,11 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             try
             {
                 Tools.ProductsProviderClient.SubmitProduct(Tools.SubmitProductRequest);
-                errorMessage = string.Empty;
+                Tools.ErrorMessage = string.Empty;
             }
             catch (Exception exception)
             {
-                errorMessage = exception.Message;
+                Tools.ErrorMessage = exception.Message;
             }
 
             try
@@ -155,7 +150,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             }
             catch (Exception exception)
             {
-                errorMessage2 = exception.Message;
+                Tools.ErrorMessage2 = exception.Message;
             }
         }
 
@@ -163,7 +158,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         [Then(@"the result should be error because of repeated name on the second")]
         public void ThenTheResultShouldBeErrorBecauseOfRepeatedNameOnTheSecond()
         {
-            errorMessage2.Should().Contain("name");
+            Tools.ErrorMessage2.Should().Contain("name");
         }
 
         [Given(@"the submit a product request with missing fields")]
@@ -198,7 +193,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         [Then(@"the result should be missing field")]
         public void ThenTheResultShouldBeMissingField()
         {
-            errorMessage.Should().Contain("missing");
+            Tools.ErrorMessage.Should().Contain("missing");
         }
 
         [When(@"the product is removed")]
@@ -210,7 +205,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         [Then(@"the result should be ok")]
         public void ThenTheResultShouldBeOk()
         {
-            errorMessage.Should().BeEmpty();
+            Tools.ErrorMessage.Should().BeEmpty();
         }
 
     }
