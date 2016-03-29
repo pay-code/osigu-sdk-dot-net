@@ -54,6 +54,13 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             Tools.SubmitProductRequest.ProductId = Tools.SubmitProductRequest.ProductId.Substring(0, 25);
         }
 
+        [Given(@"the submit a product request with longer id")]
+        public void GivenTheSubmitAProductRequestWithLongerId()
+        {
+            Tools.SubmitProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
+        }
+
+
         [When(@"I request the submit a product endpoint")]
         public void WhenIRequestTheSubmitAProductEndpoint()
         {
@@ -177,6 +184,12 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         public void ThenTheResultShouldBeOk()
         {
             Tools.ErrorId.Should().Be(0);
+        }
+
+        [Then(@"the result should be a validation error")]
+        public void ThenTheResultShouldBeAValidationError()
+        {
+            Tools.ErrorId.Should().Be(422);
         }
 
     }

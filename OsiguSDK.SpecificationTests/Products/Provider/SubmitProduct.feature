@@ -22,6 +22,12 @@ Scenario: Product Already Exists
 	Then the result should be ok on the first
 	And the result should be ignored on the second
 
+Scenario: Product with Id Longer than Expected
+	Given I have the provider products client
+	And the submit a product request with longer id
+	When I request the submit a product endpoint
+	Then the result should be a validation error
+
 Scenario Outline: Required Fields missing
 	Given I have the provider products client
 	And the submit a product request with missing fields
