@@ -138,12 +138,6 @@
     </Compile>
     <Compile Include="Products\Provider\SubmitRemovalSteps.cs" />
     <Compile Include="Tools.cs" />
-    <Compile Include="ExampleTest.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ExampleTest.feature</DependentUpon>
-    </Compile>
-    <Compile Include="ExampleTestSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -153,10 +147,6 @@
     <None Include="Authorizations\Provider.GetAuthorization.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Provider.GetAuthorization.feature.cs</LastGenOutput>
-    </None>
-    <None Include="ExampleTest.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>ExampleTest.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="Products\Insurer\GetListProducts.feature">
