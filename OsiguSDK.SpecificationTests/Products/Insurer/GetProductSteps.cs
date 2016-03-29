@@ -11,7 +11,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
     public class GetProductSteps
     {
         private Product _responseProduct { get; set; }
-        private string errorMessage { get; set; }
+        private RequestException errorMessage { get; set; }
 
         [Given(@"I have an invalid product id")]
         public void GivenIHaveAnInvalidProductId()
@@ -20,9 +20,9 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
             {
                 Tools.submitInsurerProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
             }
-            catch (ServiceException exception)
+            catch (RequestException exception)
             {
-                errorMessage = exception.Message;
+                errorMessage = exception;
             }
         }
         
@@ -33,9 +33,9 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
             {
                 _responseProduct = Tools.productsInsurerClient.GetSingleProduct(Tools.submitInsurerProductRequest.ProductId);
             }
-            catch (ServiceException exception)
+            catch (RequestException exception)
             {
-                errorMessage = exception.Message;
+                errorMessage = exception;
             }
             
         }
@@ -43,42 +43,41 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         [Then(@"I have an error response of getting that product")]
         public void ThenIHaveAnErrorResponseOfGettingThatProduct()
         {
-            errorMessage.Should().Contain("Product not found");
+            errorMessage.ResponseCode.Should().Be(404);
         }
-
-        [Then(@"I have an ok response of adding that product")]
-        public void ThenIHaveAnOkResponseOfAddingThatProduct()
-        {
-            errorMessage.Should().BeEmpty();
-        }
-
 
         [Then(@"the result should be unauthorized for getting a product")]
         public void ThenTheResultShouldBeUnauthorizedForGettingAProduct()
         {
-            errorMessage.Should().Contain("You don't have permission to access this resource");
+            errorMessage.ResponseCode.Should().Be(403);
         }
 
         [Then(@"the result should be access denied for getting a product")]
         public void ThenTheResultShouldBeAccessDeniedForGettingAProduct()
         {
-            errorMessage.Should().Contain("Access denied");
+            errorMessage.ResponseCode.Should().Be(404);
         }
 
         [Then(@"a message error because the product does not exist")]
         public void ThenAMessageErrorBecauseTheProductDoesNotExist()
         {
-            errorMessage.Should().Contain("Not Found");
+            errorMessage.ResponseCode.Should().Be(404);
         }
         
 
         [Then(@"the result should be the product information")]
         public void ThenTheResultShouldBeTheProductInformation()
         {
+            errorMessage.ResponseCode.Should().Be(204);
             _responseProduct.Should().NotBeNull();
-            _responseProduct.Should().Be(new Product(), " Expected a prodct information");
-            _responseProduct.Status.Should().Be("pending_review", "The product should not have been reviewed just yet");
-            _responseProduct.Type.Should().Be(Tools.submitInsurerProductRequest.Type);
+            _responseProduct.ProductId.Should()
+                .Be(Tools.submitInsurerProductRequest.ProductId, "The product should have the same id as the previos");
+            _responseProduct.Name.Should()
+                .Be(Tools.submitInsurerProductRequest.Name, "The product should have the same name as the previous one");
+            _responseProduct.FullName.Should()
+                .Be(Tools.submitInsurerProductRequest.FullName, "The product should have the same full name as the previous one");
+           // _responseProduct.Status.Should().Be("pending_review", "The product should not have been reviewed just yet");
+            _responseProduct.Type.ToUpper().Should().Be(Tools.submitInsurerProductRequest.Type.ToUpper());
         }
 
     }

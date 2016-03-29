@@ -99,14 +99,12 @@
       <DependentUpon>GetProduct.feature</DependentUpon>
     </Compile>
     <Compile Include="Products\Insurer\GetProductSteps.cs" />
-    <Compile Include="Products\Insurer\SubmitProduct.feature.cs" />
     <Compile Include="Products\Insurer\SubmitProduct1.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SubmitProduct.feature</DependentUpon>
     </Compile>
     <Compile Include="Products\Insurer\SubmitProductSteps.cs" />
-    <Compile Include="Products\Insurer\SubmitRemoval.feature.cs" />
     <Compile Include="Products\Insurer\SubmitRemoval1.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

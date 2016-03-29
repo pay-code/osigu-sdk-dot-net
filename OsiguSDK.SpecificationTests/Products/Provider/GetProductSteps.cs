@@ -24,7 +24,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
                     ? Tools.SubmitProductRequest.ProductId
                     : "anyProduct");
             }
-            catch (ServiceException exception)
+            catch (RequestException exception)
             {
                 Tools.ErrorMessage = exception.Message;
             }

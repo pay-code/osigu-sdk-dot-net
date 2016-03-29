@@ -16,7 +16,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
     public class InsurerGetListOfProductsSteps
     {
         private Pagination<Product> listOfProducts { get; set; } 
-        private string errorMessage { get; set; }
+        private RequestException errorMessage { get; set; }
 
         [Given(@"I have the insurer products client with an invalid token")]
         public void GivenIHaveTheInsurerProductsClientWithAnInvalidToken()
@@ -55,22 +55,22 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
             {
                listOfProducts = Tools.productsInsurerClient.GetListOfProducts();
             }
-            catch (Exception exception)
+            catch (RequestException exception)
             {
-                errorMessage = exception.Message;
+                errorMessage = exception;
             }
         }
 
         [Then(@"the result should be unauthorized for get a list of products")]
         public void ThenTheResultShouldBeUnauthorizedForGetAListOfProducts()
         {
-            errorMessage.Should().Contain("You don't have permission to access this resource");
+            errorMessage.ResponseCode.Should().Be(403);
         }
 
         [Then(@"the result should be access denied for get a list of products")]
         public void ThenTheResultShouldBeAccessDeniedForGetAListOfProducts()
         {
-            errorMessage.Should().Contain("Access denied");
+            errorMessage.ResponseCode.Should().Be(404);
         }
 
         [Then(@"the results should be list of products")]

@@ -56,7 +56,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             {
                 Tools.ProductsProviderClient.SubmitProduct(Tools.SubmitProductRequest);
             }
-            catch (ServiceException exception)
+            catch (RequestException exception)
             {
                 Tools.ErrorMessage = exception.Message;
             }
@@ -70,7 +70,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             {
                 Tools.ProductsProductsClientWithNoPermission.SubmitProduct(Tools.SubmitProductRequest);
             }
-            catch (ServiceException exception)
+            catch (RequestException exception)
             {
                 Tools.ErrorMessage = exception.Message;
             }
@@ -98,7 +98,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
                 Tools.ProductsProviderClient.SubmitProduct(Tools.SubmitProductRequest);
                 Tools.ErrorMessage = string.Empty;
             }
-            catch (ServiceException exception)
+            catch (RequestException exception)
             {
                 Tools.ErrorMessage = exception.Message;
             }
@@ -109,7 +109,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
                 newRequest.ProductId = Tools.SubmitProductRequest.ProductId;
                 Tools.ProductsProviderClient.SubmitProduct(newRequest);
             }
-            catch (ServiceException exception)
+            catch (RequestException exception)
             {
                 Tools.ErrorMessage2 = exception.Message;
             }
@@ -135,7 +135,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
                 Tools.ProductsProviderClient.SubmitProduct(Tools.SubmitProductRequest);
                 Tools.ErrorMessage = string.Empty;
             }
-            catch (ServiceException exception)
+            catch (RequestException exception)
             {
                 Tools.ErrorMessage = exception.Message;
             }
@@ -147,7 +147,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
                 newRequest.Name = Tools.SubmitProductRequest.Name;
                 Tools.ProductsProviderClient.SubmitProduct(newRequest);
             }
-            catch (ServiceException exception)
+            catch (RequestException exception)
             {
                 Tools.ErrorMessage2 = exception.Message;
             }

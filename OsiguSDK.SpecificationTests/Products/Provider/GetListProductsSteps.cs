@@ -13,7 +13,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             {
                 Tools.ProductsProviderClient.GetListOfProducts();
             }
-            catch (ServiceException exception)
+            catch (RequestException exception)
             {
                 Tools.ErrorMessage = exception.Message;
             }
