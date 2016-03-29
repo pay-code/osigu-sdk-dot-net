@@ -15,13 +15,13 @@ Scenario: Submit a request with an invalid slug
 
 Scenario: Submit a request with an invalid product id
 	Given I have the provider products client
-	And I have an invalid product id
+	And I have an invalid provider product id
 	When I make the get a product provider request to the endpoint
-	Then a message error because the product does not exist
+	Then the result should be the product does not exist
 
 Scenario: Submit a request with a valid product id
 	Given I have the provider products client
 	And I have the request data for a new product
 	When I request the submit a product endpoint
 	When I make the get a product provider request to the endpoint
-	Then the result should be the product information
+	Then the result should be the providers product information

@@ -20,14 +20,7 @@ Scenario: Product Already Exists
 	And the submit a product request
 	When I request the submit a product endpoint twice
 	Then the result should be ok on the first
-	And the result should be error on the second
-
-Scenario: Product with the Same Name Already Exists
-	Given I have the provider products client
-	And the submit a product request
-	When I request the submit a product endpoint twice with the same name
-	Then the result should be ok on the first
-	And the result should be error because of repeated name on the second
+	And the result should be ignored on the second
 
 Scenario Outline: Required Fields missing
 	Given I have the provider products client

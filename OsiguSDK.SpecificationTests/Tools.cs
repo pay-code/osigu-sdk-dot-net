@@ -17,8 +17,8 @@ namespace OsiguSDK.SpecificationTests
         public static Insurers.Clients.ProductsClient productsInsurerClient { get; set; }
         public static Insurers.Models.Requests.SubmitProductRequest submitInsurerProductRequest { get; set; }
 
-        public static string ErrorMessage { get; set; }
-        public static string ErrorMessage2 { get; set; }
+        public static int ErrorId { get; set; }
+        public static int ErrorId2 { get; set; }
 
 
         public static IConfiguration ConfigInsurersSandbox { get

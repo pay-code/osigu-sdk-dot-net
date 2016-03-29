@@ -32,7 +32,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             }
             catch (RequestException exception)
             {
-                Tools.ErrorMessage = exception.Message;
+                Tools.ErrorId = exception.ResponseCode;
             }
             
         }
@@ -42,30 +42,30 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         {
             try
             {
-                Tools.ProductsProviderClient.SubmitRemoval(_productId);
+                Tools.ProductsProviderClient.SubmitRemoval(_productId ?? "not-existing-product");
             }
             catch (RequestException exception)
             {
-                Tools.ErrorMessage = exception.Message;
+                Tools.ErrorId = exception.ResponseCode;
             }
         }
 
         [Then(@"the result should be product don't exists")]
         public void ThenTheResultShouldBeProductDonTExists()
         {
-            Tools.ErrorMessage.Should().Contain("exist");
+            Tools.ErrorId.Should().Be(404);
         }
 
         [Then(@"the result should be product status error")]
         public void ThenTheResultShouldBeProductStatusError()
         {
-            Tools.ErrorMessage.Should().Contain("status");
+            Tools.ErrorId.Should().Be(404);
         }
 
         [Then(@"the result should be product deleted successfully")]
         public void ThenTheResultShouldBeProductDeletedSuccessfully()
         {
-            Tools.ErrorMessage.Should().BeEmpty();
+            Tools.ErrorId.Should().Be(0);
         }
     }
 }

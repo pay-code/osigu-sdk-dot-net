@@ -15,5 +15,6 @@ Scenario: Submit a request with an invalid slug
 
 Scenario: Submit a valid request without parameters
 	Given I have the provider products client
-	When I make the get list of provider products request to the endpoint
-	Then the results should be list of products
+	When I request the submit a product endpoint
+	And I make the get list of provider products request to the endpoint
+	Then the results should be list of provider products

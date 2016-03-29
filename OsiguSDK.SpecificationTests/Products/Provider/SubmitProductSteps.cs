@@ -13,15 +13,19 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
     [Binding]
     public class SubmitProductSteps
     {
+
         [Given(@"I have the provider products client")]
         public void GivenIHaveTheProviderProductsClient()
         {
+            Tools.ErrorId = 0;
+            Tools.ErrorId2 = 0;
             Tools.ProductsProviderClient = new ProductsClient(Tools.ConfigProviderBranch1Development);
         }
 
         [Given(@"I have the provider products client without authorization")]
         public void GivenIHaveTheProviderProductsClientWithoutAuthorization()
         {
+            Tools.ErrorId = 0;
             Tools.ProductsProviderClient = new ProductsClient(new Configuration
             {
                 BaseUrl = Tools.ConfigProviderBranch1Development.BaseUrl,
@@ -33,6 +37,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         [Given(@"I have the provider products client without valid slug")]
         public void GivenIHaveTheProviderProductsClientWithoutValidSlug()
         {
+            Tools.ErrorId = 0;
             Tools.ProductsProviderClient = new ProductsClient(new Configuration
             {
                 BaseUrl = Tools.ConfigProviderBranch1Development.BaseUrl,
@@ -58,7 +63,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             }
             catch (RequestException exception)
             {
-                Tools.ErrorMessage = exception.Message;
+                Tools.ErrorId = exception.ResponseCode;
             }
 
         }
@@ -72,7 +77,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             }
             catch (RequestException exception)
             {
-                Tools.ErrorMessage = exception.Message;
+                Tools.ErrorId = exception.ResponseCode;
             }
         }
 
@@ -80,13 +85,13 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         [Then(@"the result should be unauthorized")]
         public void ThenTheResultShouldBeUnauthorized()
         {
-            Tools.ErrorMessage.Should().Be("You don't have permission to access this resource");
+            Tools.ErrorId.Should().Be(403);
         }
 
         [Then(@"the result should be no permission")]
         public void ThenTheResultShouldBeNoPermission()
         {
-            Tools.ErrorMessage.Should().Contain("Access is denied");
+            Tools.ErrorId.Should().Be(404);
         }
 
 
@@ -96,11 +101,11 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             try
             {
                 Tools.ProductsProviderClient.SubmitProduct(Tools.SubmitProductRequest);
-                Tools.ErrorMessage = string.Empty;
+
             }
             catch (RequestException exception)
             {
-                Tools.ErrorMessage = exception.Message;
+                Tools.ErrorId = exception.ResponseCode;
             }
 
             try
@@ -111,53 +116,20 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             }
             catch (RequestException exception)
             {
-                Tools.ErrorMessage2 = exception.Message;
+                Tools.ErrorId2 = exception.ResponseCode;
             }
         }
 
         [Then(@"the result should be ok on the first")]
         public void ThenTheResultShouldBeOkOnTheFirst()
         {
-            Tools.ErrorMessage.Should().BeEmpty();
+            Tools.ErrorId.Should().Be(0);
         }
 
-        [Then(@"the result should be error on the second")]
-        public void ThenTheResultShouldBeErrorOnTheSecond()
+        [Then(@"the result should be ignored on the second")]
+        public void ThenTheResultShouldBeIgnoredOnTheSecond()
         {
-            Tools.ErrorMessage2.Should().Contain("id");
-        }
-
-        [When(@"I request the submit a product endpoint twice with the same name")]
-        public void WhenIRequestTheSubmitAProductEndpointTwiceWithTheSameName()
-        {
-            try
-            {
-                Tools.ProductsProviderClient.SubmitProduct(Tools.SubmitProductRequest);
-                Tools.ErrorMessage = string.Empty;
-            }
-            catch (RequestException exception)
-            {
-                Tools.ErrorMessage = exception.Message;
-            }
-
-            try
-            {
-                var newRequest = Tools.Fixture.Create<SubmitProductRequest>();
-                Tools.SubmitProductRequest.ProductId = Tools.SubmitProductRequest.ProductId.Substring(0, 25);
-                newRequest.Name = Tools.SubmitProductRequest.Name;
-                Tools.ProductsProviderClient.SubmitProduct(newRequest);
-            }
-            catch (RequestException exception)
-            {
-                Tools.ErrorMessage2 = exception.Message;
-            }
-        }
-
-
-        [Then(@"the result should be error because of repeated name on the second")]
-        public void ThenTheResultShouldBeErrorBecauseOfRepeatedNameOnTheSecond()
-        {
-            Tools.ErrorMessage2.Should().Contain("name");
+            Tools.ErrorId2.Should().Be(0);
         }
 
         [Given(@"the submit a product request with missing fields")]
@@ -192,7 +164,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         [Then(@"the result should be missing field")]
         public void ThenTheResultShouldBeMissingField()
         {
-            Tools.ErrorMessage.Should().Contain("missing");
+            Tools.ErrorId.Should().Be(422);
         }
 
         [When(@"the product is removed")]
@@ -204,7 +176,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         [Then(@"the result should be ok")]
         public void ThenTheResultShouldBeOk()
         {
-            Tools.ErrorMessage.Should().BeEmpty();
+            Tools.ErrorId.Should().Be(0);
         }
 
     }
