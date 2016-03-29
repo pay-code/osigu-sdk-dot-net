@@ -5,34 +5,36 @@
 
 Scenario: Request remove a product with an invalid token
 	Given I have the insurer products client with an invalid token
+	And I have the request data for a new insurer product
 	When I make the remove a product request to the endpoint
 	Then the result should be unauthorized for removing a product
 
 Scenario: Request remove a product with an invalid slug
 	Given I have the insurer products client with an invalid slug
+	And I have the request data for a new insurer product
 	When I make the remove a product request to the endpoint
 	Then the result should be access denied for removing a product
 
-Scenario: Request remove an unregistered product
+Scenario: Request remove an unregistered insurer product 
 	Given I have the insurer products client
-	And I have an unregistered product information
+	And I have the request data for a new insurer product
 	When I make the remove a product request to the endpoint
-	Then the response should be 404 with product not found
+	Then the response should be an error for product not found
+
+Scenario: Request remove a valid insurer product
+	Given I have the insurer products client
+	And I have the request data for a new insurer product
+	When I make the add a product insurer request to the endpoint
+	Then I have ok response of adding that product
+	When I make the remove a product request to the endpoint
+	Then the response should be ok for removing the product
 
 Scenario: Request remove a product with an invalid status
 	Given I have the insurer products client
-	And I have the request data for a new product
+	And I have the request data for a new insurer product
 	When I make the add a product insurer request to the endpoint
-	Then i have a 200 response of adding that product
+	Then I have ok response of adding that product
 	When I make the remove a product request to the endpoint
 	Then the response should be ok for removing the product
 	When I make the remove a product request to the endpoint
 	Then the response should be an error for removing the product
-
-Scenario: Request remove a valid product
-	Given I have the insurer products client
-	And I have the request data for a new product
-	When I make the add a product insurer request to the endpoint
-	Then i have a 200 response of adding that product
-	When I make the remove a product request to the endpoint
-	Then the response should be ok for removing the product

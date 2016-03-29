@@ -1,5 +1,6 @@
 ﻿using System;
 using FluentAssertions;
+using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Insurers.Models;
 using OsiguSDK.Insurers.Models.Requests;
 using Ploeh.AutoFixture;
@@ -10,33 +11,38 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
     [Binding]
     public class SubmitProductAsAnInsurerSteps
     {
-        private string errorMessage { get; set; }
+        private RequestException errorMessage { get; set; }
         private Product productResponse { get; set; }
-
-        [Given(@"I have the request data for a new product")]
-        public void GivenIHaveTheRequestDataForANewProduct()
+    
+        [Given(@"I have the request data for a new insurer product")]
+        public void GivenIHaveTheRequestDataForANewInsurerProduct()
         {
             try
             {
                 Tools.submitInsurerProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
+                Tools.submitInsurerProductRequest.ProductId = Tools.submitInsurerProductRequest.ProductId.Substring(0,
+                    25);
+                Tools.submitInsurerProductRequest.Type = "DRUG";
             }
-            catch (Exception exception)
+            catch (RequestException exception)
             {
-                errorMessage = exception.Message;
+                errorMessage = exception;
             }
         }
-        
+
+
+
         [When(@"I make the add a product insurer request to the endpoint")]
         public void WhenIMakeTheAddAProductInsurerRequestToTheEndpoint()
         {
             try
             {
                 Tools.productsInsurerClient.SubmitProduct(Tools.submitInsurerProductRequest);
-                errorMessage = string.Empty;
+                errorMessage = new RequestException("ok", 204);
             }
-            catch (Exception exception)
+            catch (RequestException exception)
             {
-                errorMessage = exception.Message;
+                errorMessage = exception;
             }
         }
 
@@ -49,20 +55,20 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         [Then(@"the result should be unauthorized for adding a product")]
         public void ThenTheResultShouldBeUnauthorizedForAddingAProduct()
         {
-            errorMessage.Should().Contain("Server failed to authenticate the request. Make sure the value of the Authorization header is formed correctly including the signature");
+            errorMessage.ResponseCode.Should().Be(403);
         }
 
         [Then(@"the result should be access denied for adding a product")]
         public void ThenTheResultShouldBeAccessDeniedForAddingAProduct()
         {
-            errorMessage.Should().Contain("You don’t have permission to access this resource");
+            errorMessage.ResponseCode.Should().Be(404);
         }
         
 
         [Then(@"the response should be an error for adding a that product")]
         public void ThenTheResponseShouldBeAnErrorForAddingAThatProduct()
         {
-            errorMessage.Should().Contain("id");
+            errorMessage.ResponseCode.Should().Be(404);
         }
 
         [Given(@"I have the request data for a new product whit an invalid drug type")]
@@ -71,29 +77,36 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
             try
             {
                 Tools.submitInsurerProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
+                Tools.submitInsurerProductRequest.ProductId = Tools.submitInsurerProductRequest.ProductId.Substring(0,
+                    25);
                 Tools.submitInsurerProductRequest.Type = "1invalid_drug_type";
             }
-            catch (Exception exception)
+            catch (RequestException exception)
             {
-                errorMessage = exception.Message;
+                errorMessage = exception;
             }
         }
 
-        [Then(@"I have the request data for anew producto whit a repeated name")]
-        public void ThenIHaveTheRequestDataForAnewProductoWhitARepeatedName()
+
+        [Then(@"I have the request data for a new product whit a repeated name")]
+        public void ThenIHaveTheRequestDataForANewProductWhitARepeatedName()
         {
             try
             {
                 SubmitProductRequest repeatedRequest = Tools.submitInsurerProductRequest;
                 Tools.submitInsurerProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
+                Tools.submitInsurerProductRequest.ProductId = Tools.submitInsurerProductRequest.ProductId.Substring(0,
+                    25);
                 Tools.submitInsurerProductRequest.Name = repeatedRequest.Name;
                 Tools.submitInsurerProductRequest.FullName = repeatedRequest.FullName;
+                Tools.submitInsurerProductRequest.Type = "DRUG";
             }
             catch (Exception exception)
             {
-                errorMessage = exception.Message;
+                Console.WriteLine(exception.StackTrace);
             }
         }
+
 
         [Given(@"I have the request data for a new product whitout all the request parameters")]
         public void GivenIHaveTheRequestDataForANewProductWhitoutAllTheRequestParameters()
@@ -107,13 +120,26 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         [Then(@"the response should be an error for adding that product")]
         public void ThenTheResponseShouldBeAnErrorForAddingThatProduct()
         {
-            errorMessage.Should().Contain("error");
+            errorMessage.ResponseCode.Should().Be(404);
         }
 
-        [Then(@"I have a (.*) response of adding that product")]
-        public void ThenIHaveAResponseOfAddingThatProduct(int p0)
+        [Then(@"the response should be no content for adding a that product")]
+        public void ThenTheResponseShouldBeNoContentForAddingAThatProduct()
         {
-            errorMessage.Should().BeEmpty();
+            errorMessage.ResponseCode.Should().Be(204);
+        }
+
+        [Then(@"the response should be unproccessable for adding that product")]
+        public void ThenTheResponseShouldBeUnproccessableForAddingThatProduct()
+        {
+            errorMessage.ResponseCode.Should().Be(422);
+        }
+
+
+        [Then(@"I have ok response of adding that product")]
+        public void ThenIHaveOkResponseOfAddingThatProduct()
+        {
+            errorMessage.ResponseCode.Should().Be(204);
         }
 
 
