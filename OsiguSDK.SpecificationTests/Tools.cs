@@ -16,6 +16,8 @@ namespace OsiguSDK.SpecificationTests
         public static SubmitProductRequest SubmitProductRequest { get; set; }
         public static Insurers.Clients.ProductsClient productsInsurerClient { get; set; }
         public static Insurers.Models.Requests.SubmitProductRequest submitInsurerProductRequest { get; set; }
+        public static Insurers.Clients.AuthorizationsClient insurerAuthorizationClient { get; set; }
+        public static Insurers.Models.Requests.CreateAuthorizationRequest submitAuthorizationRequest { get; set; }
 
         public static int ErrorId { get; set; }
         public static int ErrorId2 { get; set; }

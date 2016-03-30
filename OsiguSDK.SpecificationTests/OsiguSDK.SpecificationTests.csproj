@@ -84,6 +84,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authorizations\Insurers\CreateNewAuthorization.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateNewAuthorization.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Authorizations\Insurers\CreateNewAuthorizationSteps.cs" />
     <Compile Include="Authorizations\Provider.GetAuthorization.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -143,6 +149,10 @@
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Authorizations\Insurers\CreateNewAuthorization.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreateNewAuthorization.feature.cs</LastGenOutput>
     </None>
     <None Include="Authorizations\Provider.GetAuthorization.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
