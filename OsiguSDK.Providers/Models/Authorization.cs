@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Newtonsoft.Json;
 
 namespace OsiguSDK.Providers.Models
 {
+    [ComVisible(true)]
     public class Authorization
     {
         /// <summary>

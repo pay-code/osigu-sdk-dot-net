@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Runtime.InteropServices;
+using System.Text;
 using OsiguSDK.Core.Client;
 using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Requests;
@@ -7,7 +8,12 @@ using RestSharp;
 
 namespace OsiguSDK.Providers.Clients
 {
-    public class AuthorizationsClient: BaseClient
+    public interface IAuthorizationsClient
+    {
+        Authorization GetSingleAuthorization(string id);
+    }
+
+    public class AuthorizationsClient: BaseClient, IAuthorizationsClient
     {
         public AuthorizationsClient(IConfiguration configuration) : base(configuration)
         {

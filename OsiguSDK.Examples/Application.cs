@@ -13,19 +13,22 @@ namespace OsiguSDKExamples
     {
         static void Main(string[] args)
         {
-            IConfiguration configInsurer = new Configuration()
-            {
-                BaseUrl = "https://sandbox.paycodenetwork.com/v1",
-                Slug = "test-insurer",
-                Authentication = new Authentication("589a4586628aac2815d20c1e17bc11ab")
-            };
+            //IConfiguration configInsurer = new Configuration()
+            //{
+            //    BaseUrl = "https://sandbox.paycodenetwork.com/v1",
+            //    Slug = "test-insurer",
+            //    Authentication = new Authentication("589a4586628aac2815d20c1e17bc11ab")
+            //};
 
-            IConfiguration configProvider = new Configuration()
-            {
-                BaseUrl = "https://sandbox.paycodenetwork.com/v1",
-                Slug = "test-provider",
-                Authentication = new Authentication("589a4586628aac2815d20c1e17bc11ab")
-            };
+            //IConfiguration configProvider = new Configuration()
+            //{
+            //    BaseUrl = "https://sandbox.paycodenetwork.com/v1",
+            //    Slug = "test-provider",
+            //    Authentication = new Authentication("589a4586628aac2815d20c1e17bc11ab")
+            //};
+
+            var configInsurer = Configuration.LoadFromFile("insurer-test.json");
+            var configProvider = Configuration.LoadFromFile("provider-test.json");
 
             //automapper configs
             var mapper = new MapperConfiguration(cfg =>
@@ -38,7 +41,7 @@ namespace OsiguSDKExamples
             // INSURERS
             ////////////////////////////////////////////
             //Authorization examples
-            Authorization authorizationResponse = AuthorizationsInsurerExamples(configInsurer, mapper);
+            var authorizationResponse = AuthorizationsInsurerExamples(configInsurer, mapper);
 
             ClaimsInsurerExamples(configInsurer, authorizationResponse);
 
@@ -168,7 +171,7 @@ namespace OsiguSDKExamples
             var productExamples = new ProductsExample(config);
 
             // SUBMIT A PRODUCT
-            var submitProductResponse = productExamples.SubmitProduct();
+            productExamples.SubmitProduct();
 
             // GET A SINGLE PRODUTC
             var getProductResponse = productExamples.GetSingleProduct("P215");
