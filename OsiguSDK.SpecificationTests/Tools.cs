@@ -14,6 +14,11 @@ namespace OsiguSDK.SpecificationTests
         public static ProductsClient ProductsProviderClient { get; set; }
         public static ProductsClient ProductsProductsClientWithNoPermission { get; set; }
         public static SubmitProductRequest SubmitProductRequest { get; set; }
+
+        public static ClaimsClient ClaimsProviderClient { get; set; }
+        public static ClaimsClient ClaimsProviderClientWithNoPermission { get; set; }
+        public static CreateClaimRequest CreateClaimRequest { get; set; }
+
         public static Insurers.Clients.ProductsClient productsInsurerClient { get; set; }
         public static Insurers.Models.Requests.SubmitProductRequest submitInsurerProductRequest { get; set; }
         public static Insurers.Clients.AuthorizationsClient insurerAuthorizationClient { get; set; }
@@ -22,6 +27,7 @@ namespace OsiguSDK.SpecificationTests
         public static int ErrorId { get; set; }
         public static int ErrorId2 { get; set; }
 
+        public static string AuthorizationId { get; set; }
 
         public static IConfiguration ConfigInsurersSandbox { get
         {
