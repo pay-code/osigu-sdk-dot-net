@@ -57,15 +57,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         {
             Tools.Fixture.Customizations.Add(new Tools.StringBuilder());
             Tools.submitAuthorizationRequest = Tools.Fixture.Create<CreateAuthorizationRequest > ();
-            DateTime authorizationDate = Tools.Fixture.Create<DateTime>();
-            //Tools.submitAuthorizationRequest.AuthorizationDate =
-            //    $"{authorizationDate:s}"+"Z";
-            //Tools.submitAuthorizationRequest.ExpiresAt =
-            //    $"{authorizationDate.AddMonths(1):s}" + "Z";
-            //Tools.submitAuthorizationRequest.Policy.ExpirationDate =
-            //    $"{Tools.Fixture.Create<DateTime>():s}" + "Z";
-            //Tools.submitAuthorizationRequest.Policy.PolicyHolder.DateOfBirth =
-            //    $"{Tools.Fixture.Create<DateTime>():s}" + "Z";
+            Tools.submitAuthorizationRequest.ExpiresAt = Tools.submitAuthorizationRequest.AuthorizationDate.AddDays(1);
             Tools.submitAuthorizationRequest.Doctor.CountryCode = "GT";
             Tools.submitAuthorizationRequest.Policy.CountryCode = "GT";
             Tools.submitAuthorizationRequest.Policy.PolicyHolder.Email = "mail@mail.com";
@@ -73,17 +65,6 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
             {
                 Tools.submitAuthorizationRequest.Items[pos].ProductId = Tools.InsurerAssociateProductId[pos];
             }
-
-            //Tools.submitAuthorizationRequest.ReferenceId = Tools.submitAuthorizationRequest.ReferenceId.Substring(0, 24);
-            //Tools.submitAuthorizationRequest.Policy.PolicyHolder.Id =
-            //    Tools.submitAuthorizationRequest.Policy.PolicyHolder.Id.Substring(0, 24);
-            //Tools.submitAuthorizationRequest.Doctor.MedicalLicense =
-            //    Tools.submitAuthorizationRequest.Doctor.MedicalLicense.Substring(0, 24);
-            //Tools.submitAuthorizationRequest.Policy.Certificate =
-            //    Tools.submitAuthorizationRequest.Policy.Certificate.Substring(0, 24);
-            //Tools.submitAuthorizationRequest.Policy.Number =
-            //    Tools.submitAuthorizationRequest.Policy.Number.Substring(0, 24);
-            
         }
 
         [Then(@"I have the insurer authorizations client")]
@@ -99,19 +80,16 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         [Then(@"I have the request data for a new authorization")]
         public void ThenIHaveTheRequestDataForANewAuthorization()
         {
+            Tools.Fixture.Customizations.Add(new Tools.StringBuilder());
             Tools.submitAuthorizationRequest = Tools.Fixture.Create<CreateAuthorizationRequest>();
-            DateTime authorizationDate = Tools.Fixture.Create<DateTime>();
-            //Tools.submitAuthorizationRequest.AuthorizationDate =
-            //    $"{authorizationDate:s}" + "Z";
-            //Tools.submitAuthorizationRequest.ExpiresAt =
-            //    $"{authorizationDate.AddMonths(1):s}" + "Z";
-            //Tools.submitAuthorizationRequest.Policy.ExpirationDate =
-            //    $"{Tools.Fixture.Create<DateTime>():s}" + "Z";
-            //Tools.submitAuthorizationRequest.Policy.PolicyHolder.DateOfBirth =
-            //    $"{Tools.Fixture.Create<DateTime>():s}" + "Z";
+            Tools.submitAuthorizationRequest.ExpiresAt = Tools.submitAuthorizationRequest.AuthorizationDate.AddDays(1);
             Tools.submitAuthorizationRequest.Doctor.CountryCode = "GT";
             Tools.submitAuthorizationRequest.Policy.CountryCode = "GT";
             Tools.submitAuthorizationRequest.Policy.PolicyHolder.Email = "mail@mail.com";
+            for (int pos = 0; pos < Tools.submitAuthorizationRequest.Items.Count; pos++)
+            {
+                Tools.submitAuthorizationRequest.Items[pos].ProductId = Tools.InsurerAssociateProductId[pos];
+            }
 
         }
 
@@ -122,6 +100,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
             try
             {
                 responseAuthorization = Tools.insurerAuthorizationClient.CreateAuthorization(Tools.submitAuthorizationRequest);
+                errorMessage = new RequestException("ok", 201);
             }
             catch (RequestException exception)
             {
@@ -139,7 +118,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         [Then(@"the result should be unauthorized for that request")]
         public void ThenTheResultShouldBeUnauthorizedForThatRequest()
         {
-            errorMessage.ResponseCode.Should().Be(403);
+            errorMessage.ResponseCode.Should().Be(404);
         }
 
 

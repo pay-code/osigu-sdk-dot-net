@@ -24,11 +24,7 @@ Scenario: Create a new authorization with an invalid reference_id
 	Then the result should be unprocessable fot that request
 
 Scenario: Create a new valid authorization
-	Given I have the insurer products client
-	And I have the request data for a new insurer product
-	When I make the add a product insurer request to the endpoint
-	Then I have ok response of adding that product
-	And I have the insurer authorizations client
+	Given I have the insurer authorizations client
 	And I have the request data for a new authorization
 	When I make the new authorization request to the endpoint
 	Then I have valid response for creating the authorization
