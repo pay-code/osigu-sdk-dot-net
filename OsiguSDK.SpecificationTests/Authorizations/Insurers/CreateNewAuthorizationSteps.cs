@@ -100,6 +100,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
             try
             {
                 responseAuthorization = Tools.insurerAuthorizationClient.CreateAuthorization(Tools.submitAuthorizationRequest);
+                Tools.AuthorizationId = responseAuthorization.Id;
                 errorMessage = new RequestException("ok", 201);
             }
             catch (RequestException exception)
