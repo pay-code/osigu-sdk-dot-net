@@ -13,13 +13,17 @@ namespace OsiguSDK.Providers.Examples
     {
         static void Main(string[] args)
         {
-            var _config = new Configuration("123");
-            var authClient = new AuthorizationsClient(_config);
-            var productClient = new ProductsClient(_config);
-            var claimsClient = new ClaimsClient(_config);
-            var expressAuthClient = new ExpressAuthorizationClient(_config);
+            var _config = Configuration.LoadFromFile("provider-test.json");
+            var _client = new Client(_config);
 
-            //authClient.
+
+            //GET A SINGLE PRE-AUTHORIZATION
+            var authResult = _client.Authorizations.GetSingleAuthorization("GT-8KTA-ledu");
+            
+
+            //GET 
+
+
 
 
         }

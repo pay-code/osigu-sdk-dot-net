@@ -3,6 +3,6 @@
   "slug": "test-provider",
   "authentication": {
     "type": "OAUTH",
-    "accessToken" : "589a4586628aac2815d20c1e17bc11ab"
+    "accessToken" : "921a1006628ffb2815d20c1e17bb1fae"
   }
 }

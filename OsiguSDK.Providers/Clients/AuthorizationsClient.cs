@@ -8,12 +8,7 @@ using RestSharp;
 
 namespace OsiguSDK.Providers.Clients
 {
-    public interface IAuthorizationsClient
-    {
-        Authorization GetSingleAuthorization(string id);
-    }
-
-    public class AuthorizationsClient: BaseClient, IAuthorizationsClient
+    public class AuthorizationsClient: BaseClient
     {
         public AuthorizationsClient(IConfiguration configuration) : base(configuration)
         {

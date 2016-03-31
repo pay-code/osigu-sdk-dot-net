@@ -9,7 +9,7 @@ using IConfiguration = OsiguSDK.Core.Config.IConfiguration;
 
 namespace OsiguSDKExamples
 {
-    class Application
+    static class Application
     {
         static void Main(string[] args)
         {
@@ -47,7 +47,7 @@ namespace OsiguSDKExamples
 
             ProductsInsurerExamples(configInsurer);
 
-            ExpressAuthorizationInsurerExamples(configInsurer);
+            //ExpressAuthorizationInsurerExamples(configInsurer);
 
             ////////////////////////////////////////////
             // Providers
@@ -60,7 +60,7 @@ namespace OsiguSDKExamples
 
             ProductsProviderExample(configProvider);
 
-            ExpressAuthorizationsProviderExamples(configProvider);
+            //ExpressAuthorizationsProviderExamples(configProvider);
         }
 
         private static void ExpressAuthorizationsProviderExamples(IConfiguration configProvider)
@@ -173,11 +173,13 @@ namespace OsiguSDKExamples
             // SUBMIT A PRODUCT
             productExamples.SubmitProduct();
 
-            // GET A SINGLE PRODUTC
-            var getProductResponse = productExamples.GetSingleProduct("P215");
-
             // GET LIST OF PRODUCTS
             var getListProductsResponse = productExamples.GetListOfProducts();
+
+            // GET A SINGLE PRODUTC
+            var getProductResponse = productExamples.GetSingleProduct(getListProductsResponse.Content.First().ProductId);
+
+            
         }
     }
 }
