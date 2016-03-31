@@ -1,15 +1,15 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using log4net.Config;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("osigu-sdk-dot-net")]
+[assembly: AssemblyTitle("OsiguSDK.Providers.Examples")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("osigu-sdk-dot-net")]
+[assembly: AssemblyProduct("OsiguSDK.Providers.Examples")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -17,10 +17,10 @@ using log4net.Config;
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
 // COM, set the ComVisible attribute to true on that type.
-[assembly: ComVisible(true)]
+[assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("87ea1b50-1999-4069-be1f-52d67d83e558")]
+[assembly: Guid("6904aded-0c7f-4ba3-965d-d4369427d476")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -34,5 +34,3 @@ using log4net.Config;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-
-[assembly: XmlConfigurator(ConfigFile = "log4net.config", Watch = true)]

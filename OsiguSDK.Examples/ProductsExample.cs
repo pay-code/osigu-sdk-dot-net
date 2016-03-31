@@ -15,7 +15,7 @@ namespace OsiguSDKExamples
             _client = new ProductsClient(config);
         }
 
-        public Product SubmitProduct()
+        public void SubmitProduct()
         {
             var request = new SubmitProductRequest
             {
@@ -26,7 +26,7 @@ namespace OsiguSDKExamples
                 Type = "drug"
             };
 
-            return _client.SubmitProduct(request);
+            _client.SubmitProduct(request);
         }
 
         public void SubmitRemoval(string productId)

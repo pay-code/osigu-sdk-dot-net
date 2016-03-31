@@ -10,11 +10,13 @@ namespace OsiguSDKExamples
         public AuthorizationsProviderExample(IConfiguration configuration)
         {
             _client = new AuthorizationsClient(configuration);
+            //_clientreclamos = new 
         }
 
         public Authorization GetSingleAuthorization(string id)
         {
             return _client.GetSingleAuthorization(id);
+            
         }
     }
 }
