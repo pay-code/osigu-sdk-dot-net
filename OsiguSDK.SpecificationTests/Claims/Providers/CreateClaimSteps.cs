@@ -26,7 +26,6 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             for (var i = 0; i < 3; i++)
             {
                 var item = Tools.Fixture.Create<CreateClaimRequest.Item>();
-                item.ProductId = item.ProductId.Substring(0, 25);
                 Tools.CreateClaimRequest.Items.Add(item);
             }
         }
@@ -86,8 +85,6 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         {
             Tools.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
             GenerateItemList();
-
-            Tools.AuthorizationId = "asdfasdfasdf";
         }
         
         [When(@"I request the create a claim endpoint")]
@@ -95,7 +92,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         {
             try
             {
-                Tools.ClaimsProviderClient.CreateClaim("asdfadfasdf", Tools.CreateClaimRequest);
+                Tools.ClaimsProviderClient.CreateClaim(Tools.AuthorizationId, Tools.CreateClaimRequest);
             }
             catch(RequestException exception)
             {
@@ -171,6 +168,12 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
                     break;
             }
             
+        }
+
+        [Then(@"the result should be unprossesable entity")]
+        public void ThenTheResultShouldBeUnprossesableEntity()
+        {
+            Tools.ErrorId.Should().Be(422);
         }
 
         [Given(@"the create a claim request with a product that does not exists in osigu products")]

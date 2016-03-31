@@ -20,7 +20,7 @@ Scenario: Slug Does Not Match
 	And I have the provider claims client two
 	And the create a claim request
 	When I request the create a claim endpoint with the second client
-	Then the result should be no permission
+	Then the result should be unauthorized
 
 Scenario: Authorization Does Not Exists
 	Given I have the provider claims client 
@@ -37,6 +37,9 @@ Scenario: Authorization Exists But Is Not Associated With The Provider
 Scenario: PIN Is Not Valid
 	Given I have the provider claims client
 	And the create a claim request with an invalid pin
+	And I have the insurer authorizations client
+	And I have the request data for a new authorization
+	When I make the new authorization request to the endpoint
 	When I request the create a claim endpoint
 	Then the result should be not existing 
 
@@ -45,8 +48,11 @@ Scenario Outline: Required Fields missing
 	And the create a claim request with missing fields
 	| TestId   | MissingField   |
 	| <TestId> | <MissingField> |
-	When I request the create a claim endpoint
-	Then the result should be missing field
+	And I have the insurer authorizations client
+	And I have the request data for a new authorization
+	When I make the new authorization request to the endpoint
+	And I request the create a claim endpoint
+	Then the result should be unprossesable entity
 
 Scenarios:
 	| TestId | MissingField  |
