@@ -1,8 +1,12 @@
-﻿using OsiguSDK.Core.Config;
+﻿using System;
+using System.Reflection;
+using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Authentication;
 using OsiguSDK.Providers.Clients;
 using OsiguSDK.Providers.Models.Requests;
+using OsiguSDK.SpecificationTests.Authorizations;
 using Ploeh.AutoFixture;
+using Ploeh.AutoFixture.Kernel;
 
 
 namespace OsiguSDK.SpecificationTests
@@ -10,7 +14,6 @@ namespace OsiguSDK.SpecificationTests
     public static class Tools
     {
         public static readonly Fixture Fixture = new Fixture();
-
         public static ProductsClient ProductsProviderClient { get; set; }
         public static ProductsClient ProductsProductsClientWithNoPermission { get; set; }
         public static SubmitProductRequest SubmitProductRequest { get; set; }
@@ -21,9 +24,17 @@ namespace OsiguSDK.SpecificationTests
 
         public static Insurers.Clients.ProductsClient productsInsurerClient { get; set; }
         public static Insurers.Models.Requests.SubmitProductRequest submitInsurerProductRequest { get; set; }
+        public static Insurers.Clients.AuthorizationsClient insurerAuthorizationClient { get; set; }
+        public static Insurers.Models.Requests.CreateAuthorizationRequest submitAuthorizationRequest { get; set; }
 
         public static int ErrorId { get; set; }
         public static int ErrorId2 { get; set; }
+
+
+        public static readonly string[] InsurerAssociateProductId = { "QAINSURER1" , "QAINSURER2", "QAINSURER3" } ;
+        public static readonly string[] ProviderAssociateProductId = { "QAPROVIDER1", "QAPROVIDER2", "QAPROVIDER3" };
+        public static readonly string[] OsiguProductId = { "1016241", "1016242", "1016243" };
+
 
         public static string AuthorizationId { get; set; }
 
@@ -110,5 +121,21 @@ namespace OsiguSDK.SpecificationTests
 
         private static IConfiguration _configProviderBranch2Development;
 
+        public class StringBuilder : ISpecimenBuilder
+        {
+            private readonly Random rnd = new Random();
+
+            public object Create(object request, ISpecimenContext context)
+            {
+                var type = request as Type;
+
+                if (type == null || type != typeof(string))
+                {
+                    return new NoSpecimen();
+                }
+
+                return rnd.Next(0, 1000000).ToString();
+            }
+        }
     }
 }
