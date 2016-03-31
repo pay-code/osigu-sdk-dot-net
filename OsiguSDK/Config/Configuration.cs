@@ -1,6 +1,9 @@
-﻿using System.Reflection;
+﻿using System;
+using System.IO;
+using System.Reflection;
 using log4net;
 using Newtonsoft.Json;
+using OsiguSDK.Core.Exceptions;
 
 namespace OsiguSDK.Core.Config
 {
@@ -45,5 +48,31 @@ namespace OsiguSDK.Core.Config
         /// </summary>
         [JsonProperty(PropertyName = "slug")]
         public string Slug { get; set; }
+
+
+        public static Configuration LoadFromFile(string configFilePath = "osigusdk.cfg")
+        {
+            try
+            {
+                var sr = new StreamReader(configFilePath);
+                var json = sr.ReadToEnd();
+                sr.Close();
+
+                var tmpConfig = JsonConvert.DeserializeObject<Configuration>(json);
+                
+
+
+                if (Logger.IsInfoEnabled)
+                {
+                    Logger.Info("Data successfully loaded from '" + configFilePath + "' configuration file.");
+                }
+
+                return tmpConfig;
+            }
+            catch (Exception e)
+            {
+                throw new ConfigurationException(e);
+            }
+        }
     }
 }

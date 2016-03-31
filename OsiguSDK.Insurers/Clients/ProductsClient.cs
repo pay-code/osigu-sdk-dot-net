@@ -15,11 +15,11 @@ namespace OsiguSDK.Insurers.Clients
         {
         }
 
-        public Product SubmitProduct(SubmitProductRequest request)
+        public void SubmitProduct(SubmitProductRequest request)
         {
             var urlBuilder = new StringBuilder("/insurers/").Append(Configuration.Slug).Append("/products");
             var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, request);
-            return ExecuteMethod<Product>(requestData);
+            ExecuteMethod(requestData);
         }
 
         public void SubmitRemoval(string productId)

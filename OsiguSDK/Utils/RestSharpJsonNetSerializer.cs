@@ -5,7 +5,7 @@ using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 namespace OsiguSDK.Core.Utils
 {
-    public class RestSharpJsonNetSerializer : ISerializer
+    public class RestSharpJsonNetSerializer : JsonSerializer, ISerializer
     {
         private readonly JsonSerializer _serializer;
 
@@ -19,8 +19,12 @@ namespace OsiguSDK.Core.Utils
             {
                 MissingMemberHandling = MissingMemberHandling.Ignore,
                 NullValueHandling = NullValueHandling.Ignore,
-                DefaultValueHandling = DefaultValueHandling.Include
+                DefaultValueHandling = DefaultValueHandling.Include,
+                DateFormatHandling =  DateFormatHandling.IsoDateFormat,
+                DateTimeZoneHandling = DateTimeZoneHandling.RoundtripKind,
+                DateFormatString = "yyyy-MM-ddTHH:mm:ssZ"
             };
+            
         }
 
         /// <summary>
@@ -70,5 +74,7 @@ namespace OsiguSDK.Core.Utils
         /// Content type for serialized content
         /// </summary>
         public string ContentType { get; set; }
+
+
     }
 }
