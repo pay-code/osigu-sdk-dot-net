@@ -90,7 +90,25 @@
       <DependentUpon>CreateNewAuthorization.feature</DependentUpon>
     </Compile>
     <Compile Include="Authorizations\Insurers\CreateNewAuthorizationSteps.cs" />
-    <Compile Include="Authorizations\Provider.GetAuthorization.feature.cs">
+    <Compile Include="Authorizations\Insurers\GetAuthorization.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetAuthorization.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Authorizations\Insurers\GetAuthorizationSteps.cs" />
+    <Compile Include="Authorizations\Insurers\UpdateAuthorization.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UpdateAuthorization.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Authorizations\Insurers\UpdateAuthorizationSteps.cs" />
+    <Compile Include="Authorizations\Insurers\VoidAuthorization.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VoidAuthorization.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Authorizations\Insurers\VoidAuthorizationSteps.cs" />
+    <Compile Include="Authorizations\Provider\Provider.GetAuthorization.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Provider.GetAuthorization.feature</DependentUpon>
@@ -160,7 +178,19 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateNewAuthorization.feature.cs</LastGenOutput>
     </None>
-    <None Include="Authorizations\Provider.GetAuthorization.feature">
+    <None Include="Authorizations\Insurers\GetAuthorization.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetAuthorization.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Authorizations\Insurers\UpdateAuthorization.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>UpdateAuthorization.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Authorizations\Insurers\VoidAuthorization.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>VoidAuthorization.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Authorizations\Provider\Provider.GetAuthorization.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Provider.GetAuthorization.feature.cs</LastGenOutput>
     </None>

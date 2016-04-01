@@ -32,6 +32,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
             try
             {
                 _responseProduct = Tools.productsInsurerClient.GetSingleProduct(Tools.submitInsurerProductRequest.ProductId);
+                errorMessage = new RequestException("ok", 204);
             }
             catch (RequestException exception)
             {
