@@ -37,6 +37,7 @@ namespace OsiguSDK.SpecificationTests
 
 
         public static string AuthorizationId { get; set; }
+        public static string PIN { get; set; }
 
         public static IConfiguration ConfigInsurersSandbox { get
         {
@@ -114,7 +115,7 @@ namespace OsiguSDK.SpecificationTests
                 {
                     BaseUrl = "https://dev.paycodenetwork.com/v1",
                     Slug = "test-provider-2",
-                    Authentication = new Authentication("eyJhbGciOiJIUzI1NiJ9.eyJlbnRpdHlfdHlwZSI6IlBST1ZJREVSX0JSQU5DSCIsInVzZXJfbmFtZSI6IlBST1ZJREVSX0JSQU5DSC0yIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImVudGl0eV9pZCI6MiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9QUk9WSURFUl9CUkFOQ0giXSw")
+                    Authentication = new Authentication("eyJhbGciOiJIUzI1NiJ9.eyJlbnRpdHlfdHlwZSI6IlBST1ZJREVSX0JSQU5DSCIsInVzZXJfbmFtZSI6IlBST1ZJREVSX0JSQU5DSC0xIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImVudGl0eV9pZCI6MSwiYXV0aG9yaXRpZXMiOlsiUk9MRV9QUk9WSURFUl9CUkFOQ0giXSwianRpIjoiMGEzZmVjMDctMzExYS00YWJkLWE0NGItOWYyOTI0ZDNkNDY1Iiwic2x1ZyI6InRlc3QtcHJvdmlkZXIiLCJjbGllbnRfaWQiOiJvc2lndV9pbnN1cmVyc19hcHAifQ.-xe1EnGhKHnVTDBUnhZ8cdanX4O6GChiqJCcCy1eW2E")
                 });
             }
         }
