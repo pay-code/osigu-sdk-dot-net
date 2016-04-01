@@ -23,10 +23,15 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
 
         private static void FillItemList()
         {
+            var r = new Random();
             for (var i = 0; i < 3; i++)
             {
-                var item = Tools.Fixture.Create<CreateClaimRequest.Item>();
-                Tools.CreateClaimRequest.Items.Add(item);
+                Tools.CreateClaimRequest.Items.Add(new CreateClaimRequest.Item
+                {
+                    Price = r.Next()*10,
+                    ProductId = Tools.ProviderAssociateProductId[i],
+                    Quantity = (r.Next(0, 1000)%10)
+                });
             }
         }
 
@@ -86,7 +91,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             Tools.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
             GenerateItemList();
         }
-        
+
         [When(@"I request the create a claim endpoint")]
         public void WhenIRequestTheCreateAClaimEndpoint()
         {
@@ -94,7 +99,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             {
                 Tools.ClaimsProviderClient.CreateClaim(Tools.AuthorizationId, Tools.CreateClaimRequest);
             }
-            catch(RequestException exception)
+            catch (RequestException exception)
             {
                 Tools.ErrorId = exception.ResponseCode;
             }
@@ -129,9 +134,6 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         {
             Tools.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
             GenerateItemList();
-
-            //TODO: Not valid
-            Tools.CreateClaimRequest.Pin = "NotValid";
         }
 
         [Given(@"the create a claim request with missing fields")]
@@ -167,7 +169,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
                     ScenarioContext.Current.Pending();
                     break;
             }
-            
+
         }
 
         [Then(@"the result should be unprossesable entity")]
@@ -186,25 +188,21 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             Tools.CreateClaimRequest.Items.First().ProductId = "NotExistingOsigu";
         }
 
-        [Given(@"the create a claim request with different products")]
-        public void GivenTheCreateAClaimRequestWithDifferentProducts()
+        [When(@"the create a claim request with different products")]
+        public void WhenTheCreateAClaimRequestWithDifferentProducts()
         {
             Tools.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
+            Tools.CreateClaimRequest.Pin = Tools.PIN;
             GenerateItemList();
-            //TODO: Not valid
-            Tools.CreateClaimRequest.Pin = "NotValid";
         }
 
-        [Given(@"the create a claim request with repeated products")]
-        public void GivenTheCreateAClaimRequestWithRepeatedProducts()
+        [When(@"the create a claim request with repeated products")]
+        public void WhenTheCreateAClaimRequestWithRepeatedProducts()
         {
             Tools.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
+            Tools.CreateClaimRequest.Pin = Tools.PIN;
             GenerateItemList();
             FillItemList();
-
-            //TODO: Not valid
-            Tools.CreateClaimRequest.Pin = "NotValid";
         }
-
     }
 }

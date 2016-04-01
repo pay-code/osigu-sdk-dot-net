@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using Newtonsoft.Json;
 using OsiguSDK.Core.Client;
 using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Models;
@@ -26,7 +27,7 @@ namespace OsiguSDK.Providers.Clients
         {
             var urlBuilder = new StringBuilder("/providers/").Append(Configuration.Slug).Append("/authorizations/").Append(authorizationId).Append("/claims");
             var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, request);
-
+            var s = JsonConvert.SerializeObject(request);
             var response = SendRequest(requestData);
             ValidateResponse(response);
 

@@ -71,12 +71,18 @@ Scenario: Provider Producto Does Not Exists as Osigu Product
 
 Scenario: Create Claim Successfully With Only Different Products
 	Given I have the provider claims client
+	And I have the insurer authorizations client
+	And I have the request data for a new authorization
+	When I make the new authorization request to the endpoint
 	And the create a claim request with different products
-	When I request the create a claim endpoint
+	And I request the create a claim endpoint
 	Then the result should be ok
 
 Scenario: Create Claim Successfully With Repeated Products
 	Given I have the provider claims client
+	And I have the insurer authorizations client
+	And I have the request data for a new authorization
+	When I make the new authorization request to the endpoint
 	And the create a claim request with repeated products
-	When I request the create a claim endpoint
+	And I request the create a claim endpoint
 	Then the result should be ok
