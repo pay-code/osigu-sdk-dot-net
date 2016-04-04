@@ -4,6 +4,7 @@ using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Authentication;
 using OsiguSDK.Providers.Clients;
 using OsiguSDK.Providers.Models.Requests;
+using OsiguSDK.Providers.Models;
 using OsiguSDK.SpecificationTests.Authorizations;
 using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.Kernel;
@@ -21,6 +22,11 @@ namespace OsiguSDK.SpecificationTests
         public static ClaimsClient ClaimsProviderClient { get; set; }
         public static ClaimsClient ClaimsProviderClientWithNoPermission { get; set; }
         public static CreateClaimRequest CreateClaimRequest { get; set; }
+
+        public static QueueClient QueueProviderClient { get; set; }
+        public static QueueClient QueueProviderClientWithNoPermission { get; set; }
+        public static QueueStatus QueueStatus { get; set; }
+        public static string QueueId { get; set; }
 
         public static Insurers.Clients.ProductsClient productsInsurerClient { get; set; }
         public static Insurers.Models.Requests.SubmitProductRequest submitInsurerProductRequest { get; set; }
@@ -115,7 +121,7 @@ namespace OsiguSDK.SpecificationTests
                 {
                     BaseUrl = "https://dev.paycodenetwork.com/v1",
                     Slug = "test-provider-2",
-                    Authentication = new Authentication("eyJhbGciOiJIUzI1NiJ9.eyJlbnRpdHlfdHlwZSI6IlBST1ZJREVSX0JSQU5DSCIsInVzZXJfbmFtZSI6IlBST1ZJREVSX0JSQU5DSC0xIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImVudGl0eV9pZCI6MSwiYXV0aG9yaXRpZXMiOlsiUk9MRV9QUk9WSURFUl9CUkFOQ0giXSwianRpIjoiMGEzZmVjMDctMzExYS00YWJkLWE0NGItOWYyOTI0ZDNkNDY1Iiwic2x1ZyI6InRlc3QtcHJvdmlkZXIiLCJjbGllbnRfaWQiOiJvc2lndV9pbnN1cmVyc19hcHAifQ.-xe1EnGhKHnVTDBUnhZ8cdanX4O6GChiqJCcCy1eW2E")
+                    Authentication = new Authentication("eyJhbGciOiJIUzI1NiJ9.eyJlbnRpdHlfdHlwZSI6IlBST1ZJREVSX0JSQU5DSCIsInVzZXJfbmFtZSI6IlBST1ZJREVSX0JSQU5DSC0yIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImVudGl0eV9pZCI6MiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9QUk9WSURFUl9CUkFOQ0giXSwianRpIjoiNTg4NTQ4ZWMtMzk1Yy00OTNiLTkxZjUtMGM3YmRiMDg2N2M4Iiwic2x1ZyI6InRlc3QtcHJvdmlkZXItMiIsImNsaWVudF9pZCI6Im9zaWd1X2luc3VyZXJzX2FwcCJ9.8MIFeIHWS_mYxPiol3p7HXGJDcXAMYLSUdtvA5VYWl8")
                 });
             }
         }
