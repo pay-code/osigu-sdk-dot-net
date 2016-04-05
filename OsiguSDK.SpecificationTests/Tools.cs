@@ -22,6 +22,7 @@ namespace OsiguSDK.SpecificationTests
         public static ClaimsClient ClaimsProviderClient { get; set; }
         public static ClaimsClient ClaimsProviderClientWithNoPermission { get; set; }
         public static CreateClaimRequest CreateClaimRequest { get; set; }
+        public static Claim Claim { get; set; }
 
         public static QueueClient QueueProviderClient { get; set; }
         public static QueueClient QueueProviderClientWithNoPermission { get; set; }

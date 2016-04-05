@@ -28,7 +28,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             {
                 Tools.CreateClaimRequest.Items.Add(new CreateClaimRequest.Item
                 {
-                    Price = r.Next(100,10000) / 100m,
+                    Price = r.Next(100, 10000)/100m,
                     ProductId = Tools.ProviderAssociateProductId[i],
                     Quantity = (r.Next(0, 1000)%10) + 1
                 });

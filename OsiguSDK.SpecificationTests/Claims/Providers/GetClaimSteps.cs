@@ -12,7 +12,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         {
             try
             {
-                Tools.ClaimsProviderClient.GetSingleClaim(Tools.QueueStatus.ResourceId);
+                Tools.Claim = Tools.ClaimsProviderClient.GetSingleClaim(Tools.QueueStatus.ResourceId);
             }
             catch (RequestException exception)
             {
@@ -25,7 +25,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         {
             try
             {
-                Tools.ClaimsProviderClient.GetSingleClaim("InvalidId");
+                Tools.Claim = Tools.ClaimsProviderClient.GetSingleClaim("InvalidId");
             }
             catch (RequestException exception)
             {
