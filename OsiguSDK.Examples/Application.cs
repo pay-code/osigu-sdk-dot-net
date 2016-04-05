@@ -154,6 +154,7 @@ namespace OsiguSDKExamples
             //CREATE AUTHORIZATION
             var authorizationResponse = authorizationExamples.CreateAuthorization();
 
+            
             //MODIFY THE AUTHORIZATION
             authorizationResponse.AuthorizationDate = DateTime.UtcNow.AddDays(-1);
             var modificationResponse = authorizationExamples.ModifyTheAuthorization(authorizationResponse.Id, mapper.Map<CreateAuthorizationRequest>(authorizationResponse));
