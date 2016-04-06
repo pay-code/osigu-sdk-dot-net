@@ -16,11 +16,13 @@ Scenario: Slug Does Not Exists
 	Then the result should be no permission
 
 Scenario: Slug Does Not Match
-	Given I have the provider claims client
-	And I have the provider claims client two
+	Given I have the provider claims client two
+	And I have the insurer authorizations client
+	And I have the request data for a new authorization
+	When I make the new authorization request to the endpoint
 	And the create a claim request
-	When I request the create a claim endpoint with the second client
-	Then the result should be unauthorized
+	And I request the create a claim endpoint with the second client
+	Then the result should be no permission
 
 Scenario: Authorization Does Not Exists
 	Given I have the provider claims client 
@@ -40,8 +42,8 @@ Scenario: PIN Is Not Valid
 	And I have the insurer authorizations client
 	And I have the request data for a new authorization
 	When I make the new authorization request to the endpoint
-	When I request the create a claim endpoint
-	Then the result should be not existing 
+	And I request the create a claim endpoint
+	Then the result should be unprossesable entity
 
 Scenario Outline: Required Fields missing
 	Given I have the provider claims client
@@ -63,11 +65,14 @@ Scenarios:
 	| 5      | Price         |
 	| 6      | Quantity      |
 
-Scenario: Provider Producto Does Not Exists as Osigu Product
+Scenario: Provider Product Does Not Exists as Osigu Product
 	Given I have the provider claims client
+	And I have the insurer authorizations client
+	And I have the request data for a new authorization
+	When I make the new authorization request to the endpoint
 	And the create a claim request with a product that does not exists in osigu products
 	When I request the create a claim endpoint
-	Then the result should be not existing
+	Then the result should be unprossesable entity
 
 Scenario: Create Claim Successfully With Only Different Products
 	Given I have the provider claims client

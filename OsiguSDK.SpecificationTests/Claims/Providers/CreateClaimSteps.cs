@@ -28,9 +28,9 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             {
                 Tools.CreateClaimRequest.Items.Add(new CreateClaimRequest.Item
                 {
-                    Price = r.Next()*10,
+                    Price = r.Next(100, 10000)/100m,
                     ProductId = Tools.ProviderAssociateProductId[i],
-                    Quantity = (r.Next(0, 1000)%10)
+                    Quantity = (r.Next(0, 1000)%10) + 1
                 });
             }
         }
@@ -92,12 +92,21 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             GenerateItemList();
         }
 
+        [When(@"the create a claim request")]
+        public void WhenTheCreateAClaimRequest()
+        {
+            Tools.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
+            GenerateItemList();
+            Tools.CreateClaimRequest.Pin = Tools.PIN;
+        }
+
+
         [When(@"I request the create a claim endpoint")]
         public void WhenIRequestTheCreateAClaimEndpoint()
         {
             try
             {
-                Tools.ClaimsProviderClient.CreateClaim(Tools.AuthorizationId, Tools.CreateClaimRequest);
+                Tools.QueueId = Tools.ClaimsProviderClient.CreateClaim(Tools.AuthorizationId, Tools.CreateClaimRequest);
             }
             catch (RequestException exception)
             {
@@ -178,13 +187,13 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             Tools.ErrorId.Should().Be(422);
         }
 
-        [Given(@"the create a claim request with a product that does not exists in osigu products")]
-        public void GivenTheCreateAClaimRequestWithAProductThatDoesNotExistsInOsiguProducts()
+        [When(@"the create a claim request with a product that does not exists in osigu products")]
+        public void WhenTheCreateAClaimRequestWithAProductThatDoesNotExistsInOsiguProducts()
         {
             Tools.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
+            Tools.CreateClaimRequest.Pin = Tools.PIN;
             GenerateItemList();
 
-            //TODO: Not existing in osigu
             Tools.CreateClaimRequest.Items.First().ProductId = "NotExistingOsigu";
         }
 

@@ -114,12 +114,36 @@
       <DependentUpon>GetAuthorization.feature</DependentUpon>
     </Compile>
     <Compile Include="Authorizations\Provider\GetAuthorizationSteps.cs" />
+    <Compile Include="Claims\Providers\ChangeClaimItems.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChangeClaimItems.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Claims\Providers\ChangeClaimItemsSteps.cs" />
+    <Compile Include="Claims\Providers\CheckClaimStatus.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CheckClaimStatus.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Claims\Providers\CheckClaimStatusSteps.cs" />
+    <Compile Include="Claims\Providers\CompleteClaimTransaction.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompleteClaimTransaction.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Claims\Providers\CompleteClaimTransactionSteps.cs" />
     <Compile Include="Claims\Providers\CreateClaim.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CreateClaim.feature</DependentUpon>
     </Compile>
     <Compile Include="Claims\Providers\CreateClaimSteps.cs" />
+    <Compile Include="Claims\Providers\GetClaim.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetClaim.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Claims\Providers\GetClaimSteps.cs" />
     <Compile Include="Products\Insurer\GetListProducts.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -195,9 +219,25 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GetAuthorization.feature.cs</LastGenOutput>
     </None>
+    <None Include="Claims\Providers\ChangeClaimItems.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ChangeClaimItems.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Claims\Providers\CheckClaimStatus.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CheckClaimStatus.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Claims\Providers\CompleteClaimTransaction.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CompleteClaimTransaction.feature.cs</LastGenOutput>
+    </None>
     <None Include="Claims\Providers\CreateClaim.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateClaim.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Claims\Providers\GetClaim.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetClaim.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="Products\Insurer\GetListProducts.feature">

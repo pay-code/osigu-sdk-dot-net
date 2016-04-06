@@ -16,7 +16,7 @@ namespace OsiguSDK.Providers.Clients
 
         public QueueStatus CheckQueueStatus(string queueId)
         {
-            var urlBuilder = new StringBuilder("/queue");
+            var urlBuilder = new StringBuilder("/queue/").Append(queueId);
             var requestData = new RequestData(urlBuilder.ToString(), Method.GET, null, null);
 
             var response = SendRequest(requestData);
