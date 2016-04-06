@@ -15,6 +15,12 @@ Scenario: Create a new authorization with an invalid slug
 	When I make the new authorization request to the endpoint
 	Then the result should be unauthorized for that request
 
+Scenario: Create a new authorization with empty fields
+	Given I have the insurer authorizations client
+	And I have the request data for a new authorization with empty fields
+	When I make the new authorization request to the endpoint
+	Then the result should be unprocessable fot that request
+
 Scenario: Create a new authorization with an invalid reference_id
 	Given I have the insurer authorizations client
 	And I have the request data for a new authorization
