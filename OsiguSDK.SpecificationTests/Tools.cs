@@ -22,8 +22,12 @@ namespace OsiguSDK.SpecificationTests
         public static ClaimsClient ClaimsProviderClientWithNoPermission { get; set; }
         public static CreateClaimRequest CreateClaimRequest { get; set; }
 
+        public static AuthorizationsClient providerAuthorizationClient { get; set; }
+        
+
         public static Insurers.Clients.ProductsClient productsInsurerClient { get; set; }
         public static Insurers.Models.Requests.SubmitProductRequest submitInsurerProductRequest { get; set; }
+
         public static Insurers.Clients.AuthorizationsClient insurerAuthorizationClient { get; set; }
         public static Insurers.Models.Requests.CreateAuthorizationRequest submitAuthorizationRequest { get; set; }
 
@@ -35,6 +39,8 @@ namespace OsiguSDK.SpecificationTests
         public static readonly string[] ProviderAssociateProductId = { "QAPROVIDER1", "QAPROVIDER2", "QAPROVIDER3" };
         public static readonly string[] OsiguProductId = { "1016241", "1016242", "1016243" };
 
+        public static readonly string RPNTestPolicyNumber = "50258433";
+        public static readonly DateTime RPNTestPolicyBirthday = new DateTime(1967, 7, 20, 7, 0, 0, 123);
 
         public static string AuthorizationId { get; set; }
         public static string PIN { get; set; }
