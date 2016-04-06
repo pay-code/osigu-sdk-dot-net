@@ -7,7 +7,7 @@
 Scenario: Authentication Error
 	Given I have the provider claims client
 	And I have the insurer authorizations client
-	And I have the queue client without authorization
+	And I have the queue client 
 	And I have the request data for a new authorization
 	When I make the new authorization request to the endpoint
 	And the create a claim request with repeated products
@@ -21,7 +21,7 @@ Scenario: Authentication Error
 Scenario: Slug Does Not Exists
 	Given I have the provider claims client
 	And I have the insurer authorizations client
-	And I have the queue client without authorization
+	And I have the queue client 
 	And I have the request data for a new authorization
 	When I make the new authorization request to the endpoint
 	And the create a claim request with repeated products
@@ -35,7 +35,7 @@ Scenario: Slug Does Not Exists
 Scenario: Invalid Claim Id
 	Given I have the provider claims client
 	And I have the insurer authorizations client
-	And I have the queue client without authorization
+	And I have the queue client 
 	And I have the request data for a new authorization
 	When I make the new authorization request to the endpoint
 	And the create a claim request with repeated products
@@ -48,7 +48,7 @@ Scenario: Invalid Claim Id
 Scenario Outline: Missing fields
 	Given I have the provider claims client
 	And I have the insurer authorizations client
-	And I have the queue client without authorization
+	And I have the queue client 
 	And I have the request data for a new authorization
 	When I make the new authorization request to the endpoint
 	And the create a claim request with repeated products
@@ -71,7 +71,7 @@ Scenarios:
 Scenario: Successfully Complete a Transaction
 	Given I have the provider claims client
 	And I have the insurer authorizations client
-	And I have the queue client without authorization
+	And I have the queue client 
 	And I have the request data for a new authorization
 	When I make the new authorization request to the endpoint
 	And the create a claim request with repeated products

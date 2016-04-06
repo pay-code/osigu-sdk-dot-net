@@ -1,9 +1,11 @@
 ﻿using System;
 using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Authentication;
+using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Providers.Clients;
 using OsiguSDK.Providers.Models.Requests;
 using OsiguSDK.Providers.Models;
+using OsiguSDK.SpecificationTests.AuxiliarModels;
 using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.Kernel;
 
@@ -33,8 +35,13 @@ namespace OsiguSDK.SpecificationTests
         public static Insurers.Clients.AuthorizationsClient insurerAuthorizationClient { get; set; }
         public static Insurers.Models.Requests.CreateAuthorizationRequest submitAuthorizationRequest { get; set; }
 
+        public static RestClient RestClient { get; set; }
+
+        public static OsiguProductRequest OsiguProductRequest { get; set; }
+
         public static int ErrorId { get; set; }
         public static int ErrorId2 { get; set; }
+        public static RequestException RequestException { get; set; }
 
 
         public static readonly string[] InsurerAssociateProductId = { "QAINSURER1" , "QAINSURER2", "QAINSURER3" } ;
@@ -127,6 +134,20 @@ namespace OsiguSDK.SpecificationTests
         }
 
         private static IConfiguration _configProviderBranch2Development;
+
+        private static IConfiguration _configOsiguProduct;
+
+        public static IConfiguration ConfigOsiguProduct
+        {
+            get
+            {
+                return _configOsiguProduct ?? (_configOsiguProduct = new Configuration
+                {
+                    BaseUrl = "https://dev.paycodenetwork.com/v1",
+                    Authentication = new Authentication("eyJhbGciOiJSUzI1NiJ9.eyJlbnRpdHlfdHlwZSI6IlVTRVIiLCJ1c2VyX25hbWUiOiJlbGl1QG9zaWd1LmNvbSIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJleHAiOjE0NTk5OTEzNzksImVudGl0eV9pZCI6MiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9XRUJfUFJPRFVDVF9BRE1JTiJdLCJqdGkiOiIwNmVkMWI2Yi1kZWJmLTQ2MzItYWUxZS1lNzEzYjM5ZDI0ZjIiLCJzbHVnIjpudWxsLCJjbGllbnRfaWQiOiJvc2lndV93ZWJfcHJvZHVjdHMifQ.zQjW_cTM2qGAfuy6fGw1OtWv0LjE91QqdF1wLWnMzaEZziUznFWquQM1EFjveHE1aPiOEPdRU1BsUP0Z_FNygLZaUhELk6DgJjaz7ndDPNckBLWq2v-vH8-uWcu2PGrAMw8IPxBRg8xqIMlIGox1DuhK0mXRJxgJnK21Ve4Eja0")
+                });
+            }
+        }
 
         public class StringBuilder : ISpecimenBuilder
         {
