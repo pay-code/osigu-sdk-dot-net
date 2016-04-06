@@ -108,11 +108,12 @@
       <DependentUpon>VoidAuthorization.feature</DependentUpon>
     </Compile>
     <Compile Include="Authorizations\Insurers\VoidAuthorizationSteps.cs" />
-    <Compile Include="Authorizations\Provider\Provider.GetAuthorization.feature.cs">
+    <Compile Include="Authorizations\Provider\GetAuthorization.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Provider.GetAuthorization.feature</DependentUpon>
+      <DependentUpon>GetAuthorization.feature</DependentUpon>
     </Compile>
+    <Compile Include="Authorizations\Provider\GetAuthorizationSteps.cs" />
     <Compile Include="Claims\Providers\CreateClaim.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -190,9 +191,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>VoidAuthorization.feature.cs</LastGenOutput>
     </None>
-    <None Include="Authorizations\Provider\Provider.GetAuthorization.feature">
+    <None Include="Authorizations\Provider\GetAuthorization.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Provider.GetAuthorization.feature.cs</LastGenOutput>
+      <LastGenOutput>GetAuthorization.feature.cs</LastGenOutput>
     </None>
     <None Include="Claims\Providers\CreateClaim.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
