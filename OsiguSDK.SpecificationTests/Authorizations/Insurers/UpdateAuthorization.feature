@@ -15,6 +15,15 @@ Scenario: Update an authorization with an invalid slug
 	When I make the update authorization request to the endpoint
 	Then the result should be not found for updating the authorization
 
+Scenario: Update an authorization with empty fields
+	Given I have the insurer authorizations client
+	And I have the request data for a new authorization
+	When I make the new authorization request to the endpoint
+	Then I have valid response for creating the authorization
+	And I have the request data for a new authorization with empty fields
+	When I make the update authorization request to the endpoint
+	Then the result should be unprocesable for updating the authorization
+
 Scenario: Update an authorization with an invalid authorization id
 	Given I have the insurer authorizations client
 	And I have the request data for a new authorization
@@ -26,5 +35,6 @@ Scenario: Update an authorization with a valid authorization id
 	And I have the request data for a new authorization
 	When I make the new authorization request to the endpoint
 	Then I have valid response for creating the authorization
-	And I make the update authorization request to the endpoint
-	Then the result should be not found for updating the authorization
+	And I have the request data for a new authorization
+	When I make the update authorization request to the endpoint
+	Then I a valid response for updating the authorization

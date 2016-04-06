@@ -23,11 +23,25 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
                 errorMessage = exception;
             }
         }
-        
-        [Then(@"the result should be forbidden for voiding the authorization")]
-        public void ThenTheResultShouldBeForbiddenForVoidingTheAuthorization()
+
+        [Then(@"the result should be forbidden for void the authorization")]
+        public void ThenTheResultShouldBeForbiddenForVoidTheAuthorization()
         {
             errorMessage.ResponseCode.Should().Be(403);
         }
+
+        [Then(@"the result should be not found for void the authorization")]
+        public void ThenTheResultShouldBeNotFoundForVoidTheAuthorization()
+        {
+            errorMessage.ResponseCode.Should().Be(404);
+        }
+
+        [Then(@"the result should be a valid response for void the authorization")]
+        public void ThenTheResultShouldBeAValidResponseForVoidTheAuthorization()
+        {
+            errorMessage.ResponseCode.Should().Be(204);
+        }
+
+
     }
 }
