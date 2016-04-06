@@ -98,20 +98,7 @@ Scenario: Product Provider Not Existing
 	And I request the change items request with unexisting osigu product
 	Then the result should be unprocessable fot that request
 
-Scenario: Product Provider Not Existing
-	Given I have the provider claims client
-	And I have the insurer authorizations client
-	And I have the queue client without authorization
-	And I have the request data for a new authorization
-	When I make the new authorization request to the endpoint
-	And the create a claim request with repeated products
-	And I request the create a claim endpoint
-	And I request the check claim status endpoint
-	And I request the get a claim endpoint
-	And I request the change items request with unexisting osigu product
-	Then the result should be unprocessable fot that request
-
-Scenario: Product Provider Not Existing
+Scenario: Successfully change items
 	Given I have the provider claims client
 	And I have the insurer authorizations client
 	And I have the queue client without authorization
