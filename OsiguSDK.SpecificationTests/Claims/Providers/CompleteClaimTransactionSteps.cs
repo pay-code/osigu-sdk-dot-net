@@ -9,9 +9,9 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
     [Binding]
     public class CompleteClaimTransactionSteps
     {
-        private static Invoice CreateInvoice()
+        private static void CreateInvoice()
         {
-            return new Invoice
+            Tools.Invoice = new Invoice
             {
                 Amount = Tools.Claim.Items.Sum(item => item.Price * item.Quantity),
                 Currency = "GTQ",
@@ -23,9 +23,10 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         [When(@"I request the complete transaction request")]
         public void WhenIRequestTheCompleteTransactionRequest()
         {
+            CreateInvoice();
             try
             {
-                Tools.ClaimsProviderClient.CompleteClaimTransaction(Tools.Claim.Id.ToString(), CreateInvoice());
+                Tools.ClaimsProviderClient.CompleteClaimTransaction(Tools.Claim.Id.ToString(), Tools.Invoice);
             }
             catch (RequestException exception)
             {
@@ -38,12 +39,37 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         {
             var scenarioValues = scenario.Rows.ToList().First();
             var missingField = scenarioValues["MissingField"];
+            CreateInvoice();
 
             switch (missingField)
             {
                 case "ClaimId":
+                    Tools.Claim.Id = 0;
                     break;
-                //case ""
+                case "Invoice":
+                    Tools.Invoice = null;
+                    break;
+                case "Amount":
+                    Tools.Invoice.Amount = 0m;
+                    break;
+                case "Currency":
+                    Tools.Invoice.Currency = string.Empty;
+                    break;
+                case "DocumentNumber":
+                    Tools.Invoice.DocumentNumber = string.Empty;
+                    break;
+                default:
+                    ScenarioContext.Current.Pending();
+                    break;
+            }
+
+            try
+            {
+                Tools.ClaimsProviderClient.CompleteClaimTransaction(Tools.Claim.Id.ToString(), Tools.Invoice);
+            }
+            catch (RequestException exception)
+            {
+                Tools.ErrorId = exception.ResponseCode;
             }
         }
 
