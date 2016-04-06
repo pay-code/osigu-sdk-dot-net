@@ -125,6 +125,12 @@
       <DependentUpon>GetClaim.feature</DependentUpon>
     </Compile>
     <Compile Include="Claims\Providers\GetClaimSteps.cs" />
+    <Compile Include="Claims\Providers\GetListClaims.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetListClaims.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Claims\Providers\GetListClaimsSteps.cs" />
     <Compile Include="Products\Insurer\GetListProducts.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -207,6 +213,10 @@
     <None Include="Claims\Providers\GetClaim.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GetClaim.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Claims\Providers\GetListClaims.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetListClaims.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="Products\Insurer\GetListProducts.feature">

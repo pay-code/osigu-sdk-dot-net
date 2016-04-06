@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Reflection;
 using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Authentication;
 using OsiguSDK.Providers.Clients;
 using OsiguSDK.Providers.Models.Requests;
 using OsiguSDK.Providers.Models;
-using OsiguSDK.SpecificationTests.Authorizations;
 using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.Kernel;
 
@@ -23,6 +21,7 @@ namespace OsiguSDK.SpecificationTests
         public static ClaimsClient ClaimsProviderClientWithNoPermission { get; set; }
         public static CreateClaimRequest CreateClaimRequest { get; set; }
         public static Claim Claim { get; set; }
+        public static Invoice Invoice { get; set; }
 
         public static QueueClient QueueProviderClient { get; set; }
         public static QueueClient QueueProviderClientWithNoPermission { get; set; }
