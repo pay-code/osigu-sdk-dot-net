@@ -97,7 +97,7 @@ namespace OsiguSDK.Insurers.Models
             /// quantity authorized
             /// </summary>
             [JsonProperty(PropertyName = "quantity")]
-            public int Quantity { get; set; }
+            public decimal Quantity { get; set; }
         }
 
     
