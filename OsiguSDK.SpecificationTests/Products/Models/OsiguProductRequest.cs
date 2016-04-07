@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace OsiguSDK.SpecificationTests.AuxiliarModels
+namespace OsiguSDK.SpecificationTests.Products.Models
 {
     public class OsiguProductRequest
     {
