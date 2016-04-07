@@ -120,6 +120,10 @@
     <Compile Include="Authorizations\Provider\GetAuthorizationSteps.cs" />
     <Compile Include="Products\Models\Dosage.cs" />
     <Compile Include="Products\Models\OsiguProductRequest.cs" />
+    <Compile Include="Settlements\Models\Claim.cs" />
+    <Compile Include="Settlements\Models\Comission.cs" />
+    <Compile Include="Settlements\Models\Item.cs" />
+    <Compile Include="Settlements\Models\Payment.cs" />
     <Compile Include="Settlements\Models\SettlementResponse.cs" />
     <Compile Include="Claims\Providers\ChangeClaimItems.feature.cs">
       <AutoGen>True</AutoGen>
@@ -212,6 +216,9 @@
     </Compile>
     <Compile Include="Products\Provider\SubmitRemovalSteps.cs" />
     <Compile Include="RestClient.cs" />
+    <Compile Include="Settlements\Models\Tax.cs" />
+    <Compile Include="Settlements\Models\Taxes.cs" />
+    <Compile Include="Settlements\Models\TaxRetentions.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

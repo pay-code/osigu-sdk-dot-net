@@ -1,7 +1,7 @@
 ﻿using System;
 using FluentAssertions;
 using OsiguSDK.Core.Exceptions;
-using OsiguSDK.SpecificationTests.AuxiliarModels;
+using OsiguSDK.SpecificationTests.Products.Models;
 using Ploeh.AutoFixture;
 using RestSharp;
 using TechTalk.SpecFlow;

@@ -5,7 +5,7 @@ using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Providers.Clients;
 using OsiguSDK.Providers.Models.Requests;
 using OsiguSDK.Providers.Models;
-using OsiguSDK.SpecificationTests.AuxiliarModels;
+using OsiguSDK.SpecificationTests.Products.Models;
 using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.Kernel;
 
