@@ -171,5 +171,23 @@ namespace OsiguSDK.SpecificationTests
                 return rnd.Next(0, 1000000).ToString();
             }
         }
+
+        private static IConfiguration _localConfigSettlements;
+
+        private static IConfiguration ConfigSettlements
+        {
+            get
+            {
+                return _localConfigSettlements ?? (_localConfigSettlements = new Configuration
+                {
+                    BaseUrl = "http://localhost:8080/v1",
+                    Authentication =
+                        new Authentication(
+                            "eyJhbGciOiJIUzI1NiJ9.eyJlbnRpdHlfdHlwZSI6IlVTRVIiLCJ1c2VyX25hbWUiOiJVU0VSLTEiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZW50aXR5X2lkIjoxLCJhdXRob3JpdGllcyI6WyJST0xFX0FVVEhfU0VSVkVSX0FQSV9BRE1JTiJdLCJqdGkiOiIzZjJjZTFlYS1lZDgwLTRiM2QtYmIwNi05ODAyYTQ2NDNmZTEiLCJzbHVnIjoiIiwiY2xpZW50X2lkIjoib3NpZ3VfaW5zdXJlcnNfYXBwIn0.ui7OI66qLdpo1k35J3Yq59ZOXCa2fOJj8UaDRO291No")
+
+                });
+
+            }
+        }
     }
 }
