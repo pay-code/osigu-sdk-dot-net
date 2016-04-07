@@ -118,8 +118,9 @@
       <DependentUpon>GetAuthorization.feature</DependentUpon>
     </Compile>
     <Compile Include="Authorizations\Provider\GetAuthorizationSteps.cs" />
-    <Compile Include="AuxiliarModels\Dosage.cs" />
-    <Compile Include="AuxiliarModels\OsiguProductRequest.cs" />
+    <Compile Include="Products\Models\Dosage.cs" />
+    <Compile Include="Products\Models\OsiguProductRequest.cs" />
+    <Compile Include="Settlements\Models\SettlementResponse.cs" />
     <Compile Include="Claims\Providers\ChangeClaimItems.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
