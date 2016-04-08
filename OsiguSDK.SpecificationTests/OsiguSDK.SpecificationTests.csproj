@@ -124,6 +124,7 @@
     <Compile Include="Settlements\Models\Comission.cs" />
     <Compile Include="Settlements\Models\Item.cs" />
     <Compile Include="Settlements\Models\Payment.cs" />
+    <Compile Include="Settlements\Models\SettlementAccountingPendingResponse.cs" />
     <Compile Include="Settlements\Models\SettlementResponse.cs" />
     <Compile Include="Claims\Providers\ChangeClaimItems.feature.cs">
       <AutoGen>True</AutoGen>
