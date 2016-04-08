@@ -221,6 +221,7 @@
     <Compile Include="Settlements\Models\Tax.cs" />
     <Compile Include="Settlements\Models\Taxes.cs" />
     <Compile Include="Settlements\Models\TaxRetentions.cs" />
+    <Compile Include="Settlements\Tests\GetOneTests.cs" />
     <Compile Include="Settlements\Tests\MarkAsSentTests.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
