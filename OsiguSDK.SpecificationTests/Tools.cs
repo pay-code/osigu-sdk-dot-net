@@ -155,6 +155,9 @@ namespace OsiguSDK.SpecificationTests
             }
         }
 
+        private static IConfiguration _configSettlement;
+
+
         public class StringBuilder : ISpecimenBuilder
         {
             private readonly Random rnd = new Random();

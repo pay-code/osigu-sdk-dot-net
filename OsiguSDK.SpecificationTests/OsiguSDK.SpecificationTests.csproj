@@ -120,6 +120,12 @@
     <Compile Include="Authorizations\Provider\GetAuthorizationSteps.cs" />
     <Compile Include="Products\Models\Dosage.cs" />
     <Compile Include="Products\Models\OsiguProductRequest.cs" />
+    <Compile Include="Settlements\GetListAllSettlements.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetListAllSettlements.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Settlements\GetListAllSettlementsSteps.cs" />
     <Compile Include="Settlements\Models\Claim.cs" />
     <Compile Include="Settlements\Models\Comission.cs" />
     <Compile Include="Settlements\Models\Item.cs" />
@@ -307,6 +313,10 @@
     <None Include="Products\Provider\SubmitRemoval.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SubmitRemoval.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Settlements\GetListAllSettlements.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetListAllSettlements.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
