@@ -1,7 +1,4 @@
-﻿using System;
-using System.Net;
-using NHibernate.Linq.Clauses;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using OsiguSDK.Core.Config;
 using RestSharp;
 

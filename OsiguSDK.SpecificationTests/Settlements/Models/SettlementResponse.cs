@@ -48,7 +48,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Models
         [JsonProperty(PropertyName = "updated_at")]
         public DateTime UpdatedAt { get; set; }
 
-        [JsonProperty(PropertyName = "comissions")]
+        [JsonProperty(PropertyName = "commissions")]
         public List<Comission> Comissions { get; set; }
 
         [JsonProperty(PropertyName = "taxes")]
