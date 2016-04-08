@@ -121,12 +121,12 @@
     <Compile Include="BaseTest.cs" />
     <Compile Include="Products\Models\Dosage.cs" />
     <Compile Include="Products\Models\OsiguProductRequest.cs" />
-    <Compile Include="Settlements\GetListAllSettlements.feature.cs">
+    <Compile Include="Settlements\Tests\GetListAllSettlements.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GetListAllSettlements.feature</DependentUpon>
     </Compile>
-    <Compile Include="Settlements\GetListAllSettlementsSteps.cs" />
+    <Compile Include="Settlements\Tests\GetListAllSettlementsSteps.cs" />
     <Compile Include="Settlements\Models\Claim.cs" />
     <Compile Include="Settlements\Models\Comission.cs" />
     <Compile Include="Settlements\Models\Item.cs" />
@@ -316,7 +316,7 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SubmitRemoval.feature.cs</LastGenOutput>
     </None>
-    <None Include="Settlements\GetListAllSettlements.feature">
+    <None Include="Settlements\Tests\GetListAllSettlements.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GetListAllSettlements.feature.cs</LastGenOutput>
     </None>

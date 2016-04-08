@@ -37,7 +37,6 @@ namespace OsiguSDK.SpecificationTests
         public static string QueueId { get; set; }
 
         public static AuthorizationsClient providerAuthorizationClient { get; set; }
-        
 
         public static Insurers.Clients.ProductsClient productsInsurerClient { get; set; }
         public static Insurers.Models.Requests.SubmitProductRequest submitInsurerProductRequest { get; set; }
@@ -162,6 +161,18 @@ namespace OsiguSDK.SpecificationTests
         }
 
         private static IConfiguration _configSettlement;
+
+        public static IConfiguration ConfigSettlement
+        {
+            get
+            {
+                return _configSettlement ?? (_configSettlement = new Configuration
+                {
+                    BaseUrl = "http://localhost:5000",
+                    Authentication = new Authentication("adsfasdfasdfasdfasdf")
+                });
+            }
+        }
 
 
         public class StringBuilder : ISpecimenBuilder

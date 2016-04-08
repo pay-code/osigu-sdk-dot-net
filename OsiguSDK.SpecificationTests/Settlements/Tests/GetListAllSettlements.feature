@@ -8,3 +8,8 @@ Scenario: Successfully Get All Settlements
 	When I request the endpoint
 	Then the result should be ok
 	And the settlement list should not be empty
+
+Scenario: Invalid Token
+	Given I have the settlement client with an invalid token
+	When I request the endpoint
+	Then the result should be unauthorized
