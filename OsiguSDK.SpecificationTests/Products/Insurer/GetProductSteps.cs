@@ -32,6 +32,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
             try
             {
                 _responseProduct = Tools.productsInsurerClient.GetSingleProduct(Tools.submitInsurerProductRequest.ProductId);
+                errorMessage = new RequestException("ok", 204);
             }
             catch (RequestException exception)
             {
@@ -76,8 +77,8 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
                 .Be(Tools.submitInsurerProductRequest.Name, "The product should have the same name as the previous one");
             _responseProduct.FullName.Should()
                 .Be(Tools.submitInsurerProductRequest.FullName, "The product should have the same full name as the previous one");
-           // _responseProduct.Status.Should().Be("pending_review", "The product should not have been reviewed just yet");
             _responseProduct.Type.ToUpper().Should().Be(Tools.submitInsurerProductRequest.Type.ToUpper());
+            _responseProduct.Status.Should().Be("pending_review", "The product should not have been reviewed just yet");
         }
 
     }

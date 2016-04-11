@@ -55,17 +55,40 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         [Given(@"I have the request data for a new authorization")]
         public void GivenIHaveTheRequestDataForANewAuthorization()
         {
-            Tools.Fixture.Customizations.Add(new Tools.StringBuilder());
-            Tools.submitAuthorizationRequest = Tools.Fixture.Create<CreateAuthorizationRequest > ();
-            Tools.submitAuthorizationRequest.ExpiresAt = Tools.submitAuthorizationRequest.AuthorizationDate.AddDays(1);
-            Tools.submitAuthorizationRequest.Doctor.CountryCode = "GT";
-            Tools.submitAuthorizationRequest.Policy.CountryCode = "GT";
-            Tools.submitAuthorizationRequest.Policy.PolicyHolder.Email = "mail@mail.com";
+           CreateValidAuthorizationRequest();
             for (int pos = 0; pos < Tools.submitAuthorizationRequest.Items.Count; pos++)
             {
                 Tools.submitAuthorizationRequest.Items[pos].ProductId = Tools.InsurerAssociateProductId[pos];
             }
+            Tools.AuthorizationId = "1";
         }
+
+        [Given(@"I have the request data for a new authorization with an unreferenced product")]
+        public void GivenIHaveTheRequestDataForANewAuthorizationWithAnUnreferencedProduct()
+        {
+           CreateValidAuthorizationRequest();
+        }
+
+        [Given(@"I have the request data for a new authorization with empty fields")]
+        public void GivenIHaveTheRequestDataForANewAuthorizationWithEmptyFields()
+        {
+            CreateValidAuthorizationRequest();
+            Tools.submitAuthorizationRequest.ReferenceId = String.Empty;
+            Tools.submitAuthorizationRequest.Doctor.MedicalLicense = String.Empty;
+            Tools.submitAuthorizationRequest.Policy.Certificate = String.Empty;
+        }
+
+
+        [Given(@"I have the request data for a new authorization with a duplicate product")]
+        public void GivenIHaveTheRequestDataForANewAuthorizationWithADuplicateProduct()
+        {
+            CreateValidAuthorizationRequest();
+            for (int pos = 0; pos < Tools.submitAuthorizationRequest.Items.Count; pos++)
+            {
+                Tools.submitAuthorizationRequest.Items[pos].ProductId = Tools.InsurerAssociateProductId[0];
+            }
+        }
+
 
         [Then(@"I have the insurer authorizations client")]
         public void ThenIHaveTheInsurerAuthorizationsClient()
@@ -80,17 +103,12 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         [Then(@"I have the request data for a new authorization")]
         public void ThenIHaveTheRequestDataForANewAuthorization()
         {
-            Tools.Fixture.Customizations.Add(new Tools.StringBuilder());
-            Tools.submitAuthorizationRequest = Tools.Fixture.Create<CreateAuthorizationRequest>();
-            Tools.submitAuthorizationRequest.ExpiresAt = Tools.submitAuthorizationRequest.AuthorizationDate.AddDays(1);
-            Tools.submitAuthorizationRequest.Doctor.CountryCode = "GT";
-            Tools.submitAuthorizationRequest.Policy.CountryCode = "GT";
-            Tools.submitAuthorizationRequest.Policy.PolicyHolder.Email = "mail@mail.com";
+          CreateValidAuthorizationRequest();
             for (int pos = 0; pos < Tools.submitAuthorizationRequest.Items.Count; pos++)
             {
                 Tools.submitAuthorizationRequest.Items[pos].ProductId = Tools.InsurerAssociateProductId[pos];
             }
-
+            
         }
 
 
@@ -128,6 +146,15 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         public void ThenIHaveValidResponseForCreatingTheAuthorization()
         {
             errorMessage.ResponseCode.Should().Be(201);
+            responseAuthorization.ReferenceId.Should().Be(Tools.submitAuthorizationRequest.ReferenceId);
+            responseAuthorization.AuthorizationDate.Date.Should().Be(Tools.submitAuthorizationRequest.AuthorizationDate.Date);
+            responseAuthorization.AuthorizationDate.Hour.Should().Be(Tools.submitAuthorizationRequest.AuthorizationDate.Hour);
+            responseAuthorization.ExpiresAt.Date.Should().Be(Tools.submitAuthorizationRequest.ExpiresAt.Date);
+            responseAuthorization.ExpiresAt.Hour.Should().Be(Tools.submitAuthorizationRequest.ExpiresAt.Hour);
+            responseAuthorization.Diagnoses.ShouldBeEquivalentTo(Tools.submitAuthorizationRequest.Diagnoses);
+            responseAuthorization.Policy.PolicyHolder.Id.Should().Be(Tools.submitAuthorizationRequest.Policy.PolicyHolder.Id);
+            responseAuthorization.Policy.Number.Should().Be(Tools.submitAuthorizationRequest.Policy.Number);
+            responseAuthorization.Items.Count.Should().Be(Tools.submitAuthorizationRequest.Items.Count);
         }
 
         [Then(@"the result should be unprocessable fot that request")]
@@ -136,5 +163,16 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
             errorMessage.ResponseCode.Should().Be(422);
         }
 
+        public void CreateValidAuthorizationRequest()
+        {
+            Tools.Fixture.Customizations.Add(new Tools.StringBuilder());
+            Tools.submitAuthorizationRequest = Tools.Fixture.Create<CreateAuthorizationRequest>();
+            Tools.submitAuthorizationRequest.ExpiresAt = Tools.submitAuthorizationRequest.AuthorizationDate.AddDays(1);
+            Tools.submitAuthorizationRequest.Doctor.CountryCode = "GT";
+            Tools.submitAuthorizationRequest.Policy.CountryCode = "GT";
+            Tools.submitAuthorizationRequest.Policy.PolicyHolder.Email = "mail@mail.com";
+            Tools.submitAuthorizationRequest.Policy.PolicyHolder.Id = Tools.RPNTestPolicyNumber;
+            Tools.submitAuthorizationRequest.Policy.PolicyHolder.DateOfBirth = Tools.RPNTestPolicyBirthday;
+        }
     }
 }

@@ -76,8 +76,11 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         [Then(@"the results should be list of products")]
         public void ThenTheResultsShouldBeListOfProducts()
         {
-            listOfProducts.Content.Count.Should()
-                .Be(listOfProducts.NumberOfElements > 0 ? listOfProducts.TotalElements : 0);
+            if (listOfProducts.NumberOfElements > 0)
+            {
+                listOfProducts.TotalElements.Should().Be(listOfProducts.NumberOfElements);
+            }
+            
         }
     }
 }

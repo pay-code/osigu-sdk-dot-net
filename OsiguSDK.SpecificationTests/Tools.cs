@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Reflection;
+using System.Net.Http;
 using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Authentication;
+using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Providers.Clients;
 using OsiguSDK.Providers.Models.Requests;
 using OsiguSDK.Providers.Models;
-using OsiguSDK.SpecificationTests.Authorizations;
+using OsiguSDK.SpecificationTests.Products.Models;
 using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.Kernel;
 
@@ -14,6 +15,11 @@ namespace OsiguSDK.SpecificationTests
 {
     public static class Tools
     {
+        public static string BaseUrl
+        {
+            get { return @"http://10.0.1.13:5000"; }
+        }
+
         public static readonly Fixture Fixture = new Fixture();
         public static ProductsClient ProductsProviderClient { get; set; }
         public static ProductsClient ProductsProductsClientWithNoPermission { get; set; }
@@ -22,25 +28,37 @@ namespace OsiguSDK.SpecificationTests
         public static ClaimsClient ClaimsProviderClient { get; set; }
         public static ClaimsClient ClaimsProviderClientWithNoPermission { get; set; }
         public static CreateClaimRequest CreateClaimRequest { get; set; }
+        public static Claim Claim { get; set; }
+        public static Invoice Invoice { get; set; }
 
         public static QueueClient QueueProviderClient { get; set; }
         public static QueueClient QueueProviderClientWithNoPermission { get; set; }
         public static QueueStatus QueueStatus { get; set; }
         public static string QueueId { get; set; }
 
+        public static AuthorizationsClient providerAuthorizationClient { get; set; }
+
         public static Insurers.Clients.ProductsClient productsInsurerClient { get; set; }
         public static Insurers.Models.Requests.SubmitProductRequest submitInsurerProductRequest { get; set; }
+
         public static Insurers.Clients.AuthorizationsClient insurerAuthorizationClient { get; set; }
         public static Insurers.Models.Requests.CreateAuthorizationRequest submitAuthorizationRequest { get; set; }
 
+        public static RestClient RestClient { get; set; }
+
+        public static OsiguProductRequest OsiguProductRequest { get; set; }
+
         public static int ErrorId { get; set; }
         public static int ErrorId2 { get; set; }
+        public static RequestException RequestException { get; set; }
 
 
         public static readonly string[] InsurerAssociateProductId = { "QAINSURER1" , "QAINSURER2", "QAINSURER3" } ;
         public static readonly string[] ProviderAssociateProductId = { "QAPROVIDER1", "QAPROVIDER2", "QAPROVIDER3" };
         public static readonly string[] OsiguProductId = { "1016241", "1016242", "1016243" };
 
+        public static readonly string RPNTestPolicyNumber = "50258433";
+        public static readonly DateTime RPNTestPolicyBirthday = new DateTime(1967, 7, 20, 7, 0, 0, 123);
 
         public static string AuthorizationId { get; set; }
         public static string PIN { get; set; }
@@ -128,6 +146,35 @@ namespace OsiguSDK.SpecificationTests
 
         private static IConfiguration _configProviderBranch2Development;
 
+        private static IConfiguration _configOsiguProduct;
+
+        public static IConfiguration ConfigOsiguProduct
+        {
+            get
+            {
+                return _configOsiguProduct ?? (_configOsiguProduct = new Configuration
+                {
+                    BaseUrl = "https://dev.paycodenetwork.com/v1",
+                    Authentication = new Authentication("eyJhbGciOiJSUzI1NiJ9.eyJlbnRpdHlfdHlwZSI6IlVTRVIiLCJ1c2VyX25hbWUiOiJlbGl1QG9zaWd1LmNvbSIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJleHAiOjE0NTk5OTEzNzksImVudGl0eV9pZCI6MiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9XRUJfUFJPRFVDVF9BRE1JTiJdLCJqdGkiOiIwNmVkMWI2Yi1kZWJmLTQ2MzItYWUxZS1lNzEzYjM5ZDI0ZjIiLCJzbHVnIjpudWxsLCJjbGllbnRfaWQiOiJvc2lndV93ZWJfcHJvZHVjdHMifQ.zQjW_cTM2qGAfuy6fGw1OtWv0LjE91QqdF1wLWnMzaEZziUznFWquQM1EFjveHE1aPiOEPdRU1BsUP0Z_FNygLZaUhELk6DgJjaz7ndDPNckBLWq2v-vH8-uWcu2PGrAMw8IPxBRg8xqIMlIGox1DuhK0mXRJxgJnK21Ve4Eja0")
+                });
+            }
+        }
+
+        private static IConfiguration _configSettlement;
+
+        public static IConfiguration ConfigSettlement
+        {
+            get
+            {
+                return _configSettlement ?? (_configSettlement = new Configuration
+                {
+                    BaseUrl = "http://localhost:5000",
+                    Authentication = new Authentication("adsfasdfasdfasdfasdf")
+                });
+            }
+        }
+
+
         public class StringBuilder : ISpecimenBuilder
         {
             private readonly Random rnd = new Random();
@@ -143,6 +190,23 @@ namespace OsiguSDK.SpecificationTests
 
                 return rnd.Next(0, 1000000).ToString();
             }
+        }
+
+        public class WebClient
+        {
+            public static string Get(string urlPath)
+            {
+                string responseString;
+                var url = BaseUrl + urlPath;
+                using (var client = new System.Net.WebClient())
+                {
+                    responseString = client.DownloadString(url);
+                }
+
+                return responseString;
+            }
+
+           
         }
     }
 }

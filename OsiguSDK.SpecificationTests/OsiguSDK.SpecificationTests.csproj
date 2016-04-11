@@ -70,6 +70,10 @@
       <HintPath>..\packages\AutoFixture.3.41.1\lib\net40\Ploeh.AutoFixture.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -90,22 +94,63 @@
       <DependentUpon>CreateNewAuthorization.feature</DependentUpon>
     </Compile>
     <Compile Include="Authorizations\Insurers\CreateNewAuthorizationSteps.cs" />
-    <Compile Include="Authorizations\Provider.GetAuthorization.feature.cs">
+    <Compile Include="Authorizations\Insurers\GetAuthorization.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Provider.GetAuthorization.feature</DependentUpon>
+      <DependentUpon>GetAuthorization.feature</DependentUpon>
     </Compile>
+    <Compile Include="Authorizations\Insurers\GetAuthorizationSteps.cs" />
+    <Compile Include="Authorizations\Insurers\UpdateAuthorization.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UpdateAuthorization.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Authorizations\Insurers\UpdateAuthorizationSteps.cs" />
+    <Compile Include="Authorizations\Insurers\VoidAuthorization.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VoidAuthorization.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Authorizations\Insurers\VoidAuthorizationSteps.cs" />
+    <Compile Include="Authorizations\Provider\GetAuthorization.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetAuthorization.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Authorizations\Provider\GetAuthorizationSteps.cs" />
+    <Compile Include="BaseTest.cs" />
+    <Compile Include="Products\Models\Dosage.cs" />
+    <Compile Include="Products\Models\OsiguProductRequest.cs" />
+    <Compile Include="Settlements\Tests\GetListAllSettlements.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetListAllSettlements.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Settlements\Tests\GetListAllSettlementsSteps.cs" />
+    <Compile Include="Settlements\Models\Claim.cs" />
+    <Compile Include="Settlements\Models\Comission.cs" />
+    <Compile Include="Settlements\Models\Item.cs" />
+    <Compile Include="Settlements\Models\Payment.cs" />
+    <Compile Include="Settlements\Models\SettlementAccountingPendingResponse.cs" />
+    <Compile Include="Settlements\Models\SettlementResponse.cs" />
     <Compile Include="Claims\Providers\ChangeClaimItems.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ChangeClaimItems.feature</DependentUpon>
     </Compile>
+    <Compile Include="Claims\Providers\ChangeClaimItemsSteps.cs" />
     <Compile Include="Claims\Providers\CheckClaimStatus.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CheckClaimStatus.feature</DependentUpon>
     </Compile>
     <Compile Include="Claims\Providers\CheckClaimStatusSteps.cs" />
+    <Compile Include="Claims\Providers\CompleteClaimTransaction.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompleteClaimTransaction.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Claims\Providers\CompleteClaimTransactionSteps.cs" />
     <Compile Include="Claims\Providers\CreateClaim.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -118,6 +163,12 @@
       <DependentUpon>GetClaim.feature</DependentUpon>
     </Compile>
     <Compile Include="Claims\Providers\GetClaimSteps.cs" />
+    <Compile Include="Claims\Providers\GetListClaims.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetListClaims.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Claims\Providers\GetListClaimsSteps.cs" />
     <Compile Include="Products\Insurer\GetListProducts.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -142,6 +193,12 @@
       <DependentUpon>SubmitRemoval.feature</DependentUpon>
     </Compile>
     <Compile Include="Products\Insurer\SubmitRemovalSteps.cs" />
+    <Compile Include="Products\Osigu\CreateOsiguProduct.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateOsiguProduct.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Osigu\CreateOsiguProductSteps.cs" />
     <Compile Include="Products\Provider\GetListProducts.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -166,6 +223,11 @@
       <DependentUpon>SubmitRemoval.feature</DependentUpon>
     </Compile>
     <Compile Include="Products\Provider\SubmitRemovalSteps.cs" />
+    <Compile Include="RestClient.cs" />
+    <Compile Include="Settlements\Models\Tax.cs" />
+    <Compile Include="Settlements\Models\Taxes.cs" />
+    <Compile Include="Settlements\Models\TaxRetentions.cs" />
+    <Compile Include="Settlements\Tests\MarkAsSentTests.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -177,9 +239,21 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateNewAuthorization.feature.cs</LastGenOutput>
     </None>
-    <None Include="Authorizations\Provider.GetAuthorization.feature">
+    <None Include="Authorizations\Insurers\GetAuthorization.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Provider.GetAuthorization.feature.cs</LastGenOutput>
+      <LastGenOutput>GetAuthorization.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Authorizations\Insurers\UpdateAuthorization.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>UpdateAuthorization.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Authorizations\Insurers\VoidAuthorization.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>VoidAuthorization.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Authorizations\Provider\GetAuthorization.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetAuthorization.feature.cs</LastGenOutput>
     </None>
     <None Include="Claims\Providers\ChangeClaimItems.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -189,6 +263,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CheckClaimStatus.feature.cs</LastGenOutput>
     </None>
+    <None Include="Claims\Providers\CompleteClaimTransaction.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CompleteClaimTransaction.feature.cs</LastGenOutput>
+    </None>
     <None Include="Claims\Providers\CreateClaim.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateClaim.feature.cs</LastGenOutput>
@@ -196,6 +274,10 @@
     <None Include="Claims\Providers\GetClaim.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GetClaim.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Claims\Providers\GetListClaims.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetListClaims.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="Products\Insurer\GetListProducts.feature">
@@ -214,6 +296,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SubmitRemoval1.feature.cs</LastGenOutput>
     </None>
+    <None Include="Products\Osigu\CreateOsiguProduct.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreateOsiguProduct.feature.cs</LastGenOutput>
+    </None>
     <None Include="Products\Provider\GetListProducts.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GetListProducts.feature.cs</LastGenOutput>
@@ -229,6 +315,10 @@
     <None Include="Products\Provider\SubmitRemoval.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SubmitRemoval.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Settlements\Tests\GetListAllSettlements.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetListAllSettlements.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
