@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
 namespace OsiguSDK.SpecificationTests.Settlements.Models
 {
@@ -17,6 +18,12 @@ namespace OsiguSDK.SpecificationTests.Settlements.Models
         public Comission Comission { get; set; }
 
         [JsonProperty(PropertyName = "tax")]
-        public Tax Tax { get; set; } 
+        public Tax Tax { get; set; }
+
+        [JsonProperty(PropertyName = "created_at")]
+        public DateTime CreatedAt { get; set; }
+
+        [JsonProperty(PropertyName = "updated_at")]
+        public DateTime UpdatedAt { get; set; }
     }
 }

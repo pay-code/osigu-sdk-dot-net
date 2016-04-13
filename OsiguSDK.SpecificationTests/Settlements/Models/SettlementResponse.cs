@@ -12,7 +12,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Models
         [JsonProperty(PropertyName = "total_amount")]
         public decimal TotalAmount { get; set; }
 
-        [JsonProperty(PropertyName = "total_discounts")]
+        [JsonProperty(PropertyName = "total_discount_amount")]
         public decimal TotalDiscounts { get; set; }
 
         [JsonProperty(PropertyName = "insurer_id")]
@@ -32,6 +32,9 @@ namespace OsiguSDK.SpecificationTests.Settlements.Models
 
         [JsonProperty(PropertyName = "status")]
         public string Status { get; set; }
+
+        [JsonProperty(PropertyName = "type")]
+        public string Type { get; set; }
 
         [JsonProperty(PropertyName = "date_from")]
         public DateTime DateFrom { get; set; }
