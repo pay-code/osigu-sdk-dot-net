@@ -24,7 +24,7 @@ namespace OsiguSDKExamples
         {
             var createAuthRequest = new CreateAuthorizationRequest()
             {
-                ReferenceId = "ACJ12398-1233",
+                ReferenceId = "ACJ12398-1236",
                 AuthorizationDate = DateTime.UtcNow,
                 ExpiresAt = DateTime.UtcNow.AddMonths(1),
                 Diagnoses = new List<Diagnosis>()
@@ -66,12 +66,12 @@ namespace OsiguSDKExamples
                 {
                     new CreateAuthorizationRequest.Item()
                     {
-                        ProductId = "101",
+                        ProductId = "QAINSURER1",
                         Quantity = 1
                     },
                     new CreateAuthorizationRequest.Item()
                     {
-                        ProductId = "100",
+                        ProductId = "QAINSURER2",
                         Quantity = 5
                     }
                 }
