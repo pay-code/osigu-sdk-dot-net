@@ -46,10 +46,10 @@ namespace OsiguSDK.Providers.Clients
             return ExecuteMethod<Claim>(requestData);
         }
 
-        public Claim CompleteClaimTransaction(string claimId, Invoice request)
+        public Claim CompleteClaimTransaction(string claimId, CompleteClaimRequest request)
         {
             var urlBuilder = new StringBuilder("/providers/").Append(Configuration.Slug).Append("/claims/").Append(claimId).Append("/complete");
-            var requestData = new RequestData(urlBuilder.ToString(), Method.POST, "invoice", request);
+            var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, request);
 
             return ExecuteMethod<Claim>(requestData);
         }

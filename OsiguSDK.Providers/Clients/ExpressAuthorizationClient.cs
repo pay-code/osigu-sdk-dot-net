@@ -41,10 +41,10 @@ namespace OsiguSDK.Providers.Clients
             return ExecuteMethod<ExpressAuthorization>(requestData);
         }
 
-        public ExpressAuthorization CompleteExpressAuthorization(string expressAuthorizationId, Invoice request)
+        public ExpressAuthorization CompleteExpressAuthorization(string expressAuthorizationId, CompleteExpressAuthorizationRequest request)
         {
             var urlBuilder = new StringBuilder("/providers/").Append(Configuration.Slug).Append("/authorizations/express/").Append(expressAuthorizationId).Append("/complete");
-            var requestData = new RequestData(urlBuilder.ToString(), Method.POST, "invoice", request);
+            var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, request);
 
             return ExecuteMethod<ExpressAuthorization>(requestData);
         }
