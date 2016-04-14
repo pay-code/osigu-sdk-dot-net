@@ -74,8 +74,9 @@ Scenario: Successfully Complete a Transaction
 	And I have the queue client 
 	And I have the request data for a new authorization
 	When I make the new authorization request to the endpoint
-	And the create a claim request with repeated products
+	And the create a claim request
 	And I request the create a claim endpoint
+	And I delay the check status request
 	And I request the check claim status endpoint
 	And I request the get a claim endpoint
 	When I request the complete transaction request

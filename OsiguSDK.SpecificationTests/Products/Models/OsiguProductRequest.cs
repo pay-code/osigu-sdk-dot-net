@@ -17,7 +17,7 @@ namespace OsiguSDK.SpecificationTests.Products.Models
         public string ActiveIngredient { get; set; }
 
         [JsonProperty(PropertyName = "quantity")]
-        public int Quantity { get; set; }
+        public decimal Quantity { get; set; }
 
         [JsonProperty(PropertyName = "generic")]
         public bool Generic { get; set; }

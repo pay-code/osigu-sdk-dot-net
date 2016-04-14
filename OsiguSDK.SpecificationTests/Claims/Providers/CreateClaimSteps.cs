@@ -75,6 +75,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         [When(@"I request the create a claim endpoint with the second client")]
         public void WhenIRequestTheCreateAClaimEndpointWithTheSecondClient()
         {
+            Tools.PIN.Should().NotBeNullOrEmpty("The authorization was not compleated correctly");
             try
             {
                 Tools.ClaimsProviderClientWithNoPermission.CreateClaim(Tools.AuthorizationId, Tools.CreateClaimRequest);
@@ -104,6 +105,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         [When(@"I request the create a claim endpoint")]
         public void WhenIRequestTheCreateAClaimEndpoint()
         {
+            Tools.PIN.Should().NotBeNullOrEmpty("The authorization was not compleated correctly");
             try
             {
                 Tools.QueueId = Tools.ClaimsProviderClient.CreateClaim(Tools.AuthorizationId, Tools.CreateClaimRequest);
