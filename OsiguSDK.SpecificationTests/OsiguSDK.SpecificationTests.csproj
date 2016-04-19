@@ -76,6 +76,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -120,10 +122,17 @@
     <Compile Include="Authorizations\Provider\GetAuthorizationSteps.cs" />
     <Compile Include="Products\Models\Dosage.cs" />
     <Compile Include="Products\Models\OsiguProductRequest.cs" />
+    <Compile Include="Settlements\Create\CreateNormalSettlement.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateNormalSettlement.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Settlements\Create\CreateNormalSettlementSteps.cs" />
     <Compile Include="Settlements\Models\Claim.cs" />
     <Compile Include="Settlements\Models\Comission.cs" />
     <Compile Include="Settlements\Models\Item.cs" />
     <Compile Include="Settlements\Models\Payment.cs" />
+    <Compile Include="Settlements\Models\Settlement.cs" />
     <Compile Include="Settlements\Models\SettlementResponse.cs" />
     <Compile Include="Claims\Providers\ChangeClaimItems.feature.cs">
       <AutoGen>True</AutoGen>
@@ -306,6 +315,10 @@
     <None Include="Products\Provider\SubmitRemoval.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SubmitRemoval.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Settlements\Create\CreateNormalSettlement.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreateNormalSettlement.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
