@@ -51,7 +51,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             ChangeItems();
             try
             {
-                Tools.ClaimsProviderClient.ChangeClaimItems("InvalidId", Tools.CreateClaimRequest);
+                Tools.ClaimsProviderClient.ChangeClaimItems("0", Tools.CreateClaimRequest);
             }
             catch (RequestException exception)
             {

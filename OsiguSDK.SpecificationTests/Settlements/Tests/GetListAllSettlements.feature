@@ -1,4 +1,4 @@
-﻿Feature: GetListAllSettlements
+﻿Feature: Get List of All Settlements
 	In order to get all settlements
 	As settlement client
 	I want to be able to ask for all settlements

@@ -129,6 +129,12 @@
       <DependentUpon>CreateNormalSettlement.feature</DependentUpon>
     </Compile>
     <Compile Include="Settlements\Create\CreateNormalSettlementSteps.cs" />
+    <Compile Include="Settlements\Tests\GetListAllAccountingPendingSettlements.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetListAllAccountingPendingSettlements.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Settlements\Tests\GetListAllAccountingPendingSettlementsSteps.cs" />
     <Compile Include="Settlements\Tests\GetListAllSettlements.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -324,6 +330,10 @@
     <None Include="Products\Provider\SubmitRemoval.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SubmitRemoval.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Settlements\Tests\GetListAllAccountingPendingSettlements.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetListAllAccountingPendingSettlements.feature.cs</LastGenOutput>
     </None>
     <None Include="Settlements\Create\CreateNormalSettlement.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

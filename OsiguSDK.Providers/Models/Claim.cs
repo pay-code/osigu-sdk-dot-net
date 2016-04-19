@@ -72,7 +72,7 @@ namespace OsiguSDK.Providers.Models
             /// quantity claimed
             /// </summary>
             [JsonProperty(PropertyName = "quantity")]
-            public int Quantity { get; set; }
+            public decimal Quantity { get; set; }
             
             /// <summary>
             /// product price

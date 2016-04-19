@@ -12,6 +12,7 @@ Scenario: Authentication Error
 	When I make the new authorization request to the endpoint
 	And the create a claim request with repeated products
 	And I request the create a claim endpoint
+	And I delay the check status request
 	And I request the check claim status endpoint
 	And I request the get a claim endpoint
 	Given I have the provider claims client without authorization
@@ -26,11 +27,12 @@ Scenario: Slug Does Not Exists
 	When I make the new authorization request to the endpoint
 	And the create a claim request with repeated products
 	And I request the create a claim endpoint
+	And I delay the check status request
 	And I request the check claim status endpoint
 	And I request the get a claim endpoint
 	Given I have the provider claims client without valid slug
 	When I request the complete transaction request
-	Then the result should be no permission
+	Then the result should be not existing 
 
 Scenario: Invalid Claim Id
 	Given I have the provider claims client
@@ -40,9 +42,10 @@ Scenario: Invalid Claim Id
 	When I make the new authorization request to the endpoint
 	And the create a claim request with repeated products
 	And I request the create a claim endpoint
+	And I delay the check status request
 	And I request the check claim status endpoint
 	And I request the get a claim endpoint
-	When I request the complete transaction request
+	When I request the complete transaction request with an invalid claim id
 	Then the result should be not existing 
 
 Scenario Outline: Missing fields
@@ -53,6 +56,7 @@ Scenario Outline: Missing fields
 	When I make the new authorization request to the endpoint
 	And the create a claim request with repeated products
 	And I request the create a claim endpoint
+	And I delay the check status request
 	And I request the check claim status endpoint
 	And I request the get a claim endpoint
 	When I request the complete transaction request with missing fields
@@ -62,7 +66,6 @@ Scenario Outline: Missing fields
 
 Scenarios: 
 	| TestId | MissingField   |
-	| 1      | ClaimId        |
 	| 2      | Invoice        |
 	| 3      | Amount         |
 	| 4      | Currency       |
@@ -74,8 +77,9 @@ Scenario: Successfully Complete a Transaction
 	And I have the queue client 
 	And I have the request data for a new authorization
 	When I make the new authorization request to the endpoint
-	And the create a claim request with repeated products
+	And the create a claim request
 	And I request the create a claim endpoint
+	And I delay the check status request
 	And I request the check claim status endpoint
 	And I request the get a claim endpoint
 	When I request the complete transaction request

@@ -3,6 +3,7 @@ using System.Linq;
 using OsiguSDK.Core.Exceptions;
 using TechTalk.SpecFlow;
 using OsiguSDK.Providers.Models;
+using OsiguSDK.Providers.Models.Requests;
 
 namespace OsiguSDK.SpecificationTests.Claims.Providers
 {
@@ -20,13 +21,33 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             };
         }
 
+        [When(@"I request the complete transaction request with an invalid claim id")]
+        public void WhenIRequestTheCompleteTransactionRequestWithAnInvalidClaimId()
+        {
+            CreateInvoice();
+            try
+            {
+                Tools.ClaimsProviderClient.CompleteClaimTransaction("1234560", new CompleteClaimRequest
+                {
+                    Invoice = Tools.Invoice
+                });
+            }
+            catch (RequestException exception)
+            {
+                Tools.ErrorId = exception.ResponseCode;
+            }
+        }
+
         [When(@"I request the complete transaction request")]
         public void WhenIRequestTheCompleteTransactionRequest()
         {
             CreateInvoice();
             try
             {
-                Tools.ClaimsProviderClient.CompleteClaimTransaction(Tools.Claim.Id.ToString(), Tools.Invoice);
+                Tools.ClaimsProviderClient.CompleteClaimTransaction(Tools.Claim.Id.ToString(), new CompleteClaimRequest
+                {
+                    Invoice = Tools.Invoice
+                });
             }
             catch (RequestException exception)
             {
@@ -65,7 +86,10 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
 
             try
             {
-                Tools.ClaimsProviderClient.CompleteClaimTransaction(Tools.Claim.Id.ToString(), Tools.Invoice);
+                Tools.ClaimsProviderClient.CompleteClaimTransaction(Tools.Claim.Id.ToString(), new CompleteClaimRequest
+                {
+                    Invoice = Tools.Invoice
+                });
             }
             catch (RequestException exception)
             {

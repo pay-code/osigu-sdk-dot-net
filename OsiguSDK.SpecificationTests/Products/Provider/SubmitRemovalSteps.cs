@@ -49,6 +49,19 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
                 Tools.ErrorId = exception.ResponseCode;
             }
         }
+        
+        [When(@"I request the submit a removal endpoint without permission")]
+        public void WhenIRequestTheSubmitARemovalEndpointWithoutPermission()
+        {
+            try
+            {
+                Tools.ProductsProductsClientWithNoPermission.SubmitRemoval(Tools.SubmitProductRequest.ProductId);
+            }
+            catch (RequestException exception)
+            {
+                Tools.ErrorId = exception.ResponseCode;
+            }
+        }
 
         [Then(@"the result should be product don't exists")]
         public void ThenTheResultShouldBeProductDonTExists()
