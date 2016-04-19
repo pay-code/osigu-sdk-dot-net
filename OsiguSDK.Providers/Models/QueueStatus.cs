@@ -9,7 +9,8 @@ namespace OsiguSDK.Providers.Models
             PENDING,
             COMPLETED,
             ERROR,
-            WORKING
+            WORKING,
+            DENIED
          }
 
         [JsonProperty(PropertyName = "status")]

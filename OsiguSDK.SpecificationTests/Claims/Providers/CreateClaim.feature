@@ -5,6 +5,9 @@
 
 Scenario: Authentication Error
 	Given I have the provider claims client without authorization
+	And I have the insurer authorizations client
+	And I have the request data for a new authorization
+	When I make the new authorization request to the endpoint
 	And the create a claim request
 	When I request the create a claim endpoint
 	Then the result should be unauthorized

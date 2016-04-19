@@ -38,7 +38,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             Tools.QueueStatus.ResourceId.Should().NotBeNullOrEmpty("The queue should've returned the queue status");
             try
             {
-                Tools.Claim = Tools.ClaimsProviderClient.GetSingleClaim("InvalidId");
+                Tools.Claim = Tools.ClaimsProviderClient.GetSingleClaim("1234567890");
             }
             catch (RequestException exception)
             {

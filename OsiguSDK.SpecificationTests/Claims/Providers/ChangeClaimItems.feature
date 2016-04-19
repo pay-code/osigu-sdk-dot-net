@@ -57,12 +57,12 @@ Scenario: Invalid PIN
 	When I make the new authorization request to the endpoint
 	And the create a claim request with repeated products
 	And I request the create a claim endpoint
-	And I request the check claim status endpoint
 	And I delay the check status request
+	And I request the check claim status endpoint
 	And I request the get a claim endpoint
 	Given I have the provider claims client
 	When I request the change items request with an invalid PIN
-	Then the result should be not existing 
+	Then the result should be unprossesable entity
 
 Scenario Outline: Missing Fields
 	Given I have the provider claims client
@@ -78,11 +78,10 @@ Scenario Outline: Missing Fields
 	And I request the change items request with missing fields
 	|TestId|MissingField|
 	|<TestId>|<MissingField>|
-	Then the result should be unprocessable fot that request
+	Then the result should be unprossesable entity
 
 Scenarios: 
 | TestId | MissingField  |
-| 1      | ClaimId       |
 | 2      | PIN           |
 | 2      | Empty Items   |
 | 3      | Empty Items 2 |
@@ -102,7 +101,7 @@ Scenario: Product Provider Not Existing
 	And I request the check claim status endpoint
 	And I request the get a claim endpoint
 	And I request the change items request with unexisting osigu product
-	Then the result should be unprocessable fot that request
+	Then the result should be unprossesable entity
 
 Scenario: Successfully change items
 	Given I have the provider claims client

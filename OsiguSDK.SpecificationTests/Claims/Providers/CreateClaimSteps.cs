@@ -123,6 +123,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             GenerateItemList();
 
             Tools.AuthorizationId = "NotExistingAuth";
+            Tools.PIN = "PIN";
         }
 
         [Then(@"the result should be not existing")]
@@ -136,7 +137,8 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         {
             Tools.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
             GenerateItemList();
-            //TODO: Not associated but existing
+
+            Tools.PIN = "PIN";
             Tools.AuthorizationId = "NotAssociated";
         }
 
