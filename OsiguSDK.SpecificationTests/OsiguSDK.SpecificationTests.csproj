@@ -120,6 +120,7 @@
       <DependentUpon>GetAuthorization.feature</DependentUpon>
     </Compile>
     <Compile Include="Authorizations\Provider\GetAuthorizationSteps.cs" />
+    <Compile Include="BaseTest.cs" />
     <Compile Include="Products\Models\Dosage.cs" />
     <Compile Include="Products\Models\OsiguProductRequest.cs" />
     <Compile Include="Settlements\Create\CreateNormalSettlement.feature.cs">
@@ -128,11 +129,18 @@
       <DependentUpon>CreateNormalSettlement.feature</DependentUpon>
     </Compile>
     <Compile Include="Settlements\Create\CreateNormalSettlementSteps.cs" />
+    <Compile Include="Settlements\Tests\GetListAllSettlements.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetListAllSettlements.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Settlements\Tests\GetListAllSettlementsSteps.cs" />
     <Compile Include="Settlements\Models\Claim.cs" />
     <Compile Include="Settlements\Models\Comission.cs" />
     <Compile Include="Settlements\Models\Item.cs" />
     <Compile Include="Settlements\Models\Payment.cs" />
     <Compile Include="Settlements\Models\Settlement.cs" />
+    <Compile Include="Settlements\Models\SettlementAccountingPendingResponse.cs" />
     <Compile Include="Settlements\Models\SettlementResponse.cs" />
     <Compile Include="Claims\Providers\ChangeClaimItems.feature.cs">
       <AutoGen>True</AutoGen>
@@ -228,6 +236,7 @@
     <Compile Include="Settlements\Models\Tax.cs" />
     <Compile Include="Settlements\Models\Taxes.cs" />
     <Compile Include="Settlements\Models\TaxRetentions.cs" />
+    <Compile Include="Settlements\Tests\MarkAsSentTests.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -319,6 +328,10 @@
     <None Include="Settlements\Create\CreateNormalSettlement.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>CreateNormalSettlement.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Settlements\Tests\GetListAllSettlements.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetListAllSettlements.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

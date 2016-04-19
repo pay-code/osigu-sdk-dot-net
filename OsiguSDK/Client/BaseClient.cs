@@ -17,7 +17,7 @@ namespace OsiguSDK.Core.Client
 {
     public abstract class BaseClient
     {
-        protected static ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         private IRestClient _client = null;
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace OsiguSDK.Core.Client
         /// </summary>
         /// <param name="request"></param>
         /// <param name="formParams"></param>
-        protected void AddRequestParams(ref RestRequest request, object formParams)
+        private void AddRequestParams(ref RestRequest request, object formParams)
         {  
             var formParamsDictionary = formParams.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public).ToDictionary(prop => (prop.GetCustomAttributes(typeof(DisplayNameAttribute), false).First() as DisplayNameAttribute).DisplayName, prop => prop.GetValue(formParams, null));
 
@@ -228,6 +228,7 @@ namespace OsiguSDK.Core.Client
         /// </summary>
         /// <param name="response"> </param>
         /// <param name="rootElement"> </param>
+        /// <exception cref="RequestException">Condition.</exception>
         protected T Deserialize<T>(IRestResponse response, string rootElement)
         {
             var responseCode = (int)response.StatusCode;
@@ -260,7 +261,7 @@ namespace OsiguSDK.Core.Client
         /// </summary>
         /// <param name="content"></param>
         /// <param name="rootElement"> </param>
-        protected T DeserializeStream<T>(String content, string rootElement)
+        private T DeserializeStream<T>(String content, string rootElement)
         {
             return ConvertJsonToObject<T>(content, rootElement);
         }
@@ -283,7 +284,7 @@ namespace OsiguSDK.Core.Client
         /// <param name="json"></param>
         /// <param name="rootElement"></param>
         /// <returns></returns>
-        public static T ConvertJsonToObject<T>(String json, string rootElement)
+        private static T ConvertJsonToObject<T>(String json, string rootElement)
         {
             if (Logger.IsDebugEnabled)
             {
@@ -338,6 +339,7 @@ namespace OsiguSDK.Core.Client
             }
         }
 
+        /// <exception cref="RequestException">Condition.</exception>
         protected void ValidateResponse(IRestResponse response)
         {
             var responseCode = (int)response.StatusCode;
@@ -356,30 +358,18 @@ namespace OsiguSDK.Core.Client
         protected string GetLocationHeader(IRestResponse response)
         {
             var locationHeader = response.Headers.FirstOrDefault(x => x.Name.ToLower() == "location");
-            var locationUrl = locationHeader != null ? locationHeader.Value.ToString() : "";
+            var locationUrl = locationHeader?.Value.ToString() ?? "";
             return locationUrl;
         }
 
         protected string GetIdFromResourceUrl(string resourceUrl)
         {
-            var id = "";
-            if (resourceUrl.Contains('/'))
-            {
-                var arrResourceUrl = resourceUrl.Split('/');
-                if (arrResourceUrl.Length > 0)
-                {
-                    id = arrResourceUrl[arrResourceUrl.GetUpperBound(0)];
-                }
-            }
+            var locationUri = new Uri(new Uri(Configuration.BaseUrl), resourceUrl);
 
-            var locationUri = new Uri(resourceUrl);
-
-            if (Logger.IsDebugEnabled)
-            {
-                Logger.Debug("GetIdFromResourceUrl resourceUrl:" + resourceUrl + " IdFromResource: " + id + " Using Uri Segments Id: " + locationUri.Segments.Last());
-            }
-                
+            if (Logger.IsDebugEnabled)            
+                Logger.Debug("GetIdFromResourceUrl resourceUrl:" + resourceUrl + " Using Uri Segments Id: " + locationUri.Segments.Last());
             
+                            
             //return only the id of the queue resource
             return locationUri.Segments.Last();
         }

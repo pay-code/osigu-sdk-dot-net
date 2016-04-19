@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http;
 using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Authentication;
 using OsiguSDK.Core.Exceptions;
@@ -16,6 +17,11 @@ namespace OsiguSDK.SpecificationTests
 {
     public static class Tools
     {
+        public static string BaseUrl
+        {
+            get { return @"http://10.0.1.13:5000"; }
+        }
+
         public static readonly Fixture Fixture = new Fixture();
         public static ProductsClient ProductsProviderClient { get; set; }
         public static ProductsClient ProductsProductsClientWithNoPermission { get; set; }
@@ -33,7 +39,6 @@ namespace OsiguSDK.SpecificationTests
         public static string QueueId { get; set; }
 
         public static AuthorizationsClient providerAuthorizationClient { get; set; }
-        
 
         public static Insurers.Clients.ProductsClient productsInsurerClient { get; set; }
         public static Insurers.Models.Requests.SubmitProductRequest submitInsurerProductRequest { get; set; }
@@ -159,6 +164,21 @@ namespace OsiguSDK.SpecificationTests
             }
         }
 
+        private static IConfiguration _configSettlement;
+
+        public static IConfiguration ConfigSettlement
+        {
+            get
+            {
+                return _configSettlement ?? (_configSettlement = new Configuration
+                {
+                    BaseUrl = "http://localhost:5000",
+                    Authentication = new Authentication("adsfasdfasdfasdfasdf")
+                });
+            }
+        }
+
+
         private static IConfiguration _localConfigSettlements;
 
         public static IConfiguration ConfigLocalSettlementsAPI
@@ -192,6 +212,23 @@ namespace OsiguSDK.SpecificationTests
 
                 return rnd.Next(0, 1000000).ToString();
             }
+        }
+
+        public class WebClient
+        {
+            public static string Get(string urlPath)
+            {
+                string responseString;
+                var url = BaseUrl + urlPath;
+                using (var client = new System.Net.WebClient())
+                {
+                    responseString = client.DownloadString(url);
+                }
+
+                return responseString;
+            }
+
+           
         }
 
        
