@@ -71,12 +71,14 @@ namespace OsiguSDKExamples
 
         public Claim CompleteClaimTransaction(string claimId)
         {
-            var request = new Invoice
+            var request = new CompleteClaimRequest()
             {
-                DocumentNumber = "S-4 15654987987",
-                DocumentDate = DateTime.UtcNow,
-                Currency = "USD",
-                Amount = 54.48m
+                Invoice = new Invoice() { 
+                    DocumentNumber = "S-4 15654987987",
+                    DocumentDate = DateTime.UtcNow,
+                    Currency = "USD",
+                    Amount = 54.48m
+                }
             };
 
             return _client.CompleteClaimTransaction(claimId, request);
