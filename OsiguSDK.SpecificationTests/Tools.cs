@@ -7,8 +7,10 @@ using OsiguSDK.Providers.Clients;
 using OsiguSDK.Providers.Models.Requests;
 using OsiguSDK.Providers.Models;
 using OsiguSDK.SpecificationTests.Products.Models;
+using OsiguSDK.SpecificationTests.Settlements.Models;
 using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.Kernel;
+using Claim = OsiguSDK.Providers.Models.Claim;
 
 
 namespace OsiguSDK.SpecificationTests
@@ -47,6 +49,8 @@ namespace OsiguSDK.SpecificationTests
         public static RestClient RestClient { get; set; }
 
         public static OsiguProductRequest OsiguProductRequest { get; set; }
+        
+        public static Settlement settlementRequest { get; set; }
 
         public static int ErrorId { get; set; }
         public static int ErrorId2 { get; set; }
@@ -155,7 +159,7 @@ namespace OsiguSDK.SpecificationTests
                 return _configOsiguProduct ?? (_configOsiguProduct = new Configuration
                 {
                     BaseUrl = "https://dev.paycodenetwork.com/v1",
-                    Authentication = new Authentication("eyJhbGciOiJSUzI1NiJ9.eyJlbnRpdHlfdHlwZSI6IlVTRVIiLCJ1c2VyX25hbWUiOiJlbGl1QG9zaWd1LmNvbSIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJleHAiOjE0NTk5OTEzNzksImVudGl0eV9pZCI6MiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9XRUJfUFJPRFVDVF9BRE1JTiJdLCJqdGkiOiIwNmVkMWI2Yi1kZWJmLTQ2MzItYWUxZS1lNzEzYjM5ZDI0ZjIiLCJzbHVnIjpudWxsLCJjbGllbnRfaWQiOiJvc2lndV93ZWJfcHJvZHVjdHMifQ.zQjW_cTM2qGAfuy6fGw1OtWv0LjE91QqdF1wLWnMzaEZziUznFWquQM1EFjveHE1aPiOEPdRU1BsUP0Z_FNygLZaUhELk6DgJjaz7ndDPNckBLWq2v-vH8-uWcu2PGrAMw8IPxBRg8xqIMlIGox1DuhK0mXRJxgJnK21Ve4Eja0")
+                    Authentication = new Authentication("eyJhbGciOiJSUzI1NiJ9.eyJlbnRpdHlfdHlwZSI6IlVTRVIiLCJ1c2VyX25hbWUiOiJlbGl1QG9zaWd1LmNvbSIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJleHAiOjE0NjA0ODE2ODAsImVudGl0eV9pZCI6MiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9XRUJfUFJPRFVDVF9BRE1JTiJdLCJqdGkiOiI2ODg1MmFhZi02ZDc3LTQ3MTUtOTY1NC1lMmRkODcwZjE4NTciLCJzbHVnIjpudWxsLCJjbGllbnRfaWQiOiJvc2lndV93ZWJfcHJvZHVjdHMifQ.WQ6NPJ9-BslVCGgP22r9_xSFjmug4wye191wpCwOClOsffy2ajCfozpLrCf1ZDV4Fu-lGE9mtChOFPT2sNqsl3K_3NkCVlD0kI2kwytcPxClNz1A_47814RAetyNo6d6Jsm0iIQxlm3-nE-Sd7swsEyuL0Fq0bZFmN1EHDQSwkI")
                 });
             }
         }
@@ -168,12 +172,31 @@ namespace OsiguSDK.SpecificationTests
             {
                 return _configSettlement ?? (_configSettlement = new Configuration
                 {
-                    BaseUrl = "http://localhost:5000",
+                    BaseUrl = "http://10.0.1.21:5000",
+                    Slug = "fayco",
                     Authentication = new Authentication("adsfasdfasdfasdfasdf")
                 });
             }
         }
 
+
+        private static IConfiguration _localConfigSettlements;
+
+        public static IConfiguration ConfigLocalSettlementsAPI
+        {
+            get
+            {
+                return _localConfigSettlements ?? (_localConfigSettlements = new Configuration
+                {
+                    BaseUrl = "http://localhost:5000",
+                    Authentication =
+                        new Authentication(
+                            "eyJhbGciOiJIUzI1NiJ9.eyJlbnRpdHlfdHlwZSI6IlVTRVIiLCJ1c2VyX25hbWUiOiJVU0VSLTEiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZW50aXR5X2lkIjoxLCJhdXRob3JpdGllcyI6WyJST0xFX0FVVEhfU0VSVkVSX0FQSV9BRE1JTiJdLCJqdGkiOiIzZjJjZTFlYS1lZDgwLTRiM2QtYmIwNi05ODAyYTQ2NDNmZTEiLCJzbHVnIjoiIiwiY2xpZW50X2lkIjoib3NpZ3VfaW5zdXJlcnNfYXBwIn0.ui7OI66qLdpo1k35J3Yq59ZOXCa2fOJj8UaDRO291No")
+
+                });
+
+            }
+        }
 
         public class StringBuilder : ISpecimenBuilder
         {
@@ -208,5 +231,7 @@ namespace OsiguSDK.SpecificationTests
 
            
         }
+
+       
     }
 }

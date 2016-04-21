@@ -44,6 +44,7 @@ namespace OsiguSDK.Core.Client
             var assembly = Assembly.GetExecutingAssembly();
             var assemblyName = new AssemblyName(assembly.FullName);
             var version = assemblyName.Version;
+            _client.FollowRedirects = false;
 
             _client.UserAgent = "Osigu-SDK-" + version;
         }

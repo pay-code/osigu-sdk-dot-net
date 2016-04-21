@@ -75,20 +75,6 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
 
         }
 
-        [When(@"I request the submit a removal endpoint without permission")]
-        public void WhenIRequestTheSubmitARemovalEndpointWithoutPermission()
-        {
-            try
-            {
-                Tools.ProductsProductsClientWithNoPermission.SubmitProduct(Tools.SubmitProductRequest);
-            }
-            catch (RequestException exception)
-            {
-                Tools.ErrorId = exception.ResponseCode;
-            }
-        }
-
-
         [Then(@"the result should be unauthorized")]
         public void ThenTheResultShouldBeUnauthorized()
         {

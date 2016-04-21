@@ -1,4 +1,5 @@
 ﻿using System;
+using FluentAssertions;
 using OsiguSDK.Core.Config;
 using OsiguSDK.Providers.Clients;
 using TechTalk.SpecFlow;
@@ -28,6 +29,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         [When(@"I request the check claim status endpoint")]
         public void WhenIRequestTheCheckClaimStatusEndpoint()
         {
+            Tools.QueueId.Should().NotBeNullOrEmpty("The claim should've created correctly");
             try
             {
                 Tools.QueueStatus = Tools.QueueProviderClient.CheckQueueStatus(Tools.QueueId);
@@ -57,8 +59,8 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             Tools.QueueProviderClient = new QueueClient(Tools.ConfigProviderBranch1Development);
         }
 
-        [When(@"I request the create a claim endpoint with an invalid queue id")]
-        public void WhenIRequestTheCreateAClaimEndpointWithAnInvalidQueueId()
+        [When(@"I request the check claim status endpoint with an invalid queue id")]
+        public void WhenIRequestTheCheckClaimStatusEndpointWithAnInvalidQueueId()
         {
             try
             {
@@ -68,7 +70,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             {
                 Tools.ErrorId = exception.ResponseCode;
             }
-        }
 
+        }
     }
 }

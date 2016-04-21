@@ -13,7 +13,7 @@ Scenario: Security Authorization
 	Given I have the provider products client without the required permission
 	And a product created
 	When I request the submit a removal endpoint without permission
-	Then the result should be unauthorized
+	Then the result should be not existing
 
 Scenario: Slug Does Not Exists
 	Given I have the provider products client without valid slug
