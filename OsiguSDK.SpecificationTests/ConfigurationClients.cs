@@ -10,12 +10,30 @@ namespace OsiguSDK.SpecificationTests
         {
             get
             {
-                return _configInsurer1Development ?? (_configInsurer1Development = new Configuration
-                {
-                    BaseUrl = ConfigurationManager.AppSettings["DevelopmentBaseUrl"],
-                    Slug = ConfigurationManager.AppSettings["ConfigInsurer1DevSlug"],
-                    Authentication = new Authentication("eyJhbGciOiJIUzI1NiJ9.eyJlbnRpdHlfdHlwZSI6IklOU1VSRVIiLCJ1c2VyX25hbWUiOiJJTlNVUkVSLTIiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZW50aXR5X2lkIjoyLCJhdXRob3JpdGllcyI6WyJST0xFX0lOU1VSRVIiXSwianRpIjoiMWNkZDUwYWItMzZjZi00MWJjLWE2YmUtNmE3MjY1N2FlMmU4Iiwic2x1ZyI6InRlc3QtaW5zdXJlciIsImNsaWVudF9pZCI6Im9zaWd1X2luc3VyZXJzX2FwcCJ9.LYvZZRJJ51XsDKn-z6zTLsYcfQas7GtyjaX1EvQWPEc")
-                });
+                return _configInsurer1Development ??
+                       (_configInsurer1Development = ConfigurationManager.AppSettings["TestingEnvironment"] == "DEV"
+                           ? new Configuration
+                           {
+                               BaseUrl = ConfigurationManager.AppSettings["DevelopmentBaseUrl"],
+                               Slug = ConfigurationManager.AppSettings["ConfigInsurer1DevSlug"],
+                               Authentication =
+                                   new Authentication(ConfigurationManager.AppSettings["ConfigInsurer1DevToken"])
+                           }
+                           : ConfigurationManager.AppSettings["TestingEnvironment"] == "PROD"
+                               ? new Configuration
+                               {
+                                   BaseUrl = ConfigurationManager.AppSettings["ProductionBaseUrl"],
+                                   Slug = ConfigurationManager.AppSettings["ConfigInsurer1ProdSlug"],
+                                   Authentication =
+                                       new Authentication(ConfigurationManager.AppSettings["ConfigInsurer1ProdToken"])
+                               }
+                               : new Configuration
+                               {
+                                   BaseUrl = ConfigurationManager.AppSettings["SandboxBaseUrl"],
+                                   Slug = ConfigurationManager.AppSettings["ConfigInsurer1SboxSlug"],
+                                   Authentication =
+                                       new Authentication(ConfigurationManager.AppSettings["ConfigInsurer1SboxToken"])
+                               });
             }
         }
 
@@ -25,12 +43,30 @@ namespace OsiguSDK.SpecificationTests
         {
             get
             {
-                return _configInsurer2Development ?? (_configInsurer2Development = new Configuration
-                {
-                    BaseUrl = ConfigurationManager.AppSettings["DevelopmentBaseUrl"],
-                    Slug = ConfigurationManager.AppSettings["ConfigInsurer2DevSlug"],
-                    Authentication = new Authentication("eyJhbGciOiJIUzI1NiJ9.eyJlbnRpdHlfdHlwZSI6IklOU1VSRVIiLCJ1c2VyX25hbWUiOiJJTlNVUkVSLTIiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZW50aXR5X2lkIjoyLCJhdXRob3JpdGllcyI6WyJST0xFX0lOU1VSRVIiXSwianRpIjoiMjAyODNmYTMtOWY1Ny00OTFmLWI3MGUtYmY2OWU1N2ZhODg5Iiwic2x1ZyI6InRlc3QtaW5zdXJlci0yIiwiY2xpZW50X2lkIjoib3NpZ3VfaW5zdXJlcnNfYXBwIn0.3EOhYFU6OttPF_5Yob-S0yKy5gnF8NjLJ_qbsv_cU2Y")
-                });
+                return _configInsurer2Development ??
+                       (_configInsurer2Development = ConfigurationManager.AppSettings["TestingEnvironment"] == "DEV"
+                           ? new Configuration
+                           {
+                               BaseUrl = ConfigurationManager.AppSettings["DevelopmentBaseUrl"],
+                               Slug = ConfigurationManager.AppSettings["ConfigInsurer2DevSlug"],
+                               Authentication =
+                                   new Authentication(ConfigurationManager.AppSettings["ConfigInsurer2DevToken"])
+                           }
+                           : ConfigurationManager.AppSettings["TestingEnvironment"] == "PROD"
+                               ? new Configuration
+                               {
+                                   BaseUrl = ConfigurationManager.AppSettings["ProductionBaseUrl"],
+                                   Slug = ConfigurationManager.AppSettings["ConfigInsurer2ProdSlug"],
+                                   Authentication =
+                                       new Authentication(ConfigurationManager.AppSettings["ConfigInsurer2ProdToken"])
+                               }
+                               : new Configuration
+                               {
+                                   BaseUrl = ConfigurationManager.AppSettings["SandboxBaseUrl"],
+                                   Slug = ConfigurationManager.AppSettings["ConfigInsurer2SboxSlug"],
+                                   Authentication =
+                                       new Authentication(ConfigurationManager.AppSettings["ConfigInsurer2SboxToken"])
+                               });
             }
         }
 
@@ -40,12 +76,33 @@ namespace OsiguSDK.SpecificationTests
         {
             get
             {
-                return _configProviderBranch1Development ?? (_configProviderBranch1Development = new Configuration
-                {
-                    BaseUrl = ConfigurationManager.AppSettings["DevelopmentBaseUrl"],
-                    Slug = ConfigurationManager.AppSettings["ConfigProvider1DevSlug"],
-                    Authentication = new Authentication("eyJhbGciOiJIUzI1NiJ9.eyJlbnRpdHlfdHlwZSI6IlBST1ZJREVSX0JSQU5DSCIsInVzZXJfbmFtZSI6IlBST1ZJREVSX0JSQU5DSC0zOCIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJlbnRpdHlfaWQiOjM4LCJhdXRob3JpdGllcyI6WyJST0xFX1BST1ZJREVSX0JSQU5DSCJdLCJqdGkiOiIwOTFkNjBlNC01YzNiLTRlMDMtOTcxYS1kNWE0YTY4YWQwNjIiLCJzbHVnIjoidGVzdC1wcm92aWRlciIsImNsaWVudF9pZCI6Im9zaWd1X2luc3VyZXJzX2FwcCJ9.HREAyEw6ZyJq8j__iICWi1VOheRJWEn35MdnPCpl_cE")
-                });
+                return _configProviderBranch1Development ??
+                       (_configProviderBranch1Development =
+                           ConfigurationManager.AppSettings["TestingEnvironment"] == "DEV"
+                               ? new Configuration
+                               {
+                                   BaseUrl = ConfigurationManager.AppSettings["DevelopmentBaseUrl"],
+                                   Slug = ConfigurationManager.AppSettings["ConfigProvider1DevSlug"],
+                                   Authentication =
+                                       new Authentication(ConfigurationManager.AppSettings["ConfigProvider1DevToken"])
+                               }
+                               : ConfigurationManager.AppSettings["TestingEnvironment"] == "PROD"
+                                   ? new Configuration
+                                   {
+                                       BaseUrl = ConfigurationManager.AppSettings["ProductionBaseUrl"],
+                                       Slug = ConfigurationManager.AppSettings["ConfigProvider1ProdSlug"],
+                                       Authentication =
+                                           new Authentication(
+                                               ConfigurationManager.AppSettings["ConfigProvider1ProdToken"])
+                                   }
+                                   : new Configuration
+                                   {
+                                       BaseUrl = ConfigurationManager.AppSettings["SandboxBaseUrl"],
+                                       Slug = ConfigurationManager.AppSettings["ConfigProvider1SboxSlug"],
+                                       Authentication =
+                                           new Authentication(
+                                               ConfigurationManager.AppSettings["ConfigProvider1SboxToken"])
+                                   });
             }
         }
 
@@ -55,12 +112,33 @@ namespace OsiguSDK.SpecificationTests
         {
             get
             {
-                return _configProviderBranch2Development ?? (_configProviderBranch2Development = new Configuration
-                {
-                    BaseUrl = ConfigurationManager.AppSettings["DevelopmentBaseUrl"],
-                    Slug = ConfigurationManager.AppSettings["ConfigProvider2DevSlug"],
-                    Authentication = new Authentication("eyJhbGciOiJIUzI1NiJ9.eyJlbnRpdHlfdHlwZSI6IlBST1ZJREVSX0JSQU5DSCIsInVzZXJfbmFtZSI6IlBST1ZJREVSX0JSQU5DSC0yIiwic2NvcGUiOlsicmVhZCIsIndyaXRlIl0sImVudGl0eV9pZCI6MiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9QUk9WSURFUl9CUkFOQ0giXSwianRpIjoiNTg4NTQ4ZWMtMzk1Yy00OTNiLTkxZjUtMGM3YmRiMDg2N2M4Iiwic2x1ZyI6InRlc3QtcHJvdmlkZXItMiIsImNsaWVudF9pZCI6Im9zaWd1X2luc3VyZXJzX2FwcCJ9.8MIFeIHWS_mYxPiol3p7HXGJDcXAMYLSUdtvA5VYWl8")
-                });
+                return _configProviderBranch2Development ??
+                       (_configProviderBranch2Development =
+                           ConfigurationManager.AppSettings["TestingEnvironment"] == "DEV"
+                               ? new Configuration
+                               {
+                                   BaseUrl = ConfigurationManager.AppSettings["DevelopmentBaseUrl"],
+                                   Slug = ConfigurationManager.AppSettings["ConfigProvider2DevSlug"],
+                                   Authentication =
+                                       new Authentication(ConfigurationManager.AppSettings["ConfigProvider2DevToken"])
+                               }
+                               : ConfigurationManager.AppSettings["TestingEnvironment"] == "PROD"
+                                   ? new Configuration
+                                   {
+                                       BaseUrl = ConfigurationManager.AppSettings["ProductionBaseUrl"],
+                                       Slug = ConfigurationManager.AppSettings["ConfigProvider2ProdSlug"],
+                                       Authentication =
+                                           new Authentication(
+                                               ConfigurationManager.AppSettings["ConfigProvider2ProdToken"])
+                                   }
+                                   : new Configuration
+                                   {
+                                       BaseUrl = ConfigurationManager.AppSettings["SandboxBaseUrl"],
+                                       Slug = ConfigurationManager.AppSettings["ConfigProvider2SboxSlug"],
+                                       Authentication =
+                                           new Authentication(
+                                               ConfigurationManager.AppSettings["ConfigProvider2SboxToken"])
+                                   });
             }
         }
 
@@ -72,11 +150,33 @@ namespace OsiguSDK.SpecificationTests
         {
             get
             {
-                return _configOsiguProduct ?? (_configOsiguProduct = new Configuration
-                {
-                    BaseUrl = ConfigurationManager.AppSettings["DevelopmentBaseUrl"],
-                    Authentication = new Authentication("eyJhbGciOiJSUzI1NiJ9.eyJlbnRpdHlfdHlwZSI6IlVTRVIiLCJ1c2VyX25hbWUiOiJlbGl1QG9zaWd1LmNvbSIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdLCJleHAiOjE0NjA0ODE2ODAsImVudGl0eV9pZCI6MiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9XRUJfUFJPRFVDVF9BRE1JTiJdLCJqdGkiOiI2ODg1MmFhZi02ZDc3LTQ3MTUtOTY1NC1lMmRkODcwZjE4NTciLCJzbHVnIjpudWxsLCJjbGllbnRfaWQiOiJvc2lndV93ZWJfcHJvZHVjdHMifQ.WQ6NPJ9-BslVCGgP22r9_xSFjmug4wye191wpCwOClOsffy2ajCfozpLrCf1ZDV4Fu-lGE9mtChOFPT2sNqsl3K_3NkCVlD0kI2kwytcPxClNz1A_47814RAetyNo6d6Jsm0iIQxlm3-nE-Sd7swsEyuL0Fq0bZFmN1EHDQSwkI")
-                });
+                return _configOsiguProduct ??
+                       (_configOsiguProduct =
+                           ConfigurationManager.AppSettings["TestingEnvironment"] == "DEV"
+                               ? new Configuration
+                               {
+                                   BaseUrl = ConfigurationManager.AppSettings["DevelopmentBaseUrl"],
+                                   Slug = ConfigurationManager.AppSettings["ConfigOsiguDevSlug"],
+                                   Authentication =
+                                       new Authentication(ConfigurationManager.AppSettings["ConfigOsiguDevToken"])
+                               }
+                               : ConfigurationManager.AppSettings["TestingEnvironment"] == "PROD"
+                                   ? new Configuration
+                                   {
+                                       BaseUrl = ConfigurationManager.AppSettings["ProductionBaseUrl"],
+                                       Slug = ConfigurationManager.AppSettings["ConfigOsiguProdSlug"],
+                                       Authentication =
+                                           new Authentication(
+                                               ConfigurationManager.AppSettings["ConfigProvider2ProdToken"])
+                                   }
+                                   : new Configuration
+                                   {
+                                       BaseUrl = ConfigurationManager.AppSettings["SandboxBaseUrl"],
+                                       Slug = ConfigurationManager.AppSettings["ConfigOsiguSboxSlug"],
+                                       Authentication =
+                                           new Authentication(
+                                               ConfigurationManager.AppSettings["ConfigProvider2SboxToken"])
+                                   });
             }
         }
 
@@ -86,12 +186,30 @@ namespace OsiguSDK.SpecificationTests
         {
             get
             {
-                return _configSettlement ?? (_configSettlement = new Configuration
-                {
-                    BaseUrl = ConfigurationManager.AppSettings["SettlementBaseUrl"],
-                    Slug = ConfigurationManager.AppSettings["ConfigSettlementDevSlug"],
-                    Authentication = new Authentication(ConfigurationManager.AppSettings["ConfigSettlementDevToken"])
-                });
+                return _configSettlement ??
+                       (_configSettlement = ConfigurationManager.AppSettings["TestingEnvironment"] == "DEV"
+                           ? new Configuration
+                           {
+                               BaseUrl = ConfigurationManager.AppSettings["SettlementBaseUrl"],
+                               Slug = ConfigurationManager.AppSettings["ConfigSettlementDevSlug"],
+                               Authentication =
+                                   new Authentication(ConfigurationManager.AppSettings["ConfigSettlementDevToken"])
+                           }
+                           : ConfigurationManager.AppSettings["TestingEnvironment"] == "PROD"
+                               ? new Configuration
+                               {
+                                   BaseUrl = ConfigurationManager.AppSettings["ProductionBaseUrl"],
+                                   Slug = ConfigurationManager.AppSettings["ConfigSettlementProdSlug"],
+                                   Authentication =
+                                       new Authentication(ConfigurationManager.AppSettings["ConfigSettlementProdToken"])
+                               }
+                               : new Configuration
+                               {
+                                   BaseUrl = ConfigurationManager.AppSettings["SettlementBaseUrl"],
+                                   Slug = ConfigurationManager.AppSettings["ConfigSettlementSboxSlug"],
+                                   Authentication =
+                                       new Authentication(ConfigurationManager.AppSettings["ConfigSettlementSboxToken"])
+                               });
             }
         }
     }

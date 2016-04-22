@@ -81,10 +81,7 @@ namespace OsiguSDKExamples
                 }
             };
 
-            return _client.CompleteClaimTransaction(claimId, new CompleteClaimRequest
-            {
-                Invoice = request
-            });
+            return _client.CompleteClaimTransaction(claimId, request);
         }
 
         public Claim GetSingleClaim(string claimId)

@@ -70,26 +70,6 @@ namespace OsiguSDK.SpecificationTests
         public static string AuthorizationId { get; set; }
         public static string PIN { get; set; }
 
-        
-
-
-        private static IConfiguration _localConfigSettlements;
-
-        public static IConfiguration ConfigLocalSettlementsAPI
-        {
-            get
-            {
-                return _localConfigSettlements ?? (_localConfigSettlements = new Configuration
-                {
-                    BaseUrl = "http://localhost:5000",
-                    Authentication =
-                        new Authentication(
-                            "eyJhbGciOiJIUzI1NiJ9.eyJlbnRpdHlfdHlwZSI6IlVTRVIiLCJ1c2VyX25hbWUiOiJVU0VSLTEiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZW50aXR5X2lkIjoxLCJhdXRob3JpdGllcyI6WyJST0xFX0FVVEhfU0VSVkVSX0FQSV9BRE1JTiJdLCJqdGkiOiIzZjJjZTFlYS1lZDgwLTRiM2QtYmIwNi05ODAyYTQ2NDNmZTEiLCJzbHVnIjoiIiwiY2xpZW50X2lkIjoib3NpZ3VfaW5zdXJlcnNfYXBwIn0.ui7OI66qLdpo1k35J3Yq59ZOXCa2fOJj8UaDRO291No")
-
-                });
-
-            }
-        }
 
         public class StringBuilder : ISpecimenBuilder
         {
