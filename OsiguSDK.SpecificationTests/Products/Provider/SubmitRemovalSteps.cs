@@ -15,8 +15,8 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         [Given(@"I have the provider products client without the required permission")]
         public void GivenIHaveTheProviderProductsClientWithoutTheRequiredPermission()
         {
-            Tools.ProductsProviderClient = new ProductsClient(Tools.ConfigProviderBranch1Development);
-            Tools.ProductsProductsClientWithNoPermission = new ProductsClient(Tools.ConfigProviderBranch2Development);
+            Tools.ProductsProviderClient = new ProductsClient(ConfigurationClients.ConfigProviderBranch1Development);
+            Tools.ProductsProductsClientWithNoPermission = new ProductsClient(ConfigurationClients.ConfigProviderBranch2Development);
         }
 
 

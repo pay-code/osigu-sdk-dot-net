@@ -23,8 +23,8 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         {
             Tools.insurerAuthorizationClient = new AuthorizationsClient(new Configuration
             {
-                BaseUrl = Tools.ConfigInsurer1Development.BaseUrl,
-                Slug = Tools.ConfigInsurer1Development.Slug,
+                BaseUrl = ConfigurationClients.ConfigInsurer1Development.BaseUrl,
+                Slug = ConfigurationClients.ConfigInsurer1Development.Slug,
                 Authentication = new Authentication("noOAuthToken :(")
             });
         }
@@ -34,9 +34,9 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         {
             Tools.insurerAuthorizationClient = new AuthorizationsClient(new Configuration
             {
-                BaseUrl = Tools.ConfigInsurer1Development.BaseUrl,
+                BaseUrl = ConfigurationClients.ConfigInsurer1Development.BaseUrl,
                 Slug = "another_slug",
-                Authentication = Tools.ConfigInsurer1Development.Authentication
+                Authentication = ConfigurationClients.ConfigInsurer1Development.Authentication
             });
         }
 
@@ -46,7 +46,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         {
             try
             {
-                Tools.insurerAuthorizationClient = new AuthorizationsClient(Tools.ConfigInsurer1Development);
+                Tools.insurerAuthorizationClient = new AuthorizationsClient(ConfigurationClients.ConfigInsurer1Development);
             }
             catch(Exception ex) { Console.WriteLine(ex.StackTrace);}
         }
@@ -95,7 +95,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         {
             try
             {
-                Tools.insurerAuthorizationClient = new AuthorizationsClient(Tools.ConfigInsurer1Development);
+                Tools.insurerAuthorizationClient = new AuthorizationsClient(ConfigurationClients.ConfigInsurer1Development);
             }
             catch (Exception ex) { Console.WriteLine(ex.StackTrace); }
         }

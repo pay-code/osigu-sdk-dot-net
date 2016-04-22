@@ -66,7 +66,10 @@ namespace OsiguSDKExamples
                 DocumentNumber = "S-4 15654987987",
                 DocumentDate = DateTime.UtcNow
             };
-            return hasInvoice ? _client.CompleteExpressAuthorization(expressAuthorizationId, request) : _client.GetSingleExpressAuthorization(expressAuthorizationId);
+            return hasInvoice ? _client.CompleteExpressAuthorization(expressAuthorizationId, new CompleteExpressAuthorizationRequest
+            {
+                Invoice = request
+            }) : _client.GetSingleExpressAuthorization(expressAuthorizationId);
         }
 
         public void VoidExpressAuthorization(string expressAuthorizationId)

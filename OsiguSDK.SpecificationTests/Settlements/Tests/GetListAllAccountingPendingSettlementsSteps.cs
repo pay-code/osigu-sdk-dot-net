@@ -34,8 +34,8 @@ namespace OsiguSDK.SpecificationTests.Settlements.Tests
         {
             Tools.RestClient = new RestClient(new Configuration
             {
-                BaseUrl = Tools.ConfigSettlement.BaseUrl,
-                Authentication = Tools.ConfigSettlement.Authentication,
+                BaseUrl = ConfigurationClients.ConfigSettlement.BaseUrl,
+                Authentication = ConfigurationClients.ConfigSettlement.Authentication,
                 Slug = "OtherSlug"
             });
         }

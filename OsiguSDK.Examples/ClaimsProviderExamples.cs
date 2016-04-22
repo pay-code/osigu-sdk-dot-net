@@ -79,7 +79,10 @@ namespace OsiguSDKExamples
                 Amount = 54.48m
             };
 
-            return _client.CompleteClaimTransaction(claimId, request);
+            return _client.CompleteClaimTransaction(claimId, new CompleteClaimRequest
+            {
+                Invoice = request
+            });
         }
 
         public Claim GetSingleClaim(string claimId)
