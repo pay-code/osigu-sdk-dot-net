@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Newtonsoft.Json;
 using OsiguSDK.Core.Client;
 using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Requests;
@@ -18,6 +19,7 @@ namespace OsiguSDK.Insurers.Clients
         public Authorization CreateAuthorization(CreateAuthorizationRequest request)
         {            
             var urlBuilder = new StringBuilder("/insurers/").Append(Configuration.Slug).Append("/authorizations");
+            var s = JsonConvert.SerializeObject(request);
             var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, request);           
             return ExecuteMethod<Authorization>(requestData);
         }

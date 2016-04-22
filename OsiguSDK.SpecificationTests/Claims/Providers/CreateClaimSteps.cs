@@ -41,8 +41,8 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             Tools.ErrorId = 0;
             Tools.ClaimsProviderClient = new ClaimsClient(new Configuration
             {
-                BaseUrl = Tools.ConfigProviderBranch1Development.BaseUrl,
-                Slug = Tools.ConfigProviderBranch1Development.Slug,
+                BaseUrl = ConfigurationClients.ConfigProviderBranch1Development.BaseUrl,
+                Slug = ConfigurationClients.ConfigProviderBranch1Development.Slug,
                 Authentication = new Authentication("noOAuthToken :(")
             });
         }
@@ -53,9 +53,9 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             Tools.ErrorId = 0;
             Tools.ClaimsProviderClient = new ClaimsClient(new Configuration
             {
-                BaseUrl = Tools.ConfigProviderBranch1Development.BaseUrl,
+                BaseUrl = ConfigurationClients.ConfigProviderBranch1Development.BaseUrl,
                 Slug = "another_slug",
-                Authentication = Tools.ConfigProviderBranch1Development.Authentication
+                Authentication = ConfigurationClients.ConfigProviderBranch1Development.Authentication
             });
         }
 
@@ -63,18 +63,19 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         public void GivenIHaveTheProviderClaimsClient()
         {
             Tools.ErrorId = 0;
-            Tools.ClaimsProviderClient = new ClaimsClient(Tools.ConfigProviderBranch1Development);
+            Tools.ClaimsProviderClient = new ClaimsClient(ConfigurationClients.ConfigProviderBranch1Development);
         }
 
         [Given(@"I have the provider claims client two")]
         public void GivenIHaveTheProviderClaimsClientTwo()
         {
-            Tools.ClaimsProviderClientWithNoPermission = new ClaimsClient(Tools.ConfigProviderBranch2Development);
+            Tools.ClaimsProviderClientWithNoPermission = new ClaimsClient(ConfigurationClients.ConfigProviderBranch2Development);
         }
 
         [When(@"I request the create a claim endpoint with the second client")]
         public void WhenIRequestTheCreateAClaimEndpointWithTheSecondClient()
         {
+            Tools.PIN.Should().NotBeNullOrEmpty("The authorization was not compleated correctly");
             try
             {
                 Tools.ClaimsProviderClientWithNoPermission.CreateClaim(Tools.AuthorizationId, Tools.CreateClaimRequest);
@@ -104,6 +105,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         [When(@"I request the create a claim endpoint")]
         public void WhenIRequestTheCreateAClaimEndpoint()
         {
+            Tools.PIN.Should().NotBeNullOrEmpty("The authorization was not compleated correctly");
             try
             {
                 Tools.QueueId = Tools.ClaimsProviderClient.CreateClaim(Tools.AuthorizationId, Tools.CreateClaimRequest);
@@ -121,6 +123,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             GenerateItemList();
 
             Tools.AuthorizationId = "NotExistingAuth";
+            Tools.PIN = "PIN";
         }
 
         [Then(@"the result should be not existing")]
@@ -134,7 +137,8 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         {
             Tools.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
             GenerateItemList();
-            //TODO: Not associated but existing
+
+            Tools.PIN = "PIN";
             Tools.AuthorizationId = "NotAssociated";
         }
 

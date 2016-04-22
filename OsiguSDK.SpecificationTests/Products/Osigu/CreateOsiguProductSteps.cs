@@ -14,7 +14,7 @@ namespace OsiguSDK.SpecificationTests.Products.Osigu
         [Given(@"I have configured the rest client")]
         public void GivenIHaveConfiguredTheRestClient()
         {
-            Tools.RestClient = new RestClient(Tools.ConfigOsiguProduct);
+            Tools.RestClient = new RestClient(ConfigurationClients.ConfigOsiguProduct);
         }
         
         [Given(@"I have the request to create an osigu product")]

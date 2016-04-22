@@ -22,7 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <RegisterForComInterop>true</RegisterForComInterop>
+    <RegisterForComInterop>false</RegisterForComInterop>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,7 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <RegisterForComInterop>true</RegisterForComInterop>
+    <RegisterForComInterop>false</RegisterForComInterop>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="log4net">
@@ -72,6 +72,8 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\QueueStatus.cs" />
     <Compile Include="Models\Requests\AddOrModifyItemsExpressAuthorization.cs" />
+    <Compile Include="Models\Requests\CompleteExpressAuthorizationRequest.cs" />
+    <Compile Include="Models\Requests\CompleteClaimRequest.cs" />
     <Compile Include="Models\Requests\CreateClaimRequest.cs" />
     <Compile Include="Models\Requests\CreateExpressAuthorizationRequest.cs" />
     <Compile Include="Models\Requests\SubmitProductRequest.cs" />

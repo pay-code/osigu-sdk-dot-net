@@ -44,6 +44,7 @@ namespace OsiguSDK.Core.Client
             var assembly = Assembly.GetExecutingAssembly();
             var assemblyName = new AssemblyName(assembly.FullName);
             var version = assemblyName.Version;
+            _client.FollowRedirects = false;
 
             _client.UserAgent = "Osigu-SDK-" + version;
         }
@@ -228,6 +229,7 @@ namespace OsiguSDK.Core.Client
         /// </summary>
         /// <param name="response"> </param>
         /// <param name="rootElement"> </param>
+        /// <exception cref="UnknownException">Condition.</exception>
         /// <exception cref="RequestException">Condition.</exception>
         protected T Deserialize<T>(IRestResponse response, string rootElement)
         {
@@ -246,7 +248,7 @@ namespace OsiguSDK.Core.Client
                 }
                 catch (Exception e)
                 {
-                    throw new RequestException(e);
+                    throw new UnknownException(e);
                 }
             }
             else
@@ -312,7 +314,7 @@ namespace OsiguSDK.Core.Client
             }
             catch (Exception e)
             {
-                throw new RequestException(e);
+                throw new UnknownException(e);
             }
         }
 
@@ -327,7 +329,7 @@ namespace OsiguSDK.Core.Client
 
                 if (responseCode >= 400 && responseCode < 500)
                 {
-                    return requestError.Errors != null ? new RequestException(requestError.Errors.First().Message, responseCode) : new RequestException(requestError.Message, responseCode);
+                    return requestError.Errors != null ? new RequestException(requestError.Errors.First().Message, responseCode, requestError.Errors) : new RequestException(requestError.Message, responseCode);
                 }
                     
                 //If is not a request exception then is a service exception

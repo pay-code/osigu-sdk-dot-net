@@ -8,7 +8,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Tests
     public class MarkAsSentTests : BaseTest
     {
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Init()
         {
             Client = new RestClient(new Configuration
@@ -21,20 +21,20 @@ namespace OsiguSDK.SpecificationTests.Settlements.Tests
         [Test]
         public void ValidateAuthenticationError()
         {
-            
+
         }
 
         [Test]
         public void ValidateResponseWithInvalidSettlementId()
         {
-            
+
         }
 
         [Test]
         public void ValidateSuccessResponse()
         {
             var response = Client.RequestToEndpoint<object>(Method.PUT, "/settlements/2/sent");
-            
+
         }
     }
 }

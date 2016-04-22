@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace OsiguSDK.Core.Models
 {
-    class RequestError
+    public class RequestError
     {
 
         [JsonProperty(PropertyName = "code")]

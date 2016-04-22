@@ -20,20 +20,21 @@ namespace OsiguSDK.Providers.Clients
             var requestData = new RequestData(urlBuilder.ToString(), Method.GET, null, null);
 
             var response = SendRequest(requestData);
-            var queueStatus = Deserialize<QueueStatus>(response, requestData.RootElement);
-
+            
             //if the result is 303 (SEE OTHER) means that the resource was created successfully
             if (response.StatusCode == HttpStatusCode.SeeOther)
             {
                 var locationUrl = GetLocationHeader(response);
                 var id = base.GetIdFromResourceUrl(locationUrl);
 
-                queueStatus = new QueueStatus()
+                return new QueueStatus
                 {
                     Status = QueueStatus.QueueStatusEnum.COMPLETED,
                     ResourceId = id
                 };
             }
+
+            var queueStatus = Deserialize<QueueStatus>(response, requestData.RootElement);
 
             return queueStatus;
         }
