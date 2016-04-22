@@ -75,6 +75,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -296,7 +297,9 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GetListClaims.feature.cs</LastGenOutput>
     </None>
-    <None Include="Environment.config" />
+    <None Include="Environment.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Products\Insurer\GetListProducts.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
