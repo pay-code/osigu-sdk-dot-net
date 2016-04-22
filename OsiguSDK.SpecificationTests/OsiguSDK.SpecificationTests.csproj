@@ -296,9 +296,6 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GetListClaims.feature.cs</LastGenOutput>
     </None>
-    <None Include="Environment.config">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="packages.config" />
     <None Include="Products\Insurer\GetListProducts.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
