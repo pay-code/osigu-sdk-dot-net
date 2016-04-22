@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 
 namespace OsiguSDK.SpecificationTests.Settlements.Models
 {
@@ -13,10 +14,16 @@ namespace OsiguSDK.SpecificationTests.Settlements.Models
         [JsonProperty(PropertyName = "percentage")]
         public decimal Percentage { get; set; }
 
-        [JsonProperty(PropertyName = "comission_type")]
+        [JsonProperty(PropertyName = "commission_type")]
         public string ComissionType { get; set; }
 
         [JsonProperty(PropertyName = "invoice_id")]
         public int? InvoiceId { get; set; }
+
+        [JsonProperty(PropertyName = "created_at")]
+        public DateTime CreatedAt { get; set; }
+
+        [JsonProperty(PropertyName = "updated_at")]
+        public DateTime UpdatedAt { get; set; }
     }
 }
