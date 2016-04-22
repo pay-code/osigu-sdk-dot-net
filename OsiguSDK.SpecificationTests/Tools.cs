@@ -7,8 +7,10 @@ using OsiguSDK.Providers.Clients;
 using OsiguSDK.Providers.Models.Requests;
 using OsiguSDK.Providers.Models;
 using OsiguSDK.SpecificationTests.Products.Models;
+using OsiguSDK.SpecificationTests.Settlements.Models;
 using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.Kernel;
+using Claim = OsiguSDK.Providers.Models.Claim;
 
 
 namespace OsiguSDK.SpecificationTests
@@ -47,6 +49,8 @@ namespace OsiguSDK.SpecificationTests
         public static RestClient RestClient { get; set; }
 
         public static OsiguProductRequest OsiguProductRequest { get; set; }
+        
+        public static Settlement settlementRequest { get; set; }
 
         public static int ErrorId { get; set; }
         public static int ErrorId2 { get; set; }
@@ -68,6 +72,24 @@ namespace OsiguSDK.SpecificationTests
 
         
 
+
+        private static IConfiguration _localConfigSettlements;
+
+        public static IConfiguration ConfigLocalSettlementsAPI
+        {
+            get
+            {
+                return _localConfigSettlements ?? (_localConfigSettlements = new Configuration
+                {
+                    BaseUrl = "http://localhost:5000",
+                    Authentication =
+                        new Authentication(
+                            "eyJhbGciOiJIUzI1NiJ9.eyJlbnRpdHlfdHlwZSI6IlVTRVIiLCJ1c2VyX25hbWUiOiJVU0VSLTEiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZW50aXR5X2lkIjoxLCJhdXRob3JpdGllcyI6WyJST0xFX0FVVEhfU0VSVkVSX0FQSV9BRE1JTiJdLCJqdGkiOiIzZjJjZTFlYS1lZDgwLTRiM2QtYmIwNi05ODAyYTQ2NDNmZTEiLCJzbHVnIjoiIiwiY2xpZW50X2lkIjoib3NpZ3VfaW5zdXJlcnNfYXBwIn0.ui7OI66qLdpo1k35J3Yq59ZOXCa2fOJj8UaDRO291No")
+
+                });
+
+            }
+        }
 
         public class StringBuilder : ISpecimenBuilder
         {
@@ -102,5 +124,7 @@ namespace OsiguSDK.SpecificationTests
 
            
         }
+
+       
     }
 }

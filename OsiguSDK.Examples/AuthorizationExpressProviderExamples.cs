@@ -61,10 +61,12 @@ namespace OsiguSDKExamples
 
         public ExpressAuthorization CompleteExpressAuthorization(string expressAuthorizationId, bool hasInvoice = true)
         {
-            var request = new Invoice
+            var request = new CompleteExpressAuthorizationRequest()
             {
-                DocumentNumber = "S-4 15654987987",
-                DocumentDate = DateTime.UtcNow
+                Invoice = new Invoice() { 
+                    DocumentNumber = "S-4 15654987987",
+                    DocumentDate = DateTime.UtcNow
+                }
             };
             return hasInvoice ? _client.CompleteExpressAuthorization(expressAuthorizationId, new CompleteExpressAuthorizationRequest
             {
