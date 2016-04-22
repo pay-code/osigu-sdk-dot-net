@@ -1,13 +1,9 @@
-﻿using System;
-using FluentAssertions;
+﻿using FluentAssertions;
+using OsiguSDK.Core.Authentication;
 using OsiguSDK.Core.Config;
+using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Providers.Clients;
 using TechTalk.SpecFlow;
-using OsiguSDK.Core.Authentication;
-using OsiguSDK.Core.Exceptions;
-using OsiguSDK.Providers.Models;
-using Ploeh.AutoFixture;
-
 
 namespace OsiguSDK.SpecificationTests.Claims.Providers
 {

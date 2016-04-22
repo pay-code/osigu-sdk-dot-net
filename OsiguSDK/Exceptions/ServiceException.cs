@@ -4,7 +4,7 @@ namespace OsiguSDK.Core.Exceptions
 {
     public class ServiceException : RequestException
     {
-        public ServiceException() : base()
+        public ServiceException()
         {
         }
 

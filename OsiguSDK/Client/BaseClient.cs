@@ -18,7 +18,7 @@ namespace OsiguSDK.Core.Client
     public abstract class BaseClient
     {
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-        private IRestClient _client = null;
+        private IRestClient _client;
 
         /// <summary>
         /// Initialize ClientBase </summary>
@@ -32,7 +32,7 @@ namespace OsiguSDK.Core.Client
         /// <summary>
         /// Get Configuration object </summary>
         /// <returns> Configuration </returns>
-        protected IConfiguration Configuration { get; private set; }
+        protected IConfiguration Configuration { get; }
 
         /// <summary>
         /// Set Rest Client
@@ -110,7 +110,7 @@ namespace OsiguSDK.Core.Client
         {
             var request = CreateRequest(requestData);
 
-            _client.ExecuteAsync(request, (response) =>
+            _client.ExecuteAsync(request, response =>
             {
                 try
                 {
@@ -159,7 +159,7 @@ namespace OsiguSDK.Core.Client
 
             if (Logger.IsDebugEnabled)
             {
-                Logger.Debug("Request form parameters: " + string.Join(", ", request.Parameters.ToArray().Select<Parameter, string>(ism => ism != null ? ism.ToString() : "{}").ToArray()));
+                Logger.Debug("Request form parameters: " + string.Join(", ", request.Parameters.ToArray().Select(ism => ism != null ? ism.ToString() : "{}").ToArray()));
             }
         }
 
@@ -251,11 +251,8 @@ namespace OsiguSDK.Core.Client
                     throw new UnknownException(e);
                 }
             }
-            else
-            {
-                //Read RequestError from the response and throw the Exception
-                throw ReadRequestException(response);
-            }
+            //Read RequestError from the response and throw the Exception
+            throw ReadRequestException(response);
         }
 
         /// <summary>

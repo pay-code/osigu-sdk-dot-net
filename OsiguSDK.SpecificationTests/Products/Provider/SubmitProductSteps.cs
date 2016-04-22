@@ -2,11 +2,11 @@
 using FluentAssertions;
 using OsiguSDK.Core.Authentication;
 using OsiguSDK.Core.Config;
-using TechTalk.SpecFlow;
+using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Providers.Clients;
 using OsiguSDK.Providers.Models.Requests;
 using Ploeh.AutoFixture;
-using OsiguSDK.Core.Exceptions;
+using TechTalk.SpecFlow;
 
 namespace OsiguSDK.SpecificationTests.Products.Provider
 {

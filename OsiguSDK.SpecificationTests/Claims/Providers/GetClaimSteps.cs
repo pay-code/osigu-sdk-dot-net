@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Threading;
+﻿using System.Threading;
 using FluentAssertions;
 using OsiguSDK.Core.Exceptions;
 using TechTalk.SpecFlow;

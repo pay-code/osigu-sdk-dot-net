@@ -11,7 +11,6 @@ namespace OsiguSDK.Core.Authentication
         }
 
         public Authentication()
-            : base()
         {
             Type = AuthType.OAUTH;
         }

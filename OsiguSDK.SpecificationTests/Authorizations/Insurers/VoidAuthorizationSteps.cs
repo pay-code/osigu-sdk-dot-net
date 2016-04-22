@@ -1,5 +1,4 @@
-﻿using System;
-using FluentAssertions;
+﻿using FluentAssertions;
 using OsiguSDK.Core.Exceptions;
 using TechTalk.SpecFlow;
 

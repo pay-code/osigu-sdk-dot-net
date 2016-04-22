@@ -22,37 +22,37 @@ namespace OsiguSDKExamples
         /// </summary>
         public Authorization CreateAuthorization()
         {
-            var createAuthRequest = new CreateAuthorizationRequest()
+            var createAuthRequest = new CreateAuthorizationRequest
             {
                 ReferenceId = "ACJ12398-1236",
                 AuthorizationDate = DateTime.UtcNow,
                 ExpiresAt = DateTime.UtcNow.AddMonths(1),
-                Diagnoses = new List<Diagnosis>()
+                Diagnoses = new List<Diagnosis>
                 {
-                    new Diagnosis() {Name = "Gastroenteritis"},
-                    new Diagnosis() {Name = "Barrett's Esophagus"}
+                    new Diagnosis {Name = "Gastroenteritis"},
+                    new Diagnosis {Name = "Barrett's Esophagus"}
                 },
-                Doctor = new Doctor()
+                Doctor = new Doctor
                 {
                     CountryCode = "GT",
                     Name = "Wade Wilson",
                     MedicalLicense = "MG20100211-4567",
-                    Specialties = new List<Doctor.DoctorSpecialty>()
+                    Specialties = new List<Doctor.DoctorSpecialty>
                     {
-                        new Doctor.DoctorSpecialty()
+                        new Doctor.DoctorSpecialty
                         {
                             Name = "Gastroenterologist"
                         }
                     }
                 },
-                Policy = new Policy()
+                Policy = new Policy
                 {
                     CountryCode = "GT",
                     Number = "55222",
                     Certificate = "0000011255",
                     ExpirationDate = DateTime.UtcNow.AddYears(1),
                     InsuranceCompanyName = "Roble",
-                    PolicyHolder = new Policy.PolicyHolderInfo()
+                    PolicyHolder = new Policy.PolicyHolderInfo
                     {
                         Id = "022165654654654",
                         Name = "William Smith",
@@ -62,14 +62,14 @@ namespace OsiguSDKExamples
                         DateOfBirth = DateTime.UtcNow.AddYears(-15)
                     }
                 },
-                Items = new List<CreateAuthorizationRequest.Item>()
+                Items = new List<CreateAuthorizationRequest.Item>
                 {
-                    new CreateAuthorizationRequest.Item()
+                    new CreateAuthorizationRequest.Item
                     {
                         ProductId = "QAINSURER1",
                         Quantity = 1
                     },
-                    new CreateAuthorizationRequest.Item()
+                    new CreateAuthorizationRequest.Item
                     {
                         ProductId = "QAINSURER2",
                         Quantity = 5

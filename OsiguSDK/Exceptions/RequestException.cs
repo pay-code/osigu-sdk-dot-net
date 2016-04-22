@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using OsiguSDK.Core.Models;
 
 namespace OsiguSDK.Core.Exceptions
 {
@@ -37,7 +38,7 @@ namespace OsiguSDK.Core.Exceptions
             ResponseCode = responseCode;
         }
 
-        public RequestException(string errorText, int responseCode, IList<Models.RequestError.ValidationError> errors)
+        public RequestException(string errorText, int responseCode, IList<RequestError.ValidationError> errors)
             : this(errorText)
         {
             ResponseCode = responseCode;
@@ -46,6 +47,6 @@ namespace OsiguSDK.Core.Exceptions
 
 
         public virtual int ResponseCode { get; private set; }
-        public IList<Models.RequestError.ValidationError> Errors { get; set; } 
+        public IList<RequestError.ValidationError> Errors { get; set; } 
     }
 }

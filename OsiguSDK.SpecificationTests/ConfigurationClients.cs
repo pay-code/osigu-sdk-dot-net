@@ -1,6 +1,7 @@
-﻿using OsiguSDK.Core.Authentication;
+﻿using System.Configuration;
+using OsiguSDK.Core.Authentication;
 using OsiguSDK.Core.Config;
-using ConfigurationManager = System.Configuration.ConfigurationManager;
+using Configuration = OsiguSDK.Core.Config.Configuration;
 
 namespace OsiguSDK.SpecificationTests
 {
@@ -190,7 +191,7 @@ namespace OsiguSDK.SpecificationTests
                        (_configSettlement = ConfigurationManager.AppSettings["TestingEnvironment"] == "DEV"
                            ? new Configuration
                            {
-                               BaseUrl = ConfigurationManager.AppSettings["DevSettlementBaseUrl"],
+                               BaseUrl = ConfigurationManager.AppSettings["SettlementDevBaseUrl"],
                                Slug = ConfigurationManager.AppSettings["ConfigSettlementDevSlug"],
                                Authentication =
                                    new Authentication(ConfigurationManager.AppSettings["ConfigSettlementDevToken"])
@@ -198,14 +199,14 @@ namespace OsiguSDK.SpecificationTests
                            : ConfigurationManager.AppSettings["TestingEnvironment"] == "PROD"
                                ? new Configuration
                                {
-                                   BaseUrl = ConfigurationManager.AppSettings["ProductionBaseUrl"],
+                                   BaseUrl = ConfigurationManager.AppSettings["SettlementProdBaseUrl"],
                                    Slug = ConfigurationManager.AppSettings["ConfigSettlementProdSlug"],
                                    Authentication =
                                        new Authentication(ConfigurationManager.AppSettings["ConfigSettlementProdToken"])
                                }
                                : new Configuration
                                {
-                                   BaseUrl = ConfigurationManager.AppSettings["SettlementBaseUrl"],
+                                   BaseUrl = ConfigurationManager.AppSettings["SettlementSboxBaseUrl"],
                                    Slug = ConfigurationManager.AppSettings["ConfigSettlementSboxSlug"],
                                    Authentication =
                                        new Authentication(ConfigurationManager.AppSettings["ConfigSettlementSboxToken"])

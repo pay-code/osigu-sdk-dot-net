@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using OsiguSDK.Core.Exceptions;
-using TechTalk.SpecFlow;
 using OsiguSDK.Providers.Models;
 using OsiguSDK.Providers.Models.Requests;
+using TechTalk.SpecFlow;
 
 namespace OsiguSDK.SpecificationTests.Claims.Providers
 {

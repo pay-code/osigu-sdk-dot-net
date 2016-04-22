@@ -1,7 +1,7 @@
 ﻿using OsiguSDK.Core.Client;
 using OsiguSDK.Core.Config;
-using RestSharp;
 using OsiguSDK.Core.Requests;
+using RestSharp;
 
 namespace OsiguSDK.SpecificationTests
 {

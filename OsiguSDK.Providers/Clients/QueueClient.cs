@@ -25,7 +25,7 @@ namespace OsiguSDK.Providers.Clients
             if (response.StatusCode == HttpStatusCode.SeeOther)
             {
                 var locationUrl = GetLocationHeader(response);
-                var id = base.GetIdFromResourceUrl(locationUrl);
+                var id = GetIdFromResourceUrl(locationUrl);
 
                 return new QueueStatus
                 {

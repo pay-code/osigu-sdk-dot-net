@@ -4,7 +4,7 @@ namespace OsiguSDK.Core.Exceptions
 {
     public class UnknownException : RequestException
     {
-        public UnknownException() : base()
+        public UnknownException()
         {
         }
 

@@ -1,10 +1,10 @@
-﻿using OsiguSDK.Core.Config;
+﻿using System;
+using System.Collections.Generic;
+using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Models;
+using OsiguSDK.Providers.Clients;
 using OsiguSDK.Providers.Models;
 using OsiguSDK.Providers.Models.Requests;
-using OsiguSDK.Providers.Clients;
-using System.Collections.Generic;
-using System;
 
 namespace OsiguSDKExamples
 {
@@ -71,9 +71,10 @@ namespace OsiguSDKExamples
 
         public Claim CompleteClaimTransaction(string claimId)
         {
-            var request = new CompleteClaimRequest()
+            var request = new CompleteClaimRequest
             {
-                Invoice = new Invoice() { 
+                Invoice = new Invoice
+                { 
                     DocumentNumber = "S-4 15654987987",
                     DocumentDate = DateTime.UtcNow,
                     Currency = "USD",

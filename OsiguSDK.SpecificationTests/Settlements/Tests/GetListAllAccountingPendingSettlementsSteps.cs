@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using OsiguSDK.Core.Authentication;
 using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Core.Models;
