@@ -17,10 +17,10 @@ namespace OsiguSDK.SpecificationTests.Settlements.Tests
         [TestFixtureSetUp]
         public void Init()
         {
-            Client = new RestClient(new Configuration
+            /*Client = new RestClient(new Configuration
             {
                 BaseUrl = Tools.BaseUrl
-            });
+            });*/
         }
 
 
