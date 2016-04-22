@@ -1,7 +1,4 @@
-﻿using OsiguSDK.Core.Config;
-
-
-namespace OsiguSDK.SpecificationTests
+﻿namespace OsiguSDK.SpecificationTests
 {
     public class BaseTest
     {

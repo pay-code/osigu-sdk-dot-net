@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using AutoMapper;
-using OsiguSDK.Core.Authentication;
 using OsiguSDK.Core.Config;
+using OsiguSDK.Insurers.Clients;
 using OsiguSDK.Insurers.Models;
 using OsiguSDK.Insurers.Models.Requests;
 using IConfiguration = OsiguSDK.Core.Config.IConfiguration;
@@ -124,7 +124,7 @@ namespace OsiguSDKExamples
             var getSingleAuthorizationResponse = expressAuthExamples.GetSingleAuthorization("EXP-GT-12345");
 
             //GET LIST OF AUTHORIZATION EXPRESS
-            var getExpressAuthorizationListResponse = expressAuthExamples.GetListOfAuthorizationExpress(OsiguSDK.Insurers.Clients.ExpressAuthorizationClient.ExpressAuthorizationStatus.INSURER_PENDING_REVIEW);
+            var getExpressAuthorizationListResponse = expressAuthExamples.GetListOfAuthorizationExpress(ExpressAuthorizationClient.ExpressAuthorizationStatus.INSURER_PENDING_REVIEW);
 
             //APPROVE AN EXPRESS AUTHORIZATION
             expressAuthExamples.ApproveExpressAuthorization("EXP-GT-12345");

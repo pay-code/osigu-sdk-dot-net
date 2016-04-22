@@ -25,7 +25,6 @@ namespace OsiguSDK.Core.Config
         /// Initialize configuration object using the 'OAUTH' Authentication </summary>
         /// <param name="accessToken"> - 'OAUTH' Authentication Access Token </param>
         public Configuration(string accessToken)
-            : base() 
         {
             Authentication = new Authentication.Authentication {AccessToken = accessToken, Type = Core.Authentication.Authentication.AuthType.OAUTH};
         }

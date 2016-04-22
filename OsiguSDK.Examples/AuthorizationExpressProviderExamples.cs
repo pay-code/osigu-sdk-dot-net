@@ -1,9 +1,9 @@
-﻿using OsiguSDK.Core.Config;
+﻿using System;
+using System.Collections.Generic;
+using OsiguSDK.Core.Config;
 using OsiguSDK.Providers.Clients;
 using OsiguSDK.Providers.Models;
 using OsiguSDK.Providers.Models.Requests;
-using System;
-using System.Collections.Generic;
 
 namespace OsiguSDKExamples
 {
@@ -61,9 +61,10 @@ namespace OsiguSDKExamples
 
         public ExpressAuthorization CompleteExpressAuthorization(string expressAuthorizationId, bool hasInvoice = true)
         {
-            var request = new CompleteExpressAuthorizationRequest()
+            var request = new CompleteExpressAuthorizationRequest
             {
-                Invoice = new Invoice() { 
+                Invoice = new Invoice
+                { 
                     DocumentNumber = "S-4 15654987987",
                     DocumentDate = DateTime.UtcNow
                 }

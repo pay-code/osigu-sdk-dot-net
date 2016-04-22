@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Net.Http;
-using OsiguSDK.Core.Config;
-using OsiguSDK.Core.Authentication;
 using OsiguSDK.Core.Exceptions;
+using OsiguSDK.Insurers.Models.Requests;
 using OsiguSDK.Providers.Clients;
-using OsiguSDK.Providers.Models.Requests;
 using OsiguSDK.Providers.Models;
+using OsiguSDK.Providers.Models.Requests;
 using OsiguSDK.SpecificationTests.Products.Models;
 using OsiguSDK.SpecificationTests.Settlements.Models;
 using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.Kernel;
 using Claim = OsiguSDK.Providers.Models.Claim;
-
+using SubmitProductRequest = OsiguSDK.Providers.Models.Requests.SubmitProductRequest;
 
 namespace OsiguSDK.SpecificationTests
 {
@@ -44,7 +42,7 @@ namespace OsiguSDK.SpecificationTests
         public static Insurers.Models.Requests.SubmitProductRequest submitInsurerProductRequest { get; set; }
 
         public static Insurers.Clients.AuthorizationsClient insurerAuthorizationClient { get; set; }
-        public static Insurers.Models.Requests.CreateAuthorizationRequest submitAuthorizationRequest { get; set; }
+        public static CreateAuthorizationRequest submitAuthorizationRequest { get; set; }
 
         public static RestClient RestClient { get; set; }
 

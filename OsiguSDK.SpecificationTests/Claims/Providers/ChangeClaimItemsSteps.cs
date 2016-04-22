@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using OsiguSDK.Core.Exceptions;
-using OsiguSDK.Providers.Models;
 using OsiguSDK.Providers.Models.Requests;
 using TechTalk.SpecFlow;
 

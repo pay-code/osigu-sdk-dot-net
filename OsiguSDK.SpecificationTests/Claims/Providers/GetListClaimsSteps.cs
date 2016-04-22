@@ -1,8 +1,8 @@
-﻿using OsiguSDK.Core.Exceptions;
+﻿using FluentAssertions;
+using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Core.Models;
-using TechTalk.SpecFlow;
 using OsiguSDK.Providers.Models;
-using FluentAssertions;
+using TechTalk.SpecFlow;
 
 namespace OsiguSDK.SpecificationTests.Claims.Providers
 {

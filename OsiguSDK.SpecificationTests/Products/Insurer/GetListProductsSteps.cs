@@ -1,14 +1,11 @@
-﻿using System;
-using System.Linq;
-using FluentAssertions;
-using log4net.Util;
+﻿using FluentAssertions;
 using OsiguSDK.Core.Authentication;
 using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Exceptions;
-using OsiguSDK.Insurers.Clients;
-using TechTalk.SpecFlow;
 using OsiguSDK.Core.Models;
+using OsiguSDK.Insurers.Clients;
 using OsiguSDK.Insurers.Models;
+using TechTalk.SpecFlow;
 
 namespace OsiguSDK.SpecificationTests.Products.Insurer
 {

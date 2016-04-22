@@ -5,9 +5,9 @@ using OsiguSDK.Core.Client;
 using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Models;
 using OsiguSDK.Core.Requests;
+using OsiguSDK.Providers.Models;
 using OsiguSDK.Providers.Models.Requests;
 using RestSharp;
-using OsiguSDK.Providers.Models;
 
 namespace OsiguSDK.Providers.Clients
 {
