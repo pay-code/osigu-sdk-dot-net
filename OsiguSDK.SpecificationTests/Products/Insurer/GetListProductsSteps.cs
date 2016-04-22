@@ -23,8 +23,8 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         {
             Tools.productsInsurerClient = new ProductsClient(new Configuration
             {
-                BaseUrl = Tools.ConfigInsurer1Development.BaseUrl,
-                Slug = Tools.ConfigInsurer1Development.Slug,
+                BaseUrl = ConfigurationClients.ConfigInsurer1Development.BaseUrl,
+                Slug = ConfigurationClients.ConfigInsurer1Development.Slug,
                 Authentication = new Authentication("noOAuthToken :(")
             });
         }
@@ -35,9 +35,9 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         {
             Tools.productsInsurerClient = new ProductsClient(new Configuration
             {
-                BaseUrl = Tools.ConfigInsurer1Development.BaseUrl,
+                BaseUrl = ConfigurationClients.ConfigInsurer1Development.BaseUrl,
                 Slug = "another_slug",
-                Authentication = Tools.ConfigInsurer1Development.Authentication
+                Authentication = ConfigurationClients.ConfigInsurer1Development.Authentication
             });
         }
 
@@ -45,7 +45,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         [Given(@"I have the insurer products client")]
         public void GivenIHaveTheInsurerProductsClient()
         {
-            Tools.productsInsurerClient = new ProductsClient(Tools.ConfigInsurer1Development);
+            Tools.productsInsurerClient = new ProductsClient(ConfigurationClients.ConfigInsurer1Development);
         }
 
         [When(@"I make the get list of products request to the endpoint")]

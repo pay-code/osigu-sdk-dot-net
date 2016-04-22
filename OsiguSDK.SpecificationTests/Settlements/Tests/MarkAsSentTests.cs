@@ -8,7 +8,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Tests
     public class MarkAsSentTests : BaseTest
     {
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void Init()
         {
             Client = new RestClient(new Configuration

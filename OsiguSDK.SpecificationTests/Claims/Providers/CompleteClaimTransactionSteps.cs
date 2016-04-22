@@ -16,7 +16,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             {
                 Amount = Tools.Claim.Items.Sum(item => item.Price * item.Quantity),
                 Currency = "GTQ",
-                DocumentDate = DateTime.UtcNow,
+                DocumentDate = DateTime.Now,
                 DocumentNumber = "12345"
             };
         }
@@ -42,6 +42,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         public void WhenIRequestTheCompleteTransactionRequest()
         {
             CreateInvoice();
+            Console.Write(Tools.Invoice.DocumentDate);
             try
             {
                 Tools.ClaimsProviderClient.CompleteClaimTransaction(Tools.Claim.Id.ToString(), new CompleteClaimRequest
@@ -51,7 +52,14 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             }
             catch (RequestException exception)
             {
+                Console.WriteLine(exception.Message);
                 Tools.ErrorId = exception.ResponseCode;
+            }
+            if (Tools.ErrorId > 0)
+            {
+                Console.WriteLine(Tools.Claim.Id);
+                Console.WriteLine(Tools.Invoice);
+
             }
         }
 

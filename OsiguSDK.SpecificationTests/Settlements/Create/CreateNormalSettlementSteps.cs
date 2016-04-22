@@ -16,7 +16,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Create
         {
             try
             {
-                Tools.RestClient = new RestClient(Tools.ConfigLocalSettlementsAPI);
+                Tools.RestClient = new RestClient(ConfigurationClients.ConfigSettlement);
             }
             catch (Exception ex) { Console.WriteLine(ex.StackTrace); }
         }

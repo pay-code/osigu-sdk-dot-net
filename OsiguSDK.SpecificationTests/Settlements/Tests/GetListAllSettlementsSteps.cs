@@ -16,7 +16,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Tests
         [Given(@"I have the settlement client")]
         public void GivenIHaveTheSettlementClient()
         {
-            Tools.RestClient = new RestClient(Tools.ConfigSettlement);
+            Tools.RestClient = new RestClient(ConfigurationClients.ConfigSettlement);
         }
         
         [When(@"I request the endpoint")]
@@ -46,7 +46,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Tests
         {
             Tools.RestClient = new RestClient(new Configuration
             {
-                BaseUrl = Tools.ConfigSettlement.BaseUrl,
+                BaseUrl = ConfigurationClients.ConfigSettlement.BaseUrl,
                 Authentication = new Authentication("NoAuth")
             });
         }
