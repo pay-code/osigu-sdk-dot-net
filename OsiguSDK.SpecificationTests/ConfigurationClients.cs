@@ -190,7 +190,7 @@ namespace OsiguSDK.SpecificationTests
                        (_configSettlement = ConfigurationManager.AppSettings["TestingEnvironment"] == "DEV"
                            ? new Configuration
                            {
-                               BaseUrl = ConfigurationManager.AppSettings["SettlementBaseUrl"],
+                               BaseUrl = ConfigurationManager.AppSettings["DevSettlementBaseUrl"],
                                Slug = ConfigurationManager.AppSettings["ConfigSettlementDevSlug"],
                                Authentication =
                                    new Authentication(ConfigurationManager.AppSettings["ConfigSettlementDevToken"])
