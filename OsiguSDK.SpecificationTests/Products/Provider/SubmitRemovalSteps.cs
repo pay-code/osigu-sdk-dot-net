@@ -23,12 +23,12 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         [Given(@"a product created")]
         public void GivenAProductCreated()
         {
-            Tools.SubmitProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
-            Tools.SubmitProductRequest.ProductId = Tools.SubmitProductRequest.ProductId.Substring(0, 25);
-            _productId = Tools.SubmitProductRequest.ProductId;
+            Requests.SubmitProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
+            Requests.SubmitProductRequest.ProductId = Requests.SubmitProductRequest.ProductId.Substring(0, 25);
+            _productId = Requests.SubmitProductRequest.ProductId;
             try
             {
-                Tools.ProductsProviderClient.SubmitProduct(Tools.SubmitProductRequest);
+                Tools.ProductsProviderClient.SubmitProduct(Requests.SubmitProductRequest);
             }
             catch (RequestException exception)
             {
@@ -55,7 +55,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         {
             try
             {
-                Tools.ProductsProductsClientWithNoPermission.SubmitRemoval(Tools.SubmitProductRequest.ProductId);
+                Tools.ProductsProductsClientWithNoPermission.SubmitRemoval(Requests.SubmitProductRequest.ProductId);
             }
             catch (RequestException exception)
             {

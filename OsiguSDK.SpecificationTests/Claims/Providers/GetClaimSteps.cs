@@ -54,13 +54,13 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         public void ThenTheClaimShouldHaveTheNeededValues()
         {
             Tools.Claim.Id.Should().Be(int.Parse(Tools.QueueStatus.ResourceId));
-            Tools.Claim.Items.Count.Should().Be(Tools.CreateClaimRequest.Items.Count);
+            Tools.Claim.Items.Count.Should().Be(Requests.CreateClaimRequest.Items.Count);
 
             for (var i = 0; i < Tools.Claim.Items.Count; i++)
             {
-                Tools.Claim.Items[i].ProductId.Should().Be(Tools.CreateClaimRequest.Items[i].ProductId);
-                Tools.Claim.Items[i].Quantity.Should().Be(Tools.CreateClaimRequest.Items[i].Quantity);
-                Tools.Claim.Items[i].SubstituteProductId.Should().Be(Tools.CreateClaimRequest.Items[i].SubstituteProductId);
+                Tools.Claim.Items[i].ProductId.Should().Be(Requests.CreateClaimRequest.Items[i].ProductId);
+                Tools.Claim.Items[i].Quantity.Should().Be(Requests.CreateClaimRequest.Items[i].Quantity);
+                Tools.Claim.Items[i].SubstituteProductId.Should().Be(Requests.CreateClaimRequest.Items[i].SubstituteProductId);
             }
 
             

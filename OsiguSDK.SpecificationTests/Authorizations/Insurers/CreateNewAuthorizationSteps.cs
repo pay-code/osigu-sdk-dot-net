@@ -55,9 +55,9 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         public void GivenIHaveTheRequestDataForANewAuthorization()
         {
            CreateValidAuthorizationRequest();
-            for (int pos = 0; pos < Tools.SubmitAuthorizationRequest.Items.Count; pos++)
+            for (int pos = 0; pos < Requests.SubmitAuthorizationRequest.Items.Count; pos++)
             {
-                Tools.SubmitAuthorizationRequest.Items[pos].ProductId = Tools.InsurerAssociatedProductId[pos];
+                Requests.SubmitAuthorizationRequest.Items[pos].ProductId = Tools.InsurerAssociatedProductId[pos];
             }
             Tools.AuthorizationId = "1";
         }
@@ -72,9 +72,9 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         public void GivenIHaveTheRequestDataForANewAuthorizationWithEmptyFields()
         {
             CreateValidAuthorizationRequest();
-            Tools.SubmitAuthorizationRequest.ReferenceId = String.Empty;
-            Tools.SubmitAuthorizationRequest.Doctor.MedicalLicense = String.Empty;
-            Tools.SubmitAuthorizationRequest.Policy.Certificate = String.Empty;
+            Requests.SubmitAuthorizationRequest.ReferenceId = String.Empty;
+            Requests.SubmitAuthorizationRequest.Doctor.MedicalLicense = String.Empty;
+            Requests.SubmitAuthorizationRequest.Policy.Certificate = String.Empty;
         }
 
 
@@ -82,9 +82,9 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         public void GivenIHaveTheRequestDataForANewAuthorizationWithADuplicateProduct()
         {
             CreateValidAuthorizationRequest();
-            for (int pos = 0; pos < Tools.SubmitAuthorizationRequest.Items.Count; pos++)
+            for (int pos = 0; pos < Requests.SubmitAuthorizationRequest.Items.Count; pos++)
             {
-                Tools.SubmitAuthorizationRequest.Items[pos].ProductId = Tools.InsurerAssociatedProductId[0];
+                Requests.SubmitAuthorizationRequest.Items[pos].ProductId = Tools.InsurerAssociatedProductId[0];
             }
         }
 
@@ -103,9 +103,9 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         public void ThenIHaveTheRequestDataForANewAuthorization()
         {
           CreateValidAuthorizationRequest();
-            for (int pos = 0; pos < Tools.SubmitAuthorizationRequest.Items.Count; pos++)
+            for (int pos = 0; pos < Requests.SubmitAuthorizationRequest.Items.Count; pos++)
             {
-                Tools.SubmitAuthorizationRequest.Items[pos].ProductId = Tools.InsurerAssociatedProductId[pos];
+                Requests.SubmitAuthorizationRequest.Items[pos].ProductId = Tools.InsurerAssociatedProductId[pos];
             }
             
         }
@@ -116,7 +116,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         {
             try
             {
-                responseAuthorization = Tools.InsurerAuthorizationClient.CreateAuthorization(Tools.SubmitAuthorizationRequest);
+                responseAuthorization = Tools.InsurerAuthorizationClient.CreateAuthorization(Requests.SubmitAuthorizationRequest);
                 Tools.AuthorizationId = responseAuthorization.Id;
                 Tools.PIN = responseAuthorization.Pin;
                 errorMessage = new RequestException("ok", 201);
@@ -145,15 +145,15 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         public void ThenIHaveValidResponseForCreatingTheAuthorization()
         {
             errorMessage.ResponseCode.Should().Be(201);
-            responseAuthorization.ReferenceId.Should().Be(Tools.SubmitAuthorizationRequest.ReferenceId);
-            responseAuthorization.AuthorizationDate.Date.Should().Be(Tools.SubmitAuthorizationRequest.AuthorizationDate.Date);
-            responseAuthorization.AuthorizationDate.Hour.Should().Be(Tools.SubmitAuthorizationRequest.AuthorizationDate.Hour);
-            responseAuthorization.ExpiresAt.Date.Should().Be(Tools.SubmitAuthorizationRequest.ExpiresAt.Date);
-            responseAuthorization.ExpiresAt.Hour.Should().Be(Tools.SubmitAuthorizationRequest.ExpiresAt.Hour);
-            responseAuthorization.Diagnoses.ShouldBeEquivalentTo(Tools.SubmitAuthorizationRequest.Diagnoses);
-            responseAuthorization.Policy.PolicyHolder.Id.Should().Be(Tools.SubmitAuthorizationRequest.Policy.PolicyHolder.Id);
-            responseAuthorization.Policy.Number.Should().Be(Tools.SubmitAuthorizationRequest.Policy.Number);
-            responseAuthorization.Items.Count.Should().Be(Tools.SubmitAuthorizationRequest.Items.Count);
+            responseAuthorization.ReferenceId.Should().Be(Requests.SubmitAuthorizationRequest.ReferenceId);
+            responseAuthorization.AuthorizationDate.Date.Should().Be(Requests.SubmitAuthorizationRequest.AuthorizationDate.Date);
+            responseAuthorization.AuthorizationDate.Hour.Should().Be(Requests.SubmitAuthorizationRequest.AuthorizationDate.Hour);
+            responseAuthorization.ExpiresAt.Date.Should().Be(Requests.SubmitAuthorizationRequest.ExpiresAt.Date);
+            responseAuthorization.ExpiresAt.Hour.Should().Be(Requests.SubmitAuthorizationRequest.ExpiresAt.Hour);
+            responseAuthorization.Diagnoses.ShouldBeEquivalentTo(Requests.SubmitAuthorizationRequest.Diagnoses);
+            responseAuthorization.Policy.PolicyHolder.Id.Should().Be(Requests.SubmitAuthorizationRequest.Policy.PolicyHolder.Id);
+            responseAuthorization.Policy.Number.Should().Be(Requests.SubmitAuthorizationRequest.Policy.Number);
+            responseAuthorization.Items.Count.Should().Be(Requests.SubmitAuthorizationRequest.Items.Count);
         }
 
         [Then(@"the result should be unprocessable fot that request")]
@@ -165,13 +165,13 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         public void CreateValidAuthorizationRequest()
         {
             Tools.Fixture.Customizations.Add(new StringBuilder());
-            Tools.SubmitAuthorizationRequest = Tools.Fixture.Create<CreateAuthorizationRequest>();
-            Tools.SubmitAuthorizationRequest.ExpiresAt = Tools.SubmitAuthorizationRequest.AuthorizationDate.AddDays(1);
-            Tools.SubmitAuthorizationRequest.Doctor.CountryCode = "GT";
-            Tools.SubmitAuthorizationRequest.Policy.CountryCode = "GT";
-            Tools.SubmitAuthorizationRequest.Policy.PolicyHolder.Email = "mail@mail.com";
-            Tools.SubmitAuthorizationRequest.Policy.PolicyHolder.Id = Tools.RPNTestPolicyNumber;
-            Tools.SubmitAuthorizationRequest.Policy.PolicyHolder.DateOfBirth = Tools.RPNTestPolicyBirthday;
+            Requests.SubmitAuthorizationRequest = Tools.Fixture.Create<CreateAuthorizationRequest>();
+            Requests.SubmitAuthorizationRequest.ExpiresAt = Requests.SubmitAuthorizationRequest.AuthorizationDate.AddDays(1);
+            Requests.SubmitAuthorizationRequest.Doctor.CountryCode = "GT";
+            Requests.SubmitAuthorizationRequest.Policy.CountryCode = "GT";
+            Requests.SubmitAuthorizationRequest.Policy.PolicyHolder.Email = "mail@mail.com";
+            Requests.SubmitAuthorizationRequest.Policy.PolicyHolder.Id = Tools.RPNTestPolicyNumber;
+            Requests.SubmitAuthorizationRequest.Policy.PolicyHolder.DateOfBirth = Tools.RPNTestPolicyBirthday;
         }
     }
 }

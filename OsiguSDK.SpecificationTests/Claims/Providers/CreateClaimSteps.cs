@@ -17,7 +17,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
     {
         private static void GenerateItemList()
         {
-            Tools.CreateClaimRequest.Items = new List<CreateClaimRequest.Item>();
+            Requests.CreateClaimRequest.Items = new List<CreateClaimRequest.Item>();
             FillItemList();
         }
 
@@ -26,7 +26,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             var r = new Random();
             for (var i = 0; i < 3; i++)
             {
-                Tools.CreateClaimRequest.Items.Add(new CreateClaimRequest.Item
+                Requests.CreateClaimRequest.Items.Add(new CreateClaimRequest.Item
                 {
                     Price = r.Next(100, 10000)/100m,
                     ProductId = Tools.ProviderAssociateProductId[i],
@@ -78,7 +78,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             Tools.PIN.Should().NotBeNullOrEmpty("The authorization was not compleated correctly");
             try
             {
-                Tools.ClaimsProviderClientWithNoPermission.CreateClaim(Tools.AuthorizationId, Tools.CreateClaimRequest);
+                Tools.ClaimsProviderClientWithNoPermission.CreateClaim(Tools.AuthorizationId, Requests.CreateClaimRequest);
             }
             catch (RequestException exception)
             {
@@ -89,16 +89,16 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         [Given(@"the create a claim request")]
         public void GivenTheCreateAClaimRequest()
         {
-            Tools.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
+            Requests.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
             GenerateItemList();
         }
 
         [When(@"the create a claim request")]
         public void WhenTheCreateAClaimRequest()
         {
-            Tools.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
+            Requests.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
             GenerateItemList();
-            Tools.CreateClaimRequest.Pin = Tools.PIN;
+            Requests.CreateClaimRequest.Pin = Tools.PIN;
         }
 
 
@@ -108,7 +108,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             Tools.PIN.Should().NotBeNullOrEmpty("The authorization was not compleated correctly");
             try
             {
-                Tools.QueueId = Tools.ClaimsProviderClient.CreateClaim(Tools.AuthorizationId, Tools.CreateClaimRequest);
+                Tools.QueueId = Tools.ClaimsProviderClient.CreateClaim(Tools.AuthorizationId, Requests.CreateClaimRequest);
             }
             catch (RequestException exception)
             {
@@ -119,7 +119,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         [Given(@"the create a claim request with an unexisting authorization")]
         public void GivenTheCreateAClaimRequestWithAnUnexistingAuthorization()
         {
-            Tools.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
+            Requests.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
             GenerateItemList();
 
             Tools.AuthorizationId = "NotExistingAuth";
@@ -135,7 +135,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         [Given(@"the create a claim request with an authorization not associated with the provider")]
         public void GivenTheCreateAClaimRequestWithAnAuthorizationNotAssociatedWithTheProvider()
         {
-            Tools.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
+            Requests.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
             GenerateItemList();
 
             Tools.PIN = "PIN";
@@ -145,7 +145,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         [Given(@"the create a claim request with an invalid pin")]
         public void GivenTheCreateAClaimRequestWithAnInvalidPin()
         {
-            Tools.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
+            Requests.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
             GenerateItemList();
         }
 
@@ -155,28 +155,28 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             var scenarioValues = scenario.Rows.ToList().First();
             var missingField = scenarioValues["MissingField"];
 
-            Tools.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
+            Requests.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
             GenerateItemList();
 
             switch (missingField)
             {
                 case "PIN":
-                    Tools.CreateClaimRequest.Pin = "";
+                    Requests.CreateClaimRequest.Pin = "";
                     break;
                 case "Empty Items":
-                    Tools.CreateClaimRequest.Items = null;
+                    Requests.CreateClaimRequest.Items = null;
                     break;
                 case "Empty Items 2":
-                    Tools.CreateClaimRequest.Items = new List<CreateClaimRequest.Item>();
+                    Requests.CreateClaimRequest.Items = new List<CreateClaimRequest.Item>();
                     break;
                 case "Product Id":
-                    Tools.CreateClaimRequest.Items.First().ProductId = string.Empty;
+                    Requests.CreateClaimRequest.Items.First().ProductId = string.Empty;
                     break;
                 case "Price":
-                    Tools.CreateClaimRequest.Items.First().Price = 0;
+                    Requests.CreateClaimRequest.Items.First().Price = 0;
                     break;
                 case "Quantity":
-                    Tools.CreateClaimRequest.Items.First().Quantity = 0;
+                    Requests.CreateClaimRequest.Items.First().Quantity = 0;
                     break;
                 default:
                     ScenarioContext.Current.Pending();
@@ -194,26 +194,26 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         [When(@"the create a claim request with a product that does not exists in osigu products")]
         public void WhenTheCreateAClaimRequestWithAProductThatDoesNotExistsInOsiguProducts()
         {
-            Tools.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
-            Tools.CreateClaimRequest.Pin = Tools.PIN;
+            Requests.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
+            Requests.CreateClaimRequest.Pin = Tools.PIN;
             GenerateItemList();
 
-            Tools.CreateClaimRequest.Items.First().ProductId = "NotExistingOsigu";
+            Requests.CreateClaimRequest.Items.First().ProductId = "NotExistingOsigu";
         }
 
         [When(@"the create a claim request with different products")]
         public void WhenTheCreateAClaimRequestWithDifferentProducts()
         {
-            Tools.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
-            Tools.CreateClaimRequest.Pin = Tools.PIN;
+            Requests.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
+            Requests.CreateClaimRequest.Pin = Tools.PIN;
             GenerateItemList();
         }
 
         [When(@"the create a claim request with repeated products")]
         public void WhenTheCreateAClaimRequestWithRepeatedProducts()
         {
-            Tools.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
-            Tools.CreateClaimRequest.Pin = Tools.PIN;
+            Requests.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
+            Requests.CreateClaimRequest.Pin = Tools.PIN;
             GenerateItemList();
             FillItemList();
         }

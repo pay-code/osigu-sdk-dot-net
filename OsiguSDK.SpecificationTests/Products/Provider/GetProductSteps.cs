@@ -14,8 +14,8 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         [Given(@"I have the request data for a new product")]
         public void GivenIHaveTheRequestDataForANewProduct()
         {
-            Tools.SubmitProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
-            Tools.SubmitProductRequest.ProductId = Tools.SubmitProductRequest.ProductId.Substring(0, 25);
+            Requests.SubmitProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
+            Requests.SubmitProductRequest.ProductId = Requests.SubmitProductRequest.ProductId.Substring(0, 25);
         }
         
         [When(@"I make the get a product provider request to the endpoint")]
@@ -23,8 +23,8 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         {
             try
             {
-                Product = Tools.ProductsProviderClient.GetSingleProduct(Tools.SubmitProductRequest != null
-                    ? Tools.SubmitProductRequest.ProductId
+                Product = Tools.ProductsProviderClient.GetSingleProduct(Requests.SubmitProductRequest != null
+                    ? Requests.SubmitProductRequest.ProductId
                     : "anyProduct");
             }
             catch (RequestException exception)
@@ -36,7 +36,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         [Given(@"I have an invalid provider product id")]
         public void GivenIHaveAnInvalidProviderProductId()
         {
-            Tools.SubmitProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
+            Requests.SubmitProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
         }
 
         [Then(@"the result should be the product does not exist")]
@@ -49,10 +49,10 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         public void ThenTheResultShouldBeTheProvidersProductInformation()
         {
             Product.Should().NotBeNull();
-            Product.ProductId.Should().Be(Tools.SubmitProductRequest.ProductId);
-            Product.FullName.Should().Be(Tools.SubmitProductRequest.FullName);
-            Product.Name.Should().Be(Tools.SubmitProductRequest.Name);
-            //Product.Manufacturer.Should().Be(Tools.SubmitProductRequest.Manufacturer);
+            Product.ProductId.Should().Be(Requests.SubmitProductRequest.ProductId);
+            Product.FullName.Should().Be(Requests.SubmitProductRequest.FullName);
+            Product.Name.Should().Be(Requests.SubmitProductRequest.Name);
+            //Product.Manufacturer.Should().Be(Requests.SubmitProductRequest.Manufacturer);
         }
 
     }
