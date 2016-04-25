@@ -35,18 +35,18 @@ namespace OsiguSDK.SpecificationTests.Settlements.Create
             try
             {
                 var a = Tools.RestClient.RequestToEndpoint<object>(Method.POST, "/settlements/normal", Requests.SettlementRequest);
-                Tools.ErrorId = 204;
+                Responses.ErrorId = 204;
             }
             catch (RequestException exception)
             {
-                Tools.ErrorId = exception.ResponseCode;
+                Responses.ErrorId = exception.ResponseCode;
             }
         }
         
         [Then(@"the result should be (.*)")]
         public void ThenTheResultShouldBe(int p0)
         {
-            Tools.ErrorId.Should().Be(p0);
+            Responses.ErrorId.Should().Be(p0);
         }
     }
 }

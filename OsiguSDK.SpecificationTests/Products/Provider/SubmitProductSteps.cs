@@ -17,15 +17,15 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         [Given(@"I have the provider products client")]
         public void GivenIHaveTheProviderProductsClient()
         {
-            Tools.ErrorId = 0;
-            Tools.ErrorId2 = 0;
+            Responses.ErrorId = 0;
+            Responses.ErrorId2 = 0;
             Tools.ProductsProviderClient = new ProductsClient(ConfigurationClients.ConfigProviderBranch1);
         }
 
         [Given(@"I have the provider products client without authorization")]
         public void GivenIHaveTheProviderProductsClientWithoutAuthorization()
         {
-            Tools.ErrorId = 0;
+            Responses.ErrorId = 0;
             Tools.ProductsProviderClient = new ProductsClient(new Configuration
             {
                 BaseUrl = ConfigurationClients.ConfigProviderBranch1.BaseUrl,
@@ -37,7 +37,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         [Given(@"I have the provider products client without valid slug")]
         public void GivenIHaveTheProviderProductsClientWithoutValidSlug()
         {
-            Tools.ErrorId = 0;
+            Responses.ErrorId = 0;
             Tools.ProductsProviderClient = new ProductsClient(new Configuration
             {
                 BaseUrl = ConfigurationClients.ConfigProviderBranch1.BaseUrl,
@@ -70,7 +70,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             }
             catch (RequestException exception)
             {
-                Tools.ErrorId = exception.ResponseCode;
+                Responses.ErrorId = exception.ResponseCode;
             }
 
         }
@@ -78,13 +78,13 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         [Then(@"the result should be unauthorized")]
         public void ThenTheResultShouldBeUnauthorized()
         {
-            Tools.ErrorId.Should().Be(403);
+            Responses.ErrorId.Should().Be(403);
         }
 
         [Then(@"the result should be no permission")]
         public void ThenTheResultShouldBeNoPermission()
         {
-            Tools.ErrorId.Should().Be(404);
+            Responses.ErrorId.Should().Be(404);
         }
 
 
@@ -98,7 +98,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             }
             catch (RequestException exception)
             {
-                Tools.ErrorId = exception.ResponseCode;
+                Responses.ErrorId = exception.ResponseCode;
             }
 
             try
@@ -109,20 +109,20 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             }
             catch (RequestException exception)
             {
-                Tools.ErrorId2 = exception.ResponseCode;
+                Responses.ErrorId2 = exception.ResponseCode;
             }
         }
 
         [Then(@"the result should be ok on the first")]
         public void ThenTheResultShouldBeOkOnTheFirst()
         {
-            Tools.ErrorId.Should().Be(0);
+            Responses.ErrorId.Should().Be(0);
         }
 
         [Then(@"the result should be ignored on the second")]
         public void ThenTheResultShouldBeIgnoredOnTheSecond()
         {
-            Tools.ErrorId2.Should().Be(0);
+            Responses.ErrorId2.Should().Be(0);
         }
 
         [Given(@"the submit a product request with missing fields")]
@@ -157,7 +157,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         [Then(@"the result should be missing field")]
         public void ThenTheResultShouldBeMissingField()
         {
-            Tools.ErrorId.Should().Be(422);
+            Responses.ErrorId.Should().Be(422);
         }
 
         [When(@"the product is removed")]
@@ -169,13 +169,13 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         [Then(@"the result should be ok")]
         public void ThenTheResultShouldBeOk()
         {
-            Tools.ErrorId.Should().Be(0);
+            Responses.ErrorId.Should().Be(0);
         }
 
         [Then(@"the result should be a validation error")]
         public void ThenTheResultShouldBeAValidationError()
         {
-            Tools.ErrorId.Should().Be(422);
+            Responses.ErrorId.Should().Be(422);
         }
 
     }

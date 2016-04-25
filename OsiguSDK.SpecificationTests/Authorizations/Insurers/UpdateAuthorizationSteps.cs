@@ -18,8 +18,8 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         {
             try
             {
-                responseAuthorization = Tools.InsurerAuthorizationClient.ModifyAuthorization(Tools.AuthorizationId, Requests.SubmitAuthorizationRequest);
-                Tools.AuthorizationId = responseAuthorization.Id;
+                responseAuthorization = Tools.InsurerAuthorizationClient.ModifyAuthorization(Responses.AuthorizationId, Requests.SubmitAuthorizationRequest);
+                Responses.AuthorizationId = responseAuthorization.Id;
                 errorMessage = new RequestException("ok", 200);
             }
             catch (RequestException exception)
@@ -33,8 +33,8 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         {
             try
             {
-                responseAuthorization = Tools.InsurerAuthorizationClient.ModifyAuthorization(Tools.AuthorizationId, Requests.SubmitAuthorizationRequest);
-                Tools.AuthorizationId = responseAuthorization.Id;
+                responseAuthorization = Tools.InsurerAuthorizationClient.ModifyAuthorization(Responses.AuthorizationId, Requests.SubmitAuthorizationRequest);
+                Responses.AuthorizationId = responseAuthorization.Id;
                 errorMessage = new RequestException("ok", 200);
             }
             catch (RequestException exception)

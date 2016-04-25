@@ -11,15 +11,15 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         [When(@"I request the get a claim endpoint")]
         public void WhenIRequestTheGetAClaimEndpoint()
         {
-            Tools.QueueStatus.Should().NotBeNull("The queue should've returned the queue status");
-            Tools.QueueStatus.ResourceId.Should().NotBeNullOrEmpty("The queue should've returned the queue status");
+            Responses.QueueStatus.Should().NotBeNull("The queue should've returned the queue status");
+            Responses.QueueStatus.ResourceId.Should().NotBeNullOrEmpty("The queue should've returned the queue status");
             try
             {
-                Tools.Claim = Tools.ClaimsProviderClient.GetSingleClaim(Tools.QueueStatus.ResourceId);
+                Responses.Claim = Tools.ClaimsProviderClient.GetSingleClaim(Responses.QueueStatus.ResourceId);
             }
             catch (RequestException exception)
             {
-                Tools.ErrorId = exception.ResponseCode;
+                Responses.ErrorId = exception.ResponseCode;
             }
         }
 
@@ -32,35 +32,35 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         [When(@"I request the get a claim endpoint with an invalid claim id")]
         public void WhenIRequestTheGetAClaimEndpointWithAnInvalidClaimId()
         {
-            Tools.QueueStatus.Should().NotBeNull("The queue should've returned the queue status");
-            Tools.QueueStatus.ResourceId.Should().NotBeNullOrEmpty("The queue should've returned the queue status");
+            Responses.QueueStatus.Should().NotBeNull("The queue should've returned the queue status");
+            Responses.QueueStatus.ResourceId.Should().NotBeNullOrEmpty("The queue should've returned the queue status");
             try
             {
-                Tools.Claim = Tools.ClaimsProviderClient.GetSingleClaim("1234567890");
+                Responses.Claim = Tools.ClaimsProviderClient.GetSingleClaim("1234567890");
             }
             catch (RequestException exception)
             {
-                Tools.ErrorId = exception.ResponseCode;
+                Responses.ErrorId = exception.ResponseCode;
             }
         }
 
         [Then(@"the claim should not be null")]
         public void ThenTheClaimShouldNotBeNull()
         {
-            Tools.Claim.Should().NotBeNull();
+            Responses.Claim.Should().NotBeNull();
         }
 
         [Then(@"the claim should have the needed values")]
         public void ThenTheClaimShouldHaveTheNeededValues()
         {
-            Tools.Claim.Id.Should().Be(int.Parse(Tools.QueueStatus.ResourceId));
-            Tools.Claim.Items.Count.Should().Be(Requests.CreateClaimRequest.Items.Count);
+            Responses.Claim.Id.Should().Be(int.Parse(Responses.QueueStatus.ResourceId));
+            Responses.Claim.Items.Count.Should().Be(Requests.CreateClaimRequest.Items.Count);
 
-            for (var i = 0; i < Tools.Claim.Items.Count; i++)
+            for (var i = 0; i < Responses.Claim.Items.Count; i++)
             {
-                Tools.Claim.Items[i].ProductId.Should().Be(Requests.CreateClaimRequest.Items[i].ProductId);
-                Tools.Claim.Items[i].Quantity.Should().Be(Requests.CreateClaimRequest.Items[i].Quantity);
-                Tools.Claim.Items[i].SubstituteProductId.Should().Be(Requests.CreateClaimRequest.Items[i].SubstituteProductId);
+                Responses.Claim.Items[i].ProductId.Should().Be(Requests.CreateClaimRequest.Items[i].ProductId);
+                Responses.Claim.Items[i].Quantity.Should().Be(Requests.CreateClaimRequest.Items[i].Quantity);
+                Responses.Claim.Items[i].SubstituteProductId.Should().Be(Requests.CreateClaimRequest.Items[i].SubstituteProductId);
             }
 
             

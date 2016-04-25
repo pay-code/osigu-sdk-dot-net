@@ -33,7 +33,7 @@ namespace OsiguSDK.SpecificationTests.Products.Osigu
             }
             catch (RequestException exception)
             {
-                Tools.ErrorId = exception.ResponseCode;
+                Responses.ErrorId = exception.ResponseCode;
             }
             
         }
@@ -41,7 +41,7 @@ namespace OsiguSDK.SpecificationTests.Products.Osigu
         [Then(@"the result should be the osigu product created with the respective id")]
         public void ThenTheResultShouldBeTheOsiguProductCreatedWithTheRespectiveId()
         {
-            Tools.ErrorId.Should().Be(0);
+            Responses.ErrorId.Should().Be(0);
             
         }
     }

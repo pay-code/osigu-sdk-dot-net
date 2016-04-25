@@ -30,7 +30,7 @@ namespace OsiguSDK.SpecificationTests
         {
             try
             {
-                Tools.ErrorId = 0;
+                Responses.ErrorId = 0;
 
                 Tools.ClaimsProviderClient = new ClaimsClient(ProviderBranchConfiguration);
 
@@ -44,13 +44,13 @@ namespace OsiguSDK.SpecificationTests
 
                 SetClaimRequestData();
 
-                Tools.QueueId = Tools.ClaimsProviderClient.CreateClaim(Tools.AuthorizationId, Requests.CreateClaimRequest);
+                Responses.QueueId = Tools.ClaimsProviderClient.CreateClaim(Responses.AuthorizationId, Requests.CreateClaimRequest);
 
                 Thread.Sleep(10000);
 
-                Tools.QueueStatus = Tools.QueueProviderClient.CheckQueueStatus(Tools.QueueId);
+                Responses.QueueStatus = Tools.QueueProviderClient.CheckQueueStatus(Responses.QueueId);
 
-                Tools.Claim = Tools.ClaimsProviderClient.GetSingleClaim(Tools.QueueStatus.ResourceId);
+                Responses.Claim = Tools.ClaimsProviderClient.GetSingleClaim(Responses.QueueStatus.ResourceId);
 
 
             }
@@ -79,14 +79,14 @@ namespace OsiguSDK.SpecificationTests
         {
             Requests.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
             GenerateItemList();
-            Requests.CreateClaimRequest.Pin = Tools.PIN;
+            Requests.CreateClaimRequest.Pin = Responses.PIN;
         }
 
         private void DoAuthotizationPost()
         {
             var responseAuthorization = Tools.InsurerAuthorizationClient.CreateAuthorization(Requests.SubmitAuthorizationRequest);
-            Tools.AuthorizationId = responseAuthorization.Id;
-            Tools.PIN = responseAuthorization.Pin;
+            Responses.AuthorizationId = responseAuthorization.Id;
+            Responses.PIN = responseAuthorization.Pin;
         }
 
         private void SetAuthorizationRequestData()
@@ -96,7 +96,7 @@ namespace OsiguSDK.SpecificationTests
             {
                 Requests.SubmitAuthorizationRequest.Items[pos].ProductId = Tools.InsurerAssociatedProductId[pos];
             }
-            Tools.AuthorizationId = "1";
+            Responses.AuthorizationId = "1";
         }
 
         private void CreateValidAuthorizationRequest()

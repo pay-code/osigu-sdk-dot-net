@@ -38,7 +38,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         [Given(@"I have the provider claims client without authorization")]
         public void GivenIHaveTheProviderClaimsClientWithoutAuthorization()
         {
-            Tools.ErrorId = 0;
+            Responses.ErrorId = 0;
             Tools.ClaimsProviderClient = new ClaimsClient(new Configuration
             {
                 BaseUrl = ConfigurationClients.ConfigProviderBranch1.BaseUrl,
@@ -50,7 +50,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         [Given(@"I have the provider claims client without valid slug")]
         public void GivenIHaveTheProviderClaimsClientWithoutValidSlug()
         {
-            Tools.ErrorId = 0;
+            Responses.ErrorId = 0;
             Tools.ClaimsProviderClient = new ClaimsClient(new Configuration
             {
                 BaseUrl = ConfigurationClients.ConfigProviderBranch1.BaseUrl,
@@ -62,7 +62,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         [Given(@"I have the provider claims client")]
         public void GivenIHaveTheProviderClaimsClient()
         {
-            Tools.ErrorId = 0;
+            Responses.ErrorId = 0;
             Tools.ClaimsProviderClient = new ClaimsClient(ConfigurationClients.ConfigProviderBranch1);
         }
 
@@ -75,14 +75,14 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         [When(@"I request the create a claim endpoint with the second client")]
         public void WhenIRequestTheCreateAClaimEndpointWithTheSecondClient()
         {
-            Tools.PIN.Should().NotBeNullOrEmpty("The authorization was not compleated correctly");
+            Responses.PIN.Should().NotBeNullOrEmpty("The authorization was not compleated correctly");
             try
             {
-                Tools.ClaimsProviderClientWithNoPermission.CreateClaim(Tools.AuthorizationId, Requests.CreateClaimRequest);
+                Tools.ClaimsProviderClientWithNoPermission.CreateClaim(Responses.AuthorizationId, Requests.CreateClaimRequest);
             }
             catch (RequestException exception)
             {
-                Tools.ErrorId = exception.ResponseCode;
+                Responses.ErrorId = exception.ResponseCode;
             }
         }
 
@@ -98,21 +98,21 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         {
             Requests.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
             GenerateItemList();
-            Requests.CreateClaimRequest.Pin = Tools.PIN;
+            Requests.CreateClaimRequest.Pin = Responses.PIN;
         }
 
 
         [When(@"I request the create a claim endpoint")]
         public void WhenIRequestTheCreateAClaimEndpoint()
         {
-            Tools.PIN.Should().NotBeNullOrEmpty("The authorization was not compleated correctly");
+            Responses.PIN.Should().NotBeNullOrEmpty("The authorization was not compleated correctly");
             try
             {
-                Tools.QueueId = Tools.ClaimsProviderClient.CreateClaim(Tools.AuthorizationId, Requests.CreateClaimRequest);
+                Responses.QueueId = Tools.ClaimsProviderClient.CreateClaim(Responses.AuthorizationId, Requests.CreateClaimRequest);
             }
             catch (RequestException exception)
             {
-                Tools.ErrorId = exception.ResponseCode;
+                Responses.ErrorId = exception.ResponseCode;
             }
         }
 
@@ -122,14 +122,14 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             Requests.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
             GenerateItemList();
 
-            Tools.AuthorizationId = "NotExistingAuth";
-            Tools.PIN = "PIN";
+            Responses.AuthorizationId = "NotExistingAuth";
+            Responses.PIN = "PIN";
         }
 
         [Then(@"the result should be not existing")]
         public void ThenTheResultShouldBeNotExisting()
         {
-            Tools.ErrorId.Should().Be(404);
+            Responses.ErrorId.Should().Be(404);
         }
 
         [Given(@"the create a claim request with an authorization not associated with the provider")]
@@ -138,8 +138,8 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             Requests.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
             GenerateItemList();
 
-            Tools.PIN = "PIN";
-            Tools.AuthorizationId = "NotAssociated";
+            Responses.PIN = "PIN";
+            Responses.AuthorizationId = "NotAssociated";
         }
 
         [Given(@"the create a claim request with an invalid pin")]
@@ -188,14 +188,14 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         [Then(@"the result should be unprossesable entity")]
         public void ThenTheResultShouldBeUnprossesableEntity()
         {
-            Tools.ErrorId.Should().Be(422);
+            Responses.ErrorId.Should().Be(422);
         }
 
         [When(@"the create a claim request with a product that does not exists in osigu products")]
         public void WhenTheCreateAClaimRequestWithAProductThatDoesNotExistsInOsiguProducts()
         {
             Requests.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
-            Requests.CreateClaimRequest.Pin = Tools.PIN;
+            Requests.CreateClaimRequest.Pin = Responses.PIN;
             GenerateItemList();
 
             Requests.CreateClaimRequest.Items.First().ProductId = "NotExistingOsigu";
@@ -205,7 +205,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         public void WhenTheCreateAClaimRequestWithDifferentProducts()
         {
             Requests.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
-            Requests.CreateClaimRequest.Pin = Tools.PIN;
+            Requests.CreateClaimRequest.Pin = Responses.PIN;
             GenerateItemList();
         }
 
@@ -213,7 +213,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         public void WhenTheCreateAClaimRequestWithRepeatedProducts()
         {
             Requests.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
-            Requests.CreateClaimRequest.Pin = Tools.PIN;
+            Requests.CreateClaimRequest.Pin = Responses.PIN;
             GenerateItemList();
             FillItemList();
         }

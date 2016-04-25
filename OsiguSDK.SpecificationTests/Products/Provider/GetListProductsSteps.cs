@@ -20,7 +20,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             }
             catch (RequestException exception)
             {
-                Tools.ErrorId = exception.ResponseCode;
+                Responses.ErrorId = exception.ResponseCode;
             }
             
         }

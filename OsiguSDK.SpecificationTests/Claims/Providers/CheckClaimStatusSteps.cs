@@ -13,7 +13,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         [Given(@"I have the queue client without authorization")]
         public void GivenIHaveTheQueueClientWithoutAuthorization()
         {
-            Tools.ErrorId = 0;
+            Responses.ErrorId = 0;
             Tools.QueueProviderClient = new QueueClient(new Configuration
             {
                 BaseUrl = ConfigurationClients.ConfigProviderBranch1.BaseUrl,
@@ -25,21 +25,21 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         [When(@"I request the check claim status endpoint")]
         public void WhenIRequestTheCheckClaimStatusEndpoint()
         {
-            Tools.QueueId.Should().NotBeNullOrEmpty("The claim should've created correctly");
+            Responses.QueueId.Should().NotBeNullOrEmpty("The claim should've created correctly");
             try
             {
-                Tools.QueueStatus = Tools.QueueProviderClient.CheckQueueStatus(Tools.QueueId);
+                Responses.QueueStatus = Tools.QueueProviderClient.CheckQueueStatus(Responses.QueueId);
             }
             catch (RequestException exception)
             {
-                Tools.ErrorId = exception.ResponseCode;
+                Responses.ErrorId = exception.ResponseCode;
             }
         }
 
         [Given(@"I have the queue client without valid slug")]
         public void GivenIHaveTheQueueClientWithoutValidSlug()
         {
-            Tools.ErrorId = 0;
+            Responses.ErrorId = 0;
             Tools.QueueProviderClient = new QueueClient(new Configuration
             {
                 BaseUrl = ConfigurationClients.ConfigProviderBranch1.BaseUrl,
@@ -51,7 +51,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         [Given(@"I have the queue client")]
         public void GivenIHaveTheQueueClient()
         {
-            Tools.ErrorId = 0;
+            Responses.ErrorId = 0;
             Tools.QueueProviderClient = new QueueClient(ConfigurationClients.ConfigProviderBranch1);
         }
 
@@ -64,7 +64,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             }
             catch (RequestException exception)
             {
-                Tools.ErrorId = exception.ResponseCode;
+                Responses.ErrorId = exception.ResponseCode;
             }
 
         }

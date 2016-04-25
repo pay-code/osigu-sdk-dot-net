@@ -24,7 +24,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Tests
             }
             catch (RequestException exception)
             {
-                Tools.ErrorId = exception.ResponseCode;
+                Responses.ErrorId = exception.ResponseCode;
             }
         }
 

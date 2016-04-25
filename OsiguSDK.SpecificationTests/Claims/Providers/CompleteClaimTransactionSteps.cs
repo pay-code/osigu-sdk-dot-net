@@ -12,9 +12,9 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
     {
         private static void CreateInvoice()
         {
-            Tools.Invoice = new Invoice
+            Responses.Invoice = new Invoice
             {
-                Amount = Tools.Claim.Items.Sum(item => item.Price * item.Quantity),
+                Amount = Responses.Claim.Items.Sum(item => item.Price * item.Quantity),
                 Currency = "GTQ",
                 DocumentDate = DateTime.Now,
                 DocumentNumber = "12345"
@@ -29,12 +29,12 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             {
                 Tools.ClaimsProviderClient.CompleteClaimTransaction("1234560", new CompleteClaimRequest
                 {
-                    Invoice = Tools.Invoice
+                    Invoice = Responses.Invoice
                 });
             }
             catch (RequestException exception)
             {
-                Tools.ErrorId = exception.ResponseCode;
+                Responses.ErrorId = exception.ResponseCode;
             }
         }
 
@@ -42,23 +42,23 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         public void WhenIRequestTheCompleteTransactionRequest()
         {
             CreateInvoice();
-            Console.Write(Tools.Invoice.DocumentDate);
+            Console.Write(Responses.Invoice.DocumentDate);
             try
             {
-                Tools.ClaimsProviderClient.CompleteClaimTransaction(Tools.Claim.Id.ToString(), new CompleteClaimRequest
+                Tools.ClaimsProviderClient.CompleteClaimTransaction(Responses.Claim.Id.ToString(), new CompleteClaimRequest
                 {
-                    Invoice = Tools.Invoice
+                    Invoice = Responses.Invoice
                 });
             }
             catch (RequestException exception)
             {
                 Console.WriteLine(exception.Message);
-                Tools.ErrorId = exception.ResponseCode;
+                Responses.ErrorId = exception.ResponseCode;
             }
-            if (Tools.ErrorId > 0)
+            if (Responses.ErrorId > 0)
             {
-                Console.WriteLine(Tools.Claim.Id);
-                Console.WriteLine(Tools.Invoice);
+                Console.WriteLine(Responses.Claim.Id);
+                Console.WriteLine(Responses.Invoice);
 
             }
         }
@@ -73,19 +73,19 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             switch (missingField)
             {
                 case "ClaimId":
-                    Tools.Claim.Id = 0;
+                    Responses.Claim.Id = 0;
                     break;
                 case "Invoice":
-                    Tools.Invoice = null;
+                    Responses.Invoice = null;
                     break;
                 case "Amount":
-                    Tools.Invoice.Amount = 0m;
+                    Responses.Invoice.Amount = 0m;
                     break;
                 case "Currency":
-                    Tools.Invoice.Currency = string.Empty;
+                    Responses.Invoice.Currency = string.Empty;
                     break;
                 case "DocumentNumber":
-                    Tools.Invoice.DocumentNumber = string.Empty;
+                    Responses.Invoice.DocumentNumber = string.Empty;
                     break;
                 default:
                     ScenarioContext.Current.Pending();
@@ -94,14 +94,14 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
 
             try
             {
-                Tools.ClaimsProviderClient.CompleteClaimTransaction(Tools.Claim.Id.ToString(), new CompleteClaimRequest
+                Tools.ClaimsProviderClient.CompleteClaimTransaction(Responses.Claim.Id.ToString(), new CompleteClaimRequest
                 {
-                    Invoice = Tools.Invoice
+                    Invoice = Responses.Invoice
                 });
             }
             catch (RequestException exception)
             {
-                Tools.ErrorId = exception.ResponseCode;
+                Responses.ErrorId = exception.ResponseCode;
             }
         }
 

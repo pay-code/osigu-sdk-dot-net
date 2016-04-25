@@ -16,8 +16,8 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         {
             try
             {
-                responseAuthorization = Tools.InsurerAuthorizationClient.GetSingleAuthorization(Tools.AuthorizationId);
-                Tools.AuthorizationId = responseAuthorization.Id;
+                responseAuthorization = Tools.InsurerAuthorizationClient.GetSingleAuthorization(Responses.AuthorizationId);
+                Responses.AuthorizationId = responseAuthorization.Id;
                 errorMessage = new RequestException("ok", 200);
             }
             catch (RequestException exception)
@@ -29,7 +29,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         [Given(@"I have an invalid authorization id")]
         public void GivenIHaveAnInvalidAuthorizationId()
         {
-            Tools.AuthorizationId = "12345";
+            Responses.AuthorizationId = "12345";
         }
 
 
@@ -50,8 +50,8 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         {
             try
             {
-                responseAuthorization = Tools.InsurerAuthorizationClient.GetSingleAuthorization(Tools.AuthorizationId);
-                Tools.AuthorizationId = responseAuthorization.Id;
+                responseAuthorization = Tools.InsurerAuthorizationClient.GetSingleAuthorization(Responses.AuthorizationId);
+                Responses.AuthorizationId = responseAuthorization.Id;
                 errorMessage = new RequestException("ok", 200);
             }
             catch (RequestException exception)

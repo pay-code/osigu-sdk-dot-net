@@ -16,7 +16,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
 
             Requests.CreateClaimRequest = new CreateClaimRequest
             {
-                Pin = Tools.PIN,
+                Pin = Responses.PIN,
                 Items = new List<CreateClaimRequest.Item>
                 {
                     new CreateClaimRequest.Item
@@ -36,11 +36,11 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             ChangeItems();
             try
             {
-                Tools.ClaimsProviderClient.ChangeClaimItems(Tools.Claim.Id.ToString(), Requests.CreateClaimRequest);
+                Tools.ClaimsProviderClient.ChangeClaimItems(Responses.Claim.Id.ToString(), Requests.CreateClaimRequest);
             }
             catch (RequestException exception)
             {
-                Tools.ErrorId = exception.ResponseCode;
+                Responses.ErrorId = exception.ResponseCode;
             }
         }
 
@@ -54,7 +54,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             }
             catch (RequestException exception)
             {
-                Tools.ErrorId = exception.ResponseCode;
+                Responses.ErrorId = exception.ResponseCode;
             }
         }
 
@@ -65,11 +65,11 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             try
             {
                 Requests.CreateClaimRequest.Pin = "InvalidPin";
-                Tools.ClaimsProviderClient.ChangeClaimItems(Tools.Claim.Id.ToString(), Requests.CreateClaimRequest);
+                Tools.ClaimsProviderClient.ChangeClaimItems(Responses.Claim.Id.ToString(), Requests.CreateClaimRequest);
             }
             catch (RequestException exception)
             {
-                Tools.ErrorId = exception.ResponseCode;
+                Responses.ErrorId = exception.ResponseCode;
             }
         }
 
@@ -83,7 +83,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             switch (missingField)
             {
                 case "ClaimId":
-                    Tools.Claim.Id = 0;
+                    Responses.Claim.Id = 0;
                     break;
                 case "PIN":
                     Requests.CreateClaimRequest.Pin = "";
@@ -110,11 +110,11 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
 
             try
             {
-                Tools.ClaimsProviderClient.ChangeClaimItems(Tools.Claim.Id.ToString(), Requests.CreateClaimRequest);
+                Tools.ClaimsProviderClient.ChangeClaimItems(Responses.Claim.Id.ToString(), Requests.CreateClaimRequest);
             }
             catch (RequestException exception)
             {
-                Tools.ErrorId = exception.ResponseCode;
+                Responses.ErrorId = exception.ResponseCode;
             }
         }
 
@@ -125,11 +125,11 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
 
             try
             {
-                Tools.ClaimsProviderClient.ChangeClaimItems(Tools.Claim.Id.ToString(), Requests.CreateClaimRequest);
+                Tools.ClaimsProviderClient.ChangeClaimItems(Responses.Claim.Id.ToString(), Requests.CreateClaimRequest);
             }
             catch (RequestException exception)
             {
-                Tools.ErrorId = exception.ResponseCode;
+                Responses.ErrorId = exception.ResponseCode;
             }
         }
 

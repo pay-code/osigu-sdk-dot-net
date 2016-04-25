@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Configuration;
-using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Providers.Clients;
 using OsiguSDK.Providers.Models;
 using Ploeh.AutoFixture;
 using Ploeh.AutoFixture.Kernel;
-using Claim = OsiguSDK.Providers.Models.Claim;
-
 
 namespace OsiguSDK.SpecificationTests
 {
@@ -22,25 +19,12 @@ namespace OsiguSDK.SpecificationTests
 
         public static QueueClient QueueProviderClient { get; set; }
         public static QueueClient QueueProviderClientWithNoPermission { get; set; }
-        public static QueueStatus QueueStatus { get; set; }
-        public static string QueueId { get; set; }
 
         public static AuthorizationsClient ProviderAuthorizationClient { get; set; }
-
         public static Insurers.Clients.ProductsClient ProductsInsurerClient { get; set; }
-
         public static Insurers.Clients.AuthorizationsClient InsurerAuthorizationClient { get; set; }
         
-
         public static RestClient RestClient { get; set; }
-
-        public static Claim Claim { get; set; }
-        public static Invoice Invoice { get; set; }
-
-        public static int ErrorId { get; set; }
-        public static int ErrorId2 { get; set; }
-        public static RequestException RequestException { get; set; }
-
 
         public static readonly string[] InsurerAssociatedProductId =
             ConfigurationManager.AppSettings["TestingEnvironment"] == "DEV"
@@ -64,9 +48,6 @@ namespace OsiguSDK.SpecificationTests
 
         public static readonly string RPNTestPolicyNumber = "50258433";
         public static readonly DateTime RPNTestPolicyBirthday = new DateTime(1967, 7, 20, 7, 0, 0, 123);
-
-        public static string AuthorizationId { get; set; }
-        public static string PIN { get; set; }
     }
 
     public class StringBuilder : ISpecimenBuilder

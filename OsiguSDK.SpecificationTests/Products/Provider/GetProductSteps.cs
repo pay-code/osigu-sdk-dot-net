@@ -29,7 +29,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             }
             catch (RequestException exception)
             {
-                Tools.ErrorId = exception.ResponseCode;
+                Responses.ErrorId = exception.ResponseCode;
             }
         }
 
@@ -42,7 +42,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         [Then(@"the result should be the product does not exist")]
         public void ThenTheResultShouldBeTheProductDoesNotExist()
         {
-            Tools.ErrorId.Should().Be(404);
+            Responses.ErrorId.Should().Be(404);
         }
 
         [Then(@"the result should be the providers product information")]
