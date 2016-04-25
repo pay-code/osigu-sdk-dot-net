@@ -25,8 +25,8 @@ namespace OsiguSDK.SpecificationTests.Settlements.Create
         public void GivenIHaveTheRequestDataForANewNormalSettlement()
         {
             Tools.Fixture.Customizations.Add(new StringBuilder());
-            Tools.SettlementRequest = Tools.Fixture.Create<Settlement>();
-            Tools.SettlementRequest.To = Tools.SettlementRequest.From.AddMonths(1);
+            Requests.SettlementRequest = Tools.Fixture.Create<Settlement>();
+            Requests.SettlementRequest.To = Requests.SettlementRequest.From.AddMonths(1);
         }
         
         [When(@"I make the create normal settlement authorization request to the endpoint")]
@@ -34,7 +34,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Create
         {
             try
             {
-                var a = Tools.RestClient.RequestToEndpoint<object>(Method.POST, "/settlements/normal", Tools.SettlementRequest);
+                var a = Tools.RestClient.RequestToEndpoint<object>(Method.POST, "/settlements/normal", Requests.SettlementRequest);
                 Tools.ErrorId = 204;
             }
             catch (RequestException exception)

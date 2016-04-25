@@ -14,7 +14,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         {
             var r = new Random();
 
-            Tools.CreateClaimRequest = new CreateClaimRequest
+            Requests.CreateClaimRequest = new CreateClaimRequest
             {
                 Pin = Tools.PIN,
                 Items = new List<CreateClaimRequest.Item>
@@ -36,7 +36,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             ChangeItems();
             try
             {
-                Tools.ClaimsProviderClient.ChangeClaimItems(Tools.Claim.Id.ToString(), Tools.CreateClaimRequest);
+                Tools.ClaimsProviderClient.ChangeClaimItems(Tools.Claim.Id.ToString(), Requests.CreateClaimRequest);
             }
             catch (RequestException exception)
             {
@@ -50,7 +50,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             ChangeItems();
             try
             {
-                Tools.ClaimsProviderClient.ChangeClaimItems("0", Tools.CreateClaimRequest);
+                Tools.ClaimsProviderClient.ChangeClaimItems("0", Requests.CreateClaimRequest);
             }
             catch (RequestException exception)
             {
@@ -64,8 +64,8 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             ChangeItems();
             try
             {
-                Tools.CreateClaimRequest.Pin = "InvalidPin";
-                Tools.ClaimsProviderClient.ChangeClaimItems(Tools.Claim.Id.ToString(), Tools.CreateClaimRequest);
+                Requests.CreateClaimRequest.Pin = "InvalidPin";
+                Tools.ClaimsProviderClient.ChangeClaimItems(Tools.Claim.Id.ToString(), Requests.CreateClaimRequest);
             }
             catch (RequestException exception)
             {
@@ -86,22 +86,22 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
                     Tools.Claim.Id = 0;
                     break;
                 case "PIN":
-                    Tools.CreateClaimRequest.Pin = "";
+                    Requests.CreateClaimRequest.Pin = "";
                     break;
                 case "Empty Items":
-                    Tools.CreateClaimRequest.Items = null;
+                    Requests.CreateClaimRequest.Items = null;
                     break;
                 case "Empty Items 2":
-                    Tools.CreateClaimRequest.Items = new List<CreateClaimRequest.Item>();
+                    Requests.CreateClaimRequest.Items = new List<CreateClaimRequest.Item>();
                     break;
                 case "Product Id":
-                    Tools.CreateClaimRequest.Items.First().ProductId = string.Empty;
+                    Requests.CreateClaimRequest.Items.First().ProductId = string.Empty;
                     break;
                 case "Price":
-                    Tools.CreateClaimRequest.Items.First().Price = 0;
+                    Requests.CreateClaimRequest.Items.First().Price = 0;
                     break;
                 case "Quantity":
-                    Tools.CreateClaimRequest.Items.First().Quantity = 0;
+                    Requests.CreateClaimRequest.Items.First().Quantity = 0;
                     break;
                 default:
                     ScenarioContext.Current.Pending();
@@ -110,7 +110,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
 
             try
             {
-                Tools.ClaimsProviderClient.ChangeClaimItems(Tools.Claim.Id.ToString(), Tools.CreateClaimRequest);
+                Tools.ClaimsProviderClient.ChangeClaimItems(Tools.Claim.Id.ToString(), Requests.CreateClaimRequest);
             }
             catch (RequestException exception)
             {
@@ -125,7 +125,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
 
             try
             {
-                Tools.ClaimsProviderClient.ChangeClaimItems(Tools.Claim.Id.ToString(), Tools.CreateClaimRequest);
+                Tools.ClaimsProviderClient.ChangeClaimItems(Tools.Claim.Id.ToString(), Requests.CreateClaimRequest);
             }
             catch (RequestException exception)
             {

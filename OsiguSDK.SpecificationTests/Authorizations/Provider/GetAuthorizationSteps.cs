@@ -96,13 +96,13 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Provider
         {
             errorMessage.ResponseCode.Should().Be(200);
             //authorizationResponse.Id.Should().Be(Tools.AuthorizationId);
-            authorizationResponse.AuthorizationDate.Date.Should().Be(Tools.SubmitAuthorizationRequest.AuthorizationDate.Date);
-            authorizationResponse.AuthorizationDate.Hour.Should().Be(Tools.SubmitAuthorizationRequest.AuthorizationDate.Hour);
-            authorizationResponse.ExpiresAt.Date.Should().Be(Tools.SubmitAuthorizationRequest.ExpiresAt.Date);
-            authorizationResponse.ExpiresAt.Hour.Should().Be(Tools.SubmitAuthorizationRequest.ExpiresAt.Hour);
-            //authorizationResponse.Policy.PolicyHolder.Id.Should().Be(Tools.SubmitAuthorizationRequest.Policy.PolicyHolder.Id);
-            authorizationResponse.Policy.Number.Should().Be(Tools.SubmitAuthorizationRequest.Policy.Number);
-            authorizationResponse.Items.Count.Should().Be(Tools.SubmitAuthorizationRequest.Items.Count);
+            authorizationResponse.AuthorizationDate.Date.Should().Be(Requests.SubmitAuthorizationRequest.AuthorizationDate.Date);
+            authorizationResponse.AuthorizationDate.Hour.Should().Be(Requests.SubmitAuthorizationRequest.AuthorizationDate.Hour);
+            authorizationResponse.ExpiresAt.Date.Should().Be(Requests.SubmitAuthorizationRequest.ExpiresAt.Date);
+            authorizationResponse.ExpiresAt.Hour.Should().Be(Requests.SubmitAuthorizationRequest.ExpiresAt.Hour);
+            //authorizationResponse.Policy.PolicyHolder.Id.Should().Be(Requests.SubmitAuthorizationRequest.Policy.PolicyHolder.Id);
+            authorizationResponse.Policy.Number.Should().Be(Requests.SubmitAuthorizationRequest.Policy.Number);
+            authorizationResponse.Items.Count.Should().Be(Requests.SubmitAuthorizationRequest.Items.Count);
         }
 
 

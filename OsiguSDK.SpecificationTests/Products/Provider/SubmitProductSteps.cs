@@ -50,14 +50,14 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         [Given(@"the submit a product request")]
         public void GivenTheSubmitAProductRequest()
         {
-            Tools.SubmitProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
-            Tools.SubmitProductRequest.ProductId = Tools.SubmitProductRequest.ProductId.Substring(0, 25);
+            Requests.SubmitProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
+            Requests.SubmitProductRequest.ProductId = Requests.SubmitProductRequest.ProductId.Substring(0, 25);
         }
 
         [Given(@"the submit a product request with longer id")]
         public void GivenTheSubmitAProductRequestWithLongerId()
         {
-            Tools.SubmitProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
+            Requests.SubmitProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
         }
 
 
@@ -66,7 +66,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         {
             try
             {
-                Tools.ProductsProviderClient.SubmitProduct(Tools.SubmitProductRequest);
+                Tools.ProductsProviderClient.SubmitProduct(Requests.SubmitProductRequest);
             }
             catch (RequestException exception)
             {
@@ -93,7 +93,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         {
             try
             {
-                Tools.ProductsProviderClient.SubmitProduct(Tools.SubmitProductRequest);
+                Tools.ProductsProviderClient.SubmitProduct(Requests.SubmitProductRequest);
 
             }
             catch (RequestException exception)
@@ -104,7 +104,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             try
             {
                 var newRequest = Tools.Fixture.Create<SubmitProductRequest>();
-                newRequest.ProductId = Tools.SubmitProductRequest.ProductId;
+                newRequest.ProductId = Requests.SubmitProductRequest.ProductId;
                 Tools.ProductsProviderClient.SubmitProduct(newRequest);
             }
             catch (RequestException exception)
@@ -131,22 +131,22 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             var scenarioValues = scenario.Rows.ToList().First();
             var missingField = scenarioValues["MissingField"];
 
-            Tools.SubmitProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
-            Tools.SubmitProductRequest.ProductId = Tools.SubmitProductRequest.ProductId.Substring(0, 25);
+            Requests.SubmitProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
+            Requests.SubmitProductRequest.ProductId = Requests.SubmitProductRequest.ProductId.Substring(0, 25);
 
             switch (missingField)
             {
                 case "ProductId":
-                    Tools.SubmitProductRequest.ProductId = string.Empty;
+                    Requests.SubmitProductRequest.ProductId = string.Empty;
                     break;
                 case "Name":
-                    Tools.SubmitProductRequest.Name = string.Empty;
+                    Requests.SubmitProductRequest.Name = string.Empty;
                     break;
                 case "Full Name":
-                    Tools.SubmitProductRequest.FullName = string.Empty;
+                    Requests.SubmitProductRequest.FullName = string.Empty;
                     break;
                 case "Manufacturer":
-                    Tools.SubmitProductRequest.ProductId = string.Empty;
+                    Requests.SubmitProductRequest.ProductId = string.Empty;
                     break;
                 default:
                     ScenarioContext.Current.Pending();
@@ -163,7 +163,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         [When(@"the product is removed")]
         public void WhenTheProductIsRemoved()
         {
-            Tools.ProductsProviderClient.SubmitRemoval(Tools.SubmitProductRequest.ProductId);
+            Tools.ProductsProviderClient.SubmitRemoval(Requests.SubmitProductRequest.ProductId);
         }
 
         [Then(@"the result should be ok")]

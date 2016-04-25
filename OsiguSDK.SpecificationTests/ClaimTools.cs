@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using FluentAssertions;
+using NUnit.Framework;
 using OsiguSDK.Providers.Clients;
 using OsiguSDK.Providers.Models.Requests;
 using Ploeh.AutoFixture;
@@ -61,7 +63,7 @@ namespace OsiguSDK.SpecificationTests
             return new Providers.Models.Claim();
         }
 
-        public List<Providers.Models.Claim> CreateRandomListOfClaims(int numberOfClaims)
+        public List<Providers.Models.Claim> CreateManyRandomClaims(int numberOfClaims)
         {
             var claims = new List<Providers.Models.Claim>();
 
@@ -128,6 +130,28 @@ namespace OsiguSDK.SpecificationTests
                 });
             }
         }
+
+    }
+
+
+    [TestFixture]
+    public class ClaimToolsTests
+    {
+        
+        [Test]
+        public void CanCreateClaim()
+        {
+            var claimTools = new ClaimTools
+            {
+                InsurerConfiguration = ConfigurationClients.ConfigInsurer1,
+                ProviderBranchConfiguration = ConfigurationClients.ConfigProviderBranch1
+            };
+
+            var claim = claimTools.CreateRandomClaim();
+
+            claim.Should().NotBeNull();
+        }
+
 
     }
 }

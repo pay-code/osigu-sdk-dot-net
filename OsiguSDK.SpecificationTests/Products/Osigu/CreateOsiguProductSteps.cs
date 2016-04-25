@@ -20,8 +20,8 @@ namespace OsiguSDK.SpecificationTests.Products.Osigu
         [Given(@"I have the request to create an osigu product")]
         public void GivenIHaveTheRequestToCreateAnOsiguProduct()
         {
-            Tools.OsiguProductRequest = Tools.Fixture.Create<OsiguProductRequest>();
-            Console.WriteLine(Tools.OsiguProductRequest);
+            Requests.OsiguProductRequest = Tools.Fixture.Create<OsiguProductRequest>();
+            Console.WriteLine(Requests.OsiguProductRequest);
         }
         
         [When(@"I request the create osigu product endpoint")]
@@ -29,7 +29,7 @@ namespace OsiguSDK.SpecificationTests.Products.Osigu
         {
             try
             {
-                var a = Tools.RestClient.RequestToEndpoint<object>(Method.POST, "/products", Tools.OsiguProductRequest);
+                var a = Tools.RestClient.RequestToEndpoint<object>(Method.POST, "/products", Requests.OsiguProductRequest);
             }
             catch (RequestException exception)
             {
