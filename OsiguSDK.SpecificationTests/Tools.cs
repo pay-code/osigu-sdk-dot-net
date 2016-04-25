@@ -20,9 +20,6 @@ namespace OsiguSDK.SpecificationTests
         public static ClaimsClient ClaimsProviderClient { get; set; }
         public static ClaimsClient ClaimsProviderClientWithNoPermission { get; set; }
 
-        public static Claim Claim { get; set; }
-        public static Invoice Invoice { get; set; }
-
         public static QueueClient QueueProviderClient { get; set; }
         public static QueueClient QueueProviderClientWithNoPermission { get; set; }
         public static QueueStatus QueueStatus { get; set; }
@@ -37,6 +34,8 @@ namespace OsiguSDK.SpecificationTests
 
         public static RestClient RestClient { get; set; }
 
+        public static Claim Claim { get; set; }
+        public static Invoice Invoice { get; set; }
 
         public static int ErrorId { get; set; }
         public static int ErrorId2 { get; set; }
