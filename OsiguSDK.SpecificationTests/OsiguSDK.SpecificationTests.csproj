@@ -122,6 +122,7 @@
     </Compile>
     <Compile Include="Authorizations\Provider\GetAuthorizationSteps.cs" />
     <Compile Include="BaseTest.cs" />
+    <Compile Include="ClaimTools.cs" />
     <Compile Include="ConfigurationClients.cs" />
     <Compile Include="Products\Models\Dosage.cs" />
     <Compile Include="Products\Models\OsiguProductRequest.cs" />
