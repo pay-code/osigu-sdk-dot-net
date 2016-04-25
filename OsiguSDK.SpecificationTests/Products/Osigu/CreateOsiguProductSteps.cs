@@ -2,6 +2,7 @@
 using FluentAssertions;
 using OsiguSDK.Core.Exceptions;
 using OsiguSDK.SpecificationTests.Products.Models;
+using OsiguSDK.SpecificationTests.Tools;
 using Ploeh.AutoFixture;
 using RestSharp;
 using TechTalk.SpecFlow;
@@ -14,13 +15,13 @@ namespace OsiguSDK.SpecificationTests.Products.Osigu
         [Given(@"I have configured the rest client")]
         public void GivenIHaveConfiguredTheRestClient()
         {
-            Tools.RestClient = new RestClient(ConfigurationClients.ConfigOsiguProduct);
+            TestClients.GenericRestClient = new GenericRestClient(ConfigurationClients.ConfigOsiguProduct);
         }
         
         [Given(@"I have the request to create an osigu product")]
         public void GivenIHaveTheRequestToCreateAnOsiguProduct()
         {
-            Requests.OsiguProductRequest = Tools.Fixture.Create<OsiguProductRequest>();
+            Requests.OsiguProductRequest = TestClients.Fixture.Create<OsiguProductRequest>();
             Console.WriteLine(Requests.OsiguProductRequest);
         }
         
@@ -29,7 +30,7 @@ namespace OsiguSDK.SpecificationTests.Products.Osigu
         {
             try
             {
-                var a = Tools.RestClient.RequestToEndpoint<object>(Method.POST, "/products", Requests.OsiguProductRequest);
+                var a = TestClients.GenericRestClient.RequestToEndpoint<object>(Method.POST, "/products", Requests.OsiguProductRequest);
             }
             catch (RequestException exception)
             {

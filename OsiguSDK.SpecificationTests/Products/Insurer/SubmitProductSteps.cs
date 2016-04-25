@@ -3,6 +3,7 @@ using FluentAssertions;
 using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Insurers.Models;
 using OsiguSDK.Insurers.Models.Requests;
+using OsiguSDK.SpecificationTests.Tools;
 using Ploeh.AutoFixture;
 using TechTalk.SpecFlow;
 
@@ -19,7 +20,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         {
             try
             {
-                Requests.SubmitInsurerProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
+                Requests.SubmitInsurerProductRequest = TestClients.Fixture.Create<SubmitProductRequest>();
                 Requests.SubmitInsurerProductRequest.ProductId = Requests.SubmitInsurerProductRequest.ProductId.Substring(0,
                     25);
                 Requests.SubmitInsurerProductRequest.Type = "DRUG";
@@ -37,7 +38,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         {
             try
             {
-                Tools.ProductsInsurerClient.SubmitProduct(Requests.SubmitInsurerProductRequest);
+                TestClients.ProductsInsurerClient.SubmitProduct(Requests.SubmitInsurerProductRequest);
                 errorMessage = new RequestException("ok", 204);
             }
             catch (RequestException exception)
@@ -76,7 +77,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         {
             try
             {
-                Requests.SubmitInsurerProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
+                Requests.SubmitInsurerProductRequest = TestClients.Fixture.Create<SubmitProductRequest>();
                 Requests.SubmitInsurerProductRequest.ProductId = Requests.SubmitInsurerProductRequest.ProductId.Substring(0,
                     25);
                 Requests.SubmitInsurerProductRequest.Type = "1invalid_drug_type";
@@ -94,7 +95,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
             try
             {
                 SubmitProductRequest repeatedRequest = Requests.SubmitInsurerProductRequest;
-                Requests.SubmitInsurerProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
+                Requests.SubmitInsurerProductRequest = TestClients.Fixture.Create<SubmitProductRequest>();
                 Requests.SubmitInsurerProductRequest.ProductId = Requests.SubmitInsurerProductRequest.ProductId.Substring(0,
                     25);
                 Requests.SubmitInsurerProductRequest.Name = repeatedRequest.Name;

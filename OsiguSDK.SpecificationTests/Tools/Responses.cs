@@ -2,7 +2,7 @@
 using OsiguSDK.Providers.Models;
 using Claim = OsiguSDK.Providers.Models.Claim;
 
-namespace OsiguSDK.SpecificationTests
+namespace OsiguSDK.SpecificationTests.Tools
 {
     public class Responses
     {

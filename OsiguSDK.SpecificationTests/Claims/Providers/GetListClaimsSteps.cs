@@ -2,6 +2,7 @@
 using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Core.Models;
 using OsiguSDK.Providers.Models;
+using OsiguSDK.SpecificationTests.Tools;
 using TechTalk.SpecFlow;
 
 namespace OsiguSDK.SpecificationTests.Claims.Providers
@@ -15,7 +16,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         {
             try
             {
-                list = Tools.ClaimsProviderClient.GetListOfClaims();
+                list = TestClients.ClaimsProviderClient.GetListOfClaims();
             }
             catch (RequestException exception)
             {

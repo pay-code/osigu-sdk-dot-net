@@ -317,7 +317,6 @@ namespace OsiguSDK.Core.Client
 
         private RequestException ReadRequestException(IRestResponse response)
         {
-            const string errorText = "Unexpected error occured.";
             var responseCode = (int) response.StatusCode;
 
             try

@@ -3,6 +3,7 @@ using FluentAssertions;
 using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Insurers.Models;
 using OsiguSDK.Insurers.Models.Requests;
+using OsiguSDK.SpecificationTests.Tools;
 using Ploeh.AutoFixture;
 using TechTalk.SpecFlow;
 
@@ -18,7 +19,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         {
             try
             {
-                responseAuthorization = Tools.InsurerAuthorizationClient.ModifyAuthorization(Responses.AuthorizationId, Requests.SubmitAuthorizationRequest);
+                responseAuthorization = TestClients.InsurerAuthorizationClient.ModifyAuthorization(Responses.AuthorizationId, Requests.SubmitAuthorizationRequest);
                 Responses.AuthorizationId = responseAuthorization.Id;
                 errorMessage = new RequestException("ok", 200);
             }
@@ -33,7 +34,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         {
             try
             {
-                responseAuthorization = Tools.InsurerAuthorizationClient.ModifyAuthorization(Responses.AuthorizationId, Requests.SubmitAuthorizationRequest);
+                responseAuthorization = TestClients.InsurerAuthorizationClient.ModifyAuthorization(Responses.AuthorizationId, Requests.SubmitAuthorizationRequest);
                 Responses.AuthorizationId = responseAuthorization.Id;
                 errorMessage = new RequestException("ok", 200);
             }
@@ -46,8 +47,8 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         [Then(@"I have the request data for a new authorization with empty fields")]
         public void ThenIHaveTheRequestDataForANewAuthorizationWithEmptyFields()
         {
-            Tools.Fixture.Customizations.Add(new StringBuilder());
-            Requests.SubmitAuthorizationRequest = Tools.Fixture.Create<CreateAuthorizationRequest>();
+            TestClients.Fixture.Customizations.Add(new StringBuilder());
+            Requests.SubmitAuthorizationRequest = TestClients.Fixture.Create<CreateAuthorizationRequest>();
             Requests.SubmitAuthorizationRequest.ExpiresAt = Requests.SubmitAuthorizationRequest.AuthorizationDate.AddDays(1);
             Requests.SubmitAuthorizationRequest.Doctor.CountryCode = "GT";
             Requests.SubmitAuthorizationRequest.Policy.CountryCode = "GT";

@@ -2,6 +2,7 @@
 using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Providers.Models;
 using OsiguSDK.Providers.Models.Requests;
+using OsiguSDK.SpecificationTests.Tools;
 using Ploeh.AutoFixture;
 using TechTalk.SpecFlow;
 
@@ -14,7 +15,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         [Given(@"I have the request data for a new product")]
         public void GivenIHaveTheRequestDataForANewProduct()
         {
-            Requests.SubmitProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
+            Requests.SubmitProductRequest = TestClients.Fixture.Create<SubmitProductRequest>();
             Requests.SubmitProductRequest.ProductId = Requests.SubmitProductRequest.ProductId.Substring(0, 25);
         }
         
@@ -23,7 +24,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         {
             try
             {
-                Product = Tools.ProductsProviderClient.GetSingleProduct(Requests.SubmitProductRequest != null
+                Product = TestClients.ProductsProviderClient.GetSingleProduct(Requests.SubmitProductRequest != null
                     ? Requests.SubmitProductRequest.ProductId
                     : "anyProduct");
             }
@@ -36,7 +37,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         [Given(@"I have an invalid provider product id")]
         public void GivenIHaveAnInvalidProviderProductId()
         {
-            Requests.SubmitProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
+            Requests.SubmitProductRequest = TestClients.Fixture.Create<SubmitProductRequest>();
         }
 
         [Then(@"the result should be the product does not exist")]

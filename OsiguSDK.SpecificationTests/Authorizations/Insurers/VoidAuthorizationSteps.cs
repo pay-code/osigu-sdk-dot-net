@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using OsiguSDK.Core.Exceptions;
+using OsiguSDK.SpecificationTests.Tools;
 using TechTalk.SpecFlow;
 
 namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
@@ -14,7 +15,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         {
             try
             {
-                Tools.InsurerAuthorizationClient.VoidAuthorization(Responses.AuthorizationId);
+                TestClients.InsurerAuthorizationClient.VoidAuthorization(Responses.AuthorizationId);
                 errorMessage = new RequestException("ok", 204);
             }
             catch (RequestException exception)

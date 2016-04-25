@@ -3,7 +3,7 @@ using OsiguSDK.Core.Authentication;
 using OsiguSDK.Core.Config;
 using Configuration = OsiguSDK.Core.Config.Configuration;
 
-namespace OsiguSDK.SpecificationTests
+namespace OsiguSDK.SpecificationTests.Tools
 {
     public class ConfigurationClients
     {

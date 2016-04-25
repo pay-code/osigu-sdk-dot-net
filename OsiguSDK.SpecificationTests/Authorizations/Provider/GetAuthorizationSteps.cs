@@ -5,6 +5,7 @@ using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Providers.Clients;
 using OsiguSDK.Providers.Models;
+using OsiguSDK.SpecificationTests.Tools;
 using TechTalk.SpecFlow;
 
 namespace OsiguSDK.SpecificationTests.Authorizations.Provider
@@ -18,7 +19,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Provider
          [Given(@"I have the provider authorizations client with an invalid token")]
         public void GivenIHaveTheProviderAuthorizationsClientWithAnInvalidToken()
         {
-            Tools.ProviderAuthorizationClient = new AuthorizationsClient(new Configuration
+            TestClients.ProviderAuthorizationClient = new AuthorizationsClient(new Configuration
             {
                 BaseUrl = ConfigurationClients.ConfigProviderBranch1.BaseUrl,
                 Slug = ConfigurationClients.ConfigProviderBranch1.Slug,
@@ -29,7 +30,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Provider
         [Given(@"I have the provider authorizations client with an invalid slug")]
         public void GivenIHaveTheProviderAuthorizationsClientWithAnInvalidSlug()
         {
-            Tools.ProviderAuthorizationClient = new AuthorizationsClient(new Configuration
+            TestClients.ProviderAuthorizationClient = new AuthorizationsClient(new Configuration
             {
                 BaseUrl = ConfigurationClients.ConfigProviderBranch1.BaseUrl,
                 Slug = "another_slug",
@@ -42,7 +43,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Provider
         {
             try
             {
-                Tools.ProviderAuthorizationClient = new AuthorizationsClient(ConfigurationClients.ConfigProviderBranch1);
+                TestClients.ProviderAuthorizationClient = new AuthorizationsClient(ConfigurationClients.ConfigProviderBranch1);
             }
             catch (Exception ex) { Console.WriteLine(ex.StackTrace); }
         }
@@ -52,7 +53,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Provider
         {
             try
             {
-                Tools.ProviderAuthorizationClient = new AuthorizationsClient(ConfigurationClients.ConfigProviderBranch1);
+                TestClients.ProviderAuthorizationClient = new AuthorizationsClient(ConfigurationClients.ConfigProviderBranch1);
             }
             catch (Exception ex) { Console.WriteLine(ex.StackTrace); }
         }
@@ -68,7 +69,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Provider
         {
             try
             {
-                authorizationResponse = Tools.ProviderAuthorizationClient.GetSingleAuthorization(Responses.AuthorizationId);
+                authorizationResponse = TestClients.ProviderAuthorizationClient.GetSingleAuthorization(Responses.AuthorizationId);
                 errorMessage = new RequestException("ok", 200);
             }
             catch (RequestException exception)
@@ -95,7 +96,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Provider
         public void ThenIHaveAValidResponseForGettingTheAuthorizationForTheProvider()
         {
             errorMessage.ResponseCode.Should().Be(200);
-            //authorizationResponse.Id.Should().Be(Tools.AuthorizationId);
+            //authorizationResponse.Id.Should().Be(TestClients.AuthorizationId);
             authorizationResponse.AuthorizationDate.Date.Should().Be(Requests.SubmitAuthorizationRequest.AuthorizationDate.Date);
             authorizationResponse.AuthorizationDate.Hour.Should().Be(Requests.SubmitAuthorizationRequest.AuthorizationDate.Hour);
             authorizationResponse.ExpiresAt.Date.Should().Be(Requests.SubmitAuthorizationRequest.ExpiresAt.Date);

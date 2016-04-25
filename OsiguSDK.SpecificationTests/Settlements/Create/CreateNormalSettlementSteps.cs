@@ -2,6 +2,7 @@
 using FluentAssertions;
 using OsiguSDK.Core.Exceptions;
 using OsiguSDK.SpecificationTests.Settlements.Models;
+using OsiguSDK.SpecificationTests.Tools;
 using Ploeh.AutoFixture;
 using RestSharp;
 using TechTalk.SpecFlow;
@@ -16,7 +17,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Create
         {
             try
             {
-                Tools.RestClient = new RestClient(ConfigurationClients.ConfigSettlement);
+                TestClients.GenericRestClient = new GenericRestClient(ConfigurationClients.ConfigSettlement);
             }
             catch (Exception ex) { Console.WriteLine(ex.StackTrace); }
         }
@@ -24,8 +25,8 @@ namespace OsiguSDK.SpecificationTests.Settlements.Create
         [Given(@"I have the request data for a new normal settlement")]
         public void GivenIHaveTheRequestDataForANewNormalSettlement()
         {
-            Tools.Fixture.Customizations.Add(new StringBuilder());
-            Requests.SettlementRequest = Tools.Fixture.Create<Settlement>();
+            TestClients.Fixture.Customizations.Add(new StringBuilder());
+            Requests.SettlementRequest = TestClients.Fixture.Create<Settlement>();
             Requests.SettlementRequest.To = Requests.SettlementRequest.From.AddMonths(1);
         }
         
@@ -34,7 +35,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Create
         {
             try
             {
-                var a = Tools.RestClient.RequestToEndpoint<object>(Method.POST, "/settlements/normal", Requests.SettlementRequest);
+                var a = TestClients.GenericRestClient.RequestToEndpoint<object>(Method.POST, "/settlements/normal", Requests.SettlementRequest);
                 Responses.ErrorId = 204;
             }
             catch (RequestException exception)

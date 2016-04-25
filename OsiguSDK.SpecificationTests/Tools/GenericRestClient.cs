@@ -3,11 +3,11 @@ using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Requests;
 using RestSharp;
 
-namespace OsiguSDK.SpecificationTests
+namespace OsiguSDK.SpecificationTests.Tools
 {
-    public class RestClient : BaseClient
+    public class GenericRestClient : BaseClient
     {
-        public RestClient(IConfiguration configuration) : base(configuration)
+        public GenericRestClient(IConfiguration configuration) : base(configuration)
         {
         }
 

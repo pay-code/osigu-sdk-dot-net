@@ -2,6 +2,7 @@
 using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Core.Models;
 using OsiguSDK.Providers.Models;
+using OsiguSDK.SpecificationTests.Tools;
 using TechTalk.SpecFlow;
 
 namespace OsiguSDK.SpecificationTests.Products.Provider
@@ -16,7 +17,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         {
             try
             {
-                ListOfProducts = Tools.ProductsProviderClient.GetListOfProducts();
+                ListOfProducts = TestClients.ProductsProviderClient.GetListOfProducts();
             }
             catch (RequestException exception)
             {

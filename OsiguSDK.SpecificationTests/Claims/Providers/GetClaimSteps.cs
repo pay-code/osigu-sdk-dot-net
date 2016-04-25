@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using FluentAssertions;
 using OsiguSDK.Core.Exceptions;
+using OsiguSDK.SpecificationTests.Tools;
 using TechTalk.SpecFlow;
 
 namespace OsiguSDK.SpecificationTests.Claims.Providers
@@ -15,7 +16,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             Responses.QueueStatus.ResourceId.Should().NotBeNullOrEmpty("The queue should've returned the queue status");
             try
             {
-                Responses.Claim = Tools.ClaimsProviderClient.GetSingleClaim(Responses.QueueStatus.ResourceId);
+                Responses.Claim = TestClients.ClaimsProviderClient.GetSingleClaim(Responses.QueueStatus.ResourceId);
             }
             catch (RequestException exception)
             {
@@ -36,7 +37,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             Responses.QueueStatus.ResourceId.Should().NotBeNullOrEmpty("The queue should've returned the queue status");
             try
             {
-                Responses.Claim = Tools.ClaimsProviderClient.GetSingleClaim("1234567890");
+                Responses.Claim = TestClients.ClaimsProviderClient.GetSingleClaim("1234567890");
             }
             catch (RequestException exception)
             {

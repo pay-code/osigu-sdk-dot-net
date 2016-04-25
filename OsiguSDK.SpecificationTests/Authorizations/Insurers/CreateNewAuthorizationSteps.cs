@@ -6,6 +6,7 @@ using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Insurers.Clients;
 using OsiguSDK.Insurers.Models;
 using OsiguSDK.Insurers.Models.Requests;
+using OsiguSDK.SpecificationTests.Tools;
 using Ploeh.AutoFixture;
 using TechTalk.SpecFlow;
 
@@ -20,7 +21,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         [Given(@"I have the insurer authorizations client with an invalid token")]
         public void GivenIHaveTheInsurerAuthorizationsClientWithAnInvalidToken()
         {
-            Tools.InsurerAuthorizationClient = new AuthorizationsClient(new Configuration
+            TestClients.InsurerAuthorizationClient = new AuthorizationsClient(new Configuration
             {
                 BaseUrl = ConfigurationClients.ConfigInsurer1.BaseUrl,
                 Slug = ConfigurationClients.ConfigInsurer1.Slug,
@@ -31,7 +32,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         [Given(@"I have the insurer authorizations client with an invalid slug")]
         public void GivenIHaveTheInsurerAuthorizationsClientWithAnInvalidSlug()
         {
-            Tools.InsurerAuthorizationClient = new AuthorizationsClient(new Configuration
+            TestClients.InsurerAuthorizationClient = new AuthorizationsClient(new Configuration
             {
                 BaseUrl = ConfigurationClients.ConfigInsurer1.BaseUrl,
                 Slug = "another_slug",
@@ -45,7 +46,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         {
             try
             {
-                Tools.InsurerAuthorizationClient = new AuthorizationsClient(ConfigurationClients.ConfigInsurer1);
+                TestClients.InsurerAuthorizationClient = new AuthorizationsClient(ConfigurationClients.ConfigInsurer1);
             }
             catch(Exception ex) { Console.WriteLine(ex.StackTrace);}
         }
@@ -57,7 +58,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
            CreateValidAuthorizationRequest();
             for (int pos = 0; pos < Requests.SubmitAuthorizationRequest.Items.Count; pos++)
             {
-                Requests.SubmitAuthorizationRequest.Items[pos].ProductId = Tools.InsurerAssociatedProductId[pos];
+                Requests.SubmitAuthorizationRequest.Items[pos].ProductId = ConstantElements.InsurerAssociatedProductId[pos];
             }
             Responses.AuthorizationId = "1";
         }
@@ -84,7 +85,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
             CreateValidAuthorizationRequest();
             for (int pos = 0; pos < Requests.SubmitAuthorizationRequest.Items.Count; pos++)
             {
-                Requests.SubmitAuthorizationRequest.Items[pos].ProductId = Tools.InsurerAssociatedProductId[0];
+                Requests.SubmitAuthorizationRequest.Items[pos].ProductId = ConstantElements.InsurerAssociatedProductId[0];
             }
         }
 
@@ -94,7 +95,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         {
             try
             {
-                Tools.InsurerAuthorizationClient = new AuthorizationsClient(ConfigurationClients.ConfigInsurer1);
+                TestClients.InsurerAuthorizationClient = new AuthorizationsClient(ConfigurationClients.ConfigInsurer1);
             }
             catch (Exception ex) { Console.WriteLine(ex.StackTrace); }
         }
@@ -105,7 +106,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
           CreateValidAuthorizationRequest();
             for (int pos = 0; pos < Requests.SubmitAuthorizationRequest.Items.Count; pos++)
             {
-                Requests.SubmitAuthorizationRequest.Items[pos].ProductId = Tools.InsurerAssociatedProductId[pos];
+                Requests.SubmitAuthorizationRequest.Items[pos].ProductId = ConstantElements.InsurerAssociatedProductId[pos];
             }
             
         }
@@ -116,7 +117,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         {
             try
             {
-                responseAuthorization = Tools.InsurerAuthorizationClient.CreateAuthorization(Requests.SubmitAuthorizationRequest);
+                responseAuthorization = TestClients.InsurerAuthorizationClient.CreateAuthorization(Requests.SubmitAuthorizationRequest);
                 Responses.AuthorizationId = responseAuthorization.Id;
                 Responses.PIN = responseAuthorization.Pin;
                 errorMessage = new RequestException("ok", 201);
@@ -164,14 +165,14 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
 
         public void CreateValidAuthorizationRequest()
         {
-            Tools.Fixture.Customizations.Add(new StringBuilder());
-            Requests.SubmitAuthorizationRequest = Tools.Fixture.Create<CreateAuthorizationRequest>();
+            TestClients.Fixture.Customizations.Add(new StringBuilder());
+            Requests.SubmitAuthorizationRequest = TestClients.Fixture.Create<CreateAuthorizationRequest>();
             Requests.SubmitAuthorizationRequest.ExpiresAt = Requests.SubmitAuthorizationRequest.AuthorizationDate.AddDays(1);
             Requests.SubmitAuthorizationRequest.Doctor.CountryCode = "GT";
             Requests.SubmitAuthorizationRequest.Policy.CountryCode = "GT";
             Requests.SubmitAuthorizationRequest.Policy.PolicyHolder.Email = "mail@mail.com";
-            Requests.SubmitAuthorizationRequest.Policy.PolicyHolder.Id = Tools.RPNTestPolicyNumber;
-            Requests.SubmitAuthorizationRequest.Policy.PolicyHolder.DateOfBirth = Tools.RPNTestPolicyBirthday;
+            Requests.SubmitAuthorizationRequest.Policy.PolicyHolder.Id = ConstantElements.RPNTestPolicyNumber;
+            Requests.SubmitAuthorizationRequest.Policy.PolicyHolder.DateOfBirth = ConstantElements.RPNTestPolicyBirthday;
         }
     }
 }

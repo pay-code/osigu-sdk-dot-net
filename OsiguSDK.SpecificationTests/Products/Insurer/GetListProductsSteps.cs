@@ -5,6 +5,7 @@ using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Core.Models;
 using OsiguSDK.Insurers.Clients;
 using OsiguSDK.Insurers.Models;
+using OsiguSDK.SpecificationTests.Tools;
 using TechTalk.SpecFlow;
 
 namespace OsiguSDK.SpecificationTests.Products.Insurer
@@ -18,7 +19,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         [Given(@"I have the insurer products client with an invalid token")]
         public void GivenIHaveTheInsurerProductsClientWithAnInvalidToken()
         {
-            Tools.ProductsInsurerClient = new ProductsClient(new Configuration
+            TestClients.ProductsInsurerClient = new ProductsClient(new Configuration
             {
                 BaseUrl = ConfigurationClients.ConfigInsurer1.BaseUrl,
                 Slug = ConfigurationClients.ConfigInsurer1.Slug,
@@ -30,7 +31,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         [Given(@"I have the insurer products client with an invalid slug")]
         public void GivenIHaveTheInsurerProductsClientWithAnInvalidSlug()
         {
-            Tools.ProductsInsurerClient = new ProductsClient(new Configuration
+            TestClients.ProductsInsurerClient = new ProductsClient(new Configuration
             {
                 BaseUrl = ConfigurationClients.ConfigInsurer1.BaseUrl,
                 Slug = "another_slug",
@@ -42,7 +43,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         [Given(@"I have the insurer products client")]
         public void GivenIHaveTheInsurerProductsClient()
         {
-            Tools.ProductsInsurerClient = new ProductsClient(ConfigurationClients.ConfigInsurer1);
+            TestClients.ProductsInsurerClient = new ProductsClient(ConfigurationClients.ConfigInsurer1);
         }
 
         [When(@"I make the get list of products request to the endpoint")]
@@ -50,7 +51,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         {
             try
             {
-               listOfProducts = Tools.ProductsInsurerClient.GetListOfProducts();
+               listOfProducts = TestClients.ProductsInsurerClient.GetListOfProducts();
             }
             catch (RequestException exception)
             {

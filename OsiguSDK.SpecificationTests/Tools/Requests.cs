@@ -5,7 +5,7 @@ using OsiguSDK.SpecificationTests.Settlements.Models;
 using SubmitProductRequest = OsiguSDK.Providers.Models.Requests.SubmitProductRequest;
 
 
-namespace OsiguSDK.SpecificationTests
+namespace OsiguSDK.SpecificationTests.Tools
 {
     public class Requests
     {

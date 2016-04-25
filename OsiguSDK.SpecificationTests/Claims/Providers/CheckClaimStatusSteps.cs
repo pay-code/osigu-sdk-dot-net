@@ -3,6 +3,7 @@ using OsiguSDK.Core.Authentication;
 using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Providers.Clients;
+using OsiguSDK.SpecificationTests.Tools;
 using TechTalk.SpecFlow;
 
 namespace OsiguSDK.SpecificationTests.Claims.Providers
@@ -14,7 +15,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         public void GivenIHaveTheQueueClientWithoutAuthorization()
         {
             Responses.ErrorId = 0;
-            Tools.QueueProviderClient = new QueueClient(new Configuration
+            TestClients.QueueProviderClient = new QueueClient(new Configuration
             {
                 BaseUrl = ConfigurationClients.ConfigProviderBranch1.BaseUrl,
                 Slug = ConfigurationClients.ConfigProviderBranch1.Slug,
@@ -28,7 +29,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             Responses.QueueId.Should().NotBeNullOrEmpty("The claim should've created correctly");
             try
             {
-                Responses.QueueStatus = Tools.QueueProviderClient.CheckQueueStatus(Responses.QueueId);
+                Responses.QueueStatus = TestClients.QueueProviderClient.CheckQueueStatus(Responses.QueueId);
             }
             catch (RequestException exception)
             {
@@ -40,7 +41,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         public void GivenIHaveTheQueueClientWithoutValidSlug()
         {
             Responses.ErrorId = 0;
-            Tools.QueueProviderClient = new QueueClient(new Configuration
+            TestClients.QueueProviderClient = new QueueClient(new Configuration
             {
                 BaseUrl = ConfigurationClients.ConfigProviderBranch1.BaseUrl,
                 Slug = "another_slug",
@@ -52,7 +53,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         public void GivenIHaveTheQueueClient()
         {
             Responses.ErrorId = 0;
-            Tools.QueueProviderClient = new QueueClient(ConfigurationClients.ConfigProviderBranch1);
+            TestClients.QueueProviderClient = new QueueClient(ConfigurationClients.ConfigProviderBranch1);
         }
 
         [When(@"I request the check claim status endpoint with an invalid queue id")]
@@ -60,7 +61,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         {
             try
             {
-                Tools.QueueProviderClient.CheckQueueStatus("Invalid_Id");
+                TestClients.QueueProviderClient.CheckQueueStatus("Invalid_Id");
             }
             catch (RequestException exception)
             {

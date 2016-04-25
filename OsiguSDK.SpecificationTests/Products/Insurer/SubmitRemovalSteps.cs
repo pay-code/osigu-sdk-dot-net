@@ -2,6 +2,7 @@
 using FluentAssertions;
 using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Insurers.Models.Requests;
+using OsiguSDK.SpecificationTests.Tools;
 using Ploeh.AutoFixture;
 using TechTalk.SpecFlow;
 
@@ -17,7 +18,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         {
             try
             {
-                Requests.SubmitInsurerProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
+                Requests.SubmitInsurerProductRequest = TestClients.Fixture.Create<SubmitProductRequest>();
             }
             catch (Exception exception)
             {
@@ -30,7 +31,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         {
             try
             {
-                Tools.ProductsInsurerClient.SubmitRemoval(Requests.SubmitInsurerProductRequest.ProductId);
+                TestClients.ProductsInsurerClient.SubmitRemoval(Requests.SubmitInsurerProductRequest.ProductId);
                 errorMessage = new RequestException("ok", 204);
             }
             catch (RequestException exception)

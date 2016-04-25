@@ -3,6 +3,7 @@ using System.Linq;
 using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Providers.Models;
 using OsiguSDK.Providers.Models.Requests;
+using OsiguSDK.SpecificationTests.Tools;
 using TechTalk.SpecFlow;
 
 namespace OsiguSDK.SpecificationTests.Claims.Providers
@@ -27,7 +28,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             CreateInvoice();
             try
             {
-                Tools.ClaimsProviderClient.CompleteClaimTransaction("1234560", new CompleteClaimRequest
+                TestClients.ClaimsProviderClient.CompleteClaimTransaction("1234560", new CompleteClaimRequest
                 {
                     Invoice = Responses.Invoice
                 });
@@ -45,7 +46,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             Console.Write(Responses.Invoice.DocumentDate);
             try
             {
-                Tools.ClaimsProviderClient.CompleteClaimTransaction(Responses.Claim.Id.ToString(), new CompleteClaimRequest
+                TestClients.ClaimsProviderClient.CompleteClaimTransaction(Responses.Claim.Id.ToString(), new CompleteClaimRequest
                 {
                     Invoice = Responses.Invoice
                 });
@@ -94,7 +95,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
 
             try
             {
-                Tools.ClaimsProviderClient.CompleteClaimTransaction(Responses.Claim.Id.ToString(), new CompleteClaimRequest
+                TestClients.ClaimsProviderClient.CompleteClaimTransaction(Responses.Claim.Id.ToString(), new CompleteClaimRequest
                 {
                     Invoice = Responses.Invoice
                 });

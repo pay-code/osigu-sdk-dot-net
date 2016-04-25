@@ -121,13 +121,13 @@
       <DependentUpon>GetAuthorization.feature</DependentUpon>
     </Compile>
     <Compile Include="Authorizations\Provider\GetAuthorizationSteps.cs" />
-    <Compile Include="BaseTest.cs" />
-    <Compile Include="ClaimTools.cs" />
-    <Compile Include="ConfigurationClients.cs" />
+    <Compile Include="Tools\ClaimTools.cs" />
+    <Compile Include="Tools\ConfigurationClients.cs" />
+    <Compile Include="Tools\ConstantElements.cs" />
     <Compile Include="Products\Models\Dosage.cs" />
     <Compile Include="Products\Models\OsiguProductRequest.cs" />
-    <Compile Include="Requests.cs" />
-    <Compile Include="Responses.cs" />
+    <Compile Include="Tools\Requests.cs" />
+    <Compile Include="Tools\Responses.cs" />
     <Compile Include="Settlements\Create\CreateNormalSettlement.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -243,11 +243,11 @@
       <DependentUpon>SubmitRemoval.feature</DependentUpon>
     </Compile>
     <Compile Include="Products\Provider\SubmitRemovalSteps.cs" />
-    <Compile Include="RestClient.cs" />
+    <Compile Include="Tools\GenericRestClient.cs" />
     <Compile Include="Settlements\Models\Tax.cs" />
     <Compile Include="Settlements\Models\Taxes.cs" />
     <Compile Include="Settlements\Models\TaxRetentions.cs" />
-    <Compile Include="Tools.cs" />
+    <Compile Include="Tools\TestClients.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

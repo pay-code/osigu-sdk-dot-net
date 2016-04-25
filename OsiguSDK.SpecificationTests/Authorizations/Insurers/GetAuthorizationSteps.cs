@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Insurers.Models;
+using OsiguSDK.SpecificationTests.Tools;
 using TechTalk.SpecFlow;
 
 namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
@@ -16,7 +17,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         {
             try
             {
-                responseAuthorization = Tools.InsurerAuthorizationClient.GetSingleAuthorization(Responses.AuthorizationId);
+                responseAuthorization = TestClients.InsurerAuthorizationClient.GetSingleAuthorization(Responses.AuthorizationId);
                 Responses.AuthorizationId = responseAuthorization.Id;
                 errorMessage = new RequestException("ok", 200);
             }
@@ -50,7 +51,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         {
             try
             {
-                responseAuthorization = Tools.InsurerAuthorizationClient.GetSingleAuthorization(Responses.AuthorizationId);
+                responseAuthorization = TestClients.InsurerAuthorizationClient.GetSingleAuthorization(Responses.AuthorizationId);
                 Responses.AuthorizationId = responseAuthorization.Id;
                 errorMessage = new RequestException("ok", 200);
             }
