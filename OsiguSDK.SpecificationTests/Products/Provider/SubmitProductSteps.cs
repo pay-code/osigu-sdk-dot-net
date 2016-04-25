@@ -19,7 +19,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         {
             Tools.ErrorId = 0;
             Tools.ErrorId2 = 0;
-            Tools.ProductsProviderClient = new ProductsClient(ConfigurationClients.ConfigProviderBranch1Development);
+            Tools.ProductsProviderClient = new ProductsClient(ConfigurationClients.ConfigProviderBranch1);
         }
 
         [Given(@"I have the provider products client without authorization")]
@@ -28,8 +28,8 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             Tools.ErrorId = 0;
             Tools.ProductsProviderClient = new ProductsClient(new Configuration
             {
-                BaseUrl = ConfigurationClients.ConfigProviderBranch1Development.BaseUrl,
-                Slug = ConfigurationClients.ConfigProviderBranch1Development.Slug,
+                BaseUrl = ConfigurationClients.ConfigProviderBranch1.BaseUrl,
+                Slug = ConfigurationClients.ConfigProviderBranch1.Slug,
                 Authentication = new Authentication("noOAuthToken :(")
             });
         }
@@ -40,9 +40,9 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
             Tools.ErrorId = 0;
             Tools.ProductsProviderClient = new ProductsClient(new Configuration
             {
-                BaseUrl = ConfigurationClients.ConfigProviderBranch1Development.BaseUrl,
+                BaseUrl = ConfigurationClients.ConfigProviderBranch1.BaseUrl,
                 Slug = "another_slug",
-                Authentication = ConfigurationClients.ConfigProviderBranch1Development.Authentication
+                Authentication = ConfigurationClients.ConfigProviderBranch1.Authentication
             });
         }
 

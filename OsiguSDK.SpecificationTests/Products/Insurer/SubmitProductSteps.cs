@@ -19,10 +19,10 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         {
             try
             {
-                Tools.submitInsurerProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
-                Tools.submitInsurerProductRequest.ProductId = Tools.submitInsurerProductRequest.ProductId.Substring(0,
+                Requests.SubmitInsurerProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
+                Requests.SubmitInsurerProductRequest.ProductId = Requests.SubmitInsurerProductRequest.ProductId.Substring(0,
                     25);
-                Tools.submitInsurerProductRequest.Type = "DRUG";
+                Requests.SubmitInsurerProductRequest.Type = "DRUG";
             }
             catch (RequestException exception)
             {
@@ -37,7 +37,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         {
             try
             {
-                Tools.productsInsurerClient.SubmitProduct(Tools.submitInsurerProductRequest);
+                Tools.ProductsInsurerClient.SubmitProduct(Requests.SubmitInsurerProductRequest);
                 errorMessage = new RequestException("ok", 204);
             }
             catch (RequestException exception)
@@ -76,10 +76,10 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         {
             try
             {
-                Tools.submitInsurerProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
-                Tools.submitInsurerProductRequest.ProductId = Tools.submitInsurerProductRequest.ProductId.Substring(0,
+                Requests.SubmitInsurerProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
+                Requests.SubmitInsurerProductRequest.ProductId = Requests.SubmitInsurerProductRequest.ProductId.Substring(0,
                     25);
-                Tools.submitInsurerProductRequest.Type = "1invalid_drug_type";
+                Requests.SubmitInsurerProductRequest.Type = "1invalid_drug_type";
             }
             catch (RequestException exception)
             {
@@ -93,13 +93,13 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         {
             try
             {
-                SubmitProductRequest repeatedRequest = Tools.submitInsurerProductRequest;
-                Tools.submitInsurerProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
-                Tools.submitInsurerProductRequest.ProductId = Tools.submitInsurerProductRequest.ProductId.Substring(0,
+                SubmitProductRequest repeatedRequest = Requests.SubmitInsurerProductRequest;
+                Requests.SubmitInsurerProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
+                Requests.SubmitInsurerProductRequest.ProductId = Requests.SubmitInsurerProductRequest.ProductId.Substring(0,
                     25);
-                Tools.submitInsurerProductRequest.Name = repeatedRequest.Name;
-                Tools.submitInsurerProductRequest.FullName = repeatedRequest.FullName;
-                Tools.submitInsurerProductRequest.Type = "DRUG";
+                Requests.SubmitInsurerProductRequest.Name = repeatedRequest.Name;
+                Requests.SubmitInsurerProductRequest.FullName = repeatedRequest.FullName;
+                Requests.SubmitInsurerProductRequest.Type = "DRUG";
             }
             catch (Exception exception)
             {
@@ -111,8 +111,8 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         [Given(@"I have the request data for a new product whitout all the request parameters")]
         public void GivenIHaveTheRequestDataForANewProductWhitoutAllTheRequestParameters()
         {
-            Tools.submitInsurerProductRequest.Name = String.Empty;
-            Tools.submitInsurerProductRequest.FullName = String.Empty;
+            Requests.SubmitInsurerProductRequest.Name = String.Empty;
+            Requests.SubmitInsurerProductRequest.FullName = String.Empty;
 
         }
 

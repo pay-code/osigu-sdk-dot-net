@@ -16,8 +16,8 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             Tools.ErrorId = 0;
             Tools.QueueProviderClient = new QueueClient(new Configuration
             {
-                BaseUrl = ConfigurationClients.ConfigProviderBranch1Development.BaseUrl,
-                Slug = ConfigurationClients.ConfigProviderBranch1Development.Slug,
+                BaseUrl = ConfigurationClients.ConfigProviderBranch1.BaseUrl,
+                Slug = ConfigurationClients.ConfigProviderBranch1.Slug,
                 Authentication = new Authentication("noOAuthToken :(")
             });
         }
@@ -42,9 +42,9 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             Tools.ErrorId = 0;
             Tools.QueueProviderClient = new QueueClient(new Configuration
             {
-                BaseUrl = ConfigurationClients.ConfigProviderBranch1Development.BaseUrl,
+                BaseUrl = ConfigurationClients.ConfigProviderBranch1.BaseUrl,
                 Slug = "another_slug",
-                Authentication = ConfigurationClients.ConfigProviderBranch1Development.Authentication
+                Authentication = ConfigurationClients.ConfigProviderBranch1.Authentication
             });
         }
 
@@ -52,7 +52,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         public void GivenIHaveTheQueueClient()
         {
             Tools.ErrorId = 0;
-            Tools.QueueProviderClient = new QueueClient(ConfigurationClients.ConfigProviderBranch1Development);
+            Tools.QueueProviderClient = new QueueClient(ConfigurationClients.ConfigProviderBranch1);
         }
 
         [When(@"I request the check claim status endpoint with an invalid queue id")]

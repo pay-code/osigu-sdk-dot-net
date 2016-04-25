@@ -16,7 +16,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         {
             try
             {
-                responseAuthorization = Tools.insurerAuthorizationClient.GetSingleAuthorization(Tools.AuthorizationId);
+                responseAuthorization = Tools.InsurerAuthorizationClient.GetSingleAuthorization(Tools.AuthorizationId);
                 Tools.AuthorizationId = responseAuthorization.Id;
                 errorMessage = new RequestException("ok", 200);
             }
@@ -50,7 +50,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         {
             try
             {
-                responseAuthorization = Tools.insurerAuthorizationClient.GetSingleAuthorization(Tools.AuthorizationId);
+                responseAuthorization = Tools.InsurerAuthorizationClient.GetSingleAuthorization(Tools.AuthorizationId);
                 Tools.AuthorizationId = responseAuthorization.Id;
                 errorMessage = new RequestException("ok", 200);
             }
@@ -64,14 +64,14 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         public void ThenIHaveAValidResponseForGettingTheAuthorization()
         {
             errorMessage.ResponseCode.Should().Be(200);
-            responseAuthorization.AuthorizationDate.Date.Should().Be(Tools.submitAuthorizationRequest.AuthorizationDate.Date);
-            responseAuthorization.AuthorizationDate.Hour.Should().Be(Tools.submitAuthorizationRequest.AuthorizationDate.Hour);
-            responseAuthorization.ExpiresAt.Date.Should().Be(Tools.submitAuthorizationRequest.ExpiresAt.Date);
-            responseAuthorization.ExpiresAt.Hour.Should().Be(Tools.submitAuthorizationRequest.ExpiresAt.Hour);
-            responseAuthorization.Diagnoses.ShouldBeEquivalentTo(Tools.submitAuthorizationRequest.Diagnoses);
-            responseAuthorization.Policy.PolicyHolder.Id.Should().Be(Tools.submitAuthorizationRequest.Policy.PolicyHolder.Id);
-            responseAuthorization.Policy.Number.Should().Be(Tools.submitAuthorizationRequest.Policy.Number);
-            responseAuthorization.Items.Count.Should().Be(Tools.submitAuthorizationRequest.Items.Count);
+            responseAuthorization.AuthorizationDate.Date.Should().Be(Tools.SubmitAuthorizationRequest.AuthorizationDate.Date);
+            responseAuthorization.AuthorizationDate.Hour.Should().Be(Tools.SubmitAuthorizationRequest.AuthorizationDate.Hour);
+            responseAuthorization.ExpiresAt.Date.Should().Be(Tools.SubmitAuthorizationRequest.ExpiresAt.Date);
+            responseAuthorization.ExpiresAt.Hour.Should().Be(Tools.SubmitAuthorizationRequest.ExpiresAt.Hour);
+            responseAuthorization.Diagnoses.ShouldBeEquivalentTo(Tools.SubmitAuthorizationRequest.Diagnoses);
+            responseAuthorization.Policy.PolicyHolder.Id.Should().Be(Tools.SubmitAuthorizationRequest.Policy.PolicyHolder.Id);
+            responseAuthorization.Policy.Number.Should().Be(Tools.SubmitAuthorizationRequest.Policy.Number);
+            responseAuthorization.Items.Count.Should().Be(Tools.SubmitAuthorizationRequest.Items.Count);
         }
 
     }

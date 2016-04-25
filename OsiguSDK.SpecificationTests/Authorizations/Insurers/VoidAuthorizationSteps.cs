@@ -14,7 +14,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
         {
             try
             {
-                Tools.insurerAuthorizationClient.VoidAuthorization(Tools.AuthorizationId);
+                Tools.InsurerAuthorizationClient.VoidAuthorization(Tools.AuthorizationId);
                 errorMessage = new RequestException("ok", 204);
             }
             catch (RequestException exception)

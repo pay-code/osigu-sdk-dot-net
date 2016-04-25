@@ -41,8 +41,8 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             Tools.ErrorId = 0;
             Tools.ClaimsProviderClient = new ClaimsClient(new Configuration
             {
-                BaseUrl = ConfigurationClients.ConfigProviderBranch1Development.BaseUrl,
-                Slug = ConfigurationClients.ConfigProviderBranch1Development.Slug,
+                BaseUrl = ConfigurationClients.ConfigProviderBranch1.BaseUrl,
+                Slug = ConfigurationClients.ConfigProviderBranch1.Slug,
                 Authentication = new Authentication("noOAuthToken :(")
             });
         }
@@ -53,9 +53,9 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             Tools.ErrorId = 0;
             Tools.ClaimsProviderClient = new ClaimsClient(new Configuration
             {
-                BaseUrl = ConfigurationClients.ConfigProviderBranch1Development.BaseUrl,
+                BaseUrl = ConfigurationClients.ConfigProviderBranch1.BaseUrl,
                 Slug = "another_slug",
-                Authentication = ConfigurationClients.ConfigProviderBranch1Development.Authentication
+                Authentication = ConfigurationClients.ConfigProviderBranch1.Authentication
             });
         }
 
@@ -63,13 +63,13 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         public void GivenIHaveTheProviderClaimsClient()
         {
             Tools.ErrorId = 0;
-            Tools.ClaimsProviderClient = new ClaimsClient(ConfigurationClients.ConfigProviderBranch1Development);
+            Tools.ClaimsProviderClient = new ClaimsClient(ConfigurationClients.ConfigProviderBranch1);
         }
 
         [Given(@"I have the provider claims client two")]
         public void GivenIHaveTheProviderClaimsClientTwo()
         {
-            Tools.ClaimsProviderClientWithNoPermission = new ClaimsClient(ConfigurationClients.ConfigProviderBranch2Development);
+            Tools.ClaimsProviderClientWithNoPermission = new ClaimsClient(ConfigurationClients.ConfigProviderBranch2);
         }
 
         [When(@"I request the create a claim endpoint with the second client")]

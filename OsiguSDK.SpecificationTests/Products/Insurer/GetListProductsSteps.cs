@@ -18,10 +18,10 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         [Given(@"I have the insurer products client with an invalid token")]
         public void GivenIHaveTheInsurerProductsClientWithAnInvalidToken()
         {
-            Tools.productsInsurerClient = new ProductsClient(new Configuration
+            Tools.ProductsInsurerClient = new ProductsClient(new Configuration
             {
-                BaseUrl = ConfigurationClients.ConfigInsurer1Development.BaseUrl,
-                Slug = ConfigurationClients.ConfigInsurer1Development.Slug,
+                BaseUrl = ConfigurationClients.ConfigInsurer1.BaseUrl,
+                Slug = ConfigurationClients.ConfigInsurer1.Slug,
                 Authentication = new Authentication("noOAuthToken :(")
             });
         }
@@ -30,11 +30,11 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         [Given(@"I have the insurer products client with an invalid slug")]
         public void GivenIHaveTheInsurerProductsClientWithAnInvalidSlug()
         {
-            Tools.productsInsurerClient = new ProductsClient(new Configuration
+            Tools.ProductsInsurerClient = new ProductsClient(new Configuration
             {
-                BaseUrl = ConfigurationClients.ConfigInsurer1Development.BaseUrl,
+                BaseUrl = ConfigurationClients.ConfigInsurer1.BaseUrl,
                 Slug = "another_slug",
-                Authentication = ConfigurationClients.ConfigInsurer1Development.Authentication
+                Authentication = ConfigurationClients.ConfigInsurer1.Authentication
             });
         }
 
@@ -42,7 +42,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         [Given(@"I have the insurer products client")]
         public void GivenIHaveTheInsurerProductsClient()
         {
-            Tools.productsInsurerClient = new ProductsClient(ConfigurationClients.ConfigInsurer1Development);
+            Tools.ProductsInsurerClient = new ProductsClient(ConfigurationClients.ConfigInsurer1);
         }
 
         [When(@"I make the get list of products request to the endpoint")]
@@ -50,7 +50,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         {
             try
             {
-               listOfProducts = Tools.productsInsurerClient.GetListOfProducts();
+               listOfProducts = Tools.ProductsInsurerClient.GetListOfProducts();
             }
             catch (RequestException exception)
             {

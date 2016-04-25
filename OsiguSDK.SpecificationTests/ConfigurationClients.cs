@@ -7,12 +7,12 @@ namespace OsiguSDK.SpecificationTests
 {
     public class ConfigurationClients
     {
-        public static IConfiguration ConfigInsurer1Development
+        public static IConfiguration ConfigInsurer1
         {
             get
             {
-                return _configInsurer1Development ??
-                       (_configInsurer1Development = ConfigurationManager.AppSettings["TestingEnvironment"] == "DEV"
+                return _configInsurer1 ??
+                       (_configInsurer1 = ConfigurationManager.AppSettings["TestingEnvironment"] == "DEV"
                            ? new Configuration
                            {
                                BaseUrl = ConfigurationManager.AppSettings["DevelopmentBaseUrl"],
@@ -38,14 +38,14 @@ namespace OsiguSDK.SpecificationTests
             }
         }
 
-        private static IConfiguration _configInsurer1Development;
+        private static IConfiguration _configInsurer1;
 
-        public static IConfiguration ConfigInsurer2Development
+        public static IConfiguration ConfigInsurer2
         {
             get
             {
-                return _configInsurer2Development ??
-                       (_configInsurer2Development = ConfigurationManager.AppSettings["TestingEnvironment"] == "DEV"
+                return _configInsurer2 ??
+                       (_configInsurer2 = ConfigurationManager.AppSettings["TestingEnvironment"] == "DEV"
                            ? new Configuration
                            {
                                BaseUrl = ConfigurationManager.AppSettings["DevelopmentBaseUrl"],
@@ -71,14 +71,14 @@ namespace OsiguSDK.SpecificationTests
             }
         }
 
-        private static IConfiguration _configInsurer2Development;
+        private static IConfiguration _configInsurer2;
 
-        public static IConfiguration ConfigProviderBranch1Development
+        public static IConfiguration ConfigProviderBranch1
         {
             get
             {
-                return _configProviderBranch1Development ??
-                       (_configProviderBranch1Development =
+                return _configProviderBranch1 ??
+                       (_configProviderBranch1 =
                            ConfigurationManager.AppSettings["TestingEnvironment"] == "DEV"
                                ? new Configuration
                                {
@@ -107,14 +107,14 @@ namespace OsiguSDK.SpecificationTests
             }
         }
 
-        private static IConfiguration _configProviderBranch1Development;
+        private static IConfiguration _configProviderBranch1;
 
-        public static IConfiguration ConfigProviderBranch2Development
+        public static IConfiguration ConfigProviderBranch2
         {
             get
             {
-                return _configProviderBranch2Development ??
-                       (_configProviderBranch2Development =
+                return _configProviderBranch2 ??
+                       (_configProviderBranch2 =
                            ConfigurationManager.AppSettings["TestingEnvironment"] == "DEV"
                                ? new Configuration
                                {
@@ -143,7 +143,7 @@ namespace OsiguSDK.SpecificationTests
             }
         }
 
-        private static IConfiguration _configProviderBranch2Development;
+        private static IConfiguration _configProviderBranch2;
 
         private static IConfiguration _configOsiguProduct;
 

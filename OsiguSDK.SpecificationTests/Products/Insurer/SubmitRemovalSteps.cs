@@ -17,7 +17,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         {
             try
             {
-                Tools.submitInsurerProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
+                Requests.SubmitInsurerProductRequest = Tools.Fixture.Create<SubmitProductRequest>();
             }
             catch (Exception exception)
             {
@@ -30,7 +30,7 @@ namespace OsiguSDK.SpecificationTests.Products.Insurer
         {
             try
             {
-                Tools.productsInsurerClient.SubmitRemoval(Tools.submitInsurerProductRequest.ProductId);
+                Tools.ProductsInsurerClient.SubmitRemoval(Requests.SubmitInsurerProductRequest.ProductId);
                 errorMessage = new RequestException("ok", 204);
             }
             catch (RequestException exception)

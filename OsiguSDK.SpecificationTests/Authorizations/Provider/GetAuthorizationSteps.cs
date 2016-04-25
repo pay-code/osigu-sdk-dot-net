@@ -18,10 +18,10 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Provider
          [Given(@"I have the provider authorizations client with an invalid token")]
         public void GivenIHaveTheProviderAuthorizationsClientWithAnInvalidToken()
         {
-            Tools.providerAuthorizationClient = new AuthorizationsClient(new Configuration
+            Tools.ProviderAuthorizationClient = new AuthorizationsClient(new Configuration
             {
-                BaseUrl = ConfigurationClients.ConfigProviderBranch1Development.BaseUrl,
-                Slug = ConfigurationClients.ConfigProviderBranch1Development.Slug,
+                BaseUrl = ConfigurationClients.ConfigProviderBranch1.BaseUrl,
+                Slug = ConfigurationClients.ConfigProviderBranch1.Slug,
                 Authentication = new Authentication("noOAuthToken :(")
             });
         }
@@ -29,11 +29,11 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Provider
         [Given(@"I have the provider authorizations client with an invalid slug")]
         public void GivenIHaveTheProviderAuthorizationsClientWithAnInvalidSlug()
         {
-            Tools.providerAuthorizationClient = new AuthorizationsClient(new Configuration
+            Tools.ProviderAuthorizationClient = new AuthorizationsClient(new Configuration
             {
-                BaseUrl = ConfigurationClients.ConfigProviderBranch1Development.BaseUrl,
+                BaseUrl = ConfigurationClients.ConfigProviderBranch1.BaseUrl,
                 Slug = "another_slug",
-                Authentication = ConfigurationClients.ConfigProviderBranch1Development.Authentication
+                Authentication = ConfigurationClients.ConfigProviderBranch1.Authentication
             });
         }
 
@@ -42,7 +42,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Provider
         {
             try
             {
-                Tools.providerAuthorizationClient = new AuthorizationsClient(ConfigurationClients.ConfigProviderBranch1Development);
+                Tools.ProviderAuthorizationClient = new AuthorizationsClient(ConfigurationClients.ConfigProviderBranch1);
             }
             catch (Exception ex) { Console.WriteLine(ex.StackTrace); }
         }
@@ -52,7 +52,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Provider
         {
             try
             {
-                Tools.providerAuthorizationClient = new AuthorizationsClient(ConfigurationClients.ConfigProviderBranch1Development);
+                Tools.ProviderAuthorizationClient = new AuthorizationsClient(ConfigurationClients.ConfigProviderBranch1);
             }
             catch (Exception ex) { Console.WriteLine(ex.StackTrace); }
         }
@@ -68,7 +68,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Provider
         {
             try
             {
-                authorizationResponse = Tools.providerAuthorizationClient.GetSingleAuthorization(Tools.AuthorizationId);
+                authorizationResponse = Tools.ProviderAuthorizationClient.GetSingleAuthorization(Tools.AuthorizationId);
                 errorMessage = new RequestException("ok", 200);
             }
             catch (RequestException exception)
@@ -96,13 +96,13 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Provider
         {
             errorMessage.ResponseCode.Should().Be(200);
             //authorizationResponse.Id.Should().Be(Tools.AuthorizationId);
-            authorizationResponse.AuthorizationDate.Date.Should().Be(Tools.submitAuthorizationRequest.AuthorizationDate.Date);
-            authorizationResponse.AuthorizationDate.Hour.Should().Be(Tools.submitAuthorizationRequest.AuthorizationDate.Hour);
-            authorizationResponse.ExpiresAt.Date.Should().Be(Tools.submitAuthorizationRequest.ExpiresAt.Date);
-            authorizationResponse.ExpiresAt.Hour.Should().Be(Tools.submitAuthorizationRequest.ExpiresAt.Hour);
-            //authorizationResponse.Policy.PolicyHolder.Id.Should().Be(Tools.submitAuthorizationRequest.Policy.PolicyHolder.Id);
-            authorizationResponse.Policy.Number.Should().Be(Tools.submitAuthorizationRequest.Policy.Number);
-            authorizationResponse.Items.Count.Should().Be(Tools.submitAuthorizationRequest.Items.Count);
+            authorizationResponse.AuthorizationDate.Date.Should().Be(Tools.SubmitAuthorizationRequest.AuthorizationDate.Date);
+            authorizationResponse.AuthorizationDate.Hour.Should().Be(Tools.SubmitAuthorizationRequest.AuthorizationDate.Hour);
+            authorizationResponse.ExpiresAt.Date.Should().Be(Tools.SubmitAuthorizationRequest.ExpiresAt.Date);
+            authorizationResponse.ExpiresAt.Hour.Should().Be(Tools.SubmitAuthorizationRequest.ExpiresAt.Hour);
+            //authorizationResponse.Policy.PolicyHolder.Id.Should().Be(Tools.SubmitAuthorizationRequest.Policy.PolicyHolder.Id);
+            authorizationResponse.Policy.Number.Should().Be(Tools.SubmitAuthorizationRequest.Policy.Number);
+            authorizationResponse.Items.Count.Should().Be(Tools.SubmitAuthorizationRequest.Items.Count);
         }
 
 
