@@ -126,6 +126,7 @@
     <Compile Include="ConfigurationClients.cs" />
     <Compile Include="Products\Models\Dosage.cs" />
     <Compile Include="Products\Models\OsiguProductRequest.cs" />
+    <Compile Include="Requests.cs" />
     <Compile Include="Settlements\Create\CreateNormalSettlement.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

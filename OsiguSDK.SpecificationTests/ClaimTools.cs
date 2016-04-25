@@ -30,9 +30,9 @@ namespace OsiguSDK.SpecificationTests
             {
                 Tools.ErrorId = 0;
 
-                Tools.ClaimsProviderClient = new Providers.Clients.ClaimsClient(ProviderBranchConfiguration);
+                Tools.ClaimsProviderClient = new ClaimsClient(ProviderBranchConfiguration);
 
-                Tools.insurerAuthorizationClient = new Insurers.Clients.AuthorizationsClient(InsurerConfiguration);
+                Tools.InsurerAuthorizationClient = new Insurers.Clients.AuthorizationsClient(InsurerConfiguration);
 
                 Tools.QueueProviderClient = new QueueClient(ProviderBranchConfiguration);
 
@@ -42,7 +42,7 @@ namespace OsiguSDK.SpecificationTests
 
                 SetClaimRequestData();
 
-                Tools.QueueId = Tools.ClaimsProviderClient.CreateClaim(Tools.AuthorizationId, Tools.CreateClaimRequest);
+                Tools.QueueId = Tools.ClaimsProviderClient.CreateClaim(Tools.AuthorizationId, Requests.CreateClaimRequest);
 
                 Thread.Sleep(10000);
 
@@ -75,14 +75,14 @@ namespace OsiguSDK.SpecificationTests
 
         private void SetClaimRequestData()
         {
-            Tools.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
+            Requests.CreateClaimRequest = Tools.Fixture.Create<CreateClaimRequest>();
             GenerateItemList();
-            Tools.CreateClaimRequest.Pin = Tools.PIN;
+            Requests.CreateClaimRequest.Pin = Tools.PIN;
         }
 
         private void DoAuthotizationPost()
         {
-            var responseAuthorization = Tools.insurerAuthorizationClient.CreateAuthorization(Tools.submitAuthorizationRequest);
+            var responseAuthorization = Tools.InsurerAuthorizationClient.CreateAuthorization(Requests.SubmitAuthorizationRequest);
             Tools.AuthorizationId = responseAuthorization.Id;
             Tools.PIN = responseAuthorization.Pin;
         }
@@ -90,28 +90,28 @@ namespace OsiguSDK.SpecificationTests
         private void SetAuthorizationRequestData()
         {
             CreateValidAuthorizationRequest();
-            for (int pos = 0; pos < Tools.submitAuthorizationRequest.Items.Count; pos++)
+            for (int pos = 0; pos < Requests.SubmitAuthorizationRequest.Items.Count; pos++)
             {
-                Tools.submitAuthorizationRequest.Items[pos].ProductId = Tools.InsurerAssociateProductId[pos];
+                Requests.SubmitAuthorizationRequest.Items[pos].ProductId = Tools.InsurerAssociatedProductId[pos];
             }
             Tools.AuthorizationId = "1";
         }
 
         private void CreateValidAuthorizationRequest()
         {
-            Tools.Fixture.Customizations.Add(new Tools.StringBuilder());
-            Tools.submitAuthorizationRequest = Tools.Fixture.Create<CreateAuthorizationRequest>();
-            Tools.submitAuthorizationRequest.ExpiresAt = Tools.submitAuthorizationRequest.AuthorizationDate.AddDays(1);
-            Tools.submitAuthorizationRequest.Doctor.CountryCode = "GT";
-            Tools.submitAuthorizationRequest.Policy.CountryCode = "GT";
-            Tools.submitAuthorizationRequest.Policy.PolicyHolder.Email = "mail@mail.com";
-            Tools.submitAuthorizationRequest.Policy.PolicyHolder.Id = Tools.RPNTestPolicyNumber;
-            Tools.submitAuthorizationRequest.Policy.PolicyHolder.DateOfBirth = Tools.RPNTestPolicyBirthday;
+            Tools.Fixture.Customizations.Add(new StringBuilder());
+            Requests.SubmitAuthorizationRequest = Tools.Fixture.Create<CreateAuthorizationRequest>();
+            Requests.SubmitAuthorizationRequest.ExpiresAt = Requests.SubmitAuthorizationRequest.AuthorizationDate.AddDays(1);
+            Requests.SubmitAuthorizationRequest.Doctor.CountryCode = "GT";
+            Requests.SubmitAuthorizationRequest.Policy.CountryCode = "GT";
+            Requests.SubmitAuthorizationRequest.Policy.PolicyHolder.Email = "mail@mail.com";
+            Requests.SubmitAuthorizationRequest.Policy.PolicyHolder.Id = Tools.RPNTestPolicyNumber;
+            Requests.SubmitAuthorizationRequest.Policy.PolicyHolder.DateOfBirth = Tools.RPNTestPolicyBirthday;
         }
 
         private void GenerateItemList()
         {
-            Tools.CreateClaimRequest.Items = new List<CreateClaimRequest.Item>();
+            Requests.CreateClaimRequest.Items = new List<CreateClaimRequest.Item>();
             FillItemList();
         }
 
@@ -120,7 +120,7 @@ namespace OsiguSDK.SpecificationTests
             var r = new Random();
             for (var i = 0; i < 3; i++)
             {
-                Tools.CreateClaimRequest.Items.Add(new CreateClaimRequest.Item
+                Requests.CreateClaimRequest.Items.Add(new CreateClaimRequest.Item
                 {
                     Price = r.Next(100, 10000) / 100m,
                     ProductId = Tools.ProviderAssociateProductId[i],
