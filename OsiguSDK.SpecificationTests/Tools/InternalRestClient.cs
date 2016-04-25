@@ -5,9 +5,9 @@ using RestSharp;
 
 namespace OsiguSDK.SpecificationTests.Tools
 {
-    public class GenericRestClient : BaseClient
+    public class InternalRestClient : BaseClient
     {
-        public GenericRestClient(IConfiguration configuration) : base(configuration)
+        public InternalRestClient(IConfiguration configuration) : base(configuration)
         {
         }
 

@@ -243,7 +243,7 @@
       <DependentUpon>SubmitRemoval.feature</DependentUpon>
     </Compile>
     <Compile Include="Products\Provider\SubmitRemovalSteps.cs" />
-    <Compile Include="Tools\GenericRestClient.cs" />
+    <Compile Include="Tools\InternalRestClient.cs" />
     <Compile Include="Settlements\Models\Tax.cs" />
     <Compile Include="Settlements\Models\Taxes.cs" />
     <Compile Include="Settlements\Models\TaxRetentions.cs" />

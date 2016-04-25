@@ -15,7 +15,7 @@ namespace OsiguSDK.SpecificationTests.Products.Osigu
         [Given(@"I have configured the rest client")]
         public void GivenIHaveConfiguredTheRestClient()
         {
-            TestClients.GenericRestClient = new GenericRestClient(ConfigurationClients.ConfigOsiguProduct);
+            TestClients.InternalRestClient = new InternalRestClient(ConfigurationClients.ConfigOsiguProduct);
         }
         
         [Given(@"I have the request to create an osigu product")]
@@ -30,7 +30,7 @@ namespace OsiguSDK.SpecificationTests.Products.Osigu
         {
             try
             {
-                var a = TestClients.GenericRestClient.RequestToEndpoint<object>(Method.POST, "/products", Requests.OsiguProductRequest);
+                var a = TestClients.InternalRestClient.RequestToEndpoint<object>(Method.POST, "/products", Requests.OsiguProductRequest);
             }
             catch (RequestException exception)
             {
