@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace OsiguSDK.SpecificationTests.Settlements.Models
 {
-    public class Item
+    public class SettlementItemResponse
     {
         [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }

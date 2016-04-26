@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace OsiguSDK.SpecificationTests.Settlements.Models
 {
-    public class Settlement
+    public class SettlementRequest
     {
         /// <summary>
         /// Begining date of settlement
@@ -34,16 +34,15 @@ namespace OsiguSDK.SpecificationTests.Settlements.Models
         /// Claims related to the settlement
         /// </summary>
         [JsonProperty(PropertyName = "items")]
-        public List<Item> SettlementsItems { get; set; }
-
-        public class Item
-        {
-            /// <summary>
-            /// Id of the claim
-            /// </summary>
-            [JsonProperty(PropertyName = "claim_id")]
-            public string ClaimId { get; set; }
+        public List<SettlementItemRequest> SettlementsItems { get; set; }
         }
 
+    public class SettlementItemRequest
+    {
+        /// <summary>
+        /// Id of the claim
+        /// </summary>
+        [JsonProperty(PropertyName = "claim_id")]
+        public string ClaimId { get; set; }
     }
 }

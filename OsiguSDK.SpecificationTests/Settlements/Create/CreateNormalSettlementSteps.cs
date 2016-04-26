@@ -26,7 +26,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Create
         public void GivenIHaveTheRequestDataForANewNormalSettlement()
         {
             TestClients.Fixture.Customizations.Add(new StringBuilder());
-            Requests.SettlementRequest = TestClients.Fixture.Create<Settlement>();
+            Requests.SettlementRequest = TestClients.Fixture.Create<SettlementRequest>();
             Requests.SettlementRequest.To = Requests.SettlementRequest.From.AddMonths(1);
         }
         

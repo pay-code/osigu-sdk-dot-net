@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Windows.Forms;
+using FizzWare.NBuilder;
 using FluentAssertions;
 using NUnit.Framework;
 using OsiguSDK.Providers.Clients;
@@ -9,13 +11,75 @@ using OsiguSDK.Providers.Models.Requests;
 using OsiguSDK.Insurers.Models;
 using Ploeh.AutoFixture;
 using OsiguSDK.Insurers.Models.Requests;
+using ServiceStack.Text;
 
 namespace OsiguSDK.SpecificationTests.Tools
 {
+
+    public enum ClaimAmountRange
+    {
+        LESS_THAN_2800,
+        BETWEEN_2800_AND_33600,
+        GREATER_THAN_33600,
+        EXACT_AMOUNT
+    }
+
     public class ClaimTools
     {
         public IConfiguration ProviderBranchConfiguration { get; set; }
         public IConfiguration InsurerConfiguration { get; set; }
+        private ClaimAmountRange ClaimAmountRange;
+        private decimal ExactAmount;
+
+        private decimal MinValue
+        {
+            get
+            {
+                switch (ClaimAmountRange)
+                {
+                    case ClaimAmountRange.LESS_THAN_2800:
+                        return 1;
+                    case ClaimAmountRange.BETWEEN_2800_AND_33600:
+                        return 2801;
+                    case ClaimAmountRange.GREATER_THAN_33600:
+                        return 11200;
+                }
+
+                return 0;
+            }
+        }
+
+        private decimal MaxValue
+        {
+            get
+            {
+                switch (ClaimAmountRange)
+                {
+                    case ClaimAmountRange.LESS_THAN_2800:
+                        return 900;
+                    case ClaimAmountRange.BETWEEN_2800_AND_33600:
+                        return 10266;
+                    case ClaimAmountRange.GREATER_THAN_33600:
+                        return 300000;
+                }
+
+                return 0;
+            }
+        }
+
+        private decimal Price
+        {
+            get
+            {
+                if (ClaimAmountRange == ClaimAmountRange.EXACT_AMOUNT)
+                    return ExactAmount/3;
+
+                var priceGenerator = new RandomGenerator();
+                return priceGenerator.Next(MinValue, MaxValue) ;
+            }
+        }
+
+        
 
         public ClaimTools()
         {
@@ -27,10 +91,13 @@ namespace OsiguSDK.SpecificationTests.Tools
             InsurerConfiguration = insurerConfiguration;
         }
 
-        public Providers.Models.Claim CreateRandomClaim()
+        public Providers.Models.Claim CreateRandomClaim(ClaimAmountRange amountRange = ClaimAmountRange.LESS_THAN_2800, decimal exactAmount = 0)
         {
             try
             {
+                ClaimAmountRange = amountRange;
+                ExactAmount = exactAmount;
+
                 Responses.ErrorId = 0;
 
                 TestClients.ClaimsProviderClient = new ClaimsClient(ProviderBranchConfiguration);
@@ -53,6 +120,8 @@ namespace OsiguSDK.SpecificationTests.Tools
 
                 Responses.Claim = TestClients.ClaimsProviderClient.GetSingleClaim(Responses.QueueStatus.ResourceId);
 
+                return Responses.Claim;
+
 
             }
             catch (Exception ex)
@@ -61,16 +130,16 @@ namespace OsiguSDK.SpecificationTests.Tools
                 throw new Exception("An error occurred when creating a claim.  " + ex);
             }
 
-            return new Providers.Models.Claim();
         }
 
-        public List<Providers.Models.Claim> CreateManyRandomClaims(int numberOfClaims)
+        public List<Providers.Models.Claim> CreateManyRandomClaims(int numberOfClaims, ClaimAmountRange amountRange = ClaimAmountRange.LESS_THAN_2800, decimal exactAmount = 0)
         {
             var claims = new List<Providers.Models.Claim>();
 
             for (int i = 0; i < numberOfClaims; i++)
             {
-                claims.Add(CreateRandomClaim());
+                var newClaim = CreateRandomClaim(amountRange, exactAmount);
+                claims.Add(newClaim);
             }
 
             return claims;
@@ -79,6 +148,7 @@ namespace OsiguSDK.SpecificationTests.Tools
         private void SetClaimRequestData()
         {
             Requests.CreateClaimRequest = TestClients.Fixture.Create<CreateClaimRequest>();
+            
             GenerateItemList();
             Requests.CreateClaimRequest.Pin = Responses.Authorization.Pin;
         }
@@ -124,22 +194,38 @@ namespace OsiguSDK.SpecificationTests.Tools
             {
                 Requests.CreateClaimRequest.Items.Add(new CreateClaimRequest.Item
                 {
-                    Price = r.Next(100, 10000) / 100m,
+                    Price = Price,
                     ProductId = ConstantElements.ProviderAssociateProductId[i],
-                    Quantity = (r.Next(0, 1000) % 10) + 1
+                    Quantity =  1m
                 });
             }
         }
-
+        
     }
-
 
     [TestFixture]
     public class ClaimToolsTests
     {
         
         [Test]
-        public void CanCreateClaim()
+        public void CanCreateClaimWithExactAmount()
+        {
+            var claimTools = new ClaimTools
+            {
+                InsurerConfiguration = ConfigurationClients.ConfigInsurer1,
+                ProviderBranchConfiguration = ConfigurationClients.ConfigProviderBranch1
+            };
+
+            var claim = claimTools.CreateRandomClaim(ClaimAmountRange.EXACT_AMOUNT, 2800);
+
+            claim.Should().NotBeNull();
+            claim.Invoice.Amount.Should().Be(2800);
+
+            Console.WriteLine(claim.Dump());
+        }
+
+        [Test]
+        public void CanCreateClaimWithAmountLessThan2800()
         {
             var claimTools = new ClaimTools
             {
@@ -150,8 +236,70 @@ namespace OsiguSDK.SpecificationTests.Tools
             var claim = claimTools.CreateRandomClaim();
 
             claim.Should().NotBeNull();
+            claim.Invoice.Amount.Should().BeGreaterThan(0);
+            claim.Invoice.Amount.Should().BeLessThan(2800);
+
+            Console.WriteLine(claim.Dump());
         }
 
+        [Test]
+        public void CanCreateClaimWithAmountBetween2800And33600()
+        {
+            var claimTools = new ClaimTools
+            {
+                InsurerConfiguration = ConfigurationClients.ConfigInsurer1,
+                ProviderBranchConfiguration = ConfigurationClients.ConfigProviderBranch1
+            };
+
+            var claim = claimTools.CreateRandomClaim(ClaimAmountRange.BETWEEN_2800_AND_33600);
+
+            claim.Should().NotBeNull();
+            claim.Invoice.Amount.Should().BeGreaterThan(2800);
+            claim.Invoice.Amount.Should().BeLessThan(33600);
+
+            Console.WriteLine(claim.Dump());
+        }
+
+        [Test]
+        public void CanCreateClaimWithAmountGreaterThan33600()
+        {
+            var claimTools = new ClaimTools
+            {
+                InsurerConfiguration = ConfigurationClients.ConfigInsurer1,
+                ProviderBranchConfiguration = ConfigurationClients.ConfigProviderBranch1
+            };
+
+            var claim = claimTools.CreateRandomClaim(ClaimAmountRange.GREATER_THAN_33600);
+
+            claim.Should().NotBeNull();
+            claim.Invoice.Amount.Should().BeGreaterThan(33600);
+            claim.Invoice.Amount.Should().BeLessThan(900001);
+
+            Console.WriteLine(claim.Dump());
+        }
+
+
+        [Test]
+        public void CanCreateThreeClaimsWithAmountLessThan2800()
+        {
+            var claimTools = new ClaimTools
+            {
+                InsurerConfiguration = ConfigurationClients.ConfigInsurer1,
+                ProviderBranchConfiguration = ConfigurationClients.ConfigProviderBranch1
+            };
+
+            var claims = claimTools.CreateManyRandomClaims(3);
+
+            claims.Should().NotBeNull();
+
+            foreach (var claim in claims)
+            {
+                claim.Invoice.Amount.Should().BeGreaterThan(0);
+                claim.Invoice.Amount.Should().BeLessThan(2800);
+            }
+
+            Console.WriteLine(claims.Dump());
+        }
 
     }
 }
