@@ -145,11 +145,18 @@
       <DependentUpon>GetAuthorization.feature</DependentUpon>
     </Compile>
     <Compile Include="Authorizations\Provider\GetAuthorizationSteps.cs" />
+    <Compile Include="Settlements\Calculation\ValidateTheCalculatiosOfSettementsSteps.cs" />
+    <Compile Include="Settlements\Calculation\ValidateTheCalculatiosOfSettlements.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ValidateTheCalculatiosOfSettlements.feature</DependentUpon>
+    </Compile>
     <Compile Include="Tools\ClaimTools.cs" />
     <Compile Include="Tools\ConfigurationClients.cs" />
     <Compile Include="Tools\ConstantElements.cs" />
     <Compile Include="Products\Models\Dosage.cs" />
     <Compile Include="Products\Models\OsiguProductRequest.cs" />
+    <Compile Include="Tools\CurrentData.cs" />
     <Compile Include="Tools\Requests.cs" />
     <Compile Include="Tools\Responses.cs" />
     <Compile Include="Settlements\Create\CreateNormalSettlement.feature.cs">
@@ -172,9 +179,9 @@
     <Compile Include="Settlements\Tests\GetListAllSettlementsSteps.cs" />
     <Compile Include="Settlements\Models\Claim.cs" />
     <Compile Include="Settlements\Models\Comission.cs" />
-    <Compile Include="Settlements\Models\Item.cs" />
+    <Compile Include="Settlements\Models\SettlementItemResponse.cs" />
     <Compile Include="Settlements\Models\Payment.cs" />
-    <Compile Include="Settlements\Models\Settlement.cs" />
+    <Compile Include="Settlements\Models\SettlementRequest.cs" />
     <Compile Include="Settlements\Models\SettlementAccountingPendingResponse.cs" />
     <Compile Include="Settlements\Models\SettlementResponse.cs" />
     <Compile Include="Claims\Providers\ChangeClaimItems.feature.cs">
@@ -358,6 +365,10 @@
     <None Include="Products\Provider\SubmitRemoval.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>SubmitRemoval.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Settlements\Calculation\ValidateTheCalculatiosOfSettlements.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ValidateTheCalculatiosOfSettlements.feature.cs</LastGenOutput>
     </None>
     <None Include="Settlements\Tests\GetListAllAccountingPendingSettlements.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

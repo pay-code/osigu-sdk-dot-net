@@ -64,6 +64,6 @@ namespace OsiguSDK.SpecificationTests.Settlements.Models
         public List<TaxRetentions> TaxRetentions { get; set; }
 
         [JsonProperty(PropertyName = "items")]
-        public List<Item> Items { get; set; } 
+        public List<SettlementItemResponse> Items { get; set; } 
     }
 }

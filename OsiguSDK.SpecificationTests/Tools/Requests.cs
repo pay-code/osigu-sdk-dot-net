@@ -16,6 +16,10 @@ namespace OsiguSDK.SpecificationTests.Tools
         public static CreateAuthorizationRequest SubmitAuthorizationRequest { get; set; }
 
         public static OsiguProductRequest OsiguProductRequest { get; set; }
-        public static Settlement SettlementRequest { get; set; }
+        public static SettlementRequest SettlementRequest { get; set; }
+
+        public static int NoRetentionProviderId { get; set; }
+
+        public static int InsurerId { get; set; }
     }
 }
