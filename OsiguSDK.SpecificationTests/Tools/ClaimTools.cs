@@ -6,6 +6,7 @@ using FluentAssertions;
 using NUnit.Framework;
 using OsiguSDK.Providers.Clients;
 using OsiguSDK.Providers.Models.Requests;
+using OsiguSDK.Insurers.Models;
 using Ploeh.AutoFixture;
 using OsiguSDK.Insurers.Models.Requests;
 
@@ -44,7 +45,7 @@ namespace OsiguSDK.SpecificationTests.Tools
 
                 SetClaimRequestData();
 
-                Responses.QueueId = TestClients.ClaimsProviderClient.CreateClaim(Responses.AuthorizationId, Requests.CreateClaimRequest);
+                Responses.QueueId = TestClients.ClaimsProviderClient.CreateClaim(Responses.Authorization.Id, Requests.CreateClaimRequest);
 
                 Thread.Sleep(10000);
 
@@ -79,14 +80,13 @@ namespace OsiguSDK.SpecificationTests.Tools
         {
             Requests.CreateClaimRequest = TestClients.Fixture.Create<CreateClaimRequest>();
             GenerateItemList();
-            Requests.CreateClaimRequest.Pin = Responses.PIN;
+            Requests.CreateClaimRequest.Pin = Responses.Authorization.Pin;
         }
 
         private void DoAuthotizationPost()
         {
             var responseAuthorization = TestClients.InsurerAuthorizationClient.CreateAuthorization(Requests.SubmitAuthorizationRequest);
-            Responses.AuthorizationId = responseAuthorization.Id;
-            Responses.PIN = responseAuthorization.Pin;
+            Responses.Authorization = responseAuthorization;
         }
 
         private void SetAuthorizationRequestData()
@@ -96,7 +96,7 @@ namespace OsiguSDK.SpecificationTests.Tools
             {
                 Requests.SubmitAuthorizationRequest.Items[pos].ProductId = ConstantElements.InsurerAssociatedProductId[pos];
             }
-            Responses.AuthorizationId = "1";
+            Responses.Authorization = new Authorization { Id = "1" };
         }
 
         private void CreateValidAuthorizationRequest()

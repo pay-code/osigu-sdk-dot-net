@@ -61,7 +61,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Provider
         [Given(@"I have an invalid authorization id for the provider")]
         public void GivenIHaveAnInvalidAuthorizationIdForTheProvider()
         {
-            Responses.AuthorizationId = "1";
+            Responses.Authorization.Id = "1";
         }
         
         [When(@"I make the get authorization request as a provider to the endpoint")]
@@ -69,7 +69,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Provider
         {
             try
             {
-                authorizationResponse = TestClients.ProviderAuthorizationClient.GetSingleAuthorization(Responses.AuthorizationId);
+                authorizationResponse = TestClients.ProviderAuthorizationClient.GetSingleAuthorization(Responses.Authorization.Id);
                 errorMessage = new RequestException("ok", 200);
             }
             catch (RequestException exception)

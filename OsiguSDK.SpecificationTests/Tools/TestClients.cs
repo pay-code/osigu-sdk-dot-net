@@ -15,6 +15,9 @@ namespace OsiguSDK.SpecificationTests.Tools
         public static ClaimsClient ClaimsProviderClient { get; set; }
         public static ClaimsClient ClaimsProviderClientWithNoPermission { get; set; }
 
+        public static Insurers.Clients.ClaimsClient ClaimsInsurerClient { get; set; }
+        public static Insurers.Clients.ClaimsClient ClaimsInsurerClientWithNoPermission { get; set; }
+
         public static QueueClient QueueProviderClient { get; set; }
         public static QueueClient QueueProviderClientWithNoPermission { get; set; }
 

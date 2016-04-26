@@ -121,6 +121,17 @@
       <DependentUpon>GetAuthorization.feature</DependentUpon>
     </Compile>
     <Compile Include="Authorizations\Provider\GetAuthorizationSteps.cs" />
+    <Compile Include="Claims\Insurers\GetClaim.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetClaim.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Claims\Insurers\GetClaim1.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetClaim.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Claims\Insurers\GetClaimSteps.cs" />
     <Compile Include="Tools\ClaimTools.cs" />
     <Compile Include="Tools\ConfigurationClients.cs" />
     <Compile Include="Tools\ConstantElements.cs" />
@@ -274,6 +285,10 @@
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GetAuthorization.feature.cs</LastGenOutput>
     </None>
+    <None Include="Claims\Insurers\GetClaim.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetClaim1.feature.cs</LastGenOutput>
+    </None>
     <None Include="Claims\Providers\ChangeClaimItems.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ChangeClaimItems.feature.cs</LastGenOutput>
@@ -362,9 +377,7 @@
       <Name>OsiguSDK.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Claims\Insurers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

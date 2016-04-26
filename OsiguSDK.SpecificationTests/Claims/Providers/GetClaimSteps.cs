@@ -55,6 +55,8 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         public void ThenTheClaimShouldHaveTheNeededValues()
         {
             Responses.Claim.Id.Should().Be(int.Parse(Responses.QueueStatus.ResourceId));
+            Responses.Claim.Copayment.Should().Be(0);
+
             Responses.Claim.Items.Count.Should().Be(Requests.CreateClaimRequest.Items.Count);
 
             for (var i = 0; i < Responses.Claim.Items.Count; i++)
@@ -62,9 +64,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
                 Responses.Claim.Items[i].ProductId.Should().Be(Requests.CreateClaimRequest.Items[i].ProductId);
                 Responses.Claim.Items[i].Quantity.Should().Be(Requests.CreateClaimRequest.Items[i].Quantity);
                 Responses.Claim.Items[i].SubstituteProductId.Should().Be(Requests.CreateClaimRequest.Items[i].SubstituteProductId);
-            }
-
-            
+            }            
         }
 
     }

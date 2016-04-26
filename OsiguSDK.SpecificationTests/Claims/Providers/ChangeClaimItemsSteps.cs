@@ -17,7 +17,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
 
             Requests.CreateClaimRequest = new CreateClaimRequest
             {
-                Pin = Responses.PIN,
+                Pin = Responses.Authorization.Pin,
                 Items = new List<CreateClaimRequest.Item>
                 {
                     new CreateClaimRequest.Item

@@ -16,7 +16,8 @@ namespace OsiguSDK.SpecificationTests.Tools
         public static string QueueId { get; set; }
         public static QueueStatus QueueStatus { get; set; }
 
-        public static string AuthorizationId { get; set; }
-        public static string PIN { get; set; }
+        public static Insurers.Models.Authorization Authorization { get; set; }
+
+        public static Insurers.Models.Claim InsurerClaim { get; set; }
     }
 }

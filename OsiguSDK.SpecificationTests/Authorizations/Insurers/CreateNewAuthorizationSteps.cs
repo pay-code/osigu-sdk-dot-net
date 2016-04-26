@@ -60,7 +60,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
             {
                 Requests.SubmitAuthorizationRequest.Items[pos].ProductId = ConstantElements.InsurerAssociatedProductId[pos];
             }
-            Responses.AuthorizationId = "1";
+            Responses.Authorization = new Authorization {Id = "1"};
         }
 
         [Given(@"I have the request data for a new authorization with an unreferenced product")]
@@ -118,8 +118,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
             try
             {
                 responseAuthorization = TestClients.InsurerAuthorizationClient.CreateAuthorization(Requests.SubmitAuthorizationRequest);
-                Responses.AuthorizationId = responseAuthorization.Id;
-                Responses.PIN = responseAuthorization.Pin;
+                Responses.Authorization = responseAuthorization;
                 errorMessage = new RequestException("ok", 201);
             }
             catch (RequestException exception)
