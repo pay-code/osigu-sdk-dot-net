@@ -20,7 +20,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Tests
             try
             {
                 ListOfSettlements =
-                    TestClients.GenericRestClient.RequestToEndpoint<Pagination<SettlementAccountingPendingResponse>>(Method.GET,
+                    TestClients.InternalRestClient.RequestToEndpoint<Pagination<SettlementAccountingPendingResponse>>(Method.GET,
                         "/settlements/account-pending");
             }
             catch (RequestException exception)
@@ -32,7 +32,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Tests
         [Given(@"I have the settlement client with an invalid slug")]
         public void GivenIHaveTheSettlementClientWithAnInvalidSlug()
         {
-            TestClients.GenericRestClient = new GenericRestClient(new Configuration
+            TestClients.InternalRestClient = new InternalRestClient(new Configuration
             {
                 BaseUrl = ConfigurationClients.ConfigSettlement.BaseUrl,
                 Authentication = ConfigurationClients.ConfigSettlement.Authentication,

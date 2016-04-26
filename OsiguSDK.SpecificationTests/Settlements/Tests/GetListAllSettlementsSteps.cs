@@ -17,7 +17,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Tests
         [Given(@"I have the settlement client")]
         public void GivenIHaveTheSettlementClient()
         {
-            TestClients.GenericRestClient = new GenericRestClient(ConfigurationClients.ConfigSettlement);
+            TestClients.InternalRestClient = new InternalRestClient(ConfigurationClients.ConfigSettlement);
         }
         
         [When(@"I request the endpoint")]
@@ -25,7 +25,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Tests
         {
             try
             {
-                listOfSettlements = TestClients.GenericRestClient.RequestToEndpoint<Pagination<SettlementResponse>>(Method.GET,
+                listOfSettlements = TestClients.InternalRestClient.RequestToEndpoint<Pagination<SettlementResponse>>(Method.GET,
                     "/settlements");
             }
             catch (RequestException exception)
@@ -45,7 +45,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Tests
         [Given(@"I have the settlement client with an invalid token")]
         public void GivenIHaveTheSettlementClientWithAnInvalidToken()
         {
-            TestClients.GenericRestClient = new GenericRestClient(new Configuration
+            TestClients.InternalRestClient = new InternalRestClient(new Configuration
             {
                 BaseUrl = ConfigurationClients.ConfigSettlement.BaseUrl,
                 Authentication = new Authentication("NoAuth")

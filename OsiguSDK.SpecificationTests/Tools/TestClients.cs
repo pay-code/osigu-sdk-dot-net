@@ -22,7 +22,7 @@ namespace OsiguSDK.SpecificationTests.Tools
         public static Insurers.Clients.ProductsClient ProductsInsurerClient { get; set; }
         public static Insurers.Clients.AuthorizationsClient InsurerAuthorizationClient { get; set; }
         
-        public static GenericRestClient GenericRestClient { get; set; }
+        public static InternalRestClient InternalRestClient { get; set; }
     }
 
     public class StringBuilder : ISpecimenBuilder

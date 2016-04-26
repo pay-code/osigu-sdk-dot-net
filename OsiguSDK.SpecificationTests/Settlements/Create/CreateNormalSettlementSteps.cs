@@ -17,7 +17,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Create
         {
             try
             {
-                TestClients.GenericRestClient = new GenericRestClient(ConfigurationClients.ConfigSettlement);
+                TestClients.InternalRestClient = new InternalRestClient(ConfigurationClients.ConfigSettlement);
             }
             catch (Exception ex) { Console.WriteLine(ex.StackTrace); }
         }
@@ -35,7 +35,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Create
         {
             try
             {
-                var a = TestClients.GenericRestClient.RequestToEndpoint<object>(Method.POST, "/settlements/normal", Requests.SettlementRequest);
+                var a = TestClients.InternalRestClient.RequestToEndpoint<object>(Method.POST, "/settlements/normal", Requests.SettlementRequest);
                 Responses.ErrorId = 204;
             }
             catch (RequestException exception)
