@@ -25,12 +25,12 @@ namespace OsiguSDK.SpecificationTests.Settlements.Models
         public DateTime CreatedAt { get; set; }
 
         [JsonProperty(PropertyName = "comissions")]
-        public List<Comission> Comissions { get; set; }
+        public List<Commission> Comissions { get; set; }
 
         [JsonProperty(PropertyName = "taxes")]
         public List<Taxes> Taxes { get; set; }
 
         [JsonProperty(PropertyName = "tax_retentions")]
-        public List<TaxRetentions> TaxRetentions { get; set; }
+        public List<Retentions> TaxRetentions { get; set; }
     }
 }

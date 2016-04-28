@@ -3,7 +3,13 @@ using Newtonsoft.Json;
 
 namespace OsiguSDK.SpecificationTests.Settlements.Models
 {
-    public class Taxes
+    public enum CommissionType
+    {
+        FAST_PAYMENT,
+        NORMAL
+    }
+
+    public class Commission
     {
         [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }
@@ -19,5 +25,13 @@ namespace OsiguSDK.SpecificationTests.Settlements.Models
 
         [JsonProperty(PropertyName = "updated_at")]
         public DateTime UpdatedAt { get; set; }
+
+        [JsonProperty(PropertyName = "commission_type")]
+        public CommissionType ComissionType { get; set; }
+
+        [JsonProperty(PropertyName = "invoice_id")]
+        public int? InvoiceId { get; set; }
+
+       
     }
 }

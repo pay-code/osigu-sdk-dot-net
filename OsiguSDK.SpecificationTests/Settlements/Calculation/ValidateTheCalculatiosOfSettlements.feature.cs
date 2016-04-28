@@ -84,7 +84,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 12
  testRunner.When("I make the request to the endpoint to create a new cashout", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 13
- testRunner.Then("the result should be 202", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the result should be 201", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 14
  testRunner.When("I get the settlement created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 15

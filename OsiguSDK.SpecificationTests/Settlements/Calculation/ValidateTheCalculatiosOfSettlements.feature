@@ -10,7 +10,7 @@ Scenario: Validate cashout when is not retention agent and amount is less than 2
 	And I have entered a valid insurer
 	And I have the request data for a new cashout settlement
 	When I make the request to the endpoint to create a new cashout
-	Then the result should be 202
+	Then the result should be 201
 	When I get the settlement created
 	Then The calculation should be the expected
 
