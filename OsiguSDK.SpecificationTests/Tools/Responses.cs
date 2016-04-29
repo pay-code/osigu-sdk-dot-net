@@ -2,6 +2,7 @@
 using OsiguSDK.Core.Models;
 using OsiguSDK.Providers.Models;
 using OsiguSDK.SpecificationTests.ResponseModels;
+using OsiguSDK.SpecificationTests.Settlements.Models;
 using Claim = OsiguSDK.Providers.Models.Claim;
 
 namespace OsiguSDK.SpecificationTests.Tools
@@ -24,5 +25,6 @@ namespace OsiguSDK.SpecificationTests.Tools
 
         public static Pagination<DocumentType> DocumentTypes { get; set; }
         public static DocumentType DocumentType { get; set; }
+        public static SettlementResponse Settlement { get; set; }
     }
 }

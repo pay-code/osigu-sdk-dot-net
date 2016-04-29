@@ -203,7 +203,7 @@
     </Compile>
     <Compile Include="Settlements\Tests\GetListAllSettlementsSteps.cs" />
     <Compile Include="Settlements\Models\Claim.cs" />
-    <Compile Include="Settlements\Models\Comission.cs" />
+    <Compile Include="Settlements\Models\Commission.cs" />
     <Compile Include="Settlements\Models\SettlementItemResponse.cs" />
     <Compile Include="Settlements\Models\Payment.cs" />
     <Compile Include="Settlements\Models\SettlementRequest.cs" />
@@ -302,7 +302,7 @@
     <Compile Include="Tools\InternalRestClient.cs" />
     <Compile Include="Settlements\Models\Tax.cs" />
     <Compile Include="Settlements\Models\Taxes.cs" />
-    <Compile Include="Settlements\Models\TaxRetentions.cs" />
+    <Compile Include="Settlements\Models\Retentions.cs" />
     <Compile Include="Tools\TestClients.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

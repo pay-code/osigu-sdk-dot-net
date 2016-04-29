@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using System.Windows.Forms;
 using FizzWare.NBuilder;
 using FluentAssertions;
 using NUnit.Framework;
@@ -12,6 +11,9 @@ using OsiguSDK.Insurers.Models;
 using Ploeh.AutoFixture;
 using OsiguSDK.Insurers.Models.Requests;
 using ServiceStack.Text;
+using System.Linq;
+using OsiguSDK.Providers.Models;
+
 
 namespace OsiguSDK.SpecificationTests.Tools
 {
@@ -75,7 +77,9 @@ namespace OsiguSDK.SpecificationTests.Tools
                     return ExactAmount/3;
 
                 var priceGenerator = new RandomGenerator();
-                return priceGenerator.Next(MinValue, MaxValue) ;
+                
+                //TODO: Remove the round
+                return Math.Round(priceGenerator.Next(MinValue, MaxValue),2);
             }
         }
 
@@ -120,9 +124,15 @@ namespace OsiguSDK.SpecificationTests.Tools
 
                 Responses.Claim = TestClients.ClaimsProviderClient.GetSingleClaim(Responses.QueueStatus.ResourceId);
 
+                CreateInvoice();
+
+                TestClients.ClaimsProviderClient.CompleteClaimTransaction(Responses.Claim.Id.ToString(), new CompleteClaimRequest
+                {
+                    Invoice = Responses.Invoice
+                });
+                
                 return Responses.Claim;
-
-
+                
             }
             catch (Exception ex)
             {
@@ -166,7 +176,7 @@ namespace OsiguSDK.SpecificationTests.Tools
             {
                 Requests.SubmitAuthorizationRequest.Items[pos].ProductId = ConstantElements.InsurerAssociatedProductId[pos];
             }
-            Responses.Authorization = new Authorization { Id = "1" };
+            Responses.Authorization = new Insurers.Models.Authorization { Id = "1" };
         }
 
         private void CreateValidAuthorizationRequest()
@@ -200,7 +210,18 @@ namespace OsiguSDK.SpecificationTests.Tools
                 });
             }
         }
-        
+
+        private void CreateInvoice()
+        {
+            Responses.Invoice = new Invoice
+            {
+                Amount = Responses.Claim.Items.Sum(item => item.Price * item.Quantity),
+                Currency = "GTQ",
+                DocumentDate = DateTime.Now,
+                DocumentNumber = "12345"
+            };
+        }
+
     }
 
     [TestFixture]

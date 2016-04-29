@@ -23,7 +23,7 @@ namespace OsiguSDK.SpecificationTests.Tools
             ExecuteMethod(requestData);
         }
 
-        public T RequestToEndpoint<T>(Method method, string url)
+        public T RequestToEndpoint<T>(Method method, string url="")
         {
             var requestData = new RequestData(url, method, null, null);
             return ExecuteMethod<T>(requestData);
