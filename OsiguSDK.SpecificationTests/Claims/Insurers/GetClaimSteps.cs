@@ -65,7 +65,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Insurers
 
             try
             {
-                Responses.InsurerClaim = TestClients.ClaimsInsurerClient.GetSingleClaim(Responses.Authorization.ReferenceId,
+                Responses.InsurerClaim = TestClients.ClaimsInsurerClient.GetSingleClaim(Responses.Authorization.Id,
                     int.Parse(Responses.QueueStatus.ResourceId));
             }
             catch (RequestException exception)
@@ -91,7 +91,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Insurers
 
             for (var i = 0; i < Responses.InsurerClaim.Items.Count; i++)
             {
-                Responses.InsurerClaim.Items[i].ProductId.Should().Be(Requests.CreateClaimRequest.Items[i].ProductId);
+                Responses.InsurerClaim.Items[i].ProductId.Substring(9).Should().Be(Requests.CreateClaimRequest.Items[i].ProductId.Substring(10));
                 Responses.InsurerClaim.Items[i].Quantity.Should().Be(Requests.CreateClaimRequest.Items[i].Quantity);
                 Responses.InsurerClaim.Items[i].SubstituteProductId.Should().Be(Requests.CreateClaimRequest.Items[i].SubstituteProductId);
             }

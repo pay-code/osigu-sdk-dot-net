@@ -10,13 +10,13 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
     [Binding]
     public class GetAListOfClaimsSteps
     {
-        private Pagination<Claim> list = new Pagination<Claim>();
+        private Pagination<Claim> _list = new Pagination<Claim>();
         [When(@"I request the get a list of claims endpoint")]
         public void WhenIRequestTheGetAListOfClaimsEndpoint()
         {
             try
             {
-                list = TestClients.ClaimsProviderClient.GetListOfClaims();
+                _list = TestClients.ClaimsProviderClient.GetListOfClaims();
             }
             catch (RequestException exception)
             {
@@ -27,7 +27,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         [Then(@"the list should have the same amount of claims as expected")]
         public void ThenTheListShouldHaveTheSameAmountOfClaimsAsExpected()
         {
-            list.NumberOfElements.Should().Be(list.Content.Count);
+            _list.NumberOfElements.Should().Be(_list.Content.Count);
         }
     }
 }

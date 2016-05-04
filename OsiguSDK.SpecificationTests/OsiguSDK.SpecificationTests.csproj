@@ -39,16 +39,16 @@
       <HintPath>..\packages\NBuilder.3.0.1.1\lib\FizzWare.NBuilder.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="FluentAssertions, Version=4.0.1.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentAssertions.4.0.1\lib\net45\FluentAssertions.dll</HintPath>
+    <Reference Include="FluentAssertions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentAssertions.4.5.0\lib\net45\FluentAssertions.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="FluentAssertions.Core, Version=4.0.1.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
-      <HintPath>..\packages\FluentAssertions.4.0.1\lib\net45\FluentAssertions.Core.dll</HintPath>
+    <Reference Include="FluentAssertions.Core, Version=4.5.0.0, Culture=neutral, PublicKeyToken=33f2691a05b67b6a, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentAssertions.4.5.0\lib\net45\FluentAssertions.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
+      <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
@@ -63,15 +63,15 @@
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
-      <HintPath>..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
+      <HintPath>..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="nunit.framework, Version=3.2.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\NUnit.3.2.0\lib\net45\nunit.framework.dll</HintPath>
+    <Reference Include="nunit.framework, Version=3.2.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.2.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Ploeh.AutoFixture, Version=3.41.1.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoFixture.3.41.1\lib\net40\Ploeh.AutoFixture.dll</HintPath>
+    <Reference Include="Ploeh.AutoFixture, Version=3.45.1.0, Culture=neutral, PublicKeyToken=b24654c590009d4f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoFixture.3.45.1\lib\net40\Ploeh.AutoFixture.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
@@ -115,6 +115,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounting\Documents\CreateDocument.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateDocument.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\Documents\CreateDocumentSteps.cs" />
+    <Compile Include="Accounting\DocumentTypes\GetDocumentType.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetDocumentType.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\DocumentTypes\GetDocumentTypeSteps.cs" />
+    <Compile Include="Accounting\DocumentTypes\ListAllTypes.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ListAllTypes.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\DocumentTypes\ListAllTypesSteps.cs" />
     <Compile Include="Authorizations\Insurers\CreateNewAuthorization.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -145,17 +163,22 @@
       <DependentUpon>GetAuthorization.feature</DependentUpon>
     </Compile>
     <Compile Include="Authorizations\Provider\GetAuthorizationSteps.cs" />
-    <Compile Include="Claims\Insurers\GetClaim.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GetClaim.feature</DependentUpon>
-    </Compile>
     <Compile Include="Claims\Insurers\GetClaim1.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GetClaim.feature</DependentUpon>
     </Compile>
     <Compile Include="Claims\Insurers\GetClaimSteps.cs" />
+    <Compile Include="Claims\Insurers\GetListClaims.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetListClaims.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Claims\Insurers\GetListClaimsSteps.cs" />
+    <Compile Include="ResponseModels\DocumentRequest.cs" />
+    <Compile Include="ResponseModels\DocumentDetail.cs" />
+    <Compile Include="ResponseModels\DocumentPayment.cs" />
+    <Compile Include="ResponseModels\DocumentType.cs" />
     <Compile Include="Settlements\Calculation\ISettlementCalculator.cs" />
     <Compile Include="Settlements\Calculation\SettlementCalculator.cs" />
     <Compile Include="Settlements\Calculation\ValidateTheCalculatiosOfSettementsSteps.cs" />
@@ -297,6 +320,18 @@
     <Compile Include="Tools\Utils.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Accounting\Documents\CreateDocument.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreateDocument.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Accounting\DocumentTypes\GetDocumentType.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetDocumentType.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Accounting\DocumentTypes\ListAllTypes.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ListAllTypes.feature.cs</LastGenOutput>
+    </None>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
@@ -323,6 +358,10 @@
     <None Include="Claims\Insurers\GetClaim.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GetClaim1.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Claims\Insurers\GetListClaims.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetListClaims.feature.cs</LastGenOutput>
     </None>
     <None Include="Claims\Providers\ChangeClaimItems.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
@@ -416,7 +455,9 @@
       <Name>OsiguSDK.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Accounting\Accounts\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -309,6 +309,51 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             this.ScenarioCleanup();
         }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Create Claim Successfully With Substitute Products")]
+        [NUnit.Framework.TestCaseAttribute("1", "0", "Same", "422", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("2", "1", "Same", "0", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("3", "2", "Same", "422", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("4", "3", "Same", "422", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("5", "4", "Same", "422", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("6", "5", "Same", "422", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("7", "6", "Same", "422", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("8", "1", "Lower", "0", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("9", "1", "Higher", "422", new string[0])]
+        public virtual void CreateClaimSuccessfullyWithSubstituteProducts(string testId, string itemId, string fixQuantity, string expectedResult, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Claim Successfully With Substitute Products", exampleTags);
+#line 98
+this.ScenarioSetup(scenarioInfo);
+#line 99
+ testRunner.Given("I have the provider claims client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 100
+ testRunner.And("I have the insurer authorizations client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 101
+ testRunner.And("I have the request data for a new authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 102
+ testRunner.When("I make the new authorization request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "TestId",
+                        "ItemId",
+                        "FixQuantity",
+                        "ExpectedResult"});
+            table2.AddRow(new string[] {
+                        string.Format("{0}", testId),
+                        string.Format("{0}", itemId),
+                        string.Format("{0}", fixQuantity),
+                        string.Format("{0}", expectedResult)});
+#line 103
+ testRunner.And("the create a claim request with substitute products", ((string)(null)), table2, "And ");
+#line 106
+ testRunner.And("I request the create a claim endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 107
+ testRunner.Then("the result should be the expected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
     }
 }
 #pragma warning restore

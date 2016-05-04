@@ -94,3 +94,26 @@ Scenario: Create Claim Successfully With Repeated Products
 	And the create a claim request with repeated products
 	And I request the create a claim endpoint
 	Then the result should be ok
+
+Scenario Outline: Create Claim Successfully With Substitute Products
+	Given I have the provider claims client
+	And I have the insurer authorizations client
+	And I have the request data for a new authorization
+	When I make the new authorization request to the endpoint
+	And the create a claim request with substitute products
+	| TestId   | ItemId   | FixQuantity   | ExpectedResult   |
+	| <TestId> | <ItemId> | <FixQuantity> | <ExpectedResult> |
+	And I request the create a claim endpoint
+	Then the result should be the expected 
+
+Scenarios: 
+	| TestId | ItemId | FixQuantity | ExpectedResult |
+	| 1      | 0      | Same        | 422            |
+	| 2      | 1      | Same        | 0              |
+	| 3      | 2      | Same        | 422            |
+	| 4      | 3      | Same        | 422            |
+	| 5      | 4      | Same        | 422            |
+	| 6      | 5      | Same        | 422            |
+	| 7      | 6      | Same        | 422            |
+	| 8      | 1      | Lower       | 0              |
+	| 9      | 1      | Higher      | 422            |
