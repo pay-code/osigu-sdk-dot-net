@@ -178,9 +178,8 @@
     <Compile Include="ResponseModels\DocumentRequest.cs" />
     <Compile Include="ResponseModels\DocumentDetail.cs" />
     <Compile Include="ResponseModels\DocumentPayment.cs" />
+    <Compile Include="ResponseModels\DocumentResponse.cs" />
     <Compile Include="ResponseModels\DocumentType.cs" />
-    <Compile Include="Settlements\Calculation\ISettlementCalculator.cs" />
-    <Compile Include="Settlements\Calculation\SettlementCalculator.cs" />
     <Compile Include="Settlements\Calculation\ValidateTheCalculatiosOfSettementsSteps.cs" />
     <Compile Include="Settlements\Calculation\ValidateTheCalculatiosOfSettlements.feature.cs">
       <AutoGen>True</AutoGen>
@@ -193,7 +192,6 @@
     <Compile Include="Products\Models\Dosage.cs" />
     <Compile Include="Products\Models\OsiguProductRequest.cs" />
     <Compile Include="Tools\CurrentData.cs" />
-    <Compile Include="Tools\Enums.cs" />
     <Compile Include="Tools\Requests.cs" />
     <Compile Include="Tools\Responses.cs" />
     <Compile Include="Settlements\Create\CreateNormalSettlement.feature.cs">
@@ -317,7 +315,6 @@
     <Compile Include="Settlements\Models\Retentions.cs" />
     <Compile Include="Tools\TestClients.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tools\Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Accounting\Documents\CreateDocument.feature">
