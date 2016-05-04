@@ -31,8 +31,8 @@ namespace OsiguSDK.SpecificationTests.Settlements.Create
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Create a new settlement", "\tIn order to create a new normal settlement\r\n\tI need to send all the neccesary da" +
-                    "ta of the settlement configuration", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Create a new settlement", "\tIn order to validate the creation of a new settlement\r\n\tI want to create settlem" +
+                    "ents\r\n\tAnd validate each one", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -65,20 +65,222 @@ namespace OsiguSDK.SpecificationTests.Settlements.Create
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Create a new normal settlement")]
-        public virtual void CreateANewNormalSettlement()
+        [NUnit.Framework.DescriptionAttribute("Validate settlement creation with insurer_id invalid")]
+        [NUnit.Framework.TestCaseAttribute("1", "1", "LESS_THAN_2800", "Cashout", "Insurer {insurerId} is invalid or not exists", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("2", "1", "BETWEEN_2800_AND_33600", "Normal", "Insurer {insurerId} is invalid or not exists", new string[0])]
+        public virtual void ValidateSettlementCreationWithInsurer_IdInvalid(string testId, string numberOfClaims, string claimAmount, string settlementType, string errorMessage, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create a new normal settlement", ((string[])(null)));
-#line 5
- this.ScenarioSetup(scenarioInfo);
-#line 6
- testRunner.Given("I have the settlements client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 7
- testRunner.And("I have the request data for a new normal settlement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate settlement creation with insurer_id invalid", exampleTags);
 #line 8
- testRunner.When("I make the create normal settlement authorization request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+this.ScenarioSetup(scenarioInfo);
 #line 9
- testRunner.Then("the result should be 204", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("I have the settlement client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 10
+ testRunner.And(string.Format("I have {0} claims with amount \'{1}\'", numberOfClaims, claimAmount), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 11
+ testRunner.And("I have entered a valid provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 12
+ testRunner.And("I have entered an invalid insurer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 13
+ testRunner.And("I have entered valid dates", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 14
+ testRunner.And("I have the request data for a new settlement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 15
+ testRunner.When(string.Format("I make the request to the endpoint to create a new \'{0}\'", settlementType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 16
+ testRunner.Then("the result should be 422", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 17
+ testRunner.And(string.Format("the message should be \'{0}\'", errorMessage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Validate settlement creation with provider_id invalid")]
+        [NUnit.Framework.TestCaseAttribute("1", "1", "LESS_THAN_2800", "Cashout", "Provider {providerId} is invalid or not exists", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("2", "1", "BETWEEN_2800_AND_33600", "Normal", "Provider {providerId} is invalid or not exists", new string[0])]
+        public virtual void ValidateSettlementCreationWithProvider_IdInvalid(string testId, string numberOfClaims, string claimAmount, string settlementType, string errorMessage, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate settlement creation with provider_id invalid", exampleTags);
+#line 24
+this.ScenarioSetup(scenarioInfo);
+#line 25
+ testRunner.Given("I have the settlement client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 26
+ testRunner.And(string.Format("I have {0} claims with amount \'{1}\'", numberOfClaims, claimAmount), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 27
+ testRunner.And("I have entered an invalid provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 28
+ testRunner.And("I have entered a valid insurer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 29
+ testRunner.And("I have entered valid dates", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 30
+ testRunner.And("I have the request data for a new settlement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 31
+ testRunner.When(string.Format("I make the request to the endpoint to create a new \'{0}\'", settlementType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 32
+ testRunner.Then("the result should be 422", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 33
+ testRunner.And(string.Format("the message should be \'{0}\'", errorMessage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Validate settlement creation with an empty list of claims")]
+        [NUnit.Framework.TestCaseAttribute("1", "1", "LESS_THAN_2800", "Cashout", "[{\"Path\":\"items\",\"Message\":\"may not be empty\"}]", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("2", "1", "BETWEEN_2800_AND_33600", "Normal", "[{\"Path\":\"items\",\"Message\":\"may not be empty\"}]", new string[0])]
+        public virtual void ValidateSettlementCreationWithAnEmptyListOfClaims(string testId, string numberOfClaims, string claimAmount, string settlementType, string errorList, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate settlement creation with an empty list of claims", exampleTags);
+#line 40
+this.ScenarioSetup(scenarioInfo);
+#line 41
+ testRunner.Given("I have the settlement client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 42
+ testRunner.And("I have entered a empty list of claims", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 43
+ testRunner.And("I have entered a valid provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 44
+ testRunner.And("I have entered a valid insurer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 45
+ testRunner.And("I have entered valid dates", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 46
+ testRunner.And("I have the request data for a new settlement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 47
+ testRunner.When(string.Format("I make the request to the endpoint to create a new \'{0}\'", settlementType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 48
+ testRunner.Then("the result should be 422", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 49
+ testRunner.And(string.Format("the error list should be \'{0}\'", errorList), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Validate settlement creation with a list of claims invalid")]
+        [NUnit.Framework.TestCaseAttribute("1", "1", "LESS_THAN_2800", "Cashout", "[{\"Path\":\"invalid_claim\",\"Message\":\"Claim (99999999) is invalid or not exists\"}]", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("2", "1", "BETWEEN_2800_AND_33600", "Normal", "[{\"Path\":\"invalid_claim\",\"Message\":\"Claim (99999999) is invalid or not exists\"}]", new string[0])]
+        public virtual void ValidateSettlementCreationWithAListOfClaimsInvalid(string testId, string numberOfClaims, string claimAmount, string settlementType, string errorList, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate settlement creation with a list of claims invalid", exampleTags);
+#line 57
+this.ScenarioSetup(scenarioInfo);
+#line 58
+ testRunner.Given("I have the settlement client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 59
+ testRunner.And("I have entered a list of claims invalid", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 60
+ testRunner.And("I have entered a valid provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 61
+ testRunner.And("I have entered a valid insurer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 62
+ testRunner.And("I have entered valid dates", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 63
+ testRunner.And("I have the request data for a new settlement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 64
+ testRunner.When(string.Format("I make the request to the endpoint to create a new \'{0}\'", settlementType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 65
+ testRunner.Then("the result should be 422", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 66
+ testRunner.And(string.Format("the error list should be \'{0}\'", errorList), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Validate settlement creation with date from greater than date to")]
+        [NUnit.Framework.TestCaseAttribute("1", "1", "LESS_THAN_2800", "Cashout", "[{\"Path\":\"invalid_dates\",\"Message\":\"Date FROM must be after date TO\"}]", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("2", "1", "BETWEEN_2800_AND_33600", "Normal", "[{\"Path\":\"invalid_dates\",\"Message\":\"Date FROM must be after date TO\"}]", new string[0])]
+        public virtual void ValidateSettlementCreationWithDateFromGreaterThanDateTo(string testId, string numberOfClaims, string claimAmount, string settlementType, string errorList, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate settlement creation with date from greater than date to", exampleTags);
+#line 74
+this.ScenarioSetup(scenarioInfo);
+#line 75
+ testRunner.Given("I have the settlement client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 76
+ testRunner.And(string.Format("I have {0} claims with amount \'{1}\'", numberOfClaims, claimAmount), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 77
+ testRunner.And("I have entered a valid provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 78
+ testRunner.And("I have entered a valid insurer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 79
+ testRunner.And("I have entered invalid dates", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 80
+ testRunner.And("I have the request data for a new settlement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 81
+ testRunner.When(string.Format("I make the request to the endpoint to create a new \'{0}\'", settlementType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 82
+ testRunner.Then("the result should be 422", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 83
+ testRunner.And(string.Format("the error list should be \'{0}\'", errorList), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Validate settlement creation with required fields")]
+        [NUnit.Framework.TestCaseAttribute("1", "1", "LESS_THAN_2800", "Cashout", "[{\"Path\":\"items\",\"Message\":\"may not be empty\"},{\"Path\":\"from\",\"Message\":\"may not " +
+            "be null\"},{\"Path\":\"provider_id\",\"Message\":\"may not be null\"},{\"Path\":\"insurer_id" +
+            "\",\"Message\":\"may not be null\"},{\"Path\":\"to\",\"Message\":\"may not be null\"}]", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("2", "1", "BETWEEN_2800_AND_33600", "Normal", "[{\"Path\":\"items\",\"Message\":\"may not be empty\"},{\"Path\":\"from\",\"Message\":\"may not " +
+            "be null\"},{\"Path\":\"provider_id\",\"Message\":\"may not be null\"},{\"Path\":\"insurer_id" +
+            "\",\"Message\":\"may not be null\"},{\"Path\":\"to\",\"Message\":\"may not be null\"}]", new string[0])]
+        public virtual void ValidateSettlementCreationWithRequiredFields(string testId, string numberOfClaims, string claimAmount, string settlementType, string errorList, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate settlement creation with required fields", exampleTags);
+#line 91
+this.ScenarioSetup(scenarioInfo);
+#line 92
+ testRunner.Given("I have the settlement client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 93
+ testRunner.And(string.Format("I have {0} claims with amount \'{1}\'", numberOfClaims, claimAmount), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 94
+ testRunner.And("I have entered a valid provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 95
+ testRunner.And("I have entered a valid insurer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 96
+ testRunner.And("I have entered valid dates", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 97
+ testRunner.And("I have an empty request data for a new settlement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 98
+ testRunner.When(string.Format("I make the request to the endpoint to create a new \'{0}\'", settlementType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 99
+ testRunner.Then("the result should be 422", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 100
+ testRunner.And(string.Format("the error list should be \'{0}\'", errorList), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Validate settlement creation with json invalid")]
+        [NUnit.Framework.TestCaseAttribute("1", "1", "LESS_THAN_2800", "Cashout", "Bad request, the request body should be a valid JSON object", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("2", "1", "BETWEEN_2800_AND_33600", "Normal", "Bad request, the request body should be a valid JSON object", new string[0])]
+        public virtual void ValidateSettlementCreationWithJsonInvalid(string testId, string numberOfClaims, string claimAmount, string settlementType, string errorMessage, string[] exampleTags)
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate settlement creation with json invalid", exampleTags);
+#line 108
+this.ScenarioSetup(scenarioInfo);
+#line 109
+ testRunner.Given("I have the settlement client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 110
+ testRunner.And(string.Format("I have {0} claims with amount \'{1}\'", numberOfClaims, claimAmount), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 111
+ testRunner.And("I have entered a valid provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 112
+ testRunner.And("I have entered a valid insurer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 113
+ testRunner.And("I have entered valid dates", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 114
+ testRunner.And("I have an invalid request data for a new settlement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 115
+ testRunner.When(string.Format("I make the request to the endpoint to create a new \'{0}\'", settlementType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 116
+ testRunner.Then("the result should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 117
+ testRunner.And(string.Format("the message should be \'{0}\'", errorMessage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

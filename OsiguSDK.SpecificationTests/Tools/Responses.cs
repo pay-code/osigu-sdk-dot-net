@@ -1,4 +1,6 @@
-﻿using OsiguSDK.Core.Exceptions;
+﻿using System.Collections.Generic;
+using OsiguSDK.Core.Exceptions;
+using OsiguSDK.Core.Models;
 using OsiguSDK.Providers.Models;
 using OsiguSDK.SpecificationTests.Settlements.Models;
 using Claim = OsiguSDK.Providers.Models.Claim;
@@ -12,6 +14,7 @@ namespace OsiguSDK.SpecificationTests.Tools
 
         public static int ErrorId { get; set; }
         public static int ErrorId2 { get; set; }
+        public static string ResponseMessage { get; set; }
         public static RequestException RequestException { get; set; }
 
         public static string QueueId { get; set; }
@@ -21,5 +24,6 @@ namespace OsiguSDK.SpecificationTests.Tools
 
         public static Insurers.Models.Claim InsurerClaim { get; set; }
         public static SettlementResponse Settlement { get; set; }
+        public static IList<RequestError.ValidationError> Errors { get; set; }
     }
 }

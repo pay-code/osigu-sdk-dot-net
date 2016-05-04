@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using FluentAssertions;
 using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Core.Models;
 using OsiguSDK.SpecificationTests.Settlements.Models;
@@ -14,8 +15,10 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
     [Binding]
     public class ValidateTheCalculatiosOfSettementsSteps
     {
-        [Given(@"I have claims with amount less than (.*)")]
-        public void GivenIHaveClaimsWithAmountLessThan(int p0)
+        public ISettlementCalculator SettlementCalculator { get; set; }
+
+        [Given(@"I have (.*) claims with amount '(.*)'")]
+        public void GivenIHaveClaimsWithAmount(int numberOfClaimsToCreate, string claimAmountRange)
         {
             var claimTools = new ClaimTools
             {
@@ -23,13 +26,21 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
                 ProviderBranchConfiguration = ConfigurationClients.ConfigProviderBranch1
             };
             
-            CurrentData.Claims = claimTools.CreateManyRandomClaims(1);
+            CurrentData.Claims = claimTools.CreateManyRandomClaims(numberOfClaimsToCreate, Utils.ParseEnum<ClaimAmountRange>(claimAmountRange));
+
+            Console.WriteLine("Claims details");
+            Console.WriteLine(CurrentData.Claims.Select(x => new { x.Id, x.Invoice.Amount }).Dump());
+
         }
 
-        [Given(@"I have entered a non retention provider")]
-        public void GivenIHaveEnteredANonRetentionProvider()
+
+        [Given(@"I have entered a '(.*)'")]
+        public void GivenIHaveEnteredA(string providerType)
         {
-            Requests.NoRetentionProviderId = ConstantElements.NoRetentionProviderId;
+            Requests.IsAgentRetention = Convert.ToBoolean(Convert.ToInt16(Utils.ParseEnum<ProviderType>(providerType)));
+
+            Requests.ProviderId = Requests.IsAgentRetention ? ConstantElements.RetentionProviderId : ConstantElements.NoRetentionProviderId;
+
         }
 
         [Given(@"I have entered a valid insurer")]
@@ -37,9 +48,9 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
         {
             Requests.InsurerId = ConstantElements.InsurerId;
         }
-
-        [Given(@"I have the request data for a new cashout settlement")]
-        public void GivenIHaveTheRequestDataForANewCashoutSettlement()
+        
+        [Given(@"I have the request data for a new settlement")]
+        public void GivenIHaveTheRequestDataForANewSettlement()
         {
             var claimsIds = CurrentData.Claims.Select(claim => new SettlementItemRequest
             {
@@ -47,29 +58,34 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
             }).ToList();
 
             Requests.SettlementRequest = TestClients.Fixture.Build<SettlementRequest>()
-                .With(x => x.From, DateTime.Now.AddMinutes(-1))
-                .With(x => x.To, DateTime.Now)
-                .With(x => x.ProviderId, Requests.NoRetentionProviderId.ToString())
+                .With(x => x.From, Requests.InitialDate)
+                .With(x => x.To, Requests.EndDate)
+                .With(x => x.ProviderId, Requests.ProviderId.ToString())
                 .With(x => x.InsurerId, Requests.InsurerId.ToString())
                 .With(x => x.SettlementsItems, claimsIds)
                 .Create();
         }
-        
-        [When(@"I make the request to the endpoint to create a new cashout")]
-        public void WhenIMakeTheRequestToTheEndpointToCreateANewCashout()
+
+        [When(@"I make the request to the endpoint to create a new '(.*)'")]
+        public void WhenIMakeTheRequestToTheEndpointToCreateANew(string settlementType)
         {
             Console.WriteLine("Settlement request " + Requests.SettlementRequest.Dump());
 
             try
             {
-                TestClients.InternalRestClient.RequestToEndpoint(Method.POST, "/cashout", Requests.SettlementRequest);
+                var requestBody = Requests.EmptyBodyRequest ? new object() : Requests.SettlementRequest;
+                Requests.EmptyBodyRequest = false;
+                Requests.SettlementType = Utils.ParseEnum<SettlementType>(settlementType);
+                TestClients.InternalRestClient.RequestToEndpoint(Method.POST, "/" + settlementType.ToLower(), requestBody);
                 Responses.ErrorId = 201;
+                
             }
             catch (RequestException exception)
             {
                 Responses.ErrorId = exception.ResponseCode;
+                Responses.ResponseMessage = exception.Message;
+                Responses.Errors = exception.Errors;
             }
-
         }
         
         [When(@"I get the settlement created")]
@@ -77,12 +93,61 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
         {
             var settlements = TestClients.InternalRestClient.RequestToEndpoint<Pagination<SettlementResponse>>(Method.GET).Content.ToList();
             Responses.Settlement = settlements.First(x => x.Id == settlements.Max(y => y.Id));
+
+            Console.WriteLine("Settlement Created");
+            Console.WriteLine(Responses.Settlement.Dump());
         }
         
         [Then(@"The calculation should be the expected")]
         public void ThenTheCalculationShouldBeTheExpected()
         {
-            
+
+            SettlementCalculator = new SettlementCalculator(Requests.IsAgentRetention, CurrentData.Claims,
+                Requests.SettlementType);
+
+            Console.WriteLine("Total Amount");
+            Console.WriteLine(SettlementCalculator.GetTotalAmount().Dump());
+            Console.WriteLine("Total Discount");
+            Console.WriteLine(SettlementCalculator.GetTotalDiscount().Dump());
+            Console.WriteLine("Total Taxes");
+            Console.WriteLine(SettlementCalculator.GetTaxes().Dump());
+            Console.WriteLine("Total Commissions");
+            Console.WriteLine(SettlementCalculator.GetCommissions().Dump());
+            Console.WriteLine("Total Retentions");
+            Console.WriteLine(SettlementCalculator.GetRetentions().Dump());
+
+            Responses.Settlement.TotalAmount.Should().Be(SettlementCalculator.GetTotalAmount());
+
+            Responses.Settlement.TotalDiscount.Should().Be(SettlementCalculator.GetTotalDiscount());
+
+            /*Responses.Settlement.Taxes.ShouldAllBeEquivalentTo(SettlementCalculator.GetTaxes(),
+                x => x.Excluding(y => y.Id).Excluding(y => y.CreatedAt));*/
+
+            var utcNow = DateTime.UtcNow;
+            foreach (var tax in Responses.Settlement.Taxes)
+            {
+                tax.Id.Should().BeGreaterThan(0);
+                tax.CreatedAt.Should().BeCloseTo(utcNow,30000) ;
+            }
+
+            Responses.Settlement.Comissions.ShouldAllBeEquivalentTo(SettlementCalculator.GetCommissions(),
+                x=>x.Excluding(y=>y.Id).Excluding(y=>y.CreatedAt));
+
+            foreach (var commission in Responses.Settlement.Comissions)
+            {
+                commission.Id.Should().BeGreaterThan(0);
+                commission.CreatedAt.Should().BeCloseTo(utcNow, 30000);
+            }
+
+            /*Responses.Settlement.Retentions.ShouldAllBeEquivalentTo(SettlementCalculator.GetRetentions(),
+                x=>x.Excluding(y=>y.Id).Excluding(y=>y.CreatedAt));*/
+
+            foreach (var retention in Responses.Settlement.Retentions)
+            {
+                retention.Id.Should().BeGreaterThan(0);
+                retention.CreatedAt.Should().BeCloseTo(utcNow, 30000);
+            }
+
         }
     }
 }

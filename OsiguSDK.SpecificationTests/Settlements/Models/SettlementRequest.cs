@@ -4,6 +4,8 @@ using Newtonsoft.Json;
 
 namespace OsiguSDK.SpecificationTests.Settlements.Models
 {
+   
+
     public class SettlementRequest
     {
         /// <summary>
