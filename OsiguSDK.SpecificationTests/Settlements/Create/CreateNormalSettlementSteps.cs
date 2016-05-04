@@ -43,11 +43,5 @@ namespace OsiguSDK.SpecificationTests.Settlements.Create
                 Responses.ErrorId = exception.ResponseCode;
             }
         }
-        
-        [Then(@"the result should be (.*)")]
-        public void ThenTheResultShouldBe(int p0)
-        {
-            Responses.ErrorId.Should().Be(p0);
-        }
     }
 }

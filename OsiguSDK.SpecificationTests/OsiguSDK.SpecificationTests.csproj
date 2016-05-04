@@ -115,6 +115,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounting\Documents\CreateDocument.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateDocument.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\Documents\CreateDocumentSteps.cs" />
     <Compile Include="Accounting\DocumentTypes\GetDocumentType.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -169,6 +175,9 @@
       <DependentUpon>GetListClaims.feature</DependentUpon>
     </Compile>
     <Compile Include="Claims\Insurers\GetListClaimsSteps.cs" />
+    <Compile Include="ResponseModels\DocumentRequest.cs" />
+    <Compile Include="ResponseModels\DocumentDetail.cs" />
+    <Compile Include="ResponseModels\DocumentPayment.cs" />
     <Compile Include="ResponseModels\DocumentType.cs" />
     <Compile Include="Settlements\Calculation\ValidateTheCalculatiosOfSettementsSteps.cs" />
     <Compile Include="Settlements\Calculation\ValidateTheCalculatiosOfSettlements.feature.cs">
@@ -307,6 +316,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Accounting\Documents\CreateDocument.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreateDocument.feature.cs</LastGenOutput>
+    </None>
     <None Include="Accounting\DocumentTypes\GetDocumentType.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>GetDocumentType.feature.cs</LastGenOutput>
@@ -440,7 +453,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Accounting\Accounts\" />
-    <Folder Include="Accounting\Documents\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
