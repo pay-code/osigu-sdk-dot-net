@@ -56,7 +56,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Models
         public List<Commission> Comissions { get; set; }
 
         [JsonProperty(PropertyName = "retentions")]
-        public List<Retentions> TaxRetentions { get; set; }
+        public List<Retentions> Retentions { get; set; }
 
         [JsonProperty(PropertyName = "_links")]
         public SettlemetSelfLinksResponse Links { get; set; }

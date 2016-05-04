@@ -1,4 +1,5 @@
-﻿using OsiguSDK.Core.Exceptions;
+﻿using System.Collections.Generic;
+using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Core.Models;
 using OsiguSDK.Providers.Models;
 using OsiguSDK.SpecificationTests.ResponseModels;
@@ -14,6 +15,7 @@ namespace OsiguSDK.SpecificationTests.Tools
 
         public static int ErrorId { get; set; }
         public static int ErrorId2 { get; set; }
+        public static string ResponseMessage { get; set; }
         public static RequestException RequestException { get; set; }
 
         public static string QueueId { get; set; }
@@ -27,5 +29,6 @@ namespace OsiguSDK.SpecificationTests.Tools
         public static DocumentType DocumentType { get; set; }
         public static DocumentResponse Document { get; set; }
         public static SettlementResponse Settlement { get; set; }
+        public static IList<RequestError.ValidationError> Errors { get; set; }
     }
 }

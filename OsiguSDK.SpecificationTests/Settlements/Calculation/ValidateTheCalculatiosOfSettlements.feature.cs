@@ -31,8 +31,8 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Validate the calculatios of Settements", "\tIn order to validate the calculation of Settlements\r\n\tI want to create Normal an" +
-                    "d Cashout settlements \r\n\tAnd validate the correct calculation for each one", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Validate the calculatios of Settements", "\tIn order to validate the calculation of Settlements\r\n\tI want to create settlemen" +
+                    "ts \r\n\tAnd validate the correct calculation for each one", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -65,24 +65,48 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Validate cashout when is not retention agent and amount is less than 2500")]
-        public virtual void ValidateCashoutWhenIsNotRetentionAgentAndAmountIsLessThan2500()
+        [NUnit.Framework.DescriptionAttribute("Validate settlement calculation")]
+        [NUnit.Framework.TestCaseAttribute("1", "1", "LESS_THAN_2800", "IsNotRetainingAgent", "Cashout", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("2", "1", "BETWEEN_2800_AND_33600", "IsNotRetainingAgent", "Cashout", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("3", "1", "GREATER_THAN_33600", "IsNotRetainingAgent", "Cashout", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("4", "3", "LESS_THAN_2800", "IsNotRetainingAgent", "Cashout", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("5", "3", "BETWEEN_2800_AND_33600", "IsNotRetainingAgent", "Cashout", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("6", "3", "GREATER_THAN_33600", "IsNotRetainingAgent", "Cashout", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("7", "1", "LESS_THAN_2800", "IsNotRetainingAgent", "Normal", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("8", "1", "BETWEEN_2800_AND_33600", "IsNotRetainingAgent", "Normal", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("9", "1", "GREATER_THAN_33600", "IsNotRetainingAgent", "Normal", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("10", "3", "LESS_THAN_2800", "IsNotRetainingAgent", "Normal", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("11", "3", "BETWEEN_2800_AND_33600", "IsNotRetainingAgent", "Normal", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("12", "3", "GREATER_THAN_33600", "IsNotRetainingAgent", "Normal", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("13", "1", "LESS_THAN_2800", "IsRetainingAgent", "Cashout", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("14", "1", "BETWEEN_2800_AND_33600", "IsRetainingAgent", "Cashout", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("15", "1", "GREATER_THAN_33600", "IsRetainingAgent", "Cashout", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("16", "3", "LESS_THAN_2800", "IsRetainingAgent", "Cashout", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("17", "3", "BETWEEN_2800_AND_33600", "IsRetainingAgent", "Cashout", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("18", "3", "GREATER_THAN_33600", "IsRetainingAgent", "Cashout", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("19", "1", "LESS_THAN_2800", "IsRetainingAgent", "Normal", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("20", "1", "BETWEEN_2800_AND_33600", "IsRetainingAgent", "Normal", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("21", "1", "GREATER_THAN_33600", "IsRetainingAgent", "Normal", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("22", "3", "LESS_THAN_2800", "IsRetainingAgent", "Normal", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("23", "3", "BETWEEN_2800_AND_33600", "IsRetainingAgent", "Normal", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("24", "3", "GREATER_THAN_33600", "IsRetainingAgent", "Normal", new string[0])]
+        public virtual void ValidateSettlementCalculation(string testId, string numberOfClaims, string claimAmount, string providerType, string settlementType, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate cashout when is not retention agent and amount is less than 2500", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Validate settlement calculation", exampleTags);
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 7
  testRunner.Given("I have the settlement client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.And("I have claims with amount less than 2500", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I have {0} claims with amount \'{1}\'", numberOfClaims, claimAmount), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
- testRunner.And("I have entered a non retention provider", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I have entered a \'{0}\'", providerType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
  testRunner.And("I have entered a valid insurer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 11
- testRunner.And("I have the request data for a new cashout settlement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I have the request data for a new settlement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 12
- testRunner.When("I make the request to the endpoint to create a new cashout", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When(string.Format("I make the request to the endpoint to create a new \'{0}\'", settlementType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 13
  testRunner.Then("the result should be 201", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 14

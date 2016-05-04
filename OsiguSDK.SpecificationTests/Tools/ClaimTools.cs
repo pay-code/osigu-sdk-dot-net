@@ -7,24 +7,18 @@ using FluentAssertions;
 using NUnit.Framework;
 using OsiguSDK.Providers.Clients;
 using OsiguSDK.Providers.Models.Requests;
-using OsiguSDK.Insurers.Models;
 using Ploeh.AutoFixture;
 using OsiguSDK.Insurers.Models.Requests;
 using ServiceStack.Text;
 using System.Linq;
 using OsiguSDK.Providers.Models;
+using System.Diagnostics;
 
 
 namespace OsiguSDK.SpecificationTests.Tools
 {
 
-    public enum ClaimAmountRange
-    {
-        LESS_THAN_2800,
-        BETWEEN_2800_AND_33600,
-        GREATER_THAN_33600,
-        EXACT_AMOUNT
-    }
+   
 
     public class ClaimTools
     {
@@ -45,6 +39,10 @@ namespace OsiguSDK.SpecificationTests.Tools
                         return 2801;
                     case ClaimAmountRange.GREATER_THAN_33600:
                         return 11200;
+                    case ClaimAmountRange.EXACT_AMOUNT:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
 
                 return 0;
@@ -63,6 +61,10 @@ namespace OsiguSDK.SpecificationTests.Tools
                         return 10266;
                     case ClaimAmountRange.GREATER_THAN_33600:
                         return 300000;
+                    case ClaimAmountRange.EXACT_AMOUNT:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
 
                 return 0;
@@ -77,13 +79,12 @@ namespace OsiguSDK.SpecificationTests.Tools
                     return ExactAmount/3;
 
                 var priceGenerator = new RandomGenerator();
-                
-                //TODO: Remove the round
-                return Math.Round(priceGenerator.Next(MinValue, MaxValue),2);
+
+                //TODO: Remove Round
+                return Math.Round(priceGenerator.Next(MinValue, MaxValue), 2);
             }
         }
 
-        
 
         public ClaimTools()
         {
@@ -95,7 +96,7 @@ namespace OsiguSDK.SpecificationTests.Tools
             InsurerConfiguration = insurerConfiguration;
         }
 
-        public Providers.Models.Claim CreateRandomClaim(ClaimAmountRange amountRange = ClaimAmountRange.LESS_THAN_2800, decimal exactAmount = 0)
+        public Claim CreateRandomClaim(ClaimAmountRange amountRange = ClaimAmountRange.LESS_THAN_2800, decimal exactAmount = 0)
         {
             try
             {
@@ -105,44 +106,78 @@ namespace OsiguSDK.SpecificationTests.Tools
                 Responses.ErrorId = 0;
 
                 TestClients.ClaimsProviderClient = new ClaimsClient(ProviderBranchConfiguration);
+                Console.WriteLine("Claims provider client passed");
 
                 TestClients.InsurerAuthorizationClient = new Insurers.Clients.AuthorizationsClient(InsurerConfiguration);
+                Console.WriteLine("Insurer authorization client passed");
 
                 TestClients.QueueProviderClient = new QueueClient(ProviderBranchConfiguration);
+                Console.WriteLine("Queue provider client passed");
 
                 SetAuthorizationRequestData();
+                Console.WriteLine("Set authorization request passed");
 
                 DoAuthotizationPost();
+                Console.WriteLine("Do authotization post passed");
 
                 SetClaimRequestData();
+                Console.WriteLine("Set claim request data passed");
 
                 Responses.QueueId = TestClients.ClaimsProviderClient.CreateClaim(Responses.Authorization.Id, Requests.CreateClaimRequest);
+                Console.WriteLine("QueueId generated = " + Responses.QueueId);
 
-                Thread.Sleep(10000);
-
-                Responses.QueueStatus = TestClients.QueueProviderClient.CheckQueueStatus(Responses.QueueId);
-
-                Responses.Claim = TestClients.ClaimsProviderClient.GetSingleClaim(Responses.QueueStatus.ResourceId);
+                Responses.Claim = GetClaim();
+                Console.WriteLine("ClaimId generated = " + Responses.Claim.Id);
 
                 CreateInvoice();
+                Console.WriteLine("Invoice was generated");
 
                 TestClients.ClaimsProviderClient.CompleteClaimTransaction(Responses.Claim.Id.ToString(), new CompleteClaimRequest
                 {
                     Invoice = Responses.Invoice
                 });
-                
+
+                Console.WriteLine("Claim was returned");
                 return Responses.Claim;
-                
             }
             catch (Exception ex)
             {
-                
                 throw new Exception("An error occurred when creating a claim.  " + ex);
             }
+        }
+
+        private static Claim GetClaim()
+        {
+            var contSeconds = 0;
+            const int timeOutLimit = 30;
+
+            var stopwatch = new Stopwatch();
+
+            Responses.QueueStatus = TestClients.QueueProviderClient.CheckQueueStatus(Responses.QueueId);
+
+            stopwatch.Start();
+            while (Responses.QueueStatus.ResourceId == null || contSeconds > timeOutLimit)
+            {
+                
+
+                contSeconds++;
+                Thread.Sleep(contSeconds * 1000);
+                Responses.QueueStatus = TestClients.QueueProviderClient.CheckQueueStatus(Responses.QueueId);
+            }
+            stopwatch.Stop();
+
+            if (Responses.QueueStatus == null)
+                throw new Exception("The Timeout limit was exceeded when attempting get the claim with QueueId = " + Responses.QueueId + ". Timeout Limit setted = " + timeOutLimit + " seconds.");
+
+            var claim = TestClients.ClaimsProviderClient.GetSingleClaim(Responses.QueueStatus.ResourceId);
+
+            Console.WriteLine("Time elapsed for getting the claimId(" + claim.Id + "): {0:hh\\:mm\\:ss}", stopwatch.Elapsed);
+
+            return claim;
 
         }
 
-        public List<Providers.Models.Claim> CreateManyRandomClaims(int numberOfClaims, ClaimAmountRange amountRange = ClaimAmountRange.LESS_THAN_2800, decimal exactAmount = 0)
+        public List<Claim> CreateManyRandomClaims(int numberOfClaims, ClaimAmountRange amountRange = ClaimAmountRange.LESS_THAN_2800, decimal exactAmount = 0)
         {
             var claims = new List<Providers.Models.Claim>();
 
@@ -158,7 +193,7 @@ namespace OsiguSDK.SpecificationTests.Tools
         private void SetClaimRequestData()
         {
             Requests.CreateClaimRequest = TestClients.Fixture.Create<CreateClaimRequest>();
-            
+
             GenerateItemList();
             Requests.CreateClaimRequest.Pin = Responses.Authorization.Pin;
         }
@@ -176,7 +211,7 @@ namespace OsiguSDK.SpecificationTests.Tools
             {
                 Requests.SubmitAuthorizationRequest.Items[pos].ProductId = ConstantElements.InsurerAssociatedProductId[pos];
             }
-            Responses.Authorization = new Insurers.Models.Authorization { Id = "1" };
+            Responses.Authorization = new Insurers.Models.Authorization {Id = "1"};
         }
 
         private void CreateValidAuthorizationRequest()
@@ -204,9 +239,7 @@ namespace OsiguSDK.SpecificationTests.Tools
             {
                 Requests.CreateClaimRequest.Items.Add(new CreateClaimRequest.Item
                 {
-                    Price = Price,
-                    ProductId = ConstantElements.ProviderAssociateProductId[i],
-                    Quantity =  1m
+                    Price = Price, ProductId = ConstantElements.ProviderAssociateProductId[i], Quantity = 1m
                 });
             }
         }
@@ -215,26 +248,20 @@ namespace OsiguSDK.SpecificationTests.Tools
         {
             Responses.Invoice = new Invoice
             {
-                Amount = Responses.Claim.Items.Sum(item => item.Price * item.Quantity),
-                Currency = "GTQ",
-                DocumentDate = DateTime.Now,
-                DocumentNumber = "12345"
+                Amount = Responses.Claim.Items.Sum(item => item.Price*item.Quantity), Currency = "GTQ", DocumentDate = DateTime.Now, DocumentNumber = "12345"
             };
         }
-
     }
 
     [TestFixture]
     public class ClaimToolsTests
     {
-        
         [Test]
         public void CanCreateClaimWithExactAmount()
         {
             var claimTools = new ClaimTools
             {
-                InsurerConfiguration = ConfigurationClients.ConfigInsurer1,
-                ProviderBranchConfiguration = ConfigurationClients.ConfigProviderBranch1
+                InsurerConfiguration = ConfigurationClients.ConfigInsurer1, ProviderBranchConfiguration = ConfigurationClients.ConfigProviderBranch1
             };
 
             var claim = claimTools.CreateRandomClaim(ClaimAmountRange.EXACT_AMOUNT, 2800);
@@ -250,8 +277,7 @@ namespace OsiguSDK.SpecificationTests.Tools
         {
             var claimTools = new ClaimTools
             {
-                InsurerConfiguration = ConfigurationClients.ConfigInsurer1,
-                ProviderBranchConfiguration = ConfigurationClients.ConfigProviderBranch1
+                InsurerConfiguration = ConfigurationClients.ConfigInsurer1, ProviderBranchConfiguration = ConfigurationClients.ConfigProviderBranch1
             };
 
             var claim = claimTools.CreateRandomClaim();
@@ -268,8 +294,7 @@ namespace OsiguSDK.SpecificationTests.Tools
         {
             var claimTools = new ClaimTools
             {
-                InsurerConfiguration = ConfigurationClients.ConfigInsurer1,
-                ProviderBranchConfiguration = ConfigurationClients.ConfigProviderBranch1
+                InsurerConfiguration = ConfigurationClients.ConfigInsurer1, ProviderBranchConfiguration = ConfigurationClients.ConfigProviderBranch1
             };
 
             var claim = claimTools.CreateRandomClaim(ClaimAmountRange.BETWEEN_2800_AND_33600);
@@ -286,8 +311,7 @@ namespace OsiguSDK.SpecificationTests.Tools
         {
             var claimTools = new ClaimTools
             {
-                InsurerConfiguration = ConfigurationClients.ConfigInsurer1,
-                ProviderBranchConfiguration = ConfigurationClients.ConfigProviderBranch1
+                InsurerConfiguration = ConfigurationClients.ConfigInsurer1, ProviderBranchConfiguration = ConfigurationClients.ConfigProviderBranch1
             };
 
             var claim = claimTools.CreateRandomClaim(ClaimAmountRange.GREATER_THAN_33600);
@@ -305,8 +329,7 @@ namespace OsiguSDK.SpecificationTests.Tools
         {
             var claimTools = new ClaimTools
             {
-                InsurerConfiguration = ConfigurationClients.ConfigInsurer1,
-                ProviderBranchConfiguration = ConfigurationClients.ConfigProviderBranch1
+                InsurerConfiguration = ConfigurationClients.ConfigInsurer1, ProviderBranchConfiguration = ConfigurationClients.ConfigProviderBranch1
             };
 
             var claims = claimTools.CreateManyRandomClaims(3);
@@ -321,6 +344,5 @@ namespace OsiguSDK.SpecificationTests.Tools
 
             Console.WriteLine(claims.Dump());
         }
-
     }
 }
