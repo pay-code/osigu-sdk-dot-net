@@ -25,6 +25,7 @@ namespace OsiguSDK.SpecificationTests.Tools
 
         public static Pagination<DocumentType> DocumentTypes { get; set; }
         public static DocumentType DocumentType { get; set; }
+        public static DocumentResponse Document { get; set; }
         public static SettlementResponse Settlement { get; set; }
     }
 }

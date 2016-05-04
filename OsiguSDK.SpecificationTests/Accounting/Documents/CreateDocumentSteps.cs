@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using OsiguSDK.SpecificationTests.Tools;
 using OsiguSDK.SpecificationTests.ResponseModels;
 using Ploeh.AutoFixture;
@@ -9,6 +10,30 @@ namespace OsiguSDK.SpecificationTests.Accounting.Documents
     [Binding]
     public class CreateDocumentSteps
     {
+        public int DocumentType { get; set; }
+
+        private static void CreatePaymentDocument(string paymentType = "cash", bool sameAmount = true, decimal amount = 0m, string bankName = "", string reference = "")
+        {
+            Requests.DocumentRequest = TestClients.Fixture.Create<DocumentRequest>();
+            Requests.DocumentRequest.Detail = new DocumentDetail
+            {
+                DocumentId = Responses.Document.Id,
+                Amount = Responses.Document.Amount
+            };
+
+            Requests.DocumentRequest.Payments = new List<DocumentPayment>
+            {
+                new DocumentPayment
+                {
+                    Amount = sameAmount ? Responses.Document.Amount : amount,
+                    BankName = bankName,
+                    Reference = reference,
+                    Type = paymentType
+                }
+            };
+        }
+
+
         [Given(@"I have the create a new document request")]
         public void GivenIHaveTheCreateANewDocumentRequest()
         {
@@ -20,19 +45,21 @@ namespace OsiguSDK.SpecificationTests.Accounting.Documents
         [Given(@"I have the create a new payment document request")]
         public void GivenIHaveTheCreateANewPaymentDocumentRequest()
         {
-            Requests.DocumentRequest = TestClients.Fixture.Create<DocumentRequest>();
+            CreatePaymentDocument();
+            DocumentType = 2;
         }
-        
+
         [Given(@"I have the create a new payment document request with the same action type as the original")]
         public void GivenIHaveTheCreateANewPaymentDocumentRequestWithTheSameActionTypeAsTheOriginal()
         {
-            ScenarioContext.Current.Pending();
+            CreatePaymentDocument();
+            DocumentType = 1;
         }
         
         [Given(@"I have the create a new payment document request with an amount that doesnt match with the detail")]
         public void GivenIHaveTheCreateANewPaymentDocumentRequestWithAnAmountThatDoesntMatchWithTheDetail()
         {
-            ScenarioContext.Current.Pending();
+            CreatePaymentDocument();
         }
         
         [Given(@"I have the create a new payment document request with an amount that is higher than the original document")]
