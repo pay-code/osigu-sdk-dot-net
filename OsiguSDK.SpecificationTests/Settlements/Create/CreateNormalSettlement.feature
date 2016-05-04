@@ -13,7 +13,7 @@ Scenario Outline: Validate settlement creation with insurer_id invalid
 	And I have entered valid dates
 	And I have the request data for a new settlement
 	When I make the request to the endpoint to create a new '<SettlementType>'
-	Then the result should be 422
+	Then the result should be unprossesable entity
 	And the message should be '<ErrorMessage>'
 
 Scenarios:
@@ -29,7 +29,7 @@ Scenario Outline: Validate settlement creation with provider_id invalid
 	And I have entered valid dates
 	And I have the request data for a new settlement
 	When I make the request to the endpoint to create a new '<SettlementType>'
-	Then the result should be 422
+	Then the result should be unprossesable entity
 	And the message should be '<ErrorMessage>'
 
 Scenarios:
@@ -45,7 +45,7 @@ Scenario Outline: Validate settlement creation with an empty list of claims
 	And I have entered valid dates
 	And I have the request data for a new settlement
 	When I make the request to the endpoint to create a new '<SettlementType>'
-	Then the result should be 422
+	Then the result should be unprossesable entity
 	And the error list should be '<ErrorList>'
 
 Scenarios:
@@ -62,7 +62,7 @@ Scenario Outline: Validate settlement creation with a list of claims invalid
 	And I have entered valid dates
 	And I have the request data for a new settlement
 	When I make the request to the endpoint to create a new '<SettlementType>'
-	Then the result should be 422
+	Then the result should be unprossesable entity
 	And the error list should be '<ErrorList>'
 
 Scenarios:
@@ -79,7 +79,7 @@ Scenario Outline: Validate settlement creation with date from greater than date 
 	And I have entered invalid dates
 	And I have the request data for a new settlement
 	When I make the request to the endpoint to create a new '<SettlementType>'
-	Then the result should be 422
+	Then the result should be unprossesable entity
 	And the error list should be '<ErrorList>'
 
 Scenarios:
@@ -96,7 +96,7 @@ Scenario Outline: Validate settlement creation with required fields
 	And I have entered valid dates
 	And I have an empty request data for a new settlement
 	When I make the request to the endpoint to create a new '<SettlementType>'
-	Then the result should be 422
+	Then the result should be unprossesable entity
 	And the error list should be '<ErrorList>'
 
 Scenarios:
@@ -113,7 +113,7 @@ Scenario Outline: Validate settlement creation with json invalid
 	And I have entered valid dates
 	And I have an invalid request data for a new settlement
 	When I make the request to the endpoint to create a new '<SettlementType>'
-	Then the result should be 400
+	Then the result should be bad request
 	And the message should be '<ErrorMessage>'
 
 Scenarios:

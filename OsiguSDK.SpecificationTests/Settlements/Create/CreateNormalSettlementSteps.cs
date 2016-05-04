@@ -31,11 +31,12 @@ namespace OsiguSDK.SpecificationTests.Settlements.Create
             Requests.ProviderId = 999999;
         }
 
-        [Then(@"the result should be (.*)")]
-        public void ThenTheResultShouldBe(int responseCode)
+        [Then(@"the result should be bad request")]
+        public void ThenTheResultShouldBeBadRequest()
         {
-            Responses.ErrorId.Should().Be(responseCode);
+            Responses.ErrorId.Should().Be(400);
         }
+
 
         [Then(@"the message should be '(.*)'")]
         public void ThenTheMessageShouldBe(string responseMessage)

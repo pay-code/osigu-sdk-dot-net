@@ -88,7 +88,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 15
  testRunner.When(string.Format("I make the request to the endpoint to create a new \'{0}\'", settlementType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 16
- testRunner.Then("the result should be 422", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the result should be unprossesable entity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 17
  testRunner.And(string.Format("the message should be \'{0}\'", errorMessage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -119,7 +119,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 31
  testRunner.When(string.Format("I make the request to the endpoint to create a new \'{0}\'", settlementType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 32
- testRunner.Then("the result should be 422", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the result should be unprossesable entity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 33
  testRunner.And(string.Format("the message should be \'{0}\'", errorMessage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -150,7 +150,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 47
  testRunner.When(string.Format("I make the request to the endpoint to create a new \'{0}\'", settlementType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 48
- testRunner.Then("the result should be 422", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the result should be unprossesable entity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 49
  testRunner.And(string.Format("the error list should be \'{0}\'", errorList), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -181,7 +181,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 64
  testRunner.When(string.Format("I make the request to the endpoint to create a new \'{0}\'", settlementType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 65
- testRunner.Then("the result should be 422", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the result should be unprossesable entity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 66
  testRunner.And(string.Format("the error list should be \'{0}\'", errorList), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -212,7 +212,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 81
  testRunner.When(string.Format("I make the request to the endpoint to create a new \'{0}\'", settlementType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 82
- testRunner.Then("the result should be 422", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the result should be unprossesable entity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 83
  testRunner.And(string.Format("the error list should be \'{0}\'", errorList), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -247,7 +247,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 98
  testRunner.When(string.Format("I make the request to the endpoint to create a new \'{0}\'", settlementType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 99
- testRunner.Then("the result should be 422", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the result should be unprossesable entity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 100
  testRunner.And(string.Format("the error list should be \'{0}\'", errorList), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
@@ -278,7 +278,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 115
  testRunner.When(string.Format("I make the request to the endpoint to create a new \'{0}\'", settlementType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 116
- testRunner.Then("the result should be 400", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the result should be bad request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 117
  testRunner.And(string.Format("the message should be \'{0}\'", errorMessage), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
