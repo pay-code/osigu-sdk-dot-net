@@ -112,8 +112,7 @@ Scenarios:
 	| 2      | 1      | Same        | 0              |
 	| 3      | 2      | Same        | 422            |
 	| 4      | 3      | Same        | 422            |
-	| 5      | 4      | Same        | 422            |
-	| 6      | 5      | Same        | 422            |
-	| 7      | 6      | Same        | 422            |
-	| 8      | 1      | Lower       | 0              |
-	| 9      | 1      | Higher      | 422            |
+	| 5      | 4      | Higher      | 422            |
+	| 6      | 4      | Lower       | 0              |
+	| 7      | 5      | Same        | 422            |
+	| 8      | 6      | Same        | 422            |

@@ -316,11 +316,10 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestCaseAttribute("2", "1", "Same", "0", new string[0])]
         [NUnit.Framework.TestCaseAttribute("3", "2", "Same", "422", new string[0])]
         [NUnit.Framework.TestCaseAttribute("4", "3", "Same", "422", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("5", "4", "Same", "422", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("6", "5", "Same", "422", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("7", "6", "Same", "422", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("8", "1", "Lower", "0", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("9", "1", "Higher", "422", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("5", "4", "Higher", "422", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("6", "4", "Lower", "0", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("7", "5", "Same", "422", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("8", "6", "Same", "422", new string[0])]
         public virtual void CreateClaimSuccessfullyWithSubstituteProducts(string testId, string itemId, string fixQuantity, string expectedResult, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Claim Successfully With Substitute Products", exampleTags);

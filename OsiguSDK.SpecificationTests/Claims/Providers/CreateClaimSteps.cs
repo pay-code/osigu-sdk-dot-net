@@ -33,13 +33,13 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             switch (fixQuantity.ToLower())
             {
                 case "lower":
-                    Requests.CreateClaimRequest.Items[1].Quantity *= 0.5m;
+                    Requests.CreateClaimRequest.Items[1].Quantity = Responses.Authorization.Items[1].Quantity / 20m < 1 ? 1 : Responses.Authorization.Items[1].Quantity / 20m;
                     break;
                 case "higher":
-                    Requests.CreateClaimRequest.Items[1].Quantity *= 5m;
+                    Requests.CreateClaimRequest.Items[1].Quantity = Responses.Authorization.Items[1].Quantity * 20m;
                     break;
                 case "same":
-                    Requests.CreateClaimRequest.Items[1].Quantity = 1m;
+                    Requests.CreateClaimRequest.Items[1].Quantity = Responses.Authorization.Items[1].Quantity;
                     break;
             }
         }
