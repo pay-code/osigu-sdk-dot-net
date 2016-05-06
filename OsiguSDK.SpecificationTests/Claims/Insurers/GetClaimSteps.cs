@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using FluentAssertions;
 using OsiguSDK.Core.Authentication;
 using OsiguSDK.Core.Config;
@@ -69,6 +70,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Insurers
                     int.Parse(Responses.QueueStatus.ResourceId));
             }
             catch (RequestException exception)
+
             {
                 Responses.ErrorId = exception.ResponseCode;
             }
@@ -83,18 +85,31 @@ namespace OsiguSDK.SpecificationTests.Claims.Insurers
         [Then(@"the insurer claim should have the needed values")]
         public void ThenTheInsurerClaimShouldHaveTheNeededValues()
         {
-            //Responses.InsurerClaim.
             Responses.InsurerClaim.Id.Should().Be(int.Parse(Responses.QueueStatus.ResourceId));
             Responses.InsurerClaim.Copayment.Should().Be(0);
+            Responses.InsurerClaim.VerificationCode.Should().NotBeNullOrEmpty();
+            Responses.InsurerClaim.Status.Should().Be("APPROVED");
 
             Responses.InsurerClaim.Items.Count.Should().Be(Requests.CreateClaimRequest.Items.Count);
 
-            for (var i = 0; i < Responses.InsurerClaim.Items.Count; i++)
+            var claimItems = Responses.InsurerClaim.Items.Select(x => new
             {
-                Responses.InsurerClaim.Items[i].ProductId.Substring(9).Should().Be(Requests.CreateClaimRequest.Items[i].ProductId.Substring(10));
-                Responses.InsurerClaim.Items[i].Quantity.Should().Be(Requests.CreateClaimRequest.Items[i].Quantity);
-                Responses.InsurerClaim.Items[i].SubstituteProductId.Should().Be(Requests.CreateClaimRequest.Items[i].SubstituteProductId);
-            }
+                ProductId = x.ProductId.Substring(9),
+                x.Quantity,
+                x.SubstituteProductId
+            });
+
+            var expectedItems = Requests.CreateClaimRequest.Items.Select(x => new
+            {
+                ProductId = x.ProductId.Substring(10),
+                x.Quantity,
+                x.SubstituteProductId
+            });
+
+            claimItems.ShouldAllBeEquivalentTo(expectedItems);
+
+            Responses.InsurerClaim.TotalCoInsurance.Should()
+                .Be(0.20m*Responses.InsurerClaim.Items.Sum(x => x.Price*x.Quantity));
         }
     }
 }

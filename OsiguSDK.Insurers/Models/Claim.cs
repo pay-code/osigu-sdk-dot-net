@@ -49,6 +49,18 @@ namespace OsiguSDK.Insurers.Models
         public decimal TotalCoInsurance { get; set; }
 
         /// <summary>
+        /// IVR Code
+        /// </summary>
+        [JsonProperty(PropertyName = "verification_code")]
+        public string VerificationCode { get; set; }
+
+        /// <summary>
+        /// Current status of the claim
+        /// </summary>
+        [JsonProperty(PropertyName = "status")]
+        public string Status { get; set; }
+
+        /// <summary>
         /// Date and time when the resource was created
         /// </summary>
         [JsonProperty(PropertyName = "created_at")]
