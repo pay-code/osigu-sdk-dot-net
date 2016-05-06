@@ -10,7 +10,7 @@ Scenario Outline: Validate settlement calculation
 	And I have entered a valid insurer
 	And I have the request data for a new settlement
 	When I make the request to the endpoint to create a new '<SettlementType>'
-	Then the result should be 201
+	Then the result should be created
 	When I get the settlement created
 	Then The calculation should be the expected
 Scenarios:

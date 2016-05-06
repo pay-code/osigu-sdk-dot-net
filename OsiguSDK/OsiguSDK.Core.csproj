@@ -61,6 +61,7 @@
     <Compile Include="Exceptions\ConfigurationException.cs" />
     <Compile Include="Exceptions\ServiceException.cs" />
     <Compile Include="Exceptions\UnknownException.cs" />
+    <Compile Include="Models\PaginationLinks.cs" />
     <Compile Include="Utils\CustomDateConverter.cs" />
     <Compile Include="Utils\RestSharpJsonNetSerializer.cs" />
     <Compile Include="Exceptions\RequestException.cs" />

@@ -108,7 +108,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 12
  testRunner.When(string.Format("I make the request to the endpoint to create a new \'{0}\'", settlementType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 13
- testRunner.Then("the result should be 201", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the result should be created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 14
  testRunner.When("I get the settlement created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 15

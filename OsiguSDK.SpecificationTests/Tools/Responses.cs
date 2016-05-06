@@ -30,5 +30,6 @@ namespace OsiguSDK.SpecificationTests.Tools
         public static DocumentResponse Document { get; set; }
         public static SettlementResponse Settlement { get; set; }
         public static IList<RequestError.ValidationError> Errors { get; set; }
+        public static Pagination<SettlementResponse> Settlements { get; set; }
     }
 }

@@ -154,14 +154,13 @@ namespace OsiguSDK.SpecificationTests.Tools
             var stopwatch = new Stopwatch();
 
             Responses.QueueStatus = TestClients.QueueProviderClient.CheckQueueStatus(Responses.QueueId);
+            Responses.QueueStatus.ResourceId = null;
 
             stopwatch.Start();
             while (Responses.QueueStatus.ResourceId == null || contSeconds > timeOutLimit)
             {
-                
-
                 contSeconds++;
-                Thread.Sleep(contSeconds * 1000);
+                Thread.Sleep(1000);
                 Responses.QueueStatus = TestClients.QueueProviderClient.CheckQueueStatus(Responses.QueueId);
             }
             stopwatch.Stop();
@@ -248,7 +247,10 @@ namespace OsiguSDK.SpecificationTests.Tools
         {
             Responses.Invoice = new Invoice
             {
-                Amount = Responses.Claim.Items.Sum(item => item.Price*item.Quantity), Currency = "GTQ", DocumentDate = DateTime.Now, DocumentNumber = "12345"
+                Amount = Responses.Claim.Items.Sum(item => item.Price*item.Quantity)*0.8m,
+                Currency = "GTQ",
+                DocumentDate = DateTime.UtcNow,
+                DocumentNumber = "12345"
             };
         }
     }

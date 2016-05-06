@@ -76,7 +76,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
                 var requestBody = Requests.EmptyBodyRequest ? new object() : Requests.SettlementRequest;
                 Requests.EmptyBodyRequest = false;
                 Requests.SettlementType = Utils.ParseEnum<SettlementType>(settlementType);
-                TestClients.InternalRestClient.RequestToEndpoint(Method.POST, "/" + settlementType.ToLower(), requestBody);
+                Responses.Settlement = TestClients.InternalRestClient.RequestToEndpoint<SettlementResponse>(Method.POST, "/" + settlementType.ToLower(), requestBody);
                 Responses.ErrorId = 201;
                 
             }
@@ -91,9 +91,6 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
         [When(@"I get the settlement created")]
         public void WhenIGetTheSettlementCreated()
         {
-            var settlements = TestClients.InternalRestClient.RequestToEndpoint<Pagination<SettlementResponse>>(Method.GET).Content.ToList();
-            Responses.Settlement = settlements.First(x => x.Id == settlements.Max(y => y.Id));
-
             Console.WriteLine("Settlement Created");
             Console.WriteLine(Responses.Settlement.Dump());
         }
@@ -138,7 +135,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
                 commission.Id.Should().BeGreaterThan(0);
                 commission.CreatedAt.Should().BeCloseTo(utcNow, 30000);
             }
-
+            
             /*Responses.Settlement.Retentions.ShouldAllBeEquivalentTo(SettlementCalculator.GetRetentions(),
                 x=>x.Excluding(y=>y.Id).Excluding(y=>y.CreatedAt));*/
 
@@ -149,5 +146,12 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
             }
 
         }
+
+        [Then(@"the result should be created")]
+        public void ThenTheResultShouldBeCreated()
+        {
+            Responses.ErrorId.Should().Be(201);
+        }
+
     }
 }
