@@ -30,7 +30,7 @@ namespace OsiguSDK.SpecificationTests.Tools
                 ? new[]
                 {
                     "QAPROVIDER2-1", "QAPROVIDER2-2", "QAPROVIDER2-3", "QAPROVIDER2-4", "QAPROVIDER2-5", "QAPROVIDER2-6",
-                    "QAPROVIDER2-7"
+                    "QAPROVIDER2-7","QAPROVIDER1-8"
                 }
                 : new string[] {};
 

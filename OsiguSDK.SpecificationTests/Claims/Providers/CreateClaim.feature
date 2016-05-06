@@ -112,8 +112,16 @@ Scenarios:
 	| 2      | 1      | Same        | 0              |
 	| 3      | 2      | Same        | 422            |
 	| 4      | 3      | Same        | 422            |
-	| 5      | 4      | Same        | 422            |
-	| 6      | 5      | Same        | 422            |
-	| 7      | 6      | Same        | 422            |
-	| 8      | 1      | Lower       | 0              |
-	| 9      | 1      | Higher      | 422            |
+	| 5      | 4      | Higher      | 422            |
+	| 6      | 4      | Lower       | 0              |
+	| 7      | 5      | Same        | 422            |
+	| 8      | 6      | Same        | 422            |
+
+Scenario: Create Claim Successfully With Substitute Products With Different Ingredients
+	Given I have the provider claims client
+	And I have the insurer authorizations client
+	And I have the request data for a new authorization
+	When I make the new authorization request to the endpoint
+	And the create a claim request with substitute products with differente ingredients
+	And I request the create a claim endpoint
+	Then the result should be unprossesable entity

@@ -316,11 +316,10 @@ this.ScenarioSetup(scenarioInfo);
         [NUnit.Framework.TestCaseAttribute("2", "1", "Same", "0", new string[0])]
         [NUnit.Framework.TestCaseAttribute("3", "2", "Same", "422", new string[0])]
         [NUnit.Framework.TestCaseAttribute("4", "3", "Same", "422", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("5", "4", "Same", "422", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("6", "5", "Same", "422", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("7", "6", "Same", "422", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("8", "1", "Lower", "0", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("9", "1", "Higher", "422", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("5", "4", "Higher", "422", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("6", "4", "Lower", "0", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("7", "5", "Same", "422", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("8", "6", "Same", "422", new string[0])]
         public virtual void CreateClaimSuccessfullyWithSubstituteProducts(string testId, string itemId, string fixQuantity, string expectedResult, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Claim Successfully With Substitute Products", exampleTags);
@@ -351,6 +350,31 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.And("I request the create a claim endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 107
  testRunner.Then("the result should be the expected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Create Claim Successfully With Substitute Products With Different Ingredients")]
+        public virtual void CreateClaimSuccessfullyWithSubstituteProductsWithDifferentIngredients()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Claim Successfully With Substitute Products With Different Ingredients", ((string[])(null)));
+#line 120
+this.ScenarioSetup(scenarioInfo);
+#line 121
+ testRunner.Given("I have the provider claims client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 122
+ testRunner.And("I have the insurer authorizations client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 123
+ testRunner.And("I have the request data for a new authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 124
+ testRunner.When("I make the new authorization request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 125
+ testRunner.And("the create a claim request with substitute products with differente ingredients", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 126
+ testRunner.And("I request the create a claim endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 127
+ testRunner.Then("the result should be unprossesable entity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

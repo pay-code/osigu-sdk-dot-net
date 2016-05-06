@@ -33,15 +33,23 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             switch (fixQuantity.ToLower())
             {
                 case "lower":
-                    Requests.CreateClaimRequest.Items[1].Quantity *= 0.5m;
+                    Requests.CreateClaimRequest.Items[1].Quantity = Responses.Authorization.Items[1].Quantity / 20m < 1 ? 1 : Responses.Authorization.Items[1].Quantity / 20m;
                     break;
                 case "higher":
-                    Requests.CreateClaimRequest.Items[1].Quantity *= 5m;
+                    Requests.CreateClaimRequest.Items[1].Quantity = Responses.Authorization.Items[1].Quantity * 20m;
                     break;
                 case "same":
-                    Requests.CreateClaimRequest.Items[1].Quantity = 1m;
+                    Requests.CreateClaimRequest.Items[1].Quantity = Responses.Authorization.Items[1].Quantity;
                     break;
             }
+        }
+
+        private static void GenerateItemListWithFirstSubstitute()
+        {
+            Requests.CreateClaimRequest.Items = new List<CreateClaimRequest.Item>();
+            FillItemList();
+            Requests.CreateClaimRequest.Items[0].SubstituteProductId =
+                ConstantElements.ProviderSubstituteProducts[ConstantElements.ProviderSubstituteProducts.Length - 1];
         }
 
         private static void FillItemList()
@@ -207,6 +215,15 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             }
 
         }
+
+        [When(@"the create a claim request with substitute products with differente ingredients")]
+        public void WhenTheCreateAClaimRequestWithSubstituteProductsWithDifferenteIngredients()
+        {
+            Requests.CreateClaimRequest = TestClients.Fixture.Create<CreateClaimRequest>();
+            Requests.CreateClaimRequest.Pin = Responses.Authorization.Pin;
+            GenerateItemListWithFirstSubstitute();
+        }
+
 
         [Then(@"the result should be unprossesable entity")]
         public void ThenTheResultShouldBeUnprossesableEntity()

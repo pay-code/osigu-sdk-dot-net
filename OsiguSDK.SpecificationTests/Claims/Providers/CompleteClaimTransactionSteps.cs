@@ -15,7 +15,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         {
             Responses.Invoice = new Invoice
             {
-                Amount = Responses.Claim.Items.Sum(item => item.Price * item.Quantity),
+                Amount = Responses.Claim.Items.Sum(item => item.Price * item.Quantity) * 0.8m,
                 Currency = "GTQ",
                 DocumentDate = DateTime.Now,
                 DocumentNumber = "12345"
