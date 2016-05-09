@@ -31,8 +31,8 @@ namespace OsiguSDK.SpecificationTests.Settlements.Create
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Print Settlement", "\tIn order to print a settlement\r\n\tI want to validate the file created\r\n\tAnd the s" +
-                    "ettlement status", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Print Settlement", "\tIn order to print a settlement\r\n\tI want to validate the creation file\r\n\tAnd the " +
+                    "settlement status", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -65,20 +65,21 @@ namespace OsiguSDK.SpecificationTests.Settlements.Create
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Print a Settlement")]
-        public virtual void PrintASettlement()
+        [NUnit.Framework.DescriptionAttribute("Print a Insurer Settlement")]
+        public virtual void PrintAInsurerSettlement()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Print a Settlement", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Print a Insurer Settlement", ((string[])(null)));
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 7
- testRunner.Given("I have entered 50 into the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have the settlement client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.And("I have entered 70 into the calculator", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I have \'<SettlementType>\' settlement with <NumberOfClaims> claims with amount \'<C" +
+                    "laimAmount>\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
- testRunner.When("I press add", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I make the request to the list all settlements endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 10
- testRunner.Then("the result should be 120 on the screen", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("result should be ok", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

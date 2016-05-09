@@ -1,10 +1,10 @@
 ﻿Feature: Print Settlement
 	In order to print a settlement
-	I want to validate the file created
+	I want to validate the creation file
 	And the settlement status
 
-Scenario: Print a Settlement
-	Given I have entered 50 into the calculator
-	And I have entered 70 into the calculator
-	When I press add
-	Then the result should be 120 on the screen
+Scenario: Print a Insurer Settlement
+	Given I have the settlement client
+	And I have '<SettlementType>' settlement with <NumberOfClaims> claims with amount '<ClaimAmount>' 
+	When I make the request to the list all settlements endpoint
+	Then result should be ok

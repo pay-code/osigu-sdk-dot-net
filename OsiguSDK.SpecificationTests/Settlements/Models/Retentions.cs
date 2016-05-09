@@ -15,5 +15,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Models
         public DateTime CreatedAt { get; set; }
         [JsonProperty(PropertyName = "updated_at")]
         public DateTime UpdatedAt { get; set; }
+        [JsonProperty(PropertyName = "name")]
+        public string Name { get; set; }
     }
 }

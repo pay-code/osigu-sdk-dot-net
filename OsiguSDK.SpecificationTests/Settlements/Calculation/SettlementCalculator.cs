@@ -53,7 +53,8 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
             {
                 Amount = Math.Round(totalNormalCommision - normalTaxeableAmount,4),
                 Percentage = Iva,
-                CreatedAt = DateTime.Now
+                CreatedAt = DateTime.Now,
+                Name = "IVA"
             });
 
             if (SettlementType == SettlementType.Cashout)
@@ -62,7 +63,8 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
                 {
                     Amount = Math.Round(totalCashoutCommision - cashoutTaxeableAmount,4),
                     Percentage = Iva,
-                    CreatedAt = DateTime.Now
+                    CreatedAt = DateTime.Now,
+                    Name = "IVA"
                 });
             }
 
@@ -110,7 +112,8 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
             {
                 Amount = Math.Round(DataRetentions.Sum(x => x.IvaRetention),4),
                 Percentage = IvaRetention,
-                CreatedAt = DateTime.Now
+                CreatedAt = DateTime.Now,
+                Name = "IVA Retenido"
             });
 
             var totalRetentionAmount = DataRetentions.Sum(x => x.RetentionBefore30000) +
@@ -122,7 +125,8 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
                 {
                     Amount = Math.Round(totalRetentionAmount,4),
                     Percentage = IvaRetention,
-                    CreatedAt = DateTime.Now
+                    CreatedAt = DateTime.Now,
+                    Name = "IVA Retenido"
                 });
             }
 

@@ -137,6 +137,7 @@ namespace OsiguSDK.SpecificationTests.Tools
                     Invoice = Responses.Invoice
                 });
 
+                Responses.Claim.Invoice = Responses.Invoice;
                 Console.WriteLine("Claim was returned");
                 return Responses.Claim;
             }
@@ -247,7 +248,7 @@ namespace OsiguSDK.SpecificationTests.Tools
         {
             Responses.Invoice = new Invoice
             {
-                Amount = Responses.Claim.Items.Sum(item => item.Price*item.Quantity)*0.8m,
+                Amount = Responses.Claim.Items.Sum(item => item.Price*item.Quantity) * 0.8m,
                 Currency = "GTQ",
                 DocumentDate = DateTime.UtcNow,
                 DocumentNumber = "12345"
