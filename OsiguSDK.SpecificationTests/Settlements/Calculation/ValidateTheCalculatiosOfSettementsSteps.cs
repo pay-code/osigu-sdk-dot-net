@@ -17,6 +17,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
     {
         public ISettlementCalculator SettlementCalculator { get; set; }
 
+        //Given I have the settlement client
         [Given(@"I have (.*) claims with amount '(.*)'")]
         public void GivenIHaveClaimsWithAmount(int numberOfClaimsToCreate, string claimAmountRange)
         {

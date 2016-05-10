@@ -66,19 +66,24 @@ namespace OsiguSDK.SpecificationTests.Settlements.Create
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Print a Insurer Settlement")]
-        public virtual void PrintAInsurerSettlement()
+        [NUnit.Framework.TestCaseAttribute("1", "1", "LESS_THAN_2800", "Cashout", "pdf", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("2", "1", "BETWEEN_2800_AND_33600", "Normal", "xls", new string[0])]
+        public virtual void PrintAInsurerSettlement(string testId, string numberOfClaims, string claimAmount, string settlementType, string format, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Print a Insurer Settlement", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Print a Insurer Settlement", exampleTags);
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 7
  testRunner.Given("I have the settlement client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.And("I have \'<SettlementType>\' settlement with <NumberOfClaims> claims with amount \'<C" +
-                    "laimAmount>\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I have \'{0}\' settlement with {1} claims with amount \'{2}\'", settlementType, numberOfClaims, claimAmount), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
- testRunner.When("I make the request to the list all settlements endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And(string.Format("I specify a valid format \'{0}\' for to print", format), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
+ testRunner.And("I have the request data for print a settlement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 11
+ testRunner.When("I make the request to print the insurer settlement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 12
  testRunner.Then("result should be ok", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

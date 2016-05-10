@@ -33,5 +33,7 @@ namespace OsiguSDK.SpecificationTests.Tools
         public static bool EmptyBodyRequest { get; set; }
 
         public static DocumentRequest DocumentRequest { get; set; }
+        public static string SettlementFormatPrint { get; set; }
+        public static PrintSettlementRequest PrintSettlementRequest { get; set; }
     }
 }

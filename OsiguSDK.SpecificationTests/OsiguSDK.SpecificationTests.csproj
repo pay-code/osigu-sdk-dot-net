@@ -199,6 +199,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PrintSettlement.feature</DependentUpon>
     </Compile>
+    <Compile Include="Settlements\Create\PrintSettlementSteps.cs" />
+    <Compile Include="Settlements\Models\PrintSettlementRequest.cs" />
+    <Compile Include="Settlements\Models\PrintSettlementResponse.cs" />
     <Compile Include="Tools\ClaimTools.cs" />
     <Compile Include="Tools\ConfigurationClients.cs" />
     <Compile Include="Tools\ConstantElements.cs" />
