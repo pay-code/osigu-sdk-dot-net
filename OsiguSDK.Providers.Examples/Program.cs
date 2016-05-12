@@ -1,5 +1,8 @@
-﻿using OsiguSDK.Core.Config;
+﻿using System.Collections.Generic;
+using OsiguSDK.Core.Config;
 using OsiguSDK.Providers.Clients;
+using OsiguSDK.Providers.Models;
+using OsiguSDK.Providers.Models.Requests;
 
 namespace OsiguSDK.Providers.Examples
 {
@@ -12,11 +15,40 @@ namespace OsiguSDK.Providers.Examples
 
 
             //GET A SINGLE PRE-AUTHORIZATION
-            var authResult = _client.Authorizations.GetSingleAuthorization("GT-8KTA-ledu");
+            var testAuth = "123"
+            var authResult = _client.Authorizations.GetSingleAuthorization(testAuth);
             
 
-            //GET 
+            //CREATING A CLAIM
 
+            var claim = new CreateClaimRequest()
+            {
+                Pin = "123",
+                Items = new List<CreateClaimRequest.Item>()
+                {
+                    new CreateClaimRequest.Item()
+                    {
+                        ProductId = authResult.Items[0].ProductId,
+                        Quantity = authResult.Items[0].Quantity,
+                        Price = 100
+                    }
+                }
+            };
+
+
+            var claimResult = _client.Claims.CreateClaim(testAuth,claim);
+
+
+            //GET THE STATUS OF THE QUEUE
+            QueueStatus status = _client.Queue.CheckQueueStatus(claimResult);
+
+            while (string.IsNullOrEmpty(status.ResourceId))
+            {
+                status = _client.Queue.CheckQueueStatus(claimResult);
+            }
+            
+
+            
 
 
 
