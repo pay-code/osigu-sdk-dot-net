@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
 using OsiguSDK.Core.Config;
 using OsiguSDK.Providers.Clients;
 using OsiguSDK.Providers.Models;
@@ -15,12 +18,13 @@ namespace OsiguSDK.Providers.Examples
 
 
             //GET A SINGLE PRE-AUTHORIZATION
+            //http://docs.paycode.apiary.io/#reference/providers/authorization/getting-an-authorization
             var testAuth = "123";
             var authResult = _client.Authorizations.GetSingleAuthorization(testAuth);
-            
+
 
             //CREATING A CLAIM
-
+            //http://docs.paycode.apiary.io/#reference/providers/claims/creating-a-claim
             var claim = new CreateClaimRequest()
             {
                 Pin = "123",
@@ -34,23 +38,38 @@ namespace OsiguSDK.Providers.Examples
                     }
                 }
             };
-
-
+            
             var claimResult = _client.Claims.CreateClaim(testAuth,claim);
 
 
-            //GET THE STATUS OF THE QUEUE
-            var status = _client.Queue.CheckQueueStatus(claimResult);
+            //CHECK THE CLAIMS STATUS
+            //http://docs.paycode.apiary.io/#reference/providers/claims/check-claim-status
 
-            while (string.IsNullOrEmpty(status.ResourceId))
+            var queueStatus = _client.Queue.CheckQueueStatus(claimResult);
+            
+            while (string.IsNullOrEmpty(queueStatus.ResourceId))
             {
-                status = _client.Queue.CheckQueueStatus(claimResult);
+                queueStatus = _client.Queue.CheckQueueStatus(claimResult);
             }
-            
-
-            
 
 
+            //COMPLETE THE TRANSACTION
+            //http://docs.paycode.apiary.io/#reference/providers/claims/completing-the-claim-transaction
+            var completeRequest = new CompleteClaimRequest()
+            {
+                Invoice = new Invoice()
+                {
+                    DocumentNumber = "A-1 3423443",
+                    DocumentDate = DateTime.Now,
+                    Currency = "GTQ",
+                    Amount = claim.Items.Sum(x => x.Quantity*x.Price)
+                }
+            };
+
+            var completeRequestResult = _client.Claims.CompleteClaimTransaction(queueStatus.ResourceId, completeRequest);
+
+            Console.WriteLine("PRE-AUTHORIZATION COMPLETE");
+            Console.WriteLine(completeRequestResult.Id);
 
         }
     }
