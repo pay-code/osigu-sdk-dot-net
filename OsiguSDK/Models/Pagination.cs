@@ -44,5 +44,11 @@ namespace OsiguSDK.Core.Models
         /// </summary>
         [JsonProperty(PropertyName = "content")]
         public List<T> Content { get; set; }
+
+        /// <summary>
+        /// Links for navigate between pages
+        /// </summary>
+        [JsonProperty(PropertyName = "_links")]
+        public PaginationLinks Links { get; set; }
     }
 }

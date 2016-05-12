@@ -15,7 +15,7 @@ namespace OsiguSDK.Providers.Examples
 
 
             //GET A SINGLE PRE-AUTHORIZATION
-            var testAuth = "123"
+            var testAuth = "123";
             var authResult = _client.Authorizations.GetSingleAuthorization(testAuth);
             
 
@@ -40,7 +40,7 @@ namespace OsiguSDK.Providers.Examples
 
 
             //GET THE STATUS OF THE QUEUE
-            QueueStatus status = _client.Queue.CheckQueueStatus(claimResult);
+            var status = _client.Queue.CheckQueueStatus(claimResult);
 
             while (string.IsNullOrEmpty(status.ResourceId))
             {

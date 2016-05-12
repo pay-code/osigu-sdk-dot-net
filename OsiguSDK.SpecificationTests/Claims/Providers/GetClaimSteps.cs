@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using FluentAssertions;
 using OsiguSDK.Core.Exceptions;
 using OsiguSDK.SpecificationTests.Tools;
@@ -56,16 +57,28 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         {
             Responses.Claim.Id.Should().Be(int.Parse(Responses.QueueStatus.ResourceId));
             Responses.Claim.Copayment.Should().Be(0);
+            Responses.Claim.VerificationCode.Should().NotBeNullOrEmpty();
+            Responses.Claim.Status.Should().BeNull();
 
             Responses.Claim.Items.Count.Should().Be(Requests.CreateClaimRequest.Items.Count);
 
-            for (var i = 0; i < Responses.Claim.Items.Count; i++)
+            var claimItems = Responses.Claim.Items.Select(x => new
             {
-                Responses.Claim.Items[i].ProductId.Should().Be(Requests.CreateClaimRequest.Items[i].ProductId);
-                Responses.Claim.Items[i].Quantity.Should().Be(Requests.CreateClaimRequest.Items[i].Quantity);
-                Responses.Claim.Items[i].SubstituteProductId.Should().Be(Requests.CreateClaimRequest.Items[i].SubstituteProductId);
-            }            
-        }
+                x.ProductId,
+                x.Quantity,
+                x.SubstituteProductId
+            });
 
+            var expectedItems = Requests.CreateClaimRequest.Items.Select(x => new
+            {
+                x.ProductId,
+                x.Quantity,
+                x.SubstituteProductId
+            });
+
+            claimItems.ShouldAllBeEquivalentTo(expectedItems);
+            
+            Responses.Claim.TotalCoInsurance.Should().Be(0.20m*Responses.Claim.Items.Sum(x => x.Price*x.Quantity));
+        }
     }
 }

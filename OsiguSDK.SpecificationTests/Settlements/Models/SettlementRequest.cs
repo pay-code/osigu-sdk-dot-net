@@ -4,6 +4,8 @@ using Newtonsoft.Json;
 
 namespace OsiguSDK.SpecificationTests.Settlements.Models
 {
+   
+
     public class SettlementRequest
     {
         /// <summary>
@@ -23,6 +25,12 @@ namespace OsiguSDK.SpecificationTests.Settlements.Models
         /// </summary>
         [JsonProperty(PropertyName = "insurer_id")]
         public string InsurerId { get; set; }
+
+        /// <summary>
+        /// Id of insurer related to the settlement
+        /// </summary>
+        [JsonProperty(PropertyName = "lote")]
+        public string Lote { get; set; }
 
         /// <summary>
         /// Id of provider related to the settlement

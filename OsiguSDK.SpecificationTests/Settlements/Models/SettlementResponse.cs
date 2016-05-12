@@ -40,6 +40,9 @@ namespace OsiguSDK.SpecificationTests.Settlements.Models
         [JsonProperty(PropertyName = "provider_id")]
         public int ProviderId { get; set; }
 
+        [JsonProperty(PropertyName = "provider_company_id")]
+       public int ProviderCompanyId { get; set; }
+
         [JsonProperty(PropertyName = "created_at")]
         public DateTime CreatedAt { get; set; }
 
@@ -56,13 +59,10 @@ namespace OsiguSDK.SpecificationTests.Settlements.Models
         public List<Commission> Comissions { get; set; }
 
         [JsonProperty(PropertyName = "retentions")]
-        public List<Retentions> TaxRetentions { get; set; }
+        public List<Retentions> Retentions { get; set; }
 
         [JsonProperty(PropertyName = "_links")]
         public SettlemetSelfLinksResponse Links { get; set; }
-
-        /*[JsonProperty(PropertyName = "provider_company_id")]
-       public int ProviderCompanyId { get; set; }*/
 
         /* [JsonProperty(PropertyName = "mailed_at")]
          public DateTime MailedAt { get; set; }*/

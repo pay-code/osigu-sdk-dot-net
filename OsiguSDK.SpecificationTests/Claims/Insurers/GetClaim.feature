@@ -57,6 +57,8 @@ Scenario: Successfully Get Claim
 	And I request the create a claim endpoint
 	And I delay the check status request
 	And I request the check claim status endpoint
+	And I request the get a claim endpoint
+	When I request the complete transaction request
 	And I request the get a claim endpoint as insurer
 	Then the result should be ok 
 	And the insurer claim should not be null
