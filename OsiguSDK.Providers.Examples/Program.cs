@@ -19,7 +19,7 @@ namespace OsiguSDK.Providers.Examples
 
             //GET A SINGLE PRE-AUTHORIZATION
             //http://docs.paycode.apiary.io/#reference/providers/authorization/getting-an-authorization
-            var testAuth = "123";
+            var testAuth = "US-qpdr-ehwa";
             var authResult = _client.Authorizations.GetSingleAuthorization(testAuth);
 
 
@@ -27,7 +27,7 @@ namespace OsiguSDK.Providers.Examples
             //http://docs.paycode.apiary.io/#reference/providers/claims/creating-a-claim
             var claim = new CreateClaimRequest()
             {
-                Pin = "123",
+                Pin = "46645",
                 Items = new List<CreateClaimRequest.Item>()
                 {
                     new CreateClaimRequest.Item()
