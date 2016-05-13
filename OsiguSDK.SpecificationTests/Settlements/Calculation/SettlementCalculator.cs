@@ -46,13 +46,13 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
 
             var totalNormalCommision = DataRetentions.Sum(x => x.NormalCommission);
             var totalCashoutCommision = DataRetentions.Sum(x => x.CashoutCommission);
-            var normalTaxeableAmount = Math.Round(totalNormalCommision/1.12m,4);
-            var cashoutTaxeableAmount = Math.Round(totalCashoutCommision/1.12m,4);
+            var normalTaxeableAmount = Math.Round(totalNormalCommision/1.12m,2);
+            var cashoutTaxeableAmount = Math.Round(totalCashoutCommision/1.12m,2);
 
             taxes.Add(new Taxes
             {
-                Amount = Math.Round(totalNormalCommision - normalTaxeableAmount,4),
-                Percentage = Iva,
+                Amount = Math.Round(totalNormalCommision - normalTaxeableAmount,2),
+                Percentage = Iva*100,
                 CreatedAt = DateTime.Now,
                 Name = "IVA"
             });
@@ -61,8 +61,8 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
             {
                 taxes.Add(new Taxes
                 {
-                    Amount = Math.Round(totalCashoutCommision - cashoutTaxeableAmount,4),
-                    Percentage = Iva,
+                    Amount = Math.Round(totalCashoutCommision - cashoutTaxeableAmount,2),
+                    Percentage = Iva*100,
                     CreatedAt = DateTime.Now,
                     Name = "IVA"
                 });
@@ -77,7 +77,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
             {
                 new Commission
                 {
-                    Amount = Math.Round(DataRetentions.Sum(x => x.NormalCommission),4),
+                    Amount = Math.Round(DataRetentions.Sum(x => x.NormalCommission),2),
                     ComissionType = CommissionType.NORMAL,
                     //TODO: Percentage should be return raw
                     Percentage = PercentageNormalCommission*100,
@@ -89,7 +89,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
             {
                 commissions.Add(new Commission
                 {
-                    Amount = Math.Round(DataRetentions.Sum(x => x.CashoutCommission),4),
+                    Amount = Math.Round(DataRetentions.Sum(x => x.CashoutCommission),2),
                     ComissionType = CommissionType.FAST_PAYMENT,
                     //TODO: Percentage should be return raw
                     Percentage = PercentageCashoutCommission*100,
@@ -110,7 +110,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
 
             retentions.Add(new Retentions
             {
-                Amount = Math.Round(DataRetentions.Sum(x => x.IvaRetention),4),
+                Amount = Math.Round(DataRetentions.Sum(x => x.IvaRetention),2),
                 Percentage = IvaRetention,
                 CreatedAt = DateTime.Now,
                 Name = "IVA Retenido"
@@ -123,7 +123,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
             {
                 retentions.Add(new Retentions
                 {
-                    Amount = Math.Round(totalRetentionAmount,4),
+                    Amount = Math.Round(totalRetentionAmount,2),
                     Percentage = IvaRetention,
                     CreatedAt = DateTime.Now,
                     Name = "IVA Retenido"
@@ -142,15 +142,15 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
                 ClaimAmount = claim.Invoice.Amount
             }))
             {
-                dataRetention.NormalCommission = Math.Round(dataRetention.ClaimAmount * PercentageNormalCommission,4);
-                dataRetention.CashoutCommission = Math.Round(dataRetention.ClaimAmount * PercentageCashoutCommission,4);
-                dataRetention.TaxebleAmount = Math.Round(dataRetention.ClaimAmount / (1 + Iva),4);
-                dataRetention.Taxes = Math.Round(dataRetention.ClaimAmount - dataRetention.TaxebleAmount,4);
-                dataRetention.IvaRetention = IsAgentRetention ? 0 : Math.Round(dataRetention.Taxes * IvaRetention,4);
-                dataRetention.RetentionBefore30000 = IsAgentRetention ? 0 : Math.Round(GetRetentionBefore30000(dataRetention.TaxebleAmount),4);
+                dataRetention.NormalCommission = Math.Round(dataRetention.ClaimAmount * PercentageNormalCommission,2);
+                dataRetention.CashoutCommission = Math.Round(dataRetention.ClaimAmount * PercentageCashoutCommission,2);
+                dataRetention.TaxebleAmount = Math.Round(dataRetention.ClaimAmount / (1 + Iva),2);
+                dataRetention.Taxes = Math.Round(dataRetention.ClaimAmount - dataRetention.TaxebleAmount,2);
+                dataRetention.IvaRetention = IsAgentRetention ? 0 : Math.Round(dataRetention.Taxes * IvaRetention,2);
+                dataRetention.RetentionBefore30000 = IsAgentRetention ? 0 : Math.Round(GetRetentionBefore30000(dataRetention.TaxebleAmount),2);
                 dataRetention.RetentionAfter30000 = IsAgentRetention
                     ? 0
-                    : Math.Round(GetRetentionAfter30000(dataRetention.RetentionBefore30000, dataRetention.TaxebleAmount),4);
+                    : Math.Round(GetRetentionAfter30000(dataRetention.RetentionBefore30000, dataRetention.TaxebleAmount),2);
 
                 DataRetentions.Add(dataRetention);
             }

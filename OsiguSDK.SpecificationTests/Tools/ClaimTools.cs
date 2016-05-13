@@ -76,7 +76,7 @@ namespace OsiguSDK.SpecificationTests.Tools
             get
             {
                 if (ClaimAmountRange == ClaimAmountRange.EXACT_AMOUNT)
-                    return ExactAmount/3;
+                    return Math.Round(ExactAmount /3,2);
 
                 var priceGenerator = new RandomGenerator();
 
@@ -248,7 +248,7 @@ namespace OsiguSDK.SpecificationTests.Tools
         {
             Responses.Invoice = new Invoice
             {
-                Amount = Responses.Claim.Items.Sum(item => item.Price*item.Quantity) * 0.8m,
+                Amount = Math.Round(Responses.Claim.Items.Sum(item => item.Price*item.Quantity) * 0.8m, 2),
                 Currency = "GTQ",
                 DocumentDate = DateTime.UtcNow,
                 DocumentNumber = "12345"
