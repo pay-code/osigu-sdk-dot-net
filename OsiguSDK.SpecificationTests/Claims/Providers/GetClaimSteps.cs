@@ -28,6 +28,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         [When(@"I delay the check status request")]
         public void WhenIDelayTheCheckStatusRequest()
         {
+            Responses.QueueId.Should().NotBeNullOrEmpty("The claim should've created correctly");
             Thread.Sleep(10000);
         }
 
@@ -61,6 +62,8 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             Responses.Claim.Status.Should().BeNull();
 
             Responses.Claim.Items.Count.Should().Be(Requests.CreateClaimRequest.Items.Count);
+            Responses.Claim.ProviderBranchId.Should().Be(ConstantElements.ProviderBranchId);
+            Responses.Claim.ProviderBranchName.Should().Be(ConstantElements.ProviderBranchName);
 
             var claimItems = Responses.Claim.Items.Select(x => new
             {

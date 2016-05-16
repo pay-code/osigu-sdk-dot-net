@@ -43,6 +43,18 @@ namespace OsiguSDK.Providers.Models
         public string Status { get; set; }
 
         /// <summary>
+        /// Provider branch Id
+        /// </summary>
+        [JsonProperty(PropertyName = "provider_branch_id")]
+        public int ProviderBranchId { get; set; }
+
+        /// <summary>
+        /// Provider branch name
+        /// </summary>
+        [JsonProperty(PropertyName = "provider_branch_name")]
+        public string ProviderBranchName { get; set; }
+
+        /// <summary>
         /// Date and time when the resource was created
         /// </summary>
         [JsonProperty(PropertyName = "created_at")]

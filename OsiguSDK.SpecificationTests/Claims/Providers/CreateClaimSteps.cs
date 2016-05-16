@@ -52,6 +52,13 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
                 ConstantElements.ProviderSubstituteProducts[ConstantElements.ProviderSubstituteProducts.Length - 1];
         }
 
+        private static void GenerateItemListWithSameSubstitute()
+        {
+            Requests.CreateClaimRequest.Items = new List<CreateClaimRequest.Item>();
+            FillItemList();
+            Requests.CreateClaimRequest.Items[0].SubstituteProductId = Requests.CreateClaimRequest.Items[0].ProductId;
+        }
+
         private static void FillItemList()
         {
             var r = new Random();
@@ -224,7 +231,14 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             GenerateItemListWithFirstSubstitute();
         }
 
-
+        [When(@"the create a claim request with substitute products with the same id")]
+        public void WhenTheCreateAClaimRequestWithSubstituteProductsWithTheSameId()
+        {
+            Requests.CreateClaimRequest = TestClients.Fixture.Create<CreateClaimRequest>();
+            Requests.CreateClaimRequest.Pin = Responses.Authorization.Pin;
+            GenerateItemListWithSameSubstitute();
+        }
+        
         [Then(@"the result should be unprossesable entity")]
         public void ThenTheResultShouldBeUnprossesableEntity()
         {
