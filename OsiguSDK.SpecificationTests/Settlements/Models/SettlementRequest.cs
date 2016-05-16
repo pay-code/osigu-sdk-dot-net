@@ -27,6 +27,12 @@ namespace OsiguSDK.SpecificationTests.Settlements.Models
         public string InsurerId { get; set; }
 
         /// <summary>
+        /// Id of insurer related to the settlement
+        /// </summary>
+        [JsonProperty(PropertyName = "lote")]
+        public string Lote { get; set; }
+
+        /// <summary>
         /// Id of provider related to the settlement
         /// </summary>
         [JsonProperty(PropertyName = "provider_id")]

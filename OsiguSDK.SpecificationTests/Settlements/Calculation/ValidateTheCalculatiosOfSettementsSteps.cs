@@ -17,6 +17,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
     {
         public ISettlementCalculator SettlementCalculator { get; set; }
 
+        //Given I have the settlement client
         [Given(@"I have (.*) claims with amount '(.*)'")]
         public void GivenIHaveClaimsWithAmount(int numberOfClaimsToCreate, string claimAmountRange)
         {
@@ -52,6 +53,9 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
         [Given(@"I have the request data for a new settlement")]
         public void GivenIHaveTheRequestDataForANewSettlement()
         {
+            Requests.InitialDate = DateTime.Now.AddMinutes(-1);
+            Requests.EndDate = DateTime.Now;
+
             var claimsIds = CurrentData.Claims.Select(claim => new SettlementItemRequest
             {
                 ClaimId = claim.Id.ToString()
@@ -117,8 +121,8 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
 
             //Responses.Settlement.TotalDiscount.Should().Be(SettlementCalculator.GetTotalDiscount());
 
-            /*Responses.Settlement.Taxes.ShouldAllBeEquivalentTo(SettlementCalculator.GetTaxes(),
-                x => x.Excluding(y => y.Id).Excluding(y => y.CreatedAt));*/
+            Responses.Settlement.Taxes.ShouldAllBeEquivalentTo(SettlementCalculator.GetTaxes(),
+                x => x.Excluding(y => y.Id).Excluding(y => y.CreatedAt));
 
             var utcNow = DateTime.UtcNow;
             foreach (var tax in Responses.Settlement.Taxes)
@@ -136,8 +140,8 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
                 commission.CreatedAt.Should().BeCloseTo(utcNow, 30000);
             }
             
-            /*Responses.Settlement.Retentions.ShouldAllBeEquivalentTo(SettlementCalculator.GetRetentions(),
-                x=>x.Excluding(y=>y.Id).Excluding(y=>y.CreatedAt));*/
+            Responses.Settlement.Retentions.ShouldAllBeEquivalentTo(SettlementCalculator.GetRetentions(),
+                x=>x.Excluding(y=>y.Id).Excluding(y=>y.CreatedAt));
 
             foreach (var retention in Responses.Settlement.Retentions)
             {
