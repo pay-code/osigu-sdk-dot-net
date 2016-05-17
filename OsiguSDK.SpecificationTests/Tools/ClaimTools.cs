@@ -179,9 +179,9 @@ namespace OsiguSDK.SpecificationTests.Tools
 
         public List<Claim> CreateManyRandomClaims(int numberOfClaims, ClaimAmountRange amountRange = ClaimAmountRange.LESS_THAN_2800, decimal exactAmount = 0)
         {
-            var claims = new List<Providers.Models.Claim>();
+            var claims = new List<Claim>();
 
-            for (int i = 0; i < numberOfClaims; i++)
+            for (var i = 0; i < numberOfClaims; i++)
             {
                 var newClaim = CreateRandomClaim(amountRange, exactAmount);
                 claims.Add(newClaim);

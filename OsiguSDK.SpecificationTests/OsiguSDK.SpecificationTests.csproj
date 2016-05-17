@@ -202,6 +202,12 @@
     <Compile Include="Settlements\Create\PrintSettlementSteps.cs" />
     <Compile Include="Settlements\Models\PrintSettlementRequest.cs" />
     <Compile Include="Settlements\Models\PrintSettlementResponse.cs" />
+    <Compile Include="Settlements\Tests\CreateMultipleClaimsInDifferentProviders.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateMultipleClaimsInDifferentProviders.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Settlements\Tests\CreateMultipleClaimsInDifferentProvidersSteps.cs" />
     <Compile Include="Tools\ClaimTools.cs" />
     <Compile Include="Tools\ConfigurationClients.cs" />
     <Compile Include="Tools\ConstantElements.cs" />
@@ -451,6 +457,10 @@
     <None Include="Settlements\Create\PrintSettlement.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>PrintSettlement.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Settlements\Tests\CreateMultipleClaimsInDifferentProviders.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreateMultipleClaimsInDifferentProviders.feature.cs</LastGenOutput>
     </None>
     <None Include="Settlements\Tests\GetListAllAccountingPendingSettlements.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
