@@ -17,7 +17,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             {
                 Amount = Responses.Claim.Items.Sum(item => item.Price * item.Quantity) * 0.8m,
                 Currency = "GTQ",
-                DocumentDate = DateTime.Now,
+                DocumentDate = DateTime.UtcNow,
                 DocumentNumber = "12345"
             };
         }

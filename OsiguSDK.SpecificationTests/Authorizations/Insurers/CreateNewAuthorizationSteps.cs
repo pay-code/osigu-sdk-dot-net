@@ -61,7 +61,6 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
             {
                 Requests.SubmitAuthorizationRequest.Items[pos].ProductId = Provider1Products.InsurerAssociatedProductId[pos];
             }
-            Responses.Authorization = new Authorization {Id = "1"};
         }
 
         [Given(@"I have the request data for a new authorization with an unreferenced product")]

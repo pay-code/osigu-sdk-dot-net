@@ -28,6 +28,17 @@ namespace OsiguSDK.SpecificationTests.Tools
                 : 3;
 
 
+        public static readonly int ProviderBranchId = ConfigurationManager.AppSettings["TestingEnvironment"] == "DEV"
+            ? int.Parse(ConfigurationManager.AppSettings["ProviderBranchIdDev"])
+            : ConfigurationManager.AppSettings["TestingEnvironment"] == "PROD"
+                ? int.Parse(ConfigurationManager.AppSettings["ProviderBranchIdProd"])
+                : int.Parse(ConfigurationManager.AppSettings["ProviderBranchIdSbox"]);
+
+        public static readonly string ProviderBranchName = ConfigurationManager.AppSettings["TestingEnvironment"] == "DEV"
+            ? ConfigurationManager.AppSettings["ProviderBranchNameDev"]
+            : ConfigurationManager.AppSettings["TestingEnvironment"] == "PROD"
+                ? ConfigurationManager.AppSettings["ProviderBranchNameProd"]
+                : ConfigurationManager.AppSettings["ProviderBranchNameSbox"];
     }
 
 }

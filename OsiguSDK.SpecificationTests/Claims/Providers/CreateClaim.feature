@@ -125,3 +125,13 @@ Scenario: Create Claim Successfully With Substitute Products With Different Ingr
 	And the create a claim request with substitute products with differente ingredients
 	And I request the create a claim endpoint
 	Then the result should be unprossesable entity
+
+Scenario: Create Claim Successfully With Substitute Product With the same Id
+	Given I have the provider claims client
+	And I have the insurer authorizations client
+	And I have the request data for a new authorization
+	When I make the new authorization request to the endpoint
+	And the create a claim request with substitute products with the same id
+	And I request the create a claim endpoint
+	Then the result should be ok
+

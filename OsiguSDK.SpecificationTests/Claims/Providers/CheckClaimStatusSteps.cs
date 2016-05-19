@@ -26,7 +26,6 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         [When(@"I request the check claim status endpoint")]
         public void WhenIRequestTheCheckClaimStatusEndpoint()
         {
-            Responses.QueueId.Should().NotBeNullOrEmpty("The claim should've created correctly");
             try
             {
                 Responses.QueueStatus = TestClients.QueueProviderClient.CheckQueueStatus(Responses.QueueId);
