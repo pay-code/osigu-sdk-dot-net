@@ -14,6 +14,6 @@ Scenario Outline: Create Claim Of A Provider
 
 Scenarios: 
 	| TestId | Slug | Token | ClaimQuantity | ProductIds |
-	| 1      | dev1 | dev1  | 5             | 1,2,3      |
+	| 1      | dev1 | dev1  | 15            | 1,2,3      |
 	| 2      | dev2 | dev2  | 3             | 1,2,3      |
 	| 3      | dev3 | dev3  | 4             | 1,2,3      |
