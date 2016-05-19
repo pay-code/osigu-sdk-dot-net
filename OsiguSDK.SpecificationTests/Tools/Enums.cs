@@ -27,4 +27,11 @@
         SENT,
         ACCOUNTED
     }
+
+    public enum FormatSettlementPrint
+    {
+        PDF,
+        XLS
+    }
+
 }

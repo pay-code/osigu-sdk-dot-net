@@ -16,8 +16,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
     public class ValidateTheCalculatiosOfSettementsSteps
     {
         public ISettlementCalculator SettlementCalculator { get; set; }
-
-        //Given I have the settlement client
+        
         [Given(@"I have (.*) claims with amount '(.*)'")]
         public void GivenIHaveClaimsWithAmount(int numberOfClaimsToCreate, string claimAmountRange)
         {
@@ -32,8 +31,8 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
             Console.WriteLine("Claims details");
             Console.WriteLine(CurrentData.Claims.Select(x => new { x.Id, x.Invoice.Amount }).Dump());
 
-        }
 
+        }
 
         [Given(@"I have entered a '(.*)'")]
         public void GivenIHaveEnteredA(string providerType)
@@ -82,7 +81,9 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
                 Requests.SettlementType = Utils.ParseEnum<SettlementType>(settlementType);
                 Responses.Settlement = TestClients.InternalRestClient.RequestToEndpoint<SettlementResponse>(Method.POST, "/" + settlementType.ToLower(), requestBody);
                 Responses.ErrorId = 201;
-                
+
+                SettlementTool.PrintSettlmentAsProvider(Responses.Settlement.Id, FormatSettlementPrint.PDF);
+
             }
             catch (RequestException exception)
             {
@@ -119,7 +120,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
 
             Responses.Settlement.TotalAmount.Should().Be(SettlementCalculator.GetTotalAmount());
 
-            //Responses.Settlement.TotalDiscount.Should().Be(SettlementCalculator.GetTotalDiscount());
+            Responses.Settlement.TotalDiscount.Should().Be(SettlementCalculator.GetTotalDiscount());
 
             Responses.Settlement.Taxes.ShouldAllBeEquivalentTo(SettlementCalculator.GetTaxes(),
                 x => x.Excluding(y => y.Id).Excluding(y => y.CreatedAt));
@@ -155,6 +156,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
         public void ThenTheResultShouldBeCreated()
         {
             Responses.ErrorId.Should().Be(201);
+
         }
 
     }

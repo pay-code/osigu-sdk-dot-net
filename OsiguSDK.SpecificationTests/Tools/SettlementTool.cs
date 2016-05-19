@@ -103,5 +103,11 @@ namespace OsiguSDK.SpecificationTests.Tools
 
             return claimTools.CreateManyRandomClaims(numberOfClaims, claimsAmountRange);
         }
+
+        public static void PrintSettlmentAsProvider(int settlementId, FormatSettlementPrint formatSettlementPrint)
+        {
+            TestClients.InternalRestClient.RequestToEndpoint(Method.PUT,
+                "/" + settlementId + "/print?format=" + formatSettlementPrint.ToString().ToLower());
+        }
     }
 }

@@ -13,6 +13,7 @@ using ServiceStack.Text;
 using System.Linq;
 using OsiguSDK.Providers.Models;
 using System.Diagnostics;
+using OsiguSDK.SpecificationTests.Tools.TestingProducts;
 
 
 namespace OsiguSDK.SpecificationTests.Tools
@@ -79,8 +80,7 @@ namespace OsiguSDK.SpecificationTests.Tools
                     return Math.Round(ExactAmount /3,2);
 
                 var priceGenerator = new RandomGenerator();
-
-                //TODO: Remove Round
+                
                 return Math.Round(priceGenerator.Next(MinValue, MaxValue), 2);
             }
         }
@@ -155,10 +155,9 @@ namespace OsiguSDK.SpecificationTests.Tools
             var stopwatch = new Stopwatch();
 
             Responses.QueueStatus = TestClients.QueueProviderClient.CheckQueueStatus(Responses.QueueId);
-            Responses.QueueStatus.ResourceId = null;
 
             stopwatch.Start();
-            while (Responses.QueueStatus.ResourceId == null || contSeconds > timeOutLimit)
+            while (Responses.QueueStatus.ResourceId == null && contSeconds <= timeOutLimit)
             {
                 contSeconds++;
                 Thread.Sleep(1000);
@@ -166,7 +165,7 @@ namespace OsiguSDK.SpecificationTests.Tools
             }
             stopwatch.Stop();
 
-            if (Responses.QueueStatus == null)
+            if (Responses.QueueStatus.ResourceId == null)
                 throw new Exception("The Timeout limit was exceeded when attempting get the claim with QueueId = " + Responses.QueueId + ". Timeout Limit setted = " + timeOutLimit + " seconds.");
 
             var claim = TestClients.ClaimsProviderClient.GetSingleClaim(Responses.QueueStatus.ResourceId);
@@ -209,7 +208,7 @@ namespace OsiguSDK.SpecificationTests.Tools
             CreateValidAuthorizationRequest();
             for (int pos = 0; pos < Requests.SubmitAuthorizationRequest.Items.Count; pos++)
             {
-                Requests.SubmitAuthorizationRequest.Items[pos].ProductId = ConstantElements.InsurerAssociatedProductId[pos];
+                Requests.SubmitAuthorizationRequest.Items[pos].ProductId = Provider1Products.InsurerAssociatedProductId[pos];
             }
             Responses.Authorization = new Insurers.Models.Authorization {Id = "1"};
         }
@@ -239,7 +238,7 @@ namespace OsiguSDK.SpecificationTests.Tools
             {
                 Requests.CreateClaimRequest.Items.Add(new CreateClaimRequest.Item
                 {
-                    Price = Price, ProductId = ConstantElements.ProviderAssociateProductId[i], Quantity = 1m
+                    Price = Price, ProductId = Provider1Products.ProviderAssociateProductId[i], Quantity = 1m
                 });
             }
         }

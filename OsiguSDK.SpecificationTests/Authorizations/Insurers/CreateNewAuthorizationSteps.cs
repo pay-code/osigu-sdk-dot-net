@@ -7,6 +7,7 @@ using OsiguSDK.Insurers.Clients;
 using OsiguSDK.Insurers.Models;
 using OsiguSDK.Insurers.Models.Requests;
 using OsiguSDK.SpecificationTests.Tools;
+using OsiguSDK.SpecificationTests.Tools.TestingProducts;
 using Ploeh.AutoFixture;
 using TechTalk.SpecFlow;
 
@@ -58,7 +59,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
            CreateValidAuthorizationRequest();
             for (int pos = 0; pos < Requests.SubmitAuthorizationRequest.Items.Count; pos++)
             {
-                Requests.SubmitAuthorizationRequest.Items[pos].ProductId = ConstantElements.InsurerAssociatedProductId[pos];
+                Requests.SubmitAuthorizationRequest.Items[pos].ProductId = Provider1Products.InsurerAssociatedProductId[pos];
             }
             Responses.Authorization = new Authorization {Id = "1"};
         }
@@ -85,7 +86,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
             CreateValidAuthorizationRequest();
             for (int pos = 0; pos < Requests.SubmitAuthorizationRequest.Items.Count; pos++)
             {
-                Requests.SubmitAuthorizationRequest.Items[pos].ProductId = ConstantElements.InsurerAssociatedProductId[0];
+                Requests.SubmitAuthorizationRequest.Items[pos].ProductId = Provider1Products.InsurerAssociatedProductId[0];
             }
         }
 
@@ -106,7 +107,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
           CreateValidAuthorizationRequest();
             for (int pos = 0; pos < Requests.SubmitAuthorizationRequest.Items.Count; pos++)
             {
-                Requests.SubmitAuthorizationRequest.Items[pos].ProductId = ConstantElements.InsurerAssociatedProductId[pos];
+                Requests.SubmitAuthorizationRequest.Items[pos].ProductId = Provider1Products.InsurerAssociatedProductId[pos];
             }
             
         }

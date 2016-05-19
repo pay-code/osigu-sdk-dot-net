@@ -4,6 +4,7 @@ using System.Linq;
 using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Providers.Models.Requests;
 using OsiguSDK.SpecificationTests.Tools;
+using OsiguSDK.SpecificationTests.Tools.TestingProducts;
 using TechTalk.SpecFlow;
 
 namespace OsiguSDK.SpecificationTests.Claims.Providers
@@ -23,7 +24,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
                     new CreateClaimRequest.Item
                     {
                         Price = r.Next(100, 10000)/100m,
-                        ProductId = !unexisting ? ConstantElements.ProviderAssociateProductId[(r.Next(0, 999)%3)] : "productId",
+                        ProductId = !unexisting ? Provider1Products.ProviderAssociateProductId[(r.Next(0, 999)%3)] : "productId",
                         Quantity = (r.Next(0, 1000)%10) + 1
                     }
                 }
