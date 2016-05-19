@@ -9,6 +9,7 @@ using System.Threading;
 using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Insurers.Models.Requests;
 using OsiguSDK.SpecificationTests.Tools;
+using OsiguSDK.SpecificationTests.Tools.TestingProducts;
 using Ploeh.AutoFixture;
 using TechTalk.SpecFlow;
 
@@ -34,7 +35,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Tests
                 Requests.CreateClaimRequest.Items.Add(new CreateClaimRequest.Item
                 {
                     Price = Random.Next(500, 20000) / 100m,
-                    ProductId = ConstantElements.ProviderAssociateProductId[i],
+                    ProductId = Provider1Products.ProviderAssociateProductId[i],
                     Quantity = (Random.Next(0, 1000) % 10) + 1
                 });
             }
@@ -54,7 +55,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Tests
 
             for (var pos = 0; pos < Requests.SubmitAuthorizationRequest.Items.Count; pos++)
             {
-                Requests.SubmitAuthorizationRequest.Items[pos].ProductId = ConstantElements.InsurerAssociatedProductId[pos];
+                Requests.SubmitAuthorizationRequest.Items[pos].ProductId = Provider1Products.InsurerAssociatedProductId[pos];
             }
 
             Insurers.Models.Authorization authorization;
