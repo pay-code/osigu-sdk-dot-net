@@ -9,6 +9,7 @@ using System.Threading;
 using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Insurers.Models.Requests;
 using OsiguSDK.SpecificationTests.Tools;
+using OsiguSDK.SpecificationTests.Tools.TestingProducts;
 using Ploeh.AutoFixture;
 using TechTalk.SpecFlow;
 using ServiceStack.Text;
@@ -39,9 +40,14 @@ namespace OsiguSDK.SpecificationTests.Settlements.Tests
             submitAuthorizationRequest.Policy.PolicyHolder.Id = ConstantElements.RPNTestPolicyNumber;
             submitAuthorizationRequest.Policy.PolicyHolder.DateOfBirth = ConstantElements.RPNTestPolicyBirthday;
 
+            var provider = int.Parse(ScenarioValues["Provider"]);
             for (var pos = 0; pos < submitAuthorizationRequest.Items.Count; pos++)
             {
-                submitAuthorizationRequest.Items[pos].ProductId = ConstantElements.InsurerAssociatedProductId[pos];
+                submitAuthorizationRequest.Items[pos].ProductId = provider == 1
+                    ? Provider1Products.InsurerAssociatedProductId[pos]
+                    : provider == 2
+                        ? Provider2Products.InsurerAssociatedProductId[pos]
+                        : Provider3Products.InsurerAssociatedProductId[pos];
             }
 
             Insurers.Models.Authorization authorization = null;
@@ -56,7 +62,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Tests
                 Console.WriteLine(exception.Message);
                 submitAuthorizationRequest.Dump();
                 CompletedClaims++;
-                //throw;
+                throw;
             }
 
             return authorization;
@@ -70,12 +76,18 @@ namespace OsiguSDK.SpecificationTests.Settlements.Tests
             string queue;
 
             createClaimRequest.Items = new List<CreateClaimRequest.Item>();
+            var provider = int.Parse(ScenarioValues["Provider"]);
             for (var i = 0; i < 3; i++)
             {
                 createClaimRequest.Items.Add(new CreateClaimRequest.Item
                 {
                     Price = _random.Next(500, 20000)/100m,
-                    ProductId = ConstantElements.ProviderAssociateProductId[i],
+                    ProductId =
+                        provider == 1
+                            ? Provider1Products.ProviderAssociateProductId[i]
+                            : provider == 2
+                                ? Provider2Products.ProviderAssociateProductId[i]
+                                : Provider3Products.ProviderAssociateProductId[i],
                     Quantity = authorization.Items[i].Quantity
                 });
             }
@@ -99,7 +111,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Tests
         {
             QueueStatus queueStatus = null;
             int i;
-            for (i = 0; i < 500; i++)
+            for (i = 0; i < 200; i++)
             {
                 if (i%25 == 0)
                 {
@@ -121,12 +133,9 @@ namespace OsiguSDK.SpecificationTests.Settlements.Tests
                 }
                 Thread.Sleep(1000);
             }
-            if (i == 200)
-            {
-                throw new Exception("Reached max amount of tries");
-            }
-
-            return queueStatus;
+            if (i != 200) return queueStatus;
+            CompletedClaims++;
+            throw new Exception("Reached max amount of tries");
         }
 
         private static Claim GetClaim(int id, QueueStatus queueStatus)
@@ -151,7 +160,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Tests
         {
             return new Invoice
             {
-                Amount = claim.Items.Sum(item => item.Price*item.Quantity)*0.8m,
+                Amount = claim.Items.Sum(item => item.Price*item.Quantity) - claim.TotalCoInsurance - claim.Copayment,
                 Currency = "GTQ",
                 DocumentDate = DateTime.UtcNow,
                 DocumentNumber = "12345"
@@ -183,12 +192,17 @@ namespace OsiguSDK.SpecificationTests.Settlements.Tests
         {
             Console.WriteLine("Creating authorization {0}", id);
             var authorization = CreateValidAuthorizationRequest(id);
+
             Console.WriteLine("Creating claim {0}", id);
             var queueId = CreateClaim(id, authorization);
+
             Console.WriteLine("Consulting claim {0}", id);
             var queueStatus = GetClaimStatus(id, queueId);
-            Console.WriteLine("Completing claim {0}", id);
+
+            Console.WriteLine("Getting claim {0}", id);
             var claim = GetClaim(id, queueStatus);
+
+            Console.WriteLine("Completing claim {0}", id);
             CompleteClaim(id, claim);
         }
 
@@ -199,7 +213,13 @@ namespace OsiguSDK.SpecificationTests.Settlements.Tests
         {
             ScenarioValues = scenario.Rows.First();
             Responses.ErrorId = 0;
-            TestClients.ClaimsProviderClient = new ClaimsClient(ConfigurationClients.ConfigProviderBranch1);
+            var provider = int.Parse(ScenarioValues["Provider"]);
+            TestClients.ClaimsProviderClient =
+                new ClaimsClient(provider == 1
+                    ? ConfigurationClients.ConfigProviderBranch1
+                    : provider == 2
+                        ? ConfigurationClients.ConfigProviderBranch2
+                        : ConfigurationClients.ConfigProviderBranch3);
         }
 
         [When(@"I complete the claim creation process")]

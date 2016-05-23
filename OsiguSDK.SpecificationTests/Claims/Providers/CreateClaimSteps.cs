@@ -8,6 +8,7 @@ using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Providers.Clients;
 using OsiguSDK.Providers.Models.Requests;
 using OsiguSDK.SpecificationTests.Tools;
+using OsiguSDK.SpecificationTests.Tools.TestingProducts;
 using Ploeh.AutoFixture;
 using TechTalk.SpecFlow;
 
@@ -28,7 +29,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
         {
             Requests.CreateClaimRequest.Items = new List<CreateClaimRequest.Item>();
             FillItemList();
-            Requests.CreateClaimRequest.Items[1].SubstituteProductId = ConstantElements.ProviderSubstituteProducts[id];
+            Requests.CreateClaimRequest.Items[1].SubstituteProductId = Provider1Products.ProviderSubstituteProducts[id];
 
             switch (fixQuantity.ToLower())
             {
@@ -49,7 +50,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             Requests.CreateClaimRequest.Items = new List<CreateClaimRequest.Item>();
             FillItemList();
             Requests.CreateClaimRequest.Items[0].SubstituteProductId =
-                ConstantElements.ProviderSubstituteProducts[ConstantElements.ProviderSubstituteProducts.Length - 1];
+                Provider1Products.ProviderSubstituteProducts[Provider1Products.ProviderSubstituteProducts.Length - 1];
         }
 
         private static void GenerateItemListWithSameSubstitute()
@@ -67,7 +68,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
                 Requests.CreateClaimRequest.Items.Add(new CreateClaimRequest.Item
                 {
                     Price = r.Next(100, 10000)/100m,
-                    ProductId = ConstantElements.ProviderAssociateProductId[i],
+                    ProductId = Provider1Products.ProviderAssociateProductId[i],
                     Quantity = (r.Next(0, 1000)%10) + 1
                 });
             }

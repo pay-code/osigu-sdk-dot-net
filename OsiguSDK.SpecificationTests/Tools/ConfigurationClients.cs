@@ -121,6 +121,23 @@ namespace OsiguSDK.SpecificationTests.Tools
 
         private static IConfiguration _configProviderBranch2;
 
+        public static IConfiguration ConfigProviderBranch3 => _configProviderBranch3 ??
+                                                              (_configProviderBranch3 = new Configuration
+                                                              {
+                                                                  BaseUrl =
+                                                                      ConfigurationManager.AppSettings[
+                                                                          "DevelopmentBaseUrl"],
+                                                                  Slug =
+                                                                      ConfigurationManager.AppSettings[
+                                                                          "ConfigProvider3DevSlug"],
+                                                                  Authentication =
+                                                                      new Authentication(
+                                                                          ConfigurationManager.AppSettings[
+                                                                              "ConfigProvider3DevToken"])
+                                                              });
+
+        private static IConfiguration _configProviderBranch3;
+
         private static IConfiguration _configOsiguProduct;
 
         public static IConfiguration ConfigOsiguProduct => _configOsiguProduct ??

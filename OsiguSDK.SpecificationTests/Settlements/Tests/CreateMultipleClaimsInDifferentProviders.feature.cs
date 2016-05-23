@@ -66,10 +66,10 @@ namespace OsiguSDK.SpecificationTests.Settlements.Tests
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Create Claim Of A Provider")]
-        [NUnit.Framework.TestCaseAttribute("1", "dev1", "dev1", "15", "1,2,3", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("2", "dev2", "dev2", "3", "1,2,3", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("3", "dev3", "dev3", "4", "1,2,3", new string[0])]
-        public virtual void CreateClaimOfAProvider(string testId, string slug, string token, string claimQuantity, string productIds, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("1", "1", "10", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("2", "2", "10", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("3", "3", "10", new string[0])]
+        public virtual void CreateClaimOfAProvider(string testId, string provider, string claimQuantity, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Claim Of A Provider", exampleTags);
 #line 7
@@ -77,16 +77,14 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "TestId",
-                        "Slug",
-                        "Token",
+                        "Provider",
                         "ClaimQuantity",
                         "ProductIds"});
             table1.AddRow(new string[] {
                         string.Format("{0}", testId),
-                        string.Format("{0}", slug),
-                        string.Format("{0}", token),
+                        string.Format("{0}", provider),
                         string.Format("{0}", claimQuantity),
-                        string.Format("{0}", productIds)});
+                        "<ProductIds>"});
 #line 8
  testRunner.Given("I have the provider selected claims client", ((string)(null)), table1, "Given ");
 #line 11

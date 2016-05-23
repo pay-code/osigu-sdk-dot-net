@@ -35,9 +35,13 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
 
         public decimal GetTotalDiscount()
         {
+            var totalRetentions = Math.Round(DataRetentions.Sum(x => x.IvaRetention), 2) +
+                                  Math.Round(DataRetentions.Sum(x => x.RetentionBefore30000), 2) +
+                                  Math.Round(DataRetentions.Sum(x => x.RetentionAfter30000), 2);  
+
             return SettlementType == SettlementType.Cashout
-                ? DataRetentions.Sum(x => x.NormalCommission) + DataRetentions.Sum(x => x.CashoutCommission)
-                : DataRetentions.Sum(x => x.NormalCommission);
+                ? DataRetentions.Sum(x => x.NormalCommission) + DataRetentions.Sum(x => x.CashoutCommission) + totalRetentions
+                : DataRetentions.Sum(x => x.NormalCommission) + totalRetentions;
         }
 
         public List<Taxes> GetTaxes()
@@ -91,7 +95,6 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
                 {
                     Amount = Math.Round(DataRetentions.Sum(x => x.CashoutCommission),2),
                     ComissionType = CommissionType.FAST_PAYMENT,
-                    //TODO: Percentage should be return raw
                     Percentage = PercentageCashoutCommission*100,
                     CreatedAt = DateTime.Now
                 });
@@ -111,23 +114,37 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
             retentions.Add(new Retentions
             {
                 Amount = Math.Round(DataRetentions.Sum(x => x.IvaRetention),2),
-                Percentage = IvaRetention,
+                Percentage = IvaRetention*100,
                 CreatedAt = DateTime.Now,
                 Name = "IVA Retenido"
             });
 
-            var totalRetentionAmount = DataRetentions.Sum(x => x.RetentionBefore30000) +
-                                       DataRetentions.Sum(x => x.RetentionAfter30000);
+            var retentionBefore30000 = DataRetentions.Sum(x => x.RetentionBefore30000);
+            var retensionAfter30000 = DataRetentions.Sum(x => x.RetentionAfter30000);
+            var totalRetentionAmount = retentionBefore30000 + retensionAfter30000;
 
             if (totalRetentionAmount > 0)
             {
-                retentions.Add(new Retentions
+                if (retensionAfter30000 > 0)
                 {
-                    Amount = Math.Round(totalRetentionAmount,2),
-                    Percentage = IvaRetention,
-                    CreatedAt = DateTime.Now,
-                    Name = "IVA Retenido"
-                });
+                    retentions.Add(new Retentions
+                    {
+                        Amount = Math.Round(totalRetentionAmount, 2),
+                        Percentage = 7,
+                        CreatedAt = DateTime.Now,
+                        Name = "ISR after 30K"
+                    });
+                }
+                else
+                {
+                    retentions.Add(new Retentions
+                    {
+                        Amount = Math.Round(totalRetentionAmount, 2),
+                        Percentage = 5,
+                        CreatedAt = DateTime.Now,
+                        Name = "ISR before 30K"
+                    });
+                }    
             }
 
             return retentions;
