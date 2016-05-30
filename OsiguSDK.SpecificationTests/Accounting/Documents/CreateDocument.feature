@@ -26,7 +26,7 @@ Scenario: Payment Document Type is of the Same Type as the Original Document
 	And I have the create a new payment document request with the same action type as the original
 	When I request the create document endpoint
 	And I request the create a payment document endpoint
-	Then the result should be unprossesable entity
+	Then the result should be unprocessable entity
 
 Scenario Outline: Payment Document Amount is not the Same as the Details
 	Given I have the accounting client
@@ -36,7 +36,7 @@ Scenario Outline: Payment Document Amount is not the Same as the Details
 	| <TestId> | <Difference> |
 	When I request the create document endpoint
 	And I request the create a payment document endpoint
-	Then the result should be unprossesable entity
+	Then the result should be unprocessable entity
 
 Scenarios: 
 | TestId | Difference |
@@ -49,7 +49,7 @@ Scenario:  Payment Document Amount is higher than the Original Document
 	And I have the create a new payment document request with an amount that is higher than the original document
 	When I request the create document endpoint
 	And I request the create a payment document endpoint
-	Then the result should be unprossesable entity
+	Then the result should be unprocessable entity
 
 Scenario: Payment Document Has Invalid Amount
 	Given I have the accounting client
@@ -57,7 +57,7 @@ Scenario: Payment Document Has Invalid Amount
 	And I have the create a new payment document request with an invalid amount
 	When I request the create document endpoint
 	And I request the create a payment document endpoint
-	Then the result should be unprossesable entity
+	Then the result should be unprocessable entity
 
 Scenario Outline: Payment Document Does Not Fills Required Fields
 	Given I have the accounting client
@@ -67,7 +67,7 @@ Scenario Outline: Payment Document Does Not Fills Required Fields
 	| <TestId> | <PaymentType> | <MissingElement> |
 	When I request the create document endpoint
 	And I request the create a payment document endpoint
-	Then the result should be unprossesable entity
+	Then the result should be unprocessable entity
 
 Scenarios:
 	| TestId   | PaymentType   | MissingElement   |

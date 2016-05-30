@@ -129,7 +129,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 28
  testRunner.And("I request the create a payment document endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 29
- testRunner.Then("the result should be unprossesable entity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the result should be unprocessable entity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -162,7 +162,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 38
  testRunner.And("I request the create a payment document endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 39
- testRunner.Then("the result should be unprossesable entity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the result should be unprocessable entity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -186,7 +186,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 51
  testRunner.And("I request the create a payment document endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 52
- testRunner.Then("the result should be unprossesable entity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the result should be unprocessable entity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -209,7 +209,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 59
  testRunner.And("I request the create a payment document endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 60
- testRunner.Then("the result should be unprossesable entity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the result should be unprocessable entity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -242,7 +242,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 69
  testRunner.And("I request the create a payment document endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 70
- testRunner.Then("the result should be unprossesable entity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the result should be unprocessable entity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

@@ -9,6 +9,5 @@ namespace OsiguSDK.Providers.Models.Requests
         /// </summary>
         [JsonProperty(PropertyName = "invoice")]
         public Invoice Invoice { get; set; }
-        
     }
 }

@@ -11,8 +11,6 @@ namespace OsiguSDK.SpecificationTests.Tools
     public class Responses
     {
         public static Claim Claim { get; set; }
-        public static Invoice Invoice { get; set; }
-
         public static int ErrorId { get; set; }
         public static int ErrorId2 { get; set; }
         public static string ResponseMessage { get; set; }

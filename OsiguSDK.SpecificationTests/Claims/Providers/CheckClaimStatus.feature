@@ -25,17 +25,6 @@ Scenario: Invalid Queue Id
 	And I request the check claim status endpoint with an invalid queue id
 	Then the result should be not existing
 
-Scenario: Success With Pending Queue Status
-	Given I have the provider claims client
-	And I have the insurer authorizations client
-	And I have the queue client
-	And I have the request data for a new authorization
-	When I make the new authorization request to the endpoint
-	And the create a claim request with repeated products
-	And I request the create a claim endpoint
-	And I request the check claim status endpoint
-	Then the result should be ok
-
 Scenario: Success With Finalized Queue Status
 	Given I have the provider claims client
 	And I have the insurer authorizations client

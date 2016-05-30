@@ -25,6 +25,12 @@ namespace OsiguSDK.Insurers.Models
         public DateTime DocumentDate { get; set; }
 
         /// <summary>
+        /// The generated invoice
+        /// </summary>
+        [JsonProperty(PropertyName = "invoice")]
+        public ExpressAuthorization.Invoice Invoice { get; set; }
+
+        /// <summary>
         /// currency code used in the transaction
         /// </summary>
         [JsonProperty(PropertyName = "currency")]
@@ -72,6 +78,11 @@ namespace OsiguSDK.Insurers.Models
         [JsonProperty(PropertyName = "updated_at")]
         public DateTime UpdatedAt { get; set; }
 
+        /// <summary>
+        /// Authorized products or services
+        /// </summary>
+        [JsonProperty(PropertyName = "insurer_group_id")]
+        public int InsurerGroupId { get; set; }
 
         /// <summary>
         /// Authorized products or services

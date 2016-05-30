@@ -86,14 +86,12 @@ this.ScenarioSetup(scenarioInfo);
 #line 14
  testRunner.And("I request the create a claim endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
- testRunner.And("I delay the check status request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 16
  testRunner.And("I request the check claim status endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 17
+#line 16
  testRunner.Given("I have the provider claims client without authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 18
+#line 17
  testRunner.When("I request the get a claim endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 19
+#line 18
  testRunner.Then("the result should be unauthorized", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -104,31 +102,29 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void SlugDoesNotExists()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Slug Does Not Exists", ((string[])(null)));
-#line 21
+#line 20
 this.ScenarioSetup(scenarioInfo);
-#line 22
+#line 21
  testRunner.Given("I have the provider claims client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 23
+#line 22
  testRunner.And("I have the insurer authorizations client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 24
+#line 23
  testRunner.And("I have the queue client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 25
+#line 24
  testRunner.And("I have the request data for a new authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 26
+#line 25
  testRunner.When("I make the new authorization request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 27
+#line 26
  testRunner.And("the create a claim request with repeated products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 28
+#line 27
  testRunner.And("I request the create a claim endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 29
- testRunner.And("I delay the check status request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 30
+#line 28
  testRunner.And("I request the check claim status endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 31
+#line 29
  testRunner.Given("I have the provider claims client without valid slug", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 32
+#line 30
  testRunner.When("I request the get a claim endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 33
+#line 31
  testRunner.Then("the result should be no permission", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -139,29 +135,27 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void InvalidClaimId()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Invalid Claim Id", ((string[])(null)));
-#line 35
+#line 33
 this.ScenarioSetup(scenarioInfo);
-#line 36
+#line 34
  testRunner.Given("I have the provider claims client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 37
+#line 35
  testRunner.And("I have the insurer authorizations client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 38
+#line 36
  testRunner.And("I have the queue client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 39
+#line 37
  testRunner.And("I have the request data for a new authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 40
+#line 38
  testRunner.When("I make the new authorization request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 41
+#line 39
  testRunner.And("the create a claim request with repeated products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 42
+#line 40
  testRunner.And("I request the create a claim endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 43
- testRunner.And("I delay the check status request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 44
+#line 41
  testRunner.And("I request the check claim status endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 45
+#line 42
  testRunner.And("I request the get a claim endpoint with an invalid claim id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 46
+#line 43
  testRunner.Then("the result should be not existing", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -172,33 +166,31 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void SuccessfullyGetClaim()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Successfully Get Claim", ((string[])(null)));
-#line 48
+#line 45
 this.ScenarioSetup(scenarioInfo);
-#line 49
+#line 46
  testRunner.Given("I have the provider claims client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 50
+#line 47
  testRunner.And("I have the insurer authorizations client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 51
+#line 48
  testRunner.And("I have the queue client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 52
+#line 49
  testRunner.And("I have the request data for a new authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 53
+#line 50
  testRunner.When("I make the new authorization request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 54
+#line 51
  testRunner.And("the create a claim request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 55
+#line 52
  testRunner.And("I request the create a claim endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 56
- testRunner.And("I delay the check status request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 57
+#line 53
  testRunner.And("I request the check claim status endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 58
+#line 54
  testRunner.And("I request the get a claim endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 59
+#line 55
  testRunner.Then("the result should be ok", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 60
+#line 56
  testRunner.And("the claim should not be null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 61
+#line 57
  testRunner.And("the claim should have the needed values", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

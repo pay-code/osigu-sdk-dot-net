@@ -86,7 +86,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Insurers
         public void ThenTheInsurerClaimShouldHaveTheNeededValues()
         {
             Responses.InsurerClaim.Id.Should().Be(int.Parse(Responses.QueueStatus.ResourceId));
-            Responses.InsurerClaim.Copayment.Should().Be(0);
+            Responses.InsurerClaim.Copayment.Should().Be(Responses.Claim.Copayment);
             Responses.InsurerClaim.VerificationCode.Should().NotBeNullOrEmpty();
             Responses.InsurerClaim.Status.Should().Be("APPROVED");
 
@@ -108,8 +108,8 @@ namespace OsiguSDK.SpecificationTests.Claims.Insurers
 
             claimItems.ShouldAllBeEquivalentTo(expectedItems);
 
-            Responses.InsurerClaim.TotalCoInsurance.Should()
-                .Be(0.20m*Responses.InsurerClaim.Items.Sum(x => x.Price*x.Quantity));
+            Responses.InsurerClaim.TotalCoInsurance.Should().Be(Responses.Claim.TotalCoInsurance);
+            Responses.InsurerClaim.Invoice.Amount.Should().Be(Requests.Invoice.Amount);
         }
     }
 }

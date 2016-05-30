@@ -30,8 +30,17 @@ namespace OsiguSDK.Insurers.Models
         [JsonProperty(PropertyName = "expiration_date")]
         public DateTime ExpirationDate { get; set; }
 
+        /// <summary>
+        /// Insurer's company name
+        /// </summary>
         [JsonProperty(PropertyName = "insurance_company_name")]
         public string InsuranceCompanyName { get; set; }
+
+        /// <summary>
+        /// Insurer's company code
+        /// </summary>
+        [JsonProperty(PropertyName = "insurance_company_code")]
+        public string InsuranceCompanyCode { get; set; }
 
         /// <summary>
         /// Policy holder information
