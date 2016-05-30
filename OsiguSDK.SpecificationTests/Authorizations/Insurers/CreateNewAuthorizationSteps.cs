@@ -172,6 +172,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
             Requests.SubmitAuthorizationRequest.Policy.PolicyHolder.Email = "mail@mail.com";
             Requests.SubmitAuthorizationRequest.Policy.PolicyHolder.Id = ConstantElements.RPNTestPolicyNumber;
             Requests.SubmitAuthorizationRequest.Policy.PolicyHolder.DateOfBirth = ConstantElements.RPNTestPolicyBirthday;
+            Requests.SubmitAuthorizationRequest.Policy.InsuranceCompanyCode = "50";
         }
     }
 }

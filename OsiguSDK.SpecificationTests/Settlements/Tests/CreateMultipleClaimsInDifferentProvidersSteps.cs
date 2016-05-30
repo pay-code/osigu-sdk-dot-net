@@ -36,6 +36,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Tests
             submitAuthorizationRequest.ExpiresAt = submitAuthorizationRequest.AuthorizationDate.AddDays(1);
             submitAuthorizationRequest.Doctor.CountryCode = "GT";
             submitAuthorizationRequest.Policy.CountryCode = "GT";
+            submitAuthorizationRequest.Policy.InsuranceCompanyCode = "50";
             submitAuthorizationRequest.Policy.PolicyHolder.Email = "mail@mail.com";
             submitAuthorizationRequest.Policy.PolicyHolder.Id = ConstantElements.RPNTestPolicyNumber;
             submitAuthorizationRequest.Policy.PolicyHolder.DateOfBirth = ConstantElements.RPNTestPolicyBirthday;

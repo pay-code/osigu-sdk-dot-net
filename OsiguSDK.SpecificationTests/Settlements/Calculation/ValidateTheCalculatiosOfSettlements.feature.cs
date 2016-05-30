@@ -67,28 +67,12 @@ namespace OsiguSDK.SpecificationTests.Settlements.Calculation
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Validate settlement calculation")]
         [NUnit.Framework.TestCaseAttribute("1", "1", "LESS_THAN_2800", "IsNotRetainingAgent", "Cashout", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("2", "1", "BETWEEN_2800_AND_33600", "IsNotRetainingAgent", "Cashout", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("3", "1", "GREATER_THAN_33600", "IsNotRetainingAgent", "Cashout", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("4", "3", "LESS_THAN_2800", "IsNotRetainingAgent", "Cashout", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("5", "3", "BETWEEN_2800_AND_33600", "IsNotRetainingAgent", "Cashout", new string[0])]
         [NUnit.Framework.TestCaseAttribute("6", "3", "GREATER_THAN_33600", "IsNotRetainingAgent", "Cashout", new string[0])]
         [NUnit.Framework.TestCaseAttribute("7", "1", "LESS_THAN_2800", "IsNotRetainingAgent", "Normal", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("8", "1", "BETWEEN_2800_AND_33600", "IsNotRetainingAgent", "Normal", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("9", "1", "GREATER_THAN_33600", "IsNotRetainingAgent", "Normal", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("10", "3", "LESS_THAN_2800", "IsNotRetainingAgent", "Normal", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("11", "3", "BETWEEN_2800_AND_33600", "IsNotRetainingAgent", "Normal", new string[0])]
         [NUnit.Framework.TestCaseAttribute("12", "3", "GREATER_THAN_33600", "IsNotRetainingAgent", "Normal", new string[0])]
         [NUnit.Framework.TestCaseAttribute("13", "1", "LESS_THAN_2800", "IsRetainingAgent", "Cashout", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("14", "1", "BETWEEN_2800_AND_33600", "IsRetainingAgent", "Cashout", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("15", "1", "GREATER_THAN_33600", "IsRetainingAgent", "Cashout", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("16", "3", "LESS_THAN_2800", "IsRetainingAgent", "Cashout", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("17", "3", "BETWEEN_2800_AND_33600", "IsRetainingAgent", "Cashout", new string[0])]
         [NUnit.Framework.TestCaseAttribute("18", "3", "GREATER_THAN_33600", "IsRetainingAgent", "Cashout", new string[0])]
         [NUnit.Framework.TestCaseAttribute("19", "1", "LESS_THAN_2800", "IsRetainingAgent", "Normal", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("20", "1", "BETWEEN_2800_AND_33600", "IsRetainingAgent", "Normal", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("21", "1", "GREATER_THAN_33600", "IsRetainingAgent", "Normal", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("22", "3", "LESS_THAN_2800", "IsRetainingAgent", "Normal", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("23", "3", "BETWEEN_2800_AND_33600", "IsRetainingAgent", "Normal", new string[0])]
         [NUnit.Framework.TestCaseAttribute("24", "3", "GREATER_THAN_33600", "IsRetainingAgent", "Normal", new string[0])]
         public virtual void ValidateSettlementCalculation(string testId, string numberOfClaims, string claimAmount, string providerType, string settlementType, string[] exampleTags)
         {
@@ -99,20 +83,6 @@ this.ScenarioSetup(scenarioInfo);
  testRunner.Given("I have the settlement client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
  testRunner.And(string.Format("I have {0} claims with amount \'{1}\'", numberOfClaims, claimAmount), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 9
- testRunner.And(string.Format("I have entered a \'{0}\'", providerType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 10
- testRunner.And("I have entered a valid insurer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 11
- testRunner.And("I have the request data for a new settlement", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 12
- testRunner.When(string.Format("I make the request to the endpoint to create a new \'{0}\'", settlementType), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 13
- testRunner.Then("the result should be created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line 14
- testRunner.When("I get the settlement created", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 15
- testRunner.Then("The calculation should be the expected", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
