@@ -12,7 +12,6 @@ Scenario: Authentication Error
 	When I make the new authorization request to the endpoint
 	And the create a claim request with repeated products
 	And I request the create a claim endpoint
-	And I delay the check status request
 	And I request the check claim status endpoint
 	And I request the get a claim endpoint
 	Given I have the provider claims client without authorization
@@ -27,12 +26,11 @@ Scenario: Slug Does Not Exists
 	When I make the new authorization request to the endpoint
 	And the create a claim request with repeated products
 	And I request the create a claim endpoint
-	And I delay the check status request
 	And I request the check claim status endpoint
 	And I request the get a claim endpoint
 	Given I have the provider claims client without valid slug
 	When I request the complete transaction request
-	Then the result should be not existing 
+	Then the result should be unauthorized
 
 Scenario: Invalid Claim Id
 	Given I have the provider claims client
@@ -42,7 +40,6 @@ Scenario: Invalid Claim Id
 	When I make the new authorization request to the endpoint
 	And the create a claim request with repeated products
 	And I request the create a claim endpoint
-	And I delay the check status request
 	And I request the check claim status endpoint
 	And I request the get a claim endpoint
 	When I request the complete transaction request with an invalid claim id
@@ -56,13 +53,12 @@ Scenario Outline: Missing fields
 	When I make the new authorization request to the endpoint
 	And the create a claim request with repeated products
 	And I request the create a claim endpoint
-	And I delay the check status request
 	And I request the check claim status endpoint
 	And I request the get a claim endpoint
 	When I request the complete transaction request with missing fields
 	| TestId   | MissingField   |
 	| <TestId> | <MissingField> |
-	Then the result should be unprossesable entity
+	Then the result should be unprocessable entity
 
 Scenarios: 
 	| TestId | MissingField   |
@@ -79,7 +75,6 @@ Scenario: Successfully Complete a Transaction
 	When I make the new authorization request to the endpoint
 	And the create a claim request
 	And I request the create a claim endpoint
-	And I delay the check status request
 	And I request the check claim status endpoint
 	And I request the get a claim endpoint
 	When I request the complete transaction request

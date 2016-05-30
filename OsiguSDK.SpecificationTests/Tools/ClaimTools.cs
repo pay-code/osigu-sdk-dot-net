@@ -134,10 +134,10 @@ namespace OsiguSDK.SpecificationTests.Tools
 
                 TestClients.ClaimsProviderClient.CompleteClaimTransaction(Responses.Claim.Id.ToString(), new CompleteClaimRequest
                 {
-                    Invoice = Responses.Invoice
+                    Invoice = Requests.Invoice
                 });
 
-                Responses.Claim.Invoice = Responses.Invoice;
+                Responses.Claim.Invoice = Requests.Invoice;
                 Console.WriteLine("Claim was returned");
                 return Responses.Claim;
             }
@@ -245,12 +245,13 @@ namespace OsiguSDK.SpecificationTests.Tools
 
         private void CreateInvoice()
         {
-            Responses.Invoice = new Invoice
+            Requests.Invoice = new Invoice
             {
-                Amount = Math.Round(Responses.Claim.Items.Sum(item => item.Price*item.Quantity) * 0.8m, 2),
+                Amount = Math.Round(Responses.Claim.Items.Sum(item => item.Price*item.Quantity)*0.8m, 2),
                 Currency = "GTQ",
                 DocumentDate = DateTime.UtcNow,
-                DocumentNumber = "12345"
+                DocumentNumber = Guid.NewGuid().ToString(),
+                DigitalSignature = Guid.NewGuid().ToString()
             };
         }
     }

@@ -85,7 +85,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         [Then(@"the result should be no permission")]
         public void ThenTheResultShouldBeNoPermission()
         {
-            Responses.ErrorId.Should().Be(404);
+            Responses.ErrorId.Should().Be(403);
         }
 
 

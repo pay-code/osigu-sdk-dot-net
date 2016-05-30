@@ -1,5 +1,6 @@
 ﻿using System;
 using OsiguSDK.Insurers.Models.Requests;
+using OsiguSDK.Providers.Models;
 using OsiguSDK.Providers.Models.Requests;
 using OsiguSDK.SpecificationTests.Products.Models;
 using OsiguSDK.SpecificationTests.ResponseModels;
@@ -22,6 +23,9 @@ namespace OsiguSDK.SpecificationTests.Tools
         public static OsiguProductRequest OsiguProductRequest { get; set; }
 
         public static SettlementRequest SettlementRequest { get; set; }
+
+        public static Invoice Invoice { get; set; }
+
 
         public static int InsurerId { get; set; }
         public static int ProviderId { get; set; }

@@ -12,8 +12,9 @@ Scenario: Authentication Error
 	When I make the new authorization request to the endpoint
 	And the create a claim request with repeated products
 	And I request the create a claim endpoint
-	And I delay the check status request
 	And I request the check claim status endpoint
+	And I request the get a claim endpoint
+	And I request the complete transaction request
 	Given I have the insurer claims client without authorization
 	When I request the get a claim endpoint as insurer
 	Then the result should be unauthorized
@@ -26,8 +27,9 @@ Scenario: Slug Does Not Exists
 	When I make the new authorization request to the endpoint
 	And the create a claim request with repeated products
 	And I request the create a claim endpoint
-	And I delay the check status request
 	And I request the check claim status endpoint
+	And I request the get a claim endpoint
+	And I request the complete transaction request
 	Given I have the insurer claim client without valid slug
 	When I request the get a claim endpoint as insurer
 	Then the result should be no permission
@@ -41,8 +43,9 @@ Scenario: Invalid Claim Id
 	When I make the new authorization request to the endpoint
 	And the create a claim request with repeated products
 	And I request the create a claim endpoint
-	And I delay the check status request
 	And I request the check claim status endpoint
+	And I request the get a claim endpoint
+	And I request the complete transaction request
 	And I request the get a claim endpoint as insurer with an invalid claim id
 	Then the result should be not existing 
 
@@ -55,7 +58,6 @@ Scenario: Successfully Get Claim
 	When I make the new authorization request to the endpoint
 	And the create a claim request
 	And I request the create a claim endpoint
-	And I delay the check status request
 	And I request the check claim status endpoint
 	And I request the get a claim endpoint
 	When I request the complete transaction request

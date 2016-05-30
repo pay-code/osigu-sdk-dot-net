@@ -25,7 +25,7 @@ Scenario: Slug Does Not Match
 	When I make the new authorization request to the endpoint
 	And the create a claim request
 	And I request the create a claim endpoint with the second client
-	Then the result should be no permission
+	Then the result should be unprocessable entity
 
 Scenario: Authorization Does Not Exists
 	Given I have the provider claims client 
@@ -46,7 +46,7 @@ Scenario: PIN Is Not Valid
 	And I have the request data for a new authorization
 	When I make the new authorization request to the endpoint
 	And I request the create a claim endpoint
-	Then the result should be unprossesable entity
+	Then the result should be unprocessable entity
 
 Scenario Outline: Required Fields missing
 	Given I have the provider claims client
@@ -57,7 +57,7 @@ Scenario Outline: Required Fields missing
 	And I have the request data for a new authorization
 	When I make the new authorization request to the endpoint
 	And I request the create a claim endpoint
-	Then the result should be unprossesable entity
+	Then the result should be unprocessable entity
 
 Scenarios:
 	| TestId | MissingField  |
@@ -75,7 +75,7 @@ Scenario: Provider Product Does Not Exists as Osigu Product
 	When I make the new authorization request to the endpoint
 	And the create a claim request with a product that does not exists in osigu products
 	When I request the create a claim endpoint
-	Then the result should be unprossesable entity
+	Then the result should be unprocessable entity
 
 Scenario: Create Claim Successfully With Only Different Products
 	Given I have the provider claims client
@@ -109,13 +109,28 @@ Scenario Outline: Create Claim Successfully With Substitute Products
 Scenarios: 
 	| TestId | ItemId | FixQuantity | ExpectedResult |
 	| 1      | 0      | Same        | 422            |
-	| 2      | 1      | Same        | 0              |
-	| 3      | 2      | Same        | 422            |
-	| 4      | 3      | Same        | 422            |
-	| 5      | 4      | Higher      | 422            |
-	| 6      | 4      | Lower       | 0              |
-	| 7      | 5      | Same        | 422            |
-	| 8      | 6      | Same        | 422            |
+	| 2      | 2      | Same        | 422            |
+	| 3      | 3      | Same        | 422            |
+	| 4      | 4      | Higher      | 422            |
+	| 5      | 5      | Same        | 422            |
+	| 6      | 6      | Same        | 422            |
+
+Scenario Outline: Create Claim Unsuccessfully With Substitute Products Of Different Names
+	Given I have the provider claims client
+	And I have the insurer authorizations client
+	And I have the request data for a new authorization
+	When I make the new authorization request to the endpoint
+	And the create a claim request with substitute products
+	| TestId   | ItemId   | FixQuantity   | ExpectedResult   |
+	| <TestId> | <ItemId> | <FixQuantity> | <ExpectedResult> |
+	And I request the create a claim endpoint
+	Then the result should be unprocessable entity
+
+Scenarios: 
+	| TestId | ItemId | FixQuantity | ExpectedResult |
+	| 1      | 1      | Same        | 422            |
+	| 2      | 4      | Lower       | 422            |
+
 
 Scenario: Create Claim Successfully With Substitute Products With Different Ingredients
 	Given I have the provider claims client
@@ -124,7 +139,7 @@ Scenario: Create Claim Successfully With Substitute Products With Different Ingr
 	When I make the new authorization request to the endpoint
 	And the create a claim request with substitute products with differente ingredients
 	And I request the create a claim endpoint
-	Then the result should be unprossesable entity
+	Then the result should be unprocessable entity
 
 Scenario: Create Claim Successfully With Substitute Product With the same Id
 	Given I have the provider claims client

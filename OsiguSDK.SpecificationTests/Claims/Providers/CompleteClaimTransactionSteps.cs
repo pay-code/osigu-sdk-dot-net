@@ -13,12 +13,15 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
     {
         private static void CreateInvoice()
         {
-            Responses.Invoice = new Invoice
+            Requests.Invoice = new Invoice
             {
-                Amount = Responses.Claim.Items.Sum(item => item.Price * item.Quantity) * 0.8m,
+                Amount =
+                    Responses.Claim.Items.Sum(item => item.Price*item.Quantity*(1 - item.CoInsurancePercentage/100m)) -
+                    Responses.Claim.Copayment + 0.03m,
                 Currency = "GTQ",
                 DocumentDate = DateTime.UtcNow,
-                DocumentNumber = "12345"
+                DocumentNumber = Guid.NewGuid().ToString(),
+                DigitalSignature = Guid.NewGuid().ToString()
             };
         }
 
@@ -30,7 +33,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             {
                 TestClients.ClaimsProviderClient.CompleteClaimTransaction("1234560", new CompleteClaimRequest
                 {
-                    Invoice = Responses.Invoice
+                    Invoice = Requests.Invoice
                 });
             }
             catch (RequestException exception)
@@ -48,7 +51,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             {
                 TestClients.ClaimsProviderClient.CompleteClaimTransaction(Responses.Claim.Id.ToString(), new CompleteClaimRequest
                 {
-                    Invoice = Responses.Invoice
+                    Invoice = Requests.Invoice
                 });
             }
             catch (RequestException exception)
@@ -70,16 +73,16 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
                     Responses.Claim.Id = 0;
                     break;
                 case "Invoice":
-                    Responses.Invoice = null;
+                    Requests.Invoice = null;
                     break;
                 case "Amount":
-                    Responses.Invoice.Amount = 0m;
+                    Requests.Invoice.Amount = 0m;
                     break;
                 case "Currency":
-                    Responses.Invoice.Currency = string.Empty;
+                    Requests.Invoice.Currency = string.Empty;
                     break;
                 case "DocumentNumber":
-                    Responses.Invoice.DocumentNumber = string.Empty;
+                    Requests.Invoice.DocumentNumber = string.Empty;
                     break;
                 default:
                     ScenarioContext.Current.Pending();
@@ -90,7 +93,7 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             {
                 TestClients.ClaimsProviderClient.CompleteClaimTransaction(Responses.Claim.Id.ToString(), new CompleteClaimRequest
                 {
-                    Invoice = Responses.Invoice
+                    Invoice = Requests.Invoice
                 });
             }
             catch (RequestException exception)

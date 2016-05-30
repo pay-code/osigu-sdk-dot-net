@@ -112,7 +112,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Tests
         {
             QueueStatus queueStatus = null;
             int i;
-            for (i = 0; i < 200; i++)
+            for (i = 0; i < 75; i++)
             {
                 if (i%25 == 0)
                 {
@@ -134,7 +134,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Tests
                 }
                 Thread.Sleep(1000);
             }
-            if (i != 200) return queueStatus;
+            if (i != 75) return queueStatus;
             CompletedClaims++;
             throw new Exception("Reached max amount of tries");
         }
@@ -163,8 +163,9 @@ namespace OsiguSDK.SpecificationTests.Settlements.Tests
             {
                 Amount = claim.Items.Sum(item => item.Price*item.Quantity) - claim.TotalCoInsurance - claim.Copayment,
                 Currency = "GTQ",
-                DocumentDate = DateTime.UtcNow,
-                DocumentNumber = "12345"
+                DocumentDate = DateTime.UtcNow.AddDays(1),
+                DocumentNumber = Guid.NewGuid().ToString(),
+                DigitalSignature = Guid.NewGuid().ToString()
             };
         }
 

@@ -12,7 +12,6 @@ Scenario: Authentication Error
 	When I make the new authorization request to the endpoint
 	And the create a claim request with repeated products
 	And I request the create a claim endpoint
-	And I delay the check status request
 	And I request the check claim status endpoint
 	Given I have the provider claims client without authorization
 	When I request the get a claim endpoint
@@ -26,7 +25,6 @@ Scenario: Slug Does Not Exists
 	When I make the new authorization request to the endpoint
 	And the create a claim request with repeated products
 	And I request the create a claim endpoint
-	And I delay the check status request
 	And I request the check claim status endpoint
 	Given I have the provider claims client without valid slug
 	When I request the get a claim endpoint
@@ -40,7 +38,6 @@ Scenario: Invalid Claim Id
 	When I make the new authorization request to the endpoint
 	And the create a claim request with repeated products
 	And I request the create a claim endpoint
-	And I delay the check status request
 	And I request the check claim status endpoint
 	And I request the get a claim endpoint with an invalid claim id
 	Then the result should be not existing 
@@ -53,7 +50,6 @@ Scenario: Successfully Get Claim
 	When I make the new authorization request to the endpoint
 	And the create a claim request
 	And I request the create a claim endpoint
-	And I delay the check status request
 	And I request the check claim status endpoint
 	And I request the get a claim endpoint
 	Then the result should be ok 
