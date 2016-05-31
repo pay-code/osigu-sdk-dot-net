@@ -1,0 +1,1 @@
+﻿#error (73:2): Feature file already contains a scenario with name 'Complete An Express Authorization with amount less than sum of products'
