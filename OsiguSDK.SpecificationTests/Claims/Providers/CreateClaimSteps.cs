@@ -240,8 +240,8 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             GenerateItemListWithSameSubstitute();
         }
         
-        [Then(@"the result should be unprossesable entity")]
-        public void ThenTheResultShouldBeUnprossesableEntity()
+        [Then(@"the result should be unprocessable entity")]
+        public void ThenTheResultShouldBeUnprocessableEntity()
         {
             Responses.ErrorId.Should().Be(422);
         }

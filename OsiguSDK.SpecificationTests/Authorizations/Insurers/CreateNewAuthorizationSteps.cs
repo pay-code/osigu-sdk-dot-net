@@ -167,6 +167,7 @@ namespace OsiguSDK.SpecificationTests.Authorizations.Insurers
             TestClients.Fixture.Customizations.Add(new StringBuilder());
             Requests.SubmitAuthorizationRequest = TestClients.Fixture.Create<CreateAuthorizationRequest>();
             Requests.SubmitAuthorizationRequest.ExpiresAt = Requests.SubmitAuthorizationRequest.AuthorizationDate.AddDays(1);
+            Requests.SubmitAuthorizationRequest.Policy.InsuranceCompanyCode = "50";
             Requests.SubmitAuthorizationRequest.Doctor.CountryCode = "GT";
             Requests.SubmitAuthorizationRequest.Policy.CountryCode = "GT";
             Requests.SubmitAuthorizationRequest.Policy.PolicyHolder.Email = "mail@mail.com";

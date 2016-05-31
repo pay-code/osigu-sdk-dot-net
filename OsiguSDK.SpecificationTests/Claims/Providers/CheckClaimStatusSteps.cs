@@ -1,8 +1,11 @@
-﻿using FluentAssertions;
+﻿using System;
+using System.Threading;
+using FluentAssertions;
 using OsiguSDK.Core.Authentication;
 using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Providers.Clients;
+using OsiguSDK.Providers.Models;
 using OsiguSDK.SpecificationTests.Tools;
 using TechTalk.SpecFlow;
 
@@ -23,17 +26,37 @@ namespace OsiguSDK.SpecificationTests.Claims.Providers
             });
         }
 
+        private static QueueStatus GetClaimStatus()
+        {
+            QueueStatus queueStatus = null;
+            int i;
+            for (i = 0; i < 25; i++)
+            {
+                Responses.ErrorId = 0;
+                try
+                {
+                    queueStatus = TestClients.QueueProviderClient.CheckQueueStatus(Responses.QueueId);
+                }
+                catch (RequestException exception)
+                {
+                    Responses.ErrorId = exception.ResponseCode;
+                }
+
+                if (!string.IsNullOrEmpty(queueStatus?.ResourceId))
+                {
+                    break;
+                }
+                Thread.Sleep(1000);
+            }
+
+            return queueStatus;
+        }
+
         [When(@"I request the check claim status endpoint")]
         public void WhenIRequestTheCheckClaimStatusEndpoint()
         {
-            try
-            {
-                Responses.QueueStatus = TestClients.QueueProviderClient.CheckQueueStatus(Responses.QueueId);
-            }
-            catch (RequestException exception)
-            {
-                Responses.ErrorId = exception.ResponseCode;
-            }
+            Responses.QueueId.Should().NotBeNullOrEmpty("The claim should've created correctly");
+            Responses.QueueStatus = GetClaimStatus();
         }
 
         [Given(@"I have the queue client without valid slug")]

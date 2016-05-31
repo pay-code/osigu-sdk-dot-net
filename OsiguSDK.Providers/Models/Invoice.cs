@@ -28,5 +28,11 @@ namespace OsiguSDK.Providers.Models
         /// </summary>
         [JsonProperty(PropertyName = "amount")]
         public Decimal Amount { get; set; }
+
+        /// <summary>
+        /// Digital signature id
+        /// </summary>
+        [JsonProperty(PropertyName = "digital_signature")]
+        public string DigitalSignature { get; set; }
     }
 }

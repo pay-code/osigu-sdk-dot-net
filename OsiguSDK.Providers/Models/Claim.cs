@@ -69,6 +69,18 @@ namespace OsiguSDK.Providers.Models
         /// <summary>
         /// Authorized products or services
         /// </summary>
+        [JsonProperty(PropertyName = "insurer_group_id")]
+        public int InsurerGroupId { get; set; }
+
+        /// <summary>
+        /// Authorized products or services
+        /// </summary>
+        [JsonProperty(PropertyName = "digital_signature")]
+        public string DigitalSignature { get; set; }
+
+        /// <summary>
+        /// Authorized products or services
+        /// </summary>
         [JsonProperty(PropertyName = "items")]
         public List<Item> Items { get; set; }
 
