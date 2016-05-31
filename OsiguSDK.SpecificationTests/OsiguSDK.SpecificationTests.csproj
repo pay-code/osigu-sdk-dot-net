@@ -133,6 +133,14 @@
       <DependentUpon>ListAllTypes.feature</DependentUpon>
     </Compile>
     <Compile Include="Accounting\DocumentTypes\ListAllTypesSteps.cs" />
+    <Compile Include="AuthorizationExpress\Providers\Models\AddItemsOfAnExpressAuthorizationRequest.cs" />
+    <Compile Include="AuthorizationExpress\Providers\Models\CheckExpressAuthorizationStatusRequest.cs" />
+    <Compile Include="AuthorizationExpress\Providers\Models\CompleteExpressAuthorizationRequest.cs" />
+    <Compile Include="AuthorizationExpress\Providers\Models\CreateExpressAuthorizationRequest.cs" />
+    <Compile Include="AuthorizationExpress\Providers\Models\ExpressAuthorizationInvoice.cs" />
+    <Compile Include="AuthorizationExpress\Providers\Models\ExpressAuthorizationItem.cs" />
+    <Compile Include="AuthorizationExpress\Providers\Models\ExpressAuthorizationResponse.cs" />
+    <Compile Include="AuthorizationExpress\Providers\Models\PolicyHolderExpressAuthorization.cs" />
     <Compile Include="Authorizations\Insurers\CreateNewAuthorization.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
