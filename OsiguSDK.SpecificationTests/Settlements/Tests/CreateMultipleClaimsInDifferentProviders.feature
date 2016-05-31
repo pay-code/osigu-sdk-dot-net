@@ -14,6 +14,6 @@ Scenario Outline: Create Claim Of A Provider
 
 Scenarios: 
 	| TestId | Provider | ClaimQuantity |
-	| 1      | 1        | 10            |
+	| 1      | 1        | 1            |
 	| 2      | 2        | 10            |
 	| 3      | 3        | 10            |
