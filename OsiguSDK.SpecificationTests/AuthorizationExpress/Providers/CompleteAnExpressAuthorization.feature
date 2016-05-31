@@ -70,7 +70,6 @@ Scenario: Complete An Express Authorization with amount less than sum of product
 
 
 Scenario: Validate required fields when Complete An Express Authorization
-	Scenario: Complete An Express Authorization with amount less than sum of products
 	Given I have the provider express authorization client
 	And I have entered a valid provider slug
 	And I have entered a valid authorization id
