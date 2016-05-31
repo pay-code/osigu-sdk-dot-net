@@ -36,8 +36,6 @@ namespace OsiguSDK.Insurers.Models
         [JsonProperty(PropertyName = "insurance_company_name")]
         public string InsuranceCompanyName { get; set; }
 
-        [JsonProperty(PropertyName = "insurance_company_code")]
-        public string InsuranceCompanyCode { get; set; }
 
         /// <summary>
         /// Insurer's company code

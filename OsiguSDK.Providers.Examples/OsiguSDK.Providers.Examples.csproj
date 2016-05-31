@@ -50,7 +50,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="OsiguSDK.Providers, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Osigu.Providers.1.0.5\lib\OsiguSDK.Providers.dll</HintPath>
+      <HintPath>..\OsiguSDK.Providers\bin\Debug\OsiguSDK.Providers.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
