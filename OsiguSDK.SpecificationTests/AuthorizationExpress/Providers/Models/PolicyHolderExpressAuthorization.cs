@@ -12,4 +12,3 @@ namespace OsiguSDK.SpecificationTests.AuthorizationExpress.Providers.Models
         public DateTime DateOfBirth { get; set; }
     }
 }
-}
