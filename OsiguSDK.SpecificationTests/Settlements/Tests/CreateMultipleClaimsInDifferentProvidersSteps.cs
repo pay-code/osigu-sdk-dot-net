@@ -163,7 +163,7 @@ namespace OsiguSDK.SpecificationTests.Settlements.Tests
             {
                 Amount = claim.Items.Sum(item => item.Price*item.Quantity) - claim.TotalCoInsurance - claim.Copayment,
                 Currency = "GTQ",
-                DocumentDate = DateTime.UtcNow.AddDays(1),
+                DocumentDate = DateTime.UtcNow,
                 DocumentNumber = Guid.NewGuid().ToString(),
                 DigitalSignature = Guid.NewGuid().ToString()
             };
