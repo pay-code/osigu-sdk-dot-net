@@ -133,7 +133,36 @@
       <DependentUpon>ListAllTypes.feature</DependentUpon>
     </Compile>
     <Compile Include="Accounting\DocumentTypes\ListAllTypesSteps.cs" />
-    <Compile Include="AuthorizationExpress\Insurers\Models\RejectExpressAuthorizationRequest.cs" />
+    <Compile Include="AuthorizationExpress\Providers\AddOrModifyItemsOfAnExpressAuthorization.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AddOrModifyItemsOfAnExpressAuthorization.feature</DependentUpon>
+    </Compile>
+    <Compile Include="AuthorizationExpress\Providers\AddOrModifyProductsOfAnExpressAuthorizationSteps.cs" />
+    <Compile Include="AuthorizationExpress\Providers\CheckExpressAuthorizationStatus.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CheckExpressAuthorizationStatus.feature</DependentUpon>
+    </Compile>
+    <Compile Include="AuthorizationExpress\Providers\CheckExpressAuthorizationStatusSteps.cs" />
+    <Compile Include="AuthorizationExpress\Providers\CompleteAnExpressAuthorization.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompleteAnExpressAuthorization.feature</DependentUpon>
+    </Compile>
+    <Compile Include="AuthorizationExpress\Providers\CompleteAnExpressAuthorizationSteps.cs" />
+    <Compile Include="AuthorizationExpress\Providers\CreateExpressAuthorization.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateExpressAuthorization.feature</DependentUpon>
+    </Compile>
+    <Compile Include="AuthorizationExpress\Providers\CreateExpressAuthorizationSteps.cs" />
+    <Compile Include="AuthorizationExpress\Providers\GetAnExpressAuthorization.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GetAnExpressAuthorization.feature</DependentUpon>
+    </Compile>
+    <Compile Include="AuthorizationExpress\Providers\GetAnExpressAuthorizationSteps.cs" />
     <Compile Include="AuthorizationExpress\Providers\Models\AddItemsOfAnExpressAuthorizationRequest.cs" />
     <Compile Include="AuthorizationExpress\Providers\Models\CheckExpressAuthorizationStatusRequest.cs" />
     <Compile Include="AuthorizationExpress\Providers\Models\CompleteExpressAuthorizationRequest.cs" />
@@ -142,6 +171,12 @@
     <Compile Include="AuthorizationExpress\Providers\Models\ExpressAuthorizationItem.cs" />
     <Compile Include="AuthorizationExpress\Providers\Models\ExpressAuthorizationResponse.cs" />
     <Compile Include="AuthorizationExpress\Providers\Models\PolicyHolderExpressAuthorization.cs" />
+    <Compile Include="AuthorizationExpress\Providers\VoidAnExpressAuthorization.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VoidAnExpressAuthorization.feature</DependentUpon>
+    </Compile>
+    <Compile Include="AuthorizationExpress\Providers\VoidAnExpressAuthorizationSteps.cs" />
     <Compile Include="AuthorizationExpress\Insurers\GetExpressAuthorization.feature.cs">
       <DependentUpon>GetExpressAuthorization.feature</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -375,9 +410,29 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="AuthorizationExpress\Insurers\GetExpressAuthorization.feature">
+    <None Include="AuthorizationExpress\Providers\AddOrModifyItemsOfAnExpressAuthorization.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>GetExpressAuthorization.feature.cs</LastGenOutput>
+      <LastGenOutput>AddOrModifyItemsOfAnExpressAuthorization.feature.cs</LastGenOutput>
+    </None>
+    <None Include="AuthorizationExpress\Providers\CheckExpressAuthorizationStatus.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CheckExpressAuthorizationStatus.feature.cs</LastGenOutput>
+    </None>
+    <None Include="AuthorizationExpress\Providers\CompleteAnExpressAuthorization.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CompleteAnExpressAuthorization.feature.cs</LastGenOutput>
+    </None>
+    <None Include="AuthorizationExpress\Providers\CreateExpressAuthorization.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>CreateExpressAuthorization.feature.cs</LastGenOutput>
+    </None>
+    <None Include="AuthorizationExpress\Providers\GetAnExpressAuthorization.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetAnExpressAuthorization.feature.cs</LastGenOutput>
+    </None>
+    <None Include="AuthorizationExpress\Providers\VoidAnExpressAuthorization.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>VoidAnExpressAuthorization.feature.cs</LastGenOutput>
     </None>
     <None Include="Authorizations\Insurers\CreateNewAuthorization.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
