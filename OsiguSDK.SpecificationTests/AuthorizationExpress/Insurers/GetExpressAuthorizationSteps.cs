@@ -47,7 +47,7 @@ namespace OsiguSDK.SpecificationTests.AuthorizationExpress.Insurers
                         .RequestToEndpoint
                         <OsiguSDK.SpecificationTests.AuthorizationExpress.Providers.Models.ExpressAuthorizationResponse>
                         (
-                            Method.GET, "EXP-GT-123545");
+                            Method.GET, "/authorizations/express/EXP-GT-123545");
                 errorMessage = new RequestException("ok", 200);
             }
             catch (RequestException exception)

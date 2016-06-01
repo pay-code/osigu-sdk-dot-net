@@ -66,9 +66,9 @@ namespace OsiguSDK.SpecificationTests.Settlements.Tests
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Create Claim Of A Provider")]
-        [NUnit.Framework.TestCaseAttribute("1", "1", "5", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("2", "2", "5", new string[0])]
-        [NUnit.Framework.TestCaseAttribute("3", "3", "5", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("1", "1", "1", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("2", "2", "10", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("3", "3", "10", new string[0])]
         public virtual void CreateClaimOfAProvider(string testId, string provider, string claimQuantity, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Claim Of A Provider", exampleTags);

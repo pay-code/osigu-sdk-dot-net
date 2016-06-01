@@ -132,6 +132,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ListAllTypes.feature</DependentUpon>
     </Compile>
+    <Compile Include="AuthorizationExpress\Insurers\Models\RejectExpressAuthorizationRequest.cs" />
     <Compile Include="Accounting\DocumentTypes\ListAllTypesSteps.cs" />
     <Compile Include="AuthorizationExpress\Providers\AddOrModifyItemsOfAnExpressAuthorization.feature.cs">
       <AutoGen>True</AutoGen>
@@ -410,6 +411,10 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="AuthorizationExpress\Insurers\GetExpressAuthorization.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>GetExpressAuthorization.feature.cs</LastGenOutput>
+    </None> 
     <None Include="AuthorizationExpress\Providers\AddOrModifyItemsOfAnExpressAuthorization.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>AddOrModifyItemsOfAnExpressAuthorization.feature.cs</LastGenOutput>
