@@ -4,12 +4,17 @@ using OsiguSDK.SpecificationTests.Tools;
 using TechTalk.SpecFlow;
 using OsiguSDK.Core.Authentication;
 using System.Configuration;
+using FluentAssertions;
+using OsiguSDK.Core.Exceptions;
+using RestSharp;
 
 namespace OsiguSDK.SpecificationTests.AuthorizationExpress.Insurers
 {
     [Binding]
     public class GetAnExpressAuthorizationAsAnInsurerSteps
     {
+        private RequestException errorMessage { get; set; }
+
         [Given(@"I have the insurer express authorizations client with an invalid token")]
         public void GivenIHaveTheInsurerExpressAuthorizationsClientWithAnInvalidToken()
         {
@@ -35,13 +40,26 @@ namespace OsiguSDK.SpecificationTests.AuthorizationExpress.Insurers
         [When(@"I make the get express authorization request to the endpoint as an insurer")]
         public void WhenIMakeTheGetExpressAuthorizationRequestToTheEndpointAsAnInsurer()
         {
-            ScenarioContext.Current.Pending();
+            try
+            {
+                var response =
+                    TestClients.InternalRestClient
+                        .RequestToEndpoint
+                        <OsiguSDK.SpecificationTests.AuthorizationExpress.Providers.Models.ExpressAuthorizationResponse>
+                        (
+                            Method.GET, "EXP-GT-123545");
+                errorMessage = new RequestException("ok", 200);
+            }
+            catch (RequestException exception)
+            {
+                errorMessage = exception;
+            }
         }
         
         [Then(@"the result should be forbidden for getting the express authorization")]
         public void ThenTheResultShouldBeForbiddenForGettingTheExpressAuthorization()
         {
-            ScenarioContext.Current.Pending();
+            errorMessage.ResponseCode.Should().Be(403);
         }
     }
 }

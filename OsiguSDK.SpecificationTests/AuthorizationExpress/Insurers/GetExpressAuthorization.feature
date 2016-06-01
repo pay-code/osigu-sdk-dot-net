@@ -5,7 +5,6 @@
 
 Scenario: Get an express authorization with an invalid token as an insurer
 	Given I have the insurer express authorizations client with an invalid token
-	And I have an invalid express authorization id
 	When I make the get express authorization request to the endpoint as an insurer
 	Then the result should be forbidden for getting the express authorization
 #

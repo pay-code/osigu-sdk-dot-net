@@ -74,10 +74,8 @@ this.ScenarioSetup(scenarioInfo);
 #line 7
  testRunner.Given("I have the insurer express authorizations client with an invalid token", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.And("I have an invalid express authorization id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 9
  testRunner.When("I make the get express authorization request to the endpoint as an insurer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 10
+#line 9
  testRunner.Then("the result should be forbidden for getting the express authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

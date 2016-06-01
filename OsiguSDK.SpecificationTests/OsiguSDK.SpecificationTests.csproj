@@ -133,6 +133,7 @@
       <DependentUpon>ListAllTypes.feature</DependentUpon>
     </Compile>
     <Compile Include="Accounting\DocumentTypes\ListAllTypesSteps.cs" />
+    <Compile Include="AuthorizationExpress\Insurers\Models\RejectExpressAuthorizationRequest.cs" />
     <Compile Include="AuthorizationExpress\Providers\Models\AddItemsOfAnExpressAuthorizationRequest.cs" />
     <Compile Include="AuthorizationExpress\Providers\Models\CheckExpressAuthorizationStatusRequest.cs" />
     <Compile Include="AuthorizationExpress\Providers\Models\CompleteExpressAuthorizationRequest.cs" />
@@ -512,7 +513,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Accounting\Accounts\" />
-    <Folder Include="AuthorizationExpress\Insurers\Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
