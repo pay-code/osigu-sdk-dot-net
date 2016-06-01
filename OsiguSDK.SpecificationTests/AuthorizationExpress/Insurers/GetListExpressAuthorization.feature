@@ -3,24 +3,32 @@
 	As an Insurer 
 	I need to send a valid request and a valid slug
 
-Scenario: Get an express authorization with an invalid token as an insurer
+Scenario: Get list of express authorizations with an invalid token as an insurer
 	Given I have the insurer express authorizations client with an invalid token
-	When I make the get express authorization request to the endpoint as an insurer
-	Then the result should be forbidden for getting the express authorization
+	When I make the get list of express authorizations request to the endpoint as an insurer
+	Then the result should be forbidden for getting the list of express authorizations as an insurer
 
-Scenario: Get an express authorization with an invalid slug as an insurer
+Scenario: Get list of express authorizations with an invalid slug as an insurer
 	Given I have the insurer express authorizations client with an invalid slug
-	When I make the get express authorization request to the endpoint as an insurer
-	Then the result should be not found for getting the express authorization
+	When I make the get list of express authorizations request to the endpoint as an insurer
+	Then the result should be not found for getting the list of express authorizations as an insurer
 
-Scenario: Get an express authorization with an invalid express authorization id
-	Given I have the insurer express authorizations client
-	And I have an invalid express authorization id
-	When I make the get express authorization request to the endpoint as an insurer
-	Then the result should be not found for getting the express authorization
+#Scenario: Get list of express authorizations with an invalid parameters as an insurer
+#	Given I have the insurer express authorizations client with an invalid slug
+#	And I have an invalid authorization status
+#	When I make the get express authorization request to the endpoint as an insurer
+#	Then the result should be not found for getting the express authorization
 
-Scenario: Get an express authorization with a valid express authorization id
+Scenario Outline: Get list of express authorizations with valid status
 	Given I have the insurer express authorizations client
-	And I have a valid express authorization id
-	When I make the get express authorization request to the endpoint as an insurer
-	Then I have a valid response for getting the express authorization as an insurer
+	And I request the authorizations status '<AuthorizationStatus>' and id <TestId>
+	When I make the get list of express authorizations request to the endpoint as an insurer
+	Then the result should be the list of express authorizations
+
+Scenarios:
+	| TestId | AuthorizationStatus    |
+	| 1      | insurer_pending_review |
+	| 2      | insurer_approved       |
+	| 3      | insurer_rejected       |
+	| 4      | pending_paid           |
+	| 5      | paid                   |

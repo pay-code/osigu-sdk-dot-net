@@ -138,6 +138,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="AuthorizationExpress\Insurers\GetListExpressAuthorizationsSteps.cs" />
     <Compile Include="AuthorizationExpress\Providers\AddOrModifyItemsOfAnExpressAuthorization.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -65,73 +65,64 @@ namespace OsiguSDK.SpecificationTests.AuthorizationExpress.Insurers
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get an express authorization with an invalid token as an insurer")]
-        public virtual void GetAnExpressAuthorizationWithAnInvalidTokenAsAnInsurer()
+        [NUnit.Framework.DescriptionAttribute("Get list of express authorizations with an invalid token as an insurer")]
+        public virtual void GetListOfExpressAuthorizationsWithAnInvalidTokenAsAnInsurer()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get an express authorization with an invalid token as an insurer", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get list of express authorizations with an invalid token as an insurer", ((string[])(null)));
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 7
  testRunner.Given("I have the insurer express authorizations client with an invalid token", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.When("I make the get express authorization request to the endpoint as an insurer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I make the get list of express authorizations request to the endpoint as an insur" +
+                    "er", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
- testRunner.Then("the result should be forbidden for getting the express authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the result should be forbidden for getting the list of express authorizations as " +
+                    "an insurer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get an express authorization with an invalid slug as an insurer")]
-        public virtual void GetAnExpressAuthorizationWithAnInvalidSlugAsAnInsurer()
+        [NUnit.Framework.DescriptionAttribute("Get list of express authorizations with an invalid slug as an insurer")]
+        public virtual void GetListOfExpressAuthorizationsWithAnInvalidSlugAsAnInsurer()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get an express authorization with an invalid slug as an insurer", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get list of express authorizations with an invalid slug as an insurer", ((string[])(null)));
 #line 11
 this.ScenarioSetup(scenarioInfo);
 #line 12
  testRunner.Given("I have the insurer express authorizations client with an invalid slug", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 13
- testRunner.When("I make the get express authorization request to the endpoint as an insurer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I make the get list of express authorizations request to the endpoint as an insur" +
+                    "er", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 14
- testRunner.Then("the result should be not found for getting the express authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the result should be not found for getting the list of express authorizations as " +
+                    "an insurer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get an express authorization with an invalid express authorization id")]
-        public virtual void GetAnExpressAuthorizationWithAnInvalidExpressAuthorizationId()
+        [NUnit.Framework.DescriptionAttribute("Get list of express authorizations with valid status")]
+        [NUnit.Framework.TestCaseAttribute("1", "insurer_pending_review", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("2", "insurer_approved", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("3", "insurer_rejected", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("4", "pending_paid", new string[0])]
+        [NUnit.Framework.TestCaseAttribute("5", "paid", new string[0])]
+        public virtual void GetListOfExpressAuthorizationsWithValidStatus(string testId, string authorizationStatus, string[] exampleTags)
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get an express authorization with an invalid express authorization id", ((string[])(null)));
-#line 16
-this.ScenarioSetup(scenarioInfo);
-#line 17
- testRunner.Given("I have the insurer express authorizations client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 18
- testRunner.And("I have an invalid express authorization id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 19
- testRunner.When("I make the get express authorization request to the endpoint as an insurer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 20
- testRunner.Then("the result should be not found for getting the express authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Get an express authorization with a valid express authorization id")]
-        public virtual void GetAnExpressAuthorizationWithAValidExpressAuthorizationId()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get an express authorization with a valid express authorization id", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get list of express authorizations with valid status", exampleTags);
 #line 22
 this.ScenarioSetup(scenarioInfo);
 #line 23
  testRunner.Given("I have the insurer express authorizations client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 24
- testRunner.And("I have a valid express authorization id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I request the authorizations status \'{0}\' and id {1}", authorizationStatus, testId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 25
- testRunner.When("I make the get express authorization request to the endpoint as an insurer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I make the get list of express authorizations request to the endpoint as an insur" +
+                    "er", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 26
- testRunner.Then("I have a valid response for getting the express authorization as an insurer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("the result should be the list of express authorizations", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

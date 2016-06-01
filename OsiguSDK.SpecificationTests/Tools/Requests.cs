@@ -1,10 +1,12 @@
 ﻿using System;
+using NHibernate.Stat;
 using OsiguSDK.Insurers.Models.Requests;
 using OsiguSDK.Providers.Models;
 using OsiguSDK.Providers.Models.Requests;
 using OsiguSDK.SpecificationTests.Products.Models;
 using OsiguSDK.SpecificationTests.ResponseModels;
 using OsiguSDK.SpecificationTests.Settlements.Models;
+using ExpressAuthorization = OsiguSDK.Insurers.Models.ExpressAuthorization;
 using SubmitProductRequest = OsiguSDK.Providers.Models.Requests.SubmitProductRequest;
 
 
@@ -39,5 +41,7 @@ namespace OsiguSDK.SpecificationTests.Tools
         public static DocumentRequest DocumentRequest { get; set; }
         public static string SettlementFormatPrint { get; set; }
         public static PrintSettlementRequest PrintSettlementRequest { get; set; }
+
+        public static OsiguSDK.Insurers.Clients.ExpressAuthorizationClient.ExpressAuthorizationStatus expressAuthorizationStatus { get; set; }
     }
 }
