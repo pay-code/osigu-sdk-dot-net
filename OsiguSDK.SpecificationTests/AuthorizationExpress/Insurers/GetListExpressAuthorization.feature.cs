@@ -18,21 +18,21 @@ namespace OsiguSDK.SpecificationTests.AuthorizationExpress.Insurers
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Get an express authorization as an Insurer")]
-    public partial class GetAnExpressAuthorizationAsAnInsurerFeature
+    [NUnit.Framework.DescriptionAttribute("Get list of express authorizations as an Insurer")]
+    public partial class GetListOfExpressAuthorizationsAsAnInsurerFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "GetExpressAuthorization.feature"
+#line 1 "GetListExpressAuthorization.feature"
 #line hidden
         
         [NUnit.Framework.TestFixtureSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Get an express authorization as an Insurer", "\tIn order to obtain an express authorization\r\n\tAs an Insurer \r\n\tI need to send th" +
-                    "e valid id of the authorization", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Get list of express authorizations as an Insurer", "\tIn order to obtain the list of express authorizations\r\n\tAs an Insurer \r\n\tI need " +
+                    "to send a valid request and a valid slug", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         

@@ -1,7 +1,7 @@
-﻿Feature: Get an express authorization as an Insurer
-	In order to obtain an express authorization
+﻿Feature: Get list of express authorizations as an Insurer
+	In order to obtain the list of express authorizations
 	As an Insurer 
-	I need to send the valid id of the authorization
+	I need to send a valid request and a valid slug
 
 Scenario: Get an express authorization with an invalid token as an insurer
 	Given I have the insurer express authorizations client with an invalid token
