@@ -2,6 +2,7 @@
 using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Core.Models;
 using OsiguSDK.Providers.Models;
+using OsiguSDK.Providers.Models.Requests;
 using OsiguSDK.SpecificationTests.ResponseModels;
 using OsiguSDK.SpecificationTests.Settlements.Models;
 using Claim = OsiguSDK.Providers.Models.Claim;
@@ -30,5 +31,7 @@ namespace OsiguSDK.SpecificationTests.Tools
         public static IList<RequestError.ValidationError> Errors { get; set; }
         public static Pagination<SettlementResponse> Settlements { get; set; }
         public static PrintSettlementResponse PrintSettlementResponse { get; set; }
+        public static string ExpressAuthorizationId { get; set; }
+        public static ExpressAuthorization ExpressAuthorization { get; set; }
     }
 }

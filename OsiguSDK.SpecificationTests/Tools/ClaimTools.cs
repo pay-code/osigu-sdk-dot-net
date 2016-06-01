@@ -18,9 +18,6 @@ using OsiguSDK.SpecificationTests.Tools.TestingProducts;
 
 namespace OsiguSDK.SpecificationTests.Tools
 {
-
-   
-
     public class ClaimTools
     {
         public IConfiguration ProviderBranchConfiguration { get; set; }
@@ -84,7 +81,6 @@ namespace OsiguSDK.SpecificationTests.Tools
                 return Math.Round(priceGenerator.Next(MinValue, MaxValue), 2);
             }
         }
-
 
         public ClaimTools()
         {

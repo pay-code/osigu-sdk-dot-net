@@ -163,14 +163,6 @@
       <DependentUpon>GetAnExpressAuthorization.feature</DependentUpon>
     </Compile>
     <Compile Include="AuthorizationExpress\Providers\GetAnExpressAuthorizationSteps.cs" />
-    <Compile Include="AuthorizationExpress\Providers\Models\AddItemsOfAnExpressAuthorizationRequest.cs" />
-    <Compile Include="AuthorizationExpress\Providers\Models\CheckExpressAuthorizationStatusRequest.cs" />
-    <Compile Include="AuthorizationExpress\Providers\Models\CompleteExpressAuthorizationRequest.cs" />
-    <Compile Include="AuthorizationExpress\Providers\Models\CreateExpressAuthorizationRequest.cs" />
-    <Compile Include="AuthorizationExpress\Providers\Models\ExpressAuthorizationInvoice.cs" />
-    <Compile Include="AuthorizationExpress\Providers\Models\ExpressAuthorizationItem.cs" />
-    <Compile Include="AuthorizationExpress\Providers\Models\ExpressAuthorizationResponse.cs" />
-    <Compile Include="AuthorizationExpress\Providers\Models\PolicyHolderExpressAuthorization.cs" />
     <Compile Include="AuthorizationExpress\Providers\VoidAnExpressAuthorization.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -259,6 +251,7 @@
     <Compile Include="Products\Models\OsiguProductRequest.cs" />
     <Compile Include="Tools\CurrentData.cs" />
     <Compile Include="Tools\Enums.cs" />
+    <Compile Include="Tools\ExpressAuthorizationTool.cs" />
     <Compile Include="Tools\TestingProducts\Provider1Products.cs" />
     <Compile Include="Tools\Requests.cs" />
     <Compile Include="Tools\Responses.cs" />

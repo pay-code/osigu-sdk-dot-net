@@ -39,5 +39,10 @@ namespace OsiguSDK.SpecificationTests.Tools
         public static DocumentRequest DocumentRequest { get; set; }
         public static string SettlementFormatPrint { get; set; }
         public static PrintSettlementRequest PrintSettlementRequest { get; set; }
+        public static PolicyHolderInfo PolicyHolder { get; set; }
+        public static CreateExpressAuthorizationRequest CreateExpressAuthorizationRequest { get; set; }
+        public static AddOrModifyItemsExpressAuthorization AddOrModifyItemsExpressAuthorizationRequest { get; set; }
+
+        //public static PolicyHolderExpressAuthorization PolicyHolder { get; set; }
     }
 }
