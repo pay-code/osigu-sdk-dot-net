@@ -13,23 +13,27 @@ namespace OsiguSDK.SpecificationTests.AuthorizationExpress.Providers
     public class AddOrModifyProductsOfAnExpressAuthorizationSteps
     {
         public ExpressAuthorizationTool ExpressAuthorizationTool { get; set; }
+        public ExpressAuthorizationHelper ExpressAuthorizationHelper { get; set; }
+
         public AddOrModifyProductsOfAnExpressAuthorizationSteps()
         {
+            ExpressAuthorizationHelper = new ExpressAuthorizationHelper();
             ExpressAuthorizationTool = new ExpressAuthorizationTool(ConfigurationClients.ConfigProviderBranch1);
             CurrentData.ExpressAutorizationItems = new List<AddOrModifyItemsExpressAuthorization.Item>();
+
         }
 
         [Given(@"I have entered a valid authorization id")]
         public void GivenIHaveEnteredAValidAuthorizationId()
         {
-            Responses.QueueId = CreateExpressAuthorization();
-            Responses.ExpressAuthorizationId = CheckExpressAuthorizationStatus(Responses.QueueId);
+            Responses.QueueId = ExpressAuthorizationHelper.CreateExpressAuthorization();
+            Responses.ExpressAuthorizationId = ExpressAuthorizationHelper.CheckExpressAuthorizationStatus(Responses.QueueId);
         }
 
         [Given(@"I have entered many valid products")]
         public void GivenIHaveEnteredManyValidProducts()
         {
-            CurrentData.ExpressAutorizationItems = ExpressAuthorizationTool.GenerateProducts(2);
+            CurrentData.ExpressAutorizationItems = ExpressAuthorizationTool.CreateProductList(2);
         }
         
         [Given(@"I have the request data for add items of an express authorization")]
@@ -46,7 +50,7 @@ namespace OsiguSDK.SpecificationTests.AuthorizationExpress.Providers
         [Given(@"I have entered one valid product")]
         public void GivenIHaveEnteredOneValidProduct()
         {
-            CurrentData.ExpressAutorizationItems = ExpressAuthorizationTool.GenerateProducts(1);
+            CurrentData.ExpressAutorizationItems = ExpressAuthorizationTool.CreateProductList(1);
         }
         
         [Given(@"I have entered many invalid products")]
@@ -108,7 +112,7 @@ namespace OsiguSDK.SpecificationTests.AuthorizationExpress.Providers
         public void GivenIHaveEnteredOneProductWithQuantityEqualToCero()
         {
             if (!CurrentData.ExpressAutorizationItems.Any())
-                CurrentData.ExpressAutorizationItems = ExpressAuthorizationTool.GenerateProducts(1);
+                CurrentData.ExpressAutorizationItems = ExpressAuthorizationTool.CreateProductList(1);
 
             CurrentData.ExpressAutorizationItems[0].Quantity = 0;
         }
@@ -117,7 +121,7 @@ namespace OsiguSDK.SpecificationTests.AuthorizationExpress.Providers
         public void GivenIHaveEnteredOneProductWithNegativeQuantity()
         {
             if (!CurrentData.ExpressAutorizationItems.Any())
-                CurrentData.ExpressAutorizationItems = ExpressAuthorizationTool.GenerateProducts(1);
+                CurrentData.ExpressAutorizationItems = ExpressAuthorizationTool.CreateProductList(1);
 
             CurrentData.ExpressAutorizationItems[0].Quantity = -1;
         }
@@ -126,7 +130,7 @@ namespace OsiguSDK.SpecificationTests.AuthorizationExpress.Providers
         public void GivenIHaveEnteredOneProductWithPriceEqualToCero()
         {
             if (!CurrentData.ExpressAutorizationItems.Any())
-                CurrentData.ExpressAutorizationItems = ExpressAuthorizationTool.GenerateProducts(1);
+                CurrentData.ExpressAutorizationItems = ExpressAuthorizationTool.CreateProductList(1);
 
             CurrentData.ExpressAutorizationItems[0].Price = 0m;
         }
@@ -135,7 +139,7 @@ namespace OsiguSDK.SpecificationTests.AuthorizationExpress.Providers
         public void GivenIHaveEnteredOneProductWithNegativePrice()
         {
             if (!CurrentData.ExpressAutorizationItems.Any())
-                CurrentData.ExpressAutorizationItems = ExpressAuthorizationTool.GenerateProducts(1);
+                CurrentData.ExpressAutorizationItems = ExpressAuthorizationTool.CreateProductList(1);
 
             CurrentData.ExpressAutorizationItems[0].Price = -15m;
         }
@@ -192,50 +196,7 @@ namespace OsiguSDK.SpecificationTests.AuthorizationExpress.Providers
         {
             
         }
-
-        private string CreateExpressAuthorization()
-        {
-            string queuiId = null;
-            var request = new CreateExpressAuthorizationRequest
-            {
-                InsurerId = ConstantElements.InsurerId.ToString(),
-                PolicyHolder = ConstantElements.PolicyHolder
-            };
-
-            Utils.Dump("CreateExpressAuthorizationRequest: ", request);
-
-            try
-            {
-                queuiId = ExpressAuthorizationTool.CreateExpressAuthorization(request);
-                Utils.Dump("QueueId: ", Responses.QueueId);
-
-            }
-            catch (RequestException exception)
-            {
-                Responses.ErrorId = exception.ResponseCode;
-            }
-
-            return queuiId;
-        }
-
-        private string CheckExpressAuthorizationStatus(string queueId)
-        {
-            Responses.ErrorId = 0;
-            string expressAuthorizationId = null;
-            try
-            {
-                expressAuthorizationId = ExpressAuthorizationTool.CheckQueueStatus(queueId);
-
-                Utils.Dump("CheckExpressAuthorizationStatus: ", expressAuthorizationId);
-            }
-            catch (RequestException exception)
-            {
-                Responses.ErrorId = exception.ResponseCode;
-            }
-
-            return expressAuthorizationId;
-        }
-
+        
         private static void ValidateExpressAuthorizationResponse()
         {
             var coInsurancePercentage = Responses.ExpressAuthorization.Items.Average(x => x.CoInsurancePercentage) / 100;

@@ -157,6 +157,7 @@
       <DependentUpon>CreateExpressAuthorization.feature</DependentUpon>
     </Compile>
     <Compile Include="AuthorizationExpress\Providers\CreateExpressAuthorizationSteps.cs" />
+    <Compile Include="AuthorizationExpress\Providers\ExpressAuthorizationHelper.cs" />
     <Compile Include="AuthorizationExpress\Providers\GetAnExpressAuthorization.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 using FizzWare.NBuilder;
 using OsiguSDK.Core.Config;
@@ -9,6 +10,8 @@ using OsiguSDK.Providers.Clients;
 using OsiguSDK.Providers.Models;
 using OsiguSDK.Providers.Models.Requests;
 using OsiguSDK.SpecificationTests.Tools.TestingProducts;
+using Ploeh.AutoFixture;
+
 namespace OsiguSDK.SpecificationTests.Tools
 {
     public class ExpressAuthorizationTool
@@ -27,7 +30,7 @@ namespace OsiguSDK.SpecificationTests.Tools
                 switch (ClaimAmountRange)
                 {
                     case ClaimAmountRange.LESS_THAN_2800:
-                        return 1;
+                        return 100;
                     case ClaimAmountRange.BETWEEN_2800_AND_33600:
                         return 2801;
                     case ClaimAmountRange.GREATER_THAN_33600:
@@ -123,7 +126,7 @@ namespace OsiguSDK.SpecificationTests.Tools
             return queueStatus.ResourceId;
         }
 
-        public List<AddOrModifyItemsExpressAuthorization.Item> GenerateProducts(int numberOfProduts, ClaimAmountRange amountRange = ClaimAmountRange.LESS_THAN_2800, decimal exactAmount = 0)
+        public List<AddOrModifyItemsExpressAuthorization.Item> CreateProductList(int numberOfProduts, ClaimAmountRange amountRange = ClaimAmountRange.LESS_THAN_2800, decimal exactAmount = 0)
         {
             ClaimAmountRange = amountRange;
             ExactAmount = exactAmount;
@@ -142,6 +145,74 @@ namespace OsiguSDK.SpecificationTests.Tools
 
             return productList;
         }
+
+        public ExpressAuthorization AddItemsOfAnExpressAuthorization(string authorizationId, List<AddOrModifyItemsExpressAuthorization.Item> items)
+        {
+            return _client.AddOrModifyItemsExpressAuthorization(authorizationId, new AddOrModifyItemsExpressAuthorization
+            {
+                Items = items
+            });
+        }
+
+        public ExpressAuthorization CompleteExpressAuthorization(string expressAuthorizationId, Invoice invoice)
+        {
+            return _client.CompleteExpressAuthorization(expressAuthorizationId, new CompleteExpressAuthorizationRequest
+            {
+                Invoice = invoice
+            });
+        }
+
+        public Invoice GenerateInvoice(decimal amount, string currency = "GTQ")
+        {
+            return TestClients.Fixture.Build<Invoice>()
+                .With(x => x.Amount, amount)
+                .With(x => x.Currency, currency)
+                .With(x => x.DocumentDate, DateTime.UtcNow)
+                .With(x => x.DigitalSignature, Guid.NewGuid().ToString())
+                .Create();
+        }
+
+
+        public ExpressAuthorization CreateFullExpressAuthorization(CreateFullExpressAuthorizationRequest expressAuthorizationData)
+        {
+            ClaimAmountRange = expressAuthorizationData.Amount;
+            ExactAmount = expressAuthorizationData.ExactAmount;
+
+            var numberOfProducts = expressAuthorizationData.NumberOfProducts;
+            var request = expressAuthorizationData.CreateExpressAuthorizationRequest;
+
+            if (expressAuthorizationData.CreateExpressAuthorizationRequest == null)
+            {
+                request = new CreateExpressAuthorizationRequest
+                {
+                    InsurerId = ConstantElements.InsurerId.ToString(),
+                    PolicyHolder = ConstantElements.PolicyHolder
+                };
+            }
+
+            if (numberOfProducts == 0)
+                numberOfProducts = 3;
+            
+            var queueId =_client.CreateExpressAuthorization(request);
+            var authorizationId = CheckQueueStatus(queueId);
+            var productList = CreateProductList(numberOfProducts, ClaimAmountRange);
+            AddItemsOfAnExpressAuthorization(authorizationId, productList);
+
+            var invoiceAmount = Math.Round(productList.Sum(x => x.Quantity * x.Price), 2);
+            var invoice = GenerateInvoice(invoiceAmount);
+
+            var expressAuthorization = CompleteExpressAuthorization(authorizationId, invoice);
+
+            return expressAuthorization;
+        }
+    }
+
+    public class CreateFullExpressAuthorizationRequest
+    {
+        public CreateExpressAuthorizationRequest CreateExpressAuthorizationRequest { get; set; }
+        public int NumberOfProducts { get; set; }
+        public ClaimAmountRange Amount { get; set; }
+        public decimal ExactAmount { get; set; }
     }
 
 }
