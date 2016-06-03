@@ -13,12 +13,6 @@ Scenario: Get list of express authorizations with an invalid slug as an insurer
 	When I make the get list of express authorizations request to the endpoint as an insurer
 	Then the result should be not found for getting the list of express authorizations as an insurer
 
-#Scenario: Get list of express authorizations with an invalid parameters as an insurer
-#	Given I have the insurer express authorizations client with an invalid slug
-#	And I have an invalid authorization status
-#	When I make the get express authorization request to the endpoint as an insurer
-#	Then the result should be not found for getting the express authorization
-
 Scenario Outline: Get list of express authorizations with valid status
 	Given I have the insurer express authorizations client
 	And I request the authorizations status '<AuthorizationStatus>' and id <TestId>

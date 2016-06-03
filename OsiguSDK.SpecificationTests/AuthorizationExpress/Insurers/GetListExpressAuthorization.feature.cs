@@ -112,16 +112,16 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void GetListOfExpressAuthorizationsWithValidStatus(string testId, string authorizationStatus, string[] exampleTags)
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get list of express authorizations with valid status", exampleTags);
-#line 22
+#line 16
 this.ScenarioSetup(scenarioInfo);
-#line 23
+#line 17
  testRunner.Given("I have the insurer express authorizations client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 24
+#line 18
  testRunner.And(string.Format("I request the authorizations status \'{0}\' and id {1}", authorizationStatus, testId), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 25
+#line 19
  testRunner.When("I make the get list of express authorizations request to the endpoint as an insur" +
                     "er", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 26
+#line 20
  testRunner.Then("the result should be the list of express authorizations", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
