@@ -11,6 +11,15 @@ namespace OsiguSDK.SpecificationTests.AuthorizationExpress.Providers
     [Binding]
     public class CreateExpressAuthorizationSteps
     {
+        public ExpressAuthorizationTool ExpressAuthorizationTool { get; set; }
+        public ExpressAuthorizationHelper ExpressAuthorizationHelper { get; set; }
+
+        public CreateExpressAuthorizationSteps()
+        {
+            ExpressAuthorizationHelper = new ExpressAuthorizationHelper();
+            ExpressAuthorizationTool = new ExpressAuthorizationTool(ConfigurationClients.ConfigProviderBranch1);
+        }
+
         [Given(@"I have the express authorization provider client")]
         public void GivenIHaveTheExpressAuthorizationProviderClient()
         {
@@ -50,8 +59,10 @@ namespace OsiguSDK.SpecificationTests.AuthorizationExpress.Providers
             try
             {
                 Responses.QueueId = TestClients.ExpressAuthorizationClient.CreateExpressAuthorization(Requests.CreateExpressAuthorizationRequest);
-                Responses.ErrorId = 202;
-                Utils.Dump("QueueId: ", Responses.QueueId);
+                Utils.Dump("Response QueueId: ", Responses.QueueId);
+                ExpressAuthorizationTool.CheckQueueStatus(Responses.QueueId);
+                Utils.Dump("Response QueueStatus: ", Responses.QueueStatus);
+
             }
             catch (RequestException exception)
             {
@@ -80,7 +91,7 @@ namespace OsiguSDK.SpecificationTests.AuthorizationExpress.Providers
             if (policyHolderField == "Id")
                Requests.PolicyHolder.Id = "1111111111111";
             else
-                Requests.PolicyHolder.DateOfBirth = DateTime.Parse("01/01/1950"); 
+                Requests.PolicyHolder.DateOfBirth = DateTime.Parse("1950-01-01 15:00:00.000"); 
         }
 
         [Given(@"I have not included a insurer")]
