@@ -43,8 +43,6 @@ namespace OsiguSDK.SpecificationTests.Tools
         public static CreateExpressAuthorizationRequest CreateExpressAuthorizationRequest { get; set; }
         public static AddOrModifyItemsExpressAuthorization AddOrModifyItemsExpressAuthorizationRequest { get; set; }
         public static CompleteExpressAuthorizationRequest CompleteExpressAuthorizationRequest { get; set; }
-
-
-        //public static PolicyHolderExpressAuthorization PolicyHolder { get; set; }
+        
     }
 }

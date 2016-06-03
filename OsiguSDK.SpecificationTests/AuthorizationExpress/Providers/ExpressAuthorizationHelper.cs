@@ -1,3 +1,6 @@
+using System;
+using System.Linq;
+using FluentAssertions;
 using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Providers.Models;
 using OsiguSDK.Providers.Models.Requests;
@@ -27,7 +30,7 @@ namespace OsiguSDK.SpecificationTests.AuthorizationExpress.Providers
             try
             {
                 queuiId = ExpressAuthorizationTool.CreateExpressAuthorization(request);
-                Utils.Dump("QueueId: ", Responses.QueueId);
+                Utils.Dump("QueueId: ", queuiId);
 
             }
             catch (RequestException exception)
@@ -96,6 +99,27 @@ namespace OsiguSDK.SpecificationTests.AuthorizationExpress.Providers
             }
 
             return Responses.ExpressAuthorization;
+        }
+
+        public void ValidateExpressAuthorizationResponse()
+        {
+            var coInsurancePercentage = Responses.ExpressAuthorization.Items.Average(x => x.CoInsurancePercentage) / 100;
+
+            Responses.ExpressAuthorization.Items.ShouldAllBeEquivalentTo(CurrentData.ExpressAutorizationItems,
+                x => x.Excluding(y => y.CoInsurancePercentage));
+
+            Responses.ExpressAuthorization.Id.Should().Be(Responses.ExpressAuthorizationId);
+            Responses.ExpressAuthorization.InsurerName.Should().Be(ConstantElements.InsurerName);
+            Responses.ExpressAuthorization.PolicyHolder.ShouldBeEquivalentTo(ConstantElements.PolicyHolder);
+            Responses.ExpressAuthorization.Copayment.Should().Be(0);
+            Responses.ExpressAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 30000);
+            Responses.ExpressAuthorization.UpdatedAt.Should().BeCloseTo(DateTime.UtcNow, 30000);
+
+            //TODO: Remove the first round, the API must round it
+            Math.Round(Responses.ExpressAuthorization.TotalCoInsurance, 2)
+                .Should()
+                .Be(Math.Round(CurrentData.ExpressAutorizationItems.Sum(x => x.Quantity * x.Price) * coInsurancePercentage, 2));
+
         }
     }
 }

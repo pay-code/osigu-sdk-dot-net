@@ -34,7 +34,14 @@ namespace OsiguSDK.SpecificationTests.AuthorizationExpress.Providers
 
             Utils.Dump("Create Express Authorization Request: ", Requests.CreateExpressAuthorizationRequest);
         }
-        
+
+        [Then(@"the result should be forbidden")]
+        public void ThenTheResultShouldBeForbidden()
+        {
+            Responses.ErrorId.Should().Be(403);
+
+        }
+
         [When(@"I make the new express authorization request to the endpoint")]
         public void WhenIMakeTheNewExpressAuthorizationRequestToTheEndpoint()
         {

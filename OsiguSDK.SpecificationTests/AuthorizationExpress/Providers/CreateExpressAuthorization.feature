@@ -18,7 +18,7 @@ Scenario: Create a new express authorization with an invalid insurer
 	And I have entered a valid policy holder
 	And I have the request data for a new express authorization
 	When I make the new express authorization request to the endpoint
-	Then the result should be bad request
+	Then the result should be unprocessable entity
 	
 Scenario Outline: Create a new express authorization with an invalid policy holder
 	Given I have the express authorization provider client
@@ -39,7 +39,7 @@ Scenario: Create a new express authorization without insurer_id in the request
 	And I have entered a valid policy holder
 	And I have the request data for a new express authorization
 	When I make the new express authorization request to the endpoint
-	Then the result should be bad request
+	Then the result should be unprocessable entity
 
 Scenario: Create a new express authorization without policy_holder in the request
 	Given I have the express authorization provider client
@@ -55,4 +55,4 @@ Scenario: Create a new express authorization with invalid provider slug
 	And I have entered a valid policy holder
 	And I have the request data for a new express authorization
 	When I make the new express authorization request to the endpoint
-	Then the result should be not found
+	Then the result should be forbidden

@@ -168,7 +168,7 @@ namespace OsiguSDK.SpecificationTests.AuthorizationExpress.Providers
         [Then(@"the result should be the express authorization with all products approved")]
         public void ThenTheResultShouldBeTheExpressAuthorizationWithAllProductsApproved()
         {
-            ValidateExpressAuthorizationResponse();
+           ExpressAuthorizationHelper.ValidateExpressAuthorizationResponse();
         }
 
       
@@ -182,7 +182,7 @@ namespace OsiguSDK.SpecificationTests.AuthorizationExpress.Providers
         [Then(@"the result should be the express authorization with all valid products approved")]
         public void ThenTheResultShouldBeTheExpressAuthorizationWithAllValidProductsApproved()
         {
-            ValidateExpressAuthorizationResponse();
+            ExpressAuthorizationHelper.ValidateExpressAuthorizationResponse();
         }
         
         [Then(@"the result should be the express authorization with all products denied")]
@@ -197,25 +197,6 @@ namespace OsiguSDK.SpecificationTests.AuthorizationExpress.Providers
             
         }
         
-        private static void ValidateExpressAuthorizationResponse()
-        {
-            var coInsurancePercentage = Responses.ExpressAuthorization.Items.Average(x => x.CoInsurancePercentage) / 100;
-
-            Responses.ExpressAuthorization.Items.ShouldAllBeEquivalentTo(CurrentData.ExpressAutorizationItems,
-                x => x.Excluding(y => y.CoInsurancePercentage));
-
-            Responses.ExpressAuthorization.Id.Should().Be(Responses.ExpressAuthorizationId);
-            Responses.ExpressAuthorization.InsurerName.Should().Be(ConstantElements.InsurerName);
-            Responses.ExpressAuthorization.PolicyHolder.ShouldBeEquivalentTo(ConstantElements.PolicyHolder);
-            Responses.ExpressAuthorization.Copayment.Should().Be(0);
-            Responses.ExpressAuthorization.CreatedAt.Should().BeCloseTo(DateTime.UtcNow, 30000);
-            Responses.ExpressAuthorization.UpdatedAt.Should().BeCloseTo(DateTime.UtcNow, 30000);
-
-            //TODO: Remove the first round, the API must round it
-            Math.Round(Responses.ExpressAuthorization.TotalCoInsurance, 2)
-                .Should()
-                .Be(Math.Round(CurrentData.ExpressAutorizationItems.Sum(x => x.Quantity * x.Price) * coInsurancePercentage, 2));
-            //Responses.ExpressAuthorization.TotalCoInsurance.Should().Be(CurrentData.ExpressAutorizationItems.Sum(x => x.Quantity * x.Price) * coInsurancePercentage);
-        }
+        
     }
 }
