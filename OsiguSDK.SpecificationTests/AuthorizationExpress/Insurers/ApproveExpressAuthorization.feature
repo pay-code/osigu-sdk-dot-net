@@ -35,9 +35,9 @@ Scenario: Approve an invalid express authorization as an insurer
 #	And I have the insurer express authorizations client
 #	When I make the approve express authorization request to the endpoint as an insurer
 #	Then the result should be not procesable for approving the express authorization
-#
-#Scenario: Approve a rejected express authorization as an insurer
-#	#Scenario for creating an express authorization
-#	And I have the insurer express authorizations client
-#	When I make the approve express authorization request to the endpoint as an insurer
-#	Then the result should be ok for approving the express authorization
+
+Scenario: Approve a rejected express authorization as an insurer
+	Given I create a valid express authorization
+	And I have the insurer express authorizations client
+	When I make the approve express authorization request to the endpoint as an insurer
+	Then the result should be ok for approving the express authorization
