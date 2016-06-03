@@ -115,27 +115,52 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Add many valid products of an express authorization with an invalid provider slug" +
+            "")]
+        public virtual void AddManyValidProductsOfAnExpressAuthorizationWithAnInvalidProviderSlug()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add many valid products of an express authorization with an invalid provider slug" +
+                    "", ((string[])(null)));
+#line 24
+this.ScenarioSetup(scenarioInfo);
+#line 25
+ testRunner.Given("I have the express authorization provider client with invalid slug", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 26
+ testRunner.And("I have entered a valid authorization id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 27
+ testRunner.And("I have entered many valid products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 28
+ testRunner.And("I have the request data for add items of an express authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 29
+ testRunner.When("I make the add items of an express authorization request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 30
+ testRunner.Then("the result should be not found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Add many valid and invalid products of an express authorization")]
         public virtual void AddManyValidAndInvalidProductsOfAnExpressAuthorization()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add many valid and invalid products of an express authorization", ((string[])(null)));
-#line 25
-this.ScenarioSetup(scenarioInfo);
-#line 26
- testRunner.Given("I have the express authorization provider client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 27
- testRunner.And("I have entered a valid authorization id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 28
- testRunner.And("I have entered many valid products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 29
- testRunner.And("I have entered many invalid products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 30
- testRunner.And("I have the request data for add items of an express authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 31
- testRunner.When("I make the add items of an express authorization request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 32
- testRunner.Then("the result should be ok", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 33
+this.ScenarioSetup(scenarioInfo);
+#line 34
+ testRunner.Given("I have the express authorization provider client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 35
+ testRunner.And("I have entered a valid authorization id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 36
+ testRunner.And("I have entered many valid products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 37
+ testRunner.And("I have entered many invalid products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 38
+ testRunner.And("I have the request data for add items of an express authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 39
+ testRunner.When("I make the add items of an express authorization request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 40
+ testRunner.Then("the result should be ok", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 41
  testRunner.And("the result should be the express authorization with all valid products approved", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -146,21 +171,21 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void AddManyInvalidProductsOfAnExpressAuthorization()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add many invalid products of an express authorization", ((string[])(null)));
-#line 36
-this.ScenarioSetup(scenarioInfo);
-#line 37
- testRunner.Given("I have the express authorization provider client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 38
- testRunner.And("I have entered a valid authorization id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 39
- testRunner.And("I have entered many invalid products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 40
- testRunner.And("I have the request data for add items of an express authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 41
- testRunner.When("I make the add items of an express authorization request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 42
- testRunner.Then("the result should be ok", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 44
+this.ScenarioSetup(scenarioInfo);
+#line 45
+ testRunner.Given("I have the express authorization provider client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 46
+ testRunner.And("I have entered a valid authorization id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 47
+ testRunner.And("I have entered many invalid products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 48
+ testRunner.And("I have the request data for add items of an express authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 49
+ testRunner.When("I make the add items of an express authorization request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 50
+ testRunner.Then("the result should be ok", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 52
  testRunner.And("the result should be the express authorization with all products denied", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -171,21 +196,21 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void AddOneInvalidProductOfAnExpressAuthorization()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add one invalid product of an express authorization", ((string[])(null)));
-#line 47
-this.ScenarioSetup(scenarioInfo);
-#line 48
- testRunner.Given("I have the express authorization provider client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 49
- testRunner.And("I have entered a valid authorization id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 50
- testRunner.And("I have entered one invalid product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 51
- testRunner.And("I have the request data for add items of an express authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 52
- testRunner.When("I make the add items of an express authorization request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 53
- testRunner.Then("the result should be ok", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 55
+this.ScenarioSetup(scenarioInfo);
+#line 56
+ testRunner.Given("I have the express authorization provider client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 57
+ testRunner.And("I have entered a valid authorization id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 58
+ testRunner.And("I have entered one invalid product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 59
+ testRunner.And("I have the request data for add items of an express authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 60
+ testRunner.When("I make the add items of an express authorization request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 61
+ testRunner.Then("the result should be ok", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 63
  testRunner.And("the result should be the express authorization with the product denied", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
@@ -196,21 +221,21 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void AddManyProductsWithOneNon_ExistentProductOfAnExpressAuthorization()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add many products with one non-existent product of an express authorization", ((string[])(null)));
-#line 58
-this.ScenarioSetup(scenarioInfo);
-#line 59
- testRunner.Given("I have the express authorization provider client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 60
- testRunner.And("I have entered a valid authorization id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 61
- testRunner.And("I have entered many valid products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 62
- testRunner.And("I have entered one non-existent product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 63
- testRunner.And("I have the request data for add items of an express authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 64
- testRunner.When("I make the add items of an express authorization request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 66
+this.ScenarioSetup(scenarioInfo);
+#line 67
+ testRunner.Given("I have the express authorization provider client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 68
+ testRunner.And("I have entered a valid authorization id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 69
+ testRunner.And("I have entered many valid products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 70
+ testRunner.And("I have entered one non-existent product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 71
+ testRunner.And("I have the request data for add items of an express authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 72
+ testRunner.When("I make the add items of an express authorization request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 74
  testRunner.Then("the result should be bad request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -221,19 +246,19 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void AddOneNon_ExistentProductIdOfAnExpressAuthorization()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add one non-existent product id of an express authorization", ((string[])(null)));
-#line 69
+#line 77
 this.ScenarioSetup(scenarioInfo);
-#line 70
+#line 78
  testRunner.Given("I have the express authorization provider client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 71
+#line 79
  testRunner.And("I have entered a valid authorization id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 72
+#line 80
  testRunner.And("I have entered one non-existent product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 73
+#line 81
  testRunner.And("I have the request data for add items of an express authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 74
+#line 82
  testRunner.When("I make the add items of an express authorization request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 76
+#line 84
  testRunner.Then("the result should be bad request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -246,37 +271,14 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add many products with one product with quantity equal to cero of an express auth" +
                     "orization", ((string[])(null)));
-#line 78
+#line 86
 this.ScenarioSetup(scenarioInfo);
-#line 79
- testRunner.Given("I have the express authorization provider client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 80
- testRunner.And("I have entered a valid authorization id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 81
- testRunner.And("I have entered many valid products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 82
- testRunner.And("I have entered one product with quantity equal to cero", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 83
- testRunner.And("I have the request data for add items of an express authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 84
- testRunner.When("I make the add items of an express authorization request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 85
- testRunner.Then("the result should be unprocessable entity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
-#line hidden
-            this.ScenarioCleanup();
-        }
-        
-        [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Add one product with quantity equal to cero of an express authorization")]
-        public virtual void AddOneProductWithQuantityEqualToCeroOfAnExpressAuthorization()
-        {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add one product with quantity equal to cero of an express authorization", ((string[])(null)));
 #line 87
-this.ScenarioSetup(scenarioInfo);
-#line 88
  testRunner.Given("I have the express authorization provider client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 89
+#line 88
  testRunner.And("I have entered a valid authorization id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 89
+ testRunner.And("I have entered many valid products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 90
  testRunner.And("I have entered one product with quantity equal to cero", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 91
@@ -290,10 +292,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Add many products with one negative product quantity of an express authorization")]
-        public virtual void AddManyProductsWithOneNegativeProductQuantityOfAnExpressAuthorization()
+        [NUnit.Framework.DescriptionAttribute("Add one product with quantity equal to cero of an express authorization")]
+        public virtual void AddOneProductWithQuantityEqualToCeroOfAnExpressAuthorization()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add many products with one negative product quantity of an express authorization", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add one product with quantity equal to cero of an express authorization", ((string[])(null)));
 #line 95
 this.ScenarioSetup(scenarioInfo);
 #line 96
@@ -301,30 +303,30 @@ this.ScenarioSetup(scenarioInfo);
 #line 97
  testRunner.And("I have entered a valid authorization id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 98
- testRunner.And("I have entered many valid products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I have entered one product with quantity equal to cero", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 99
- testRunner.And("I have entered one product with negative quantity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 100
  testRunner.And("I have the request data for add items of an express authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 101
+#line 100
  testRunner.When("I make the add items of an express authorization request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 102
+#line 101
  testRunner.Then("the result should be unprocessable entity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Add one product with negative quantity of an express authorization")]
-        public virtual void AddOneProductWithNegativeQuantityOfAnExpressAuthorization()
+        [NUnit.Framework.DescriptionAttribute("Add many products with one negative product quantity of an express authorization")]
+        public virtual void AddManyProductsWithOneNegativeProductQuantityOfAnExpressAuthorization()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add one product with negative quantity of an express authorization", ((string[])(null)));
-#line 104
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add many products with one negative product quantity of an express authorization", ((string[])(null)));
+#line 103
 this.ScenarioSetup(scenarioInfo);
-#line 105
+#line 104
  testRunner.Given("I have the express authorization provider client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 106
+#line 105
  testRunner.And("I have entered a valid authorization id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 106
+ testRunner.And("I have entered many valid products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 107
  testRunner.And("I have entered one product with negative quantity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 108
@@ -338,12 +340,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Add many products with one product price equal to cero of an express authorizatio" +
-            "n")]
-        public virtual void AddManyProductsWithOneProductPriceEqualToCeroOfAnExpressAuthorization()
+        [NUnit.Framework.DescriptionAttribute("Add one product with negative quantity of an express authorization")]
+        public virtual void AddOneProductWithNegativeQuantityOfAnExpressAuthorization()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add many products with one product price equal to cero of an express authorizatio" +
-                    "n", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add one product with negative quantity of an express authorization", ((string[])(null)));
 #line 112
 this.ScenarioSetup(scenarioInfo);
 #line 113
@@ -351,30 +351,32 @@ this.ScenarioSetup(scenarioInfo);
 #line 114
  testRunner.And("I have entered a valid authorization id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 115
- testRunner.And("I have entered many valid products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I have entered one product with negative quantity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 116
- testRunner.And("I have entered one product with price equal to cero", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 117
  testRunner.And("I have the request data for add items of an express authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 118
+#line 117
  testRunner.When("I make the add items of an express authorization request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 119
+#line 118
  testRunner.Then("the result should be unprocessable entity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Add one product with price equal to cero of an express authorization")]
-        public virtual void AddOneProductWithPriceEqualToCeroOfAnExpressAuthorization()
+        [NUnit.Framework.DescriptionAttribute("Add many products with one product price equal to cero of an express authorizatio" +
+            "n")]
+        public virtual void AddManyProductsWithOneProductPriceEqualToCeroOfAnExpressAuthorization()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add one product with price equal to cero of an express authorization", ((string[])(null)));
-#line 121
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add many products with one product price equal to cero of an express authorizatio" +
+                    "n", ((string[])(null)));
+#line 120
 this.ScenarioSetup(scenarioInfo);
-#line 122
+#line 121
  testRunner.Given("I have the express authorization provider client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 123
+#line 122
  testRunner.And("I have entered a valid authorization id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 123
+ testRunner.And("I have entered many valid products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 124
  testRunner.And("I have entered one product with price equal to cero", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 125
@@ -388,10 +390,10 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Add many products with one negative product price of an express authorization")]
-        public virtual void AddManyProductsWithOneNegativeProductPriceOfAnExpressAuthorization()
+        [NUnit.Framework.DescriptionAttribute("Add one product with price equal to cero of an express authorization")]
+        public virtual void AddOneProductWithPriceEqualToCeroOfAnExpressAuthorization()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add many products with one negative product price of an express authorization", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add one product with price equal to cero of an express authorization", ((string[])(null)));
 #line 129
 this.ScenarioSetup(scenarioInfo);
 #line 130
@@ -399,14 +401,37 @@ this.ScenarioSetup(scenarioInfo);
 #line 131
  testRunner.And("I have entered a valid authorization id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 132
- testRunner.And("I have entered many valid products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I have entered one product with price equal to cero", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 133
- testRunner.And("I have entered one product with negative price", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 134
  testRunner.And("I have the request data for add items of an express authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 135
+#line 134
  testRunner.When("I make the add items of an express authorization request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 136
+#line 135
+ testRunner.Then("the result should be unprocessable entity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Add many products with one negative product price of an express authorization")]
+        public virtual void AddManyProductsWithOneNegativeProductPriceOfAnExpressAuthorization()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add many products with one negative product price of an express authorization", ((string[])(null)));
+#line 137
+this.ScenarioSetup(scenarioInfo);
+#line 138
+ testRunner.Given("I have the express authorization provider client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 139
+ testRunner.And("I have entered a valid authorization id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 140
+ testRunner.And("I have entered many valid products", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 141
+ testRunner.And("I have entered one product with negative price", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 142
+ testRunner.And("I have the request data for add items of an express authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 143
+ testRunner.When("I make the add items of an express authorization request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 144
  testRunner.Then("the result should be unprocessable entity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -417,19 +442,19 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void AddOneProductWithNegativePriceOfAnExpressAuthorization()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add one product with negative price of an express authorization", ((string[])(null)));
-#line 138
+#line 146
 this.ScenarioSetup(scenarioInfo);
-#line 139
+#line 147
  testRunner.Given("I have the express authorization provider client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 140
+#line 148
  testRunner.And("I have entered a valid authorization id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 141
+#line 149
  testRunner.And("I have entered one product with negative price", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 142
+#line 150
  testRunner.And("I have the request data for add items of an express authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 143
+#line 151
  testRunner.When("I make the add items of an express authorization request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 144
+#line 152
  testRunner.Then("the result should be unprocessable entity", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();

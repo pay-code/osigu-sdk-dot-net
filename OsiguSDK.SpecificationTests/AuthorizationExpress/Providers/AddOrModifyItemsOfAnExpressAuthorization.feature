@@ -21,6 +21,14 @@ Scenario: Add one valid product of an express authorization
 	Then the result should be ok
 	And the result should be the express authorization with the product approved
 
+Scenario: Add many valid products of an express authorization with an invalid provider slug
+	Given I have the express authorization provider client with invalid slug
+	And I have entered a valid authorization id
+	And I have entered many valid products
+	And I have the request data for add items of an express authorization
+	When I make the add items of an express authorization request to the endpoint
+	Then the result should be not found
+
 #No se puede validar en sandbox
 Scenario: Add many valid and invalid products of an express authorization
 	Given I have the express authorization provider client

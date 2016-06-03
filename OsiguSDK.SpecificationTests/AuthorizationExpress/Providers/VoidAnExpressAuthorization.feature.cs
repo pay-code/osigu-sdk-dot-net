@@ -65,10 +65,10 @@ namespace OsiguSDK.SpecificationTests.AuthorizationExpress.Providers
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Void an express authorization successfully when status is pending review or null")]
-        public virtual void VoidAnExpressAuthorizationSuccessfullyWhenStatusIsPendingReviewOrNull()
+        [NUnit.Framework.DescriptionAttribute("Void an express authorization successfully after created")]
+        public virtual void VoidAnExpressAuthorizationSuccessfullyAfterCreated()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Void an express authorization successfully when status is pending review or null", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Void an express authorization successfully after created", ((string[])(null)));
 #line 6
 this.ScenarioSetup(scenarioInfo);
 #line 7
@@ -84,21 +84,61 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Void an express authorization when status is different to pending review or null")]
-        public virtual void VoidAnExpressAuthorizationWhenStatusIsDifferentToPendingReviewOrNull()
+        [NUnit.Framework.DescriptionAttribute("Void an express authorization successfully after items added")]
+        public virtual void VoidAnExpressAuthorizationSuccessfullyAfterItemsAdded()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Void an express authorization when status is different to pending review or null", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Void an express authorization successfully after items added", ((string[])(null)));
 #line 12
 this.ScenarioSetup(scenarioInfo);
 #line 13
  testRunner.Given("I have the express authorization provider client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 14
- testRunner.And("I have entered a valid authorization id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I have created a valid express authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
- testRunner.And("The authorization status is different to pending review or null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 16
  testRunner.When("I make the void express authorization request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 17
+#line 16
+ testRunner.Then("the result should be no content", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Void an express authorization successfully after completed")]
+        public virtual void VoidAnExpressAuthorizationSuccessfullyAfterCompleted()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Void an express authorization successfully after completed", ((string[])(null)));
+#line 18
+this.ScenarioSetup(scenarioInfo);
+#line 19
+ testRunner.Given("I have the express authorization provider client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 20
+ testRunner.And("I have created a valid express authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 21
+ testRunner.And("I have completed the express authorizaion", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 22
+ testRunner.When("I make the void express authorization request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 23
+ testRunner.Then("the result should be no content", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Void an express authorization when status is different to pending review or null")]
+        public virtual void VoidAnExpressAuthorizationWhenStatusIsDifferentToPendingReviewOrNull()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Void an express authorization when status is different to pending review or null", ((string[])(null)));
+#line 26
+this.ScenarioSetup(scenarioInfo);
+#line 27
+ testRunner.Given("I have the express authorization provider client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 28
+ testRunner.And("I have entered a valid authorization id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 29
+ testRunner.And("The authorization status is different to pending review or null", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 30
+ testRunner.When("I make the void express authorization request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 31
  testRunner.Then("the result should be bad request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
@@ -109,16 +149,16 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void VoidAnExpressAuthorizationWithAnInvalidProviderSlug()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Void an express authorization with an invalid provider slug", ((string[])(null)));
-#line 19
+#line 33
 this.ScenarioSetup(scenarioInfo);
-#line 20
- testRunner.Given("I have the express authorization provider client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 21
+#line 34
+ testRunner.Given("I have the express authorization provider client with invalid slug", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 35
  testRunner.And("I have entered a valid authorization id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 22
+#line 36
  testRunner.When("I make the void express authorization request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 23
- testRunner.Then("the result should be bad request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 37
+ testRunner.Then("the result should be not found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -128,16 +168,16 @@ this.ScenarioSetup(scenarioInfo);
         public virtual void VoidAnExpressAuthorizationWithAnInvalidId()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Void an express authorization with an invalid id", ((string[])(null)));
-#line 25
+#line 39
 this.ScenarioSetup(scenarioInfo);
-#line 26
+#line 40
  testRunner.Given("I have the express authorization provider client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 27
+#line 41
  testRunner.And("I have entered a invalid authorization id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 28
+#line 42
  testRunner.When("I make the void express authorization request to the endpoint", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 29
- testRunner.Then("the result should be bad request", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 43
+ testRunner.Then("the result should be not found", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }
