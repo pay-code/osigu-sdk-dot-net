@@ -18,8 +18,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2DC1E8
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OsiguSDK.SpecificationTests", "OsiguSDK.SpecificationTests\OsiguSDK.SpecificationTests.csproj", "{3826AEAA-6455-43EF-B332-635AE7C87497}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OsiguSDK.Providers.Examples", "OsiguSDK.Providers.Examples\OsiguSDK.Providers.Examples.csproj", "{6904ADED-0C7F-4BA3-965D-D4369427D476}"
 EndProject
 Global
@@ -44,10 +42,6 @@ Global
 		{55F0F8D8-DA6A-421C-8F01-FC8A6D5457DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55F0F8D8-DA6A-421C-8F01-FC8A6D5457DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55F0F8D8-DA6A-421C-8F01-FC8A6D5457DA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3826AEAA-6455-43EF-B332-635AE7C87497}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3826AEAA-6455-43EF-B332-635AE7C87497}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3826AEAA-6455-43EF-B332-635AE7C87497}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3826AEAA-6455-43EF-B332-635AE7C87497}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6904ADED-0C7F-4BA3-965D-D4369427D476}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6904ADED-0C7F-4BA3-965D-D4369427D476}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6904ADED-0C7F-4BA3-965D-D4369427D476}.Release|Any CPU.ActiveCfg = Release|Any CPU
