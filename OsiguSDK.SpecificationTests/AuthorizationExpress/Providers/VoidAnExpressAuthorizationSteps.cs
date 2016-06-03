@@ -2,6 +2,7 @@
 using System.Linq;
 using FluentAssertions;
 using OsiguSDK.Core.Exceptions;
+using OsiguSDK.Providers.Models;
 using OsiguSDK.SpecificationTests.Tools;
 using TechTalk.SpecFlow;
 

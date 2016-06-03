@@ -123,6 +123,7 @@ namespace OsiguSDK.SpecificationTests.Tools
                 "Time elapsed for getting the authorizationId(" + expressAuthorization.Id + "): {0:hh\\:mm\\:ss}",
                 stopwatch.Elapsed);
 
+            Responses.QueueStatus = queueStatus;
             return queueStatus.ResourceId;
         }
 

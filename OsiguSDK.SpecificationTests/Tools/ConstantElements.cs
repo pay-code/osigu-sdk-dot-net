@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Globalization;
 using OsiguSDK.Providers.Models.Requests;
 
 namespace OsiguSDK.SpecificationTests.Tools
@@ -49,9 +50,10 @@ namespace OsiguSDK.SpecificationTests.Tools
 
         public static PolicyHolderInfo PolicyHolder => new PolicyHolderInfo
         {
-            DateOfBirth = DateTime.Parse("1980/02/14"),
-            Id = "502338037"
+            DateOfBirth = DateTime.Parse("1967-07-20 15:00:00.000"),
+            Id = "50258433"
         };
+
     }
 
 }
