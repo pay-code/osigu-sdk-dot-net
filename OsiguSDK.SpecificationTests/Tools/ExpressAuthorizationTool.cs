@@ -103,13 +103,19 @@ namespace OsiguSDK.SpecificationTests.Tools
             var queueStatus = queueClient.CheckQueueStatus(queueId);
             
             stopwatch.Start();
-            while (queueStatus.ResourceId == null && contSeconds <= timeOutLimit)
+            while (queueStatus.ResourceId == null && contSeconds <= timeOutLimit && string.IsNullOrWhiteSpace(queueStatus.Error))
             {
                 contSeconds++;
                 Thread.Sleep(1000);
                 queueStatus = queueClient.CheckQueueStatus(queueId);
             }
             stopwatch.Stop();
+            Responses.QueueStatus = queueStatus;
+
+            if (!string.IsNullOrEmpty(queueStatus.Error))
+            {
+                return string.Empty;
+            }
 
             if (queueStatus.ResourceId == null)
                 throw new RequestException(
@@ -122,8 +128,7 @@ namespace OsiguSDK.SpecificationTests.Tools
             Utils.Dump(
                 "Time elapsed for getting the authorizationId(" + expressAuthorization.Id + "): {0:hh\\:mm\\:ss}",
                 stopwatch.Elapsed);
-
-            Responses.QueueStatus = queueStatus;
+            
             return queueStatus.ResourceId;
         }
 

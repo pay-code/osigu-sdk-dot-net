@@ -30,7 +30,7 @@ Scenario Outline: Create a new express authorization with an invalid policy hold
 
 	Scenarios: 
 	| PolicyHolderField |
-	| Id                |
+	#| Id                |
 	| DateOfBirth       |
 
 Scenario: Create a new express authorization without insurer_id in the request
