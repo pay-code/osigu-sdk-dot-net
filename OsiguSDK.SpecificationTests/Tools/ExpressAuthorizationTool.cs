@@ -202,12 +202,16 @@ namespace OsiguSDK.SpecificationTests.Tools
             var queueId =_client.CreateExpressAuthorization(request);
             var authorizationId = CheckQueueStatus(queueId);
             var productList = CreateProductList(numberOfProducts, ClaimAmountRange);
-            AddItemsOfAnExpressAuthorization(authorizationId, productList);
-
-            var invoiceAmount = Math.Round(productList.Sum(x => x.Quantity * x.Price), 2);
+            var expressAuthorization = AddItemsOfAnExpressAuthorization(authorizationId, productList);
+            
+            var amount = Math.Round(expressAuthorization.Items.Sum(x => x.Quantity * x.Price), 2);
+            var coInsurancePercentage = Math.Round(expressAuthorization.Items.Average(x => x.CoInsurancePercentage) / 100,2);
+            var coInsureanceAmount = amount * coInsurancePercentage;
+            
+            var invoiceAmount = amount - coInsureanceAmount - expressAuthorization.Copayment;
             var invoice = GenerateInvoice(invoiceAmount);
 
-            var expressAuthorization = CompleteExpressAuthorization(authorizationId, invoice);
+            expressAuthorization = CompleteExpressAuthorization(authorizationId, invoice);
 
             return expressAuthorization;
         }
