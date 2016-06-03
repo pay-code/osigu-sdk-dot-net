@@ -21,6 +21,6 @@ Scenario: Get an express authorization with an invalid express authorization id
 
 Scenario: Get an express authorization with a valid express authorization id
 	Given I have the insurer express authorizations client
-	And I have a valid express authorization id
+	And I create a valid express authorization
 	When I make the get express authorization request to the endpoint as an insurer
 	Then I have a valid response for getting the express authorization as an insurer

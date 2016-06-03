@@ -127,7 +127,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 23
  testRunner.Given("I have the insurer express authorizations client", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 24
- testRunner.And("I have a valid express authorization id", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I create a valid express authorization", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 25
  testRunner.When("I make the get express authorization request to the endpoint as an insurer", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 26
