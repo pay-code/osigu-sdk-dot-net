@@ -18,6 +18,13 @@ namespace OsiguSDK.SpecificationTests.Tools.TestingProducts
                     ? new[] {"QAPROVIDER1", "QAPROVIDER2", "QAPROVIDER3"}
                     : new[] {"product1", "product2", "product3"};
 
+        public static readonly string[] ProviderExpressProductId =
+            ConfigurationManager.AppSettings["TestingEnvironment"] == "DEV"
+                ? new[] { "QAPROVIDER1", "QAPROVIDER2", "QAPROVIDER3" }
+                : ConfigurationManager.AppSettings["TestingEnvironment"] == "PROD"
+                    ? new[] { "QAPROVIDER1", "QAPROVIDER2", "QAPROVIDER3" }
+                    : new[] { "product1", "product2", "S12809" };
+
         public static readonly string[] OsiguProductId = ConfigurationManager.AppSettings["TestingEnvironment"] == "DEV"
             ? new[] {"1016241", "1016242", "1016243"}
             : ConfigurationManager.AppSettings["TestingEnvironment"] == "PROD"

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
+using OsiguSDK.Providers.Models.Requests;
 
 namespace OsiguSDK.SpecificationTests.Tools
 {
@@ -27,6 +29,11 @@ namespace OsiguSDK.SpecificationTests.Tools
                 ? 2
                 : 3;
 
+        public static readonly string InsurerName = ConfigurationManager.AppSettings["TestingEnvironment"] == "DEV"
+            ? "test-insurer"
+            : ConfigurationManager.AppSettings["TestingEnvironment"] == "PROD"
+                ? "test-insurer2"
+                : "test-insurer";
 
         public static readonly int ProviderBranchId = ConfigurationManager.AppSettings["TestingEnvironment"] == "DEV"
             ? int.Parse(ConfigurationManager.AppSettings["ProviderBranchIdDev"])
@@ -39,6 +46,12 @@ namespace OsiguSDK.SpecificationTests.Tools
             : ConfigurationManager.AppSettings["TestingEnvironment"] == "PROD"
                 ? ConfigurationManager.AppSettings["ProviderBranchNameProd"]
                 : ConfigurationManager.AppSettings["ProviderBranchNameSbox"];
+
+        public static PolicyHolderInfo PolicyHolder => new PolicyHolderInfo
+        {
+            DateOfBirth = DateTime.Parse("1980/02/14"),
+            Id = "502338037"
+        };
     }
 
 }

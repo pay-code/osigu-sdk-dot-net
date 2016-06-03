@@ -275,6 +275,7 @@
     <Compile Include="Products\Models\OsiguProductRequest.cs" />
     <Compile Include="Tools\CurrentData.cs" />
     <Compile Include="Tools\Enums.cs" />
+    <Compile Include="Tools\ExpressAuthorizationTool.cs" />
     <Compile Include="Tools\TestingProducts\Provider1Products.cs" />
     <Compile Include="Tools\Requests.cs" />
     <Compile Include="Tools\Responses.cs" />

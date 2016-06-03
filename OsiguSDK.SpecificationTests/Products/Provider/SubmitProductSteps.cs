@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using FluentAssertions;
 using OsiguSDK.Core.Authentication;
 using OsiguSDK.Core.Config;
@@ -170,7 +171,7 @@ namespace OsiguSDK.SpecificationTests.Products.Provider
         [Then(@"the result should be ok")]
         public void ThenTheResultShouldBeOk()
         {
-            Responses.ErrorId.Should().Be(0);
+            Responses.ErrorId.Should().BeOneOf(new List<int> {0, 200});
         }
 
         [Then(@"the result should be a validation error")]
