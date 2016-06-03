@@ -7,6 +7,7 @@ using System.Configuration;
 using FluentAssertions;
 using OsiguSDK.Core.Exceptions;
 using OsiguSDK.Insurers.Clients;
+using OsiguSDK.Providers.Models;
 using RestSharp;
 using Configuration = OsiguSDK.Core.Config.Configuration;
 
@@ -16,7 +17,8 @@ namespace OsiguSDK.SpecificationTests.AuthorizationExpress.Insurers
     public class GetAnExpressAuthorizationAsAnInsurerSteps
     {
         private RequestException errorMessage { get; set; }
-        private OsiguSDK.Insurers.Models.ExpressAuthorization responsExpressAuthorization { get; set; }
+        private OsiguSDK.Insurers.Models.ExpressAuthorization ExpressAuthorizationResponse { get; set; }
+        private  ExpressAuthorization ExpressAuthorizationCreated { get; set; }
         [Given(@"I have the insurer express authorizations client with an invalid token")]
         public void GivenIHaveTheInsurerExpressAuthorizationsClientWithAnInvalidToken()
         {
@@ -61,7 +63,7 @@ namespace OsiguSDK.SpecificationTests.AuthorizationExpress.Insurers
         {
             try
             {
-                responsExpressAuthorization =
+                ExpressAuthorizationResponse =
                 TestClients.InsurerExpressAuthorizationClient.GetSingleAuthorization(Responses.ExpressAuthorizationId);
                 errorMessage = new RequestException("ok", 200);
             }
@@ -109,9 +111,17 @@ namespace OsiguSDK.SpecificationTests.AuthorizationExpress.Insurers
         public void ThenIHaveAValidResponseForGettingTheExpressAuthorizationAsAnInsurer()
         {
             errorMessage.ResponseCode.Should().Be(200);
-            // TODO
-            // Asercion de los campos de respuesta
+            ExpressAuthorizationResponse.Items.ShouldBeEquivalentTo(ExpressAuthorizationCreated.Items);
         }
+
+        [Given(@"I create a valid express authorization")]
+        public void GivenICreateAValidExpressAuthorization()
+        {
+            ExpressAuthorizationTool expressAuthorizationClient = new ExpressAuthorizationTool(ConfigurationClients.ConfigProviderBranch1);
+            ExpressAuthorizationCreated =  expressAuthorizationClient.CreateFullExpressAuthorization(new CreateFullExpressAuthorizationRequest());
+            
+        }
+
 
     }
 }
