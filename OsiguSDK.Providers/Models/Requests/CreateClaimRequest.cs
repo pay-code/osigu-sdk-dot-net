@@ -30,7 +30,13 @@ namespace OsiguSDK.Providers.Models.Requests
             /// </summary>
             [JsonProperty(PropertyName = "substitute_product_id")]
             public string SubstituteProductId { get; set; }
-           
+
+            /// <summary>
+            /// OSIGU's product code, if the product was substituted
+            /// </summary>
+            [JsonProperty(PropertyName = "osigu_product_id")]
+            public string OsiguProductId { get; set; }
+
             /// <summary>
             /// quantity claimed
             /// </summary>
