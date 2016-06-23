@@ -99,6 +99,12 @@ namespace OsiguSDK.Providers.Models
             public string SubstituteProductId { get; set; }
 
             /// <summary>
+            /// OSIGU's product code, if the product was substituted
+            /// </summary>
+            [JsonProperty(PropertyName = "osigu_product_id")]
+            public string OsiguProductId { get; set; }
+
+            /// <summary>
             /// Product name
             /// </summary>
             [JsonProperty(PropertyName = "name")]
