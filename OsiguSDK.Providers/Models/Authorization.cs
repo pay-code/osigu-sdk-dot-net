@@ -58,6 +58,13 @@ namespace OsiguSDK.Providers.Models
 
         public class Item
         {
+
+            /// <summary>
+            /// osigu authorized product code
+            /// </summary>
+            [JsonProperty(PropertyName = "osigu_product_id")]
+            public string OsiguProductId { get; set; }
+
             /// <summary>
             /// insurer authorized product code
             /// </summary>
