@@ -4,6 +4,7 @@ using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Models;
 using OsiguSDK.Core.Requests;
 using OsiguSDK.Insurers.Models;
+using OsiguSDK.Insurers.Models.Requests;
 using RestSharp;
 
 namespace OsiguSDK.Insurers.Clients
@@ -38,6 +39,14 @@ namespace OsiguSDK.Insurers.Clients
             return ExecuteMethod<Pagination<ExpressAuthorization>>(requestData);
         }
 
+
+        public void ReviewExpressAuthorization(string id)
+        {
+            var urlBuilder = new StringBuilder("/insurers/").Append(Configuration.Slug).Append("/authorizations/express/").Append(id).Append("/review");
+            var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, null);
+            ExecuteMethod(requestData);
+        }
+
         public void ApproveExpressAuthorization(string id)
         {
             var urlBuilder = new StringBuilder("/insurers/").Append(Configuration.Slug).Append("/authorizations/express/").Append(id).Append("/approve");
@@ -45,10 +54,10 @@ namespace OsiguSDK.Insurers.Clients
             ExecuteMethod(requestData);
         }
 
-        public void RejectExpressAuthorization(string id)
+        public void RejectExpressAuthorization(string id, RejectRequest request)
         {
             var urlBuilder = new StringBuilder("/insurers/").Append(Configuration.Slug).Append("/authorizations/express/").Append(id).Append("/reject");
-            var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, null);
+            var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, request);
             ExecuteMethod(requestData);
         }
     }

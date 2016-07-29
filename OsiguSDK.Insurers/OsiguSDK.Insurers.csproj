@@ -72,6 +72,7 @@
     <Compile Include="Models\Policy.cs" />
     <Compile Include="Models\Requests\ModifyAuthorizationRequest.cs" />
     <Compile Include="Models\Requests\CreateAuthorizationRequest.cs" />
+    <Compile Include="Models\Requests\RejectRequest.cs" />
     <Compile Include="Models\Requests\SubmitProductRequest.cs" />
     <Compile Include="Models\ExpressAuthorization.cs" />
     <Compile Include="Models\Authorization.cs" />
