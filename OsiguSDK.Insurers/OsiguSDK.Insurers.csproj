@@ -67,6 +67,7 @@
     <Compile Include="Clients\AuthorizationsClient.cs" />
     <Compile Include="Clients\ClaimsClient.cs" />
     <Compile Include="Clients\ProductsClient.cs" />
+    <Compile Include="Clients\SettlementsClient.cs" />
     <Compile Include="Models\Diagnosis.cs" />
     <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\Policy.cs" />
