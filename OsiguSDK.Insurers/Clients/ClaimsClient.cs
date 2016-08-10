@@ -4,6 +4,7 @@ using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Models;
 using OsiguSDK.Core.Requests;
 using OsiguSDK.Insurers.Models;
+using OsiguSDK.Insurers.Models.Requests;
 using RestSharp;
 
 namespace OsiguSDK.Insurers.Clients
@@ -43,10 +44,10 @@ namespace OsiguSDK.Insurers.Clients
             ExecuteMethod(requestData);
         }
 
-        public void Reject(int id)
+        public void Reject(int id, RejectRequest request)
         {
             var urlBuilder = new StringBuilder("/insurers/").Append(Configuration.Slug).Append("/claims/").Append(id).Append("/reject");
-            var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, null);
+            var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, request);
             ExecuteMethod(requestData);
         }
 
