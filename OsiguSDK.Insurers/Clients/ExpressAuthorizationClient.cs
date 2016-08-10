@@ -63,14 +63,14 @@ namespace OsiguSDK.Insurers.Clients
         public void Pay(string id)
         {
             var urlBuilder = new StringBuilder("/insurers/").Append(Configuration.Slug).Append("/authorizations/express/").Append(id).Append("/pay");
-            var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, request);
+            var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, null);
             ExecuteMethod(requestData);
         }
 
         public void ReceiveDocumentation(string id)
         {
             var urlBuilder = new StringBuilder("/insurers/").Append(Configuration.Slug).Append("/authorizations/express/").Append(id).Append("/receive-documentation");
-            var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, request);
+            var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, null);
             ExecuteMethod(requestData);
         }
     }
