@@ -39,24 +39,37 @@ namespace OsiguSDK.Insurers.Clients
             return ExecuteMethod<Pagination<ExpressAuthorization>>(requestData);
         }
 
-
-        public void ReviewExpressAuthorization(string id)
+        public void Review(string id)
         {
             var urlBuilder = new StringBuilder("/insurers/").Append(Configuration.Slug).Append("/authorizations/express/").Append(id).Append("/review");
             var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, null);
             ExecuteMethod(requestData);
         }
 
-        public void ApproveExpressAuthorization(string id)
+        public void Approve(string id)
         {
             var urlBuilder = new StringBuilder("/insurers/").Append(Configuration.Slug).Append("/authorizations/express/").Append(id).Append("/approve");
             var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, null);
             ExecuteMethod(requestData);
         }
 
-        public void RejectExpressAuthorization(string id, RejectRequest request)
+        public void Reject(string id, RejectRequest request)
         {
             var urlBuilder = new StringBuilder("/insurers/").Append(Configuration.Slug).Append("/authorizations/express/").Append(id).Append("/reject");
+            var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, request);
+            ExecuteMethod(requestData);
+        }
+
+        public void Pay(string id)
+        {
+            var urlBuilder = new StringBuilder("/insurers/").Append(Configuration.Slug).Append("/authorizations/express/").Append(id).Append("/pay");
+            var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, request);
+            ExecuteMethod(requestData);
+        }
+
+        public void ReceiveDocumentation(string id)
+        {
+            var urlBuilder = new StringBuilder("/insurers/").Append(Configuration.Slug).Append("/authorizations/express/").Append(id).Append("/receive-documentation");
             var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, request);
             ExecuteMethod(requestData);
         }

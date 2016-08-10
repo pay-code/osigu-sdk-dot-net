@@ -28,5 +28,34 @@ namespace OsiguSDK.Insurers.Clients
             var requestData = new RequestData(urlBuilder.ToString(), Method.GET, null, null);
             return ExecuteMethod<Claim>(requestData);
         }
+
+        public void Approve(int id)
+        {
+            var urlBuilder = new StringBuilder("/insurers/").Append(Configuration.Slug).Append("/claims/").Append(id).Append("/approve");
+            var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, null);
+            ExecuteMethod(requestData);
+        }
+
+        public void Pay(int id)
+        {
+            var urlBuilder = new StringBuilder("/insurers/").Append(Configuration.Slug).Append("/claims/").Append(id).Append("/pay");
+            var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, null);
+            ExecuteMethod(requestData);
+        }
+
+        public void Reject(int id)
+        {
+            var urlBuilder = new StringBuilder("/insurers/").Append(Configuration.Slug).Append("/claims/").Append(id).Append("/reject");
+            var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, null);
+            ExecuteMethod(requestData);
+        }
+
+        public void ReceiveDocumentation(int id)
+        {
+            var urlBuilder = new StringBuilder("/insurers/").Append(Configuration.Slug).Append("/claims/").Append(id).Append("/receive-documentation");
+            var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, null);
+            ExecuteMethod(requestData);
+        }
+
     }
 }
