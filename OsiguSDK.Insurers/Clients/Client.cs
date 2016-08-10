@@ -10,6 +10,7 @@ namespace OsiguSDK.Insurers.Clients
             Claims = new ClaimsClient(configuration);
             ExpressAuthorizations= new ExpressAuthorizationClient(configuration);
             Products = new ProductsClient(configuration);
+            Settlements = new SettlementsClient(configuration);
         }
 
         public AuthorizationsClient Authorizations { get; }
@@ -19,6 +20,8 @@ namespace OsiguSDK.Insurers.Clients
         public ExpressAuthorizationClient ExpressAuthorizations { get; }
         
         public ProductsClient Products { get; }
-        
+
+        public SettlementsClient Settlements { get; }
+
     }
 }

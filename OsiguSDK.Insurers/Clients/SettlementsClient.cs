@@ -10,7 +10,7 @@ using RestSharp;
 
 namespace OsiguSDK.Insurers.Clients
 {
-    class SettlementsClient: BaseClient
+    public class SettlementsClient: BaseClient
     {
         public SettlementsClient(IConfiguration configuration) : base(configuration)
         {
