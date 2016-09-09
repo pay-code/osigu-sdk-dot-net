@@ -5,7 +5,15 @@ namespace OsiguSDK.Providers.Models.Requests
 {
     public class AddOrModifyItemsExpressAuthorization
     {
-       
+
+        /// <summary>
+        /// Dianosis given
+        /// </summary>
+        [JsonProperty(PropertyName = "Diagnoses")]
+
+        public List<Diagnosis> Diagnoses{ get; set; }
+
+
         /// <summary>
         /// List of claimed items 
         /// </summary>

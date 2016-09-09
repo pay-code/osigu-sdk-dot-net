@@ -30,10 +30,11 @@ namespace OsiguSDK.Insurers.Clients
             return ExecuteMethod<Claim>(requestData);
         }
 
-        public void Approve(int id)
+        public void Approve(int id, ApproveClaimRequest date)
         {
             var urlBuilder = new StringBuilder("/insurers/").Append(Configuration.Slug).Append("/claims/").Append(id).Append("/approve");
-            var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, null);
+            var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, date);
+            
             ExecuteMethod(requestData);
         }
 
