@@ -71,8 +71,10 @@
     <Compile Include="Models\Diagnosis.cs" />
     <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\Policy.cs" />
+    <Compile Include="Models\Requests\ApproveClaimRequest.cs" />
     <Compile Include="Models\Requests\ModifyAuthorizationRequest.cs" />
     <Compile Include="Models\Requests\CreateAuthorizationRequest.cs" />
+    <Compile Include="Models\Requests\ApproveExpressRequest.cs" />
     <Compile Include="Models\Requests\RejectRequest.cs" />
     <Compile Include="Models\Requests\SubmitProductRequest.cs" />
     <Compile Include="Models\ExpressAuthorization.cs" />

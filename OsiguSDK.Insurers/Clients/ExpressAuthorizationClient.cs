@@ -46,7 +46,7 @@ namespace OsiguSDK.Insurers.Clients
             ExecuteMethod(requestData);
         }
 
-        public void Approve(string id, PayingClaimRequest date)
+        public void Approve(string id, ApproveClaimRequest date)
         {
             var urlBuilder = new StringBuilder("/insurers/").Append(Configuration.Slug).Append("/authorizations/express/").Append(id).Append("/approve");
             var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, date);
