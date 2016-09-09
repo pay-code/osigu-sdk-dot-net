@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Clients\AuthorizationsClient.cs" />
     <Compile Include="Clients\ClaimsClient.cs" />
+    <Compile Include="Clients\DiagnosesClient.cs" />
     <Compile Include="Clients\ExpressAuthorizationClient.cs" />
     <Compile Include="Clients\InsurersClient.cs" />
     <Compile Include="Clients\ProductsClient.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Models\Invoice.cs" />
     <Compile Include="Models\Insurer.cs" />
     <Compile Include="Models\Policy.cs" />
+    <Compile Include="Models\Diagnosis.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\QueueStatus.cs" />
     <Compile Include="Models\Requests\AddOrModifyItemsExpressAuthorization.cs" />

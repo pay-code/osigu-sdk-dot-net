@@ -30,10 +30,19 @@ namespace OsiguSDK.Providers.Models
         [JsonProperty(PropertyName = "status")]
         public string Status { get; set; }
 
+
+        /// <summary>
+        /// List of diagnosis in the transaction
+        /// </summary>
+        [JsonProperty(PropertyName = "diagnoses")]
+
+        public List<Diagnosis> Diagnoses{ get; set; }
+
         /// <summary>
         /// List of items in the transaction
         /// </summary>
         [JsonProperty(PropertyName = "items")]
+
         public List<Item> Items { get; set; }
         
         /// <summary>
