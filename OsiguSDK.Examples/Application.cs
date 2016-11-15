@@ -2,10 +2,10 @@
 using System.Linq;
 using AutoMapper;
 using OsiguSDK.Core.Config;
-using OsiguSDK.Insurers.Clients;
-using OsiguSDK.Insurers.Models;
 using OsiguSDK.Insurers.Models.Requests;
 using IConfiguration = OsiguSDK.Core.Config.IConfiguration;
+using OsiguSDK.Insurers.Models.V1;
+using OsiguSDK.Insurers.Clients.V1;
 
 namespace OsiguSDKExamples
 {
@@ -127,10 +127,10 @@ namespace OsiguSDKExamples
             var getExpressAuthorizationListResponse = expressAuthExamples.GetListOfAuthorizationExpress(ExpressAuthorizationClient.ExpressAuthorizationStatus.INSURER_PENDING_REVIEW);
 
             //APPROVE AN EXPRESS AUTHORIZATION
-            expressAuthExamples.ApproveExpressAuthorization("EXP-GT-12345");
+            //expressAuthExamples.ApproveExpressAuthorization("EXP-GT-12345");
 
             //REJECT AN EXPRESS AUTHORIZATION
-            expressAuthExamples.RejectExpressAuthorization("EXP-GT-12345");
+            //expressAuthExamples.RejectExpressAuthorization("EXP-GT-12345");
         }
 
         private static void ClaimsInsurerExamples(IConfiguration config, Authorization authorizationResponse)

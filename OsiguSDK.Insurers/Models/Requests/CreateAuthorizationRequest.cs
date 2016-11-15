@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using OsiguSDK.Insurers.Models.V1;
 
 namespace OsiguSDK.Insurers.Models.Requests
 {

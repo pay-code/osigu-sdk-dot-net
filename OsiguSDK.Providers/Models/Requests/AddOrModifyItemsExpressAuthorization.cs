@@ -5,7 +5,15 @@ namespace OsiguSDK.Providers.Models.Requests
 {
     public class AddOrModifyItemsExpressAuthorization
     {
-       
+
+        /// <summary>
+        /// Dianosis given
+        /// </summary>
+        [JsonProperty(PropertyName = "Diagnoses")]
+
+        public List<Diagnosis> Diagnoses { get; set; }
+
+
         /// <summary>
         /// List of claimed items 
         /// </summary>
@@ -31,6 +39,45 @@ namespace OsiguSDK.Providers.Models.Requests
             /// </summary>
             [JsonProperty(PropertyName = "price")]
             public decimal Price { get; set; }
+
+            /// <summary>
+            /// product price
+            /// </summary>
+            [JsonProperty(PropertyName = "coinsurance_percentage")]
+            public decimal CoinsurancePercentage { get; set; }
+
+            /// <summary>
+            /// List of substitute items 
+            /// </summary>
+            [JsonProperty(PropertyName = "pbm_substitutes")]
+            public List<ItemPbm> PbmSubstitutes { get; set; }
+
+            public class ItemPbm
+            {
+                /// <summary>
+                /// provider's product code
+                /// </summary>
+                [JsonProperty(PropertyName = "product_id")]
+                public string ProductId { get; set; }
+
+                /// <summary>
+                /// provider's product code
+                /// </summary>
+                [JsonProperty(PropertyName = "name")]
+                public string Name { get; set; }
+
+                /// <summary>
+                /// provider's product code
+                /// </summary>
+                [JsonProperty(PropertyName = "quantity")]
+                public decimal Quantity { get; set; }
+
+                /// <summary>
+                /// provider's product code
+                /// </summary>
+                [JsonProperty(PropertyName = "coinsurance_percentage")]
+                public decimal CoinsurancePercentage { get; set; }
+            }
         }
     }
 }

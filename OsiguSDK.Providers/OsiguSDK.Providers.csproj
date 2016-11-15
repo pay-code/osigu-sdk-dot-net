@@ -34,18 +34,21 @@
     <RegisterForComInterop>false</RegisterForComInterop>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net">
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net-loggly">
-      <HintPath>..\packages\log4net-loggly.7.1.0\lib\net40\log4net-loggly.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="RestSharp">
+    <Reference Include="log4net-loggly, Version=7.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net-loggly.7.1.0\lib\net40\log4net-loggly.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -56,38 +59,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clients\AuthorizationsClient.cs" />
-    <Compile Include="Clients\ClaimsClient.cs" />
-    <Compile Include="Clients\ExpressAuthorizationClient.cs" />
-    <Compile Include="Clients\InsurersClient.cs" />
-    <Compile Include="Clients\ProductsClient.cs" />
-    <Compile Include="Clients\Client.cs" />
-    <Compile Include="Clients\QueueClient.cs" />
-    <Compile Include="Models\Authorization.cs" />
-    <Compile Include="Models\Claim.cs" />
-    <Compile Include="Models\ExpressAuthorization.cs" />
-    <Compile Include="Models\Invoice.cs" />
-    <Compile Include="Models\Insurer.cs" />
-    <Compile Include="Models\Policy.cs" />
-    <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\QueueStatus.cs" />
+    <Compile Include="Clients\V1\AuthorizationsClient.cs" />
+    <Compile Include="Clients\V1\ClaimsClient.cs" />
+    <Compile Include="Clients\V1\DiagnosesClient.cs" />
+    <Compile Include="Clients\V1\ExpressAuthorizationClient.cs" />
+    <Compile Include="Clients\V1\InsurersClient.cs" />
+    <Compile Include="Clients\V1\ProductsClient.cs" />
+    <Compile Include="Clients\V1\Client.cs" />
+    <Compile Include="Clients\V1\QueueClient.cs" />
+    <Compile Include="Clients\V2\AuthorizationsClient.cs" />
+    <Compile Include="Clients\V2\ExpressAuthorizationClient.cs" />
+    <Compile Include="Models\V1\Authorization.cs" />
+    <Compile Include="Models\V1\Claim.cs" />
+    <Compile Include="Models\V1\ExpressAuthorization.cs" />
+    <Compile Include="Models\V1\Invoice.cs" />
+    <Compile Include="Models\V1\Insurer.cs" />
+    <Compile Include="Models\V1\Policy.cs" />
+    <Compile Include="Models\V1\Diagnosis.cs" />
+    <Compile Include="Models\V1\Product.cs" />
+    <Compile Include="Models\V1\QueueStatus.cs" />
     <Compile Include="Models\Requests\AddOrModifyItemsExpressAuthorization.cs" />
     <Compile Include="Models\Requests\CompleteExpressAuthorizationRequest.cs" />
     <Compile Include="Models\Requests\CompleteClaimRequest.cs" />
     <Compile Include="Models\Requests\CreateClaimRequest.cs" />
     <Compile Include="Models\Requests\CreateExpressAuthorizationRequest.cs" />
     <Compile Include="Models\Requests\SubmitProductRequest.cs" />
+    <Compile Include="Models\V2\AuthorizationV2.cs" />
+    <Compile Include="Models\V2\ExpressAuthorizationV2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\OsiguSDK\OsiguSDK.Core.csproj">
-      <Project>{f2f02262-31ef-4d91-bdbf-852495f55ed6}</Project>
-      <Name>OsiguSDK.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OsiguSDK\OsiguSDK.Core.csproj">
+      <Project>{F2F02262-31EF-4D91-BDBF-852495F55ED6}</Project>
+      <Name>OsiguSDK.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,7 +1,9 @@
 ﻿using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Models;
 using OsiguSDK.Insurers.Clients;
+using OsiguSDK.Insurers.Clients.V1;
 using OsiguSDK.Insurers.Models;
+using OsiguSDK.Insurers.Models.V1;
 
 namespace OsiguSDKExamples
 {
@@ -24,14 +26,16 @@ namespace OsiguSDKExamples
             return _client.GetListOfAuthorizationsExpress(status, page, size);
         }
 
-        public void ApproveExpressAuthorization(string id)
-        {
-            _client.ApproveExpressAuthorization(id);
-        }
 
-        public void RejectExpressAuthorization(string id)
-        {
-            _client.RejectExpressAuthorization(id);
-        }
+        //public void ApproveExpressAuthorization(string id)
+        //{
+        //_client.ApproveExpressAuthorization(id);
+        //}
+
+        //public void RejectExpressAuthorization(string id)
+        //{
+        //_client.RejectExpressAuthorization(id);
+        //}
+
     }
 }
