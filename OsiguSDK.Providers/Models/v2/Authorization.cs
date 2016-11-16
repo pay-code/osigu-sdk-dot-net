@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Newtonsoft.Json;
 
-namespace OsiguSDK.Providers.Models
+namespace OsiguSDK.Providers.Models.v2
 {
-    [ComVisible(true)]
-    public class AuthorizationV2
+    
+    public class Authorization
     {
         /// <summary>
         /// Osigu authorization code

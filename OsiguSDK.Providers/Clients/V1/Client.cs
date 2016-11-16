@@ -1,6 +1,6 @@
 ﻿using OsiguSDK.Core.Config;
 
-namespace OsiguSDK.Providers.Clients.V1
+namespace OsiguSDK.Providers.Clients.v1
 {
     public class Client
     {

@@ -5,7 +5,7 @@ using OsiguSDK.Core.Requests;
 using OsiguSDK.Providers.Models;
 using RestSharp;
 
-namespace OsiguSDK.Providers.Clients.V1
+namespace OsiguSDK.Providers.Clients.v1
 {
     public class AuthorizationsClient: BaseClient
     {

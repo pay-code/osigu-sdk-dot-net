@@ -7,7 +7,7 @@ using OsiguSDK.Providers.Models;
 using OsiguSDK.Providers.Models.Requests;
 using RestSharp;
 
-namespace OsiguSDK.Providers.Clients.V1
+namespace OsiguSDK.Providers.Clients.v1
 {
     public class DiagnosesClient : BaseClient
     {

@@ -1,13 +1,14 @@
 ﻿using Newtonsoft.Json;
 
-namespace OsiguSDK.Providers.Models.Requests
+namespace OsiguSDK.Providers.Models.Requests.v1
 {
-    public class CompleteClaimRequest
+    public class CompleteExpressAuthorizationRequest
     {
         /// <summary>
         /// Invoice data
         /// </summary>
         [JsonProperty(PropertyName = "invoice")]
         public Invoice Invoice { get; set; }
+        
     }
 }

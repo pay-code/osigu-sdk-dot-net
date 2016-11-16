@@ -2,10 +2,9 @@
 using OsiguSDK.Core.Client;
 using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Requests;
-using OsiguSDK.Providers.Models;
 using RestSharp;
 
-namespace OsiguSDK.Providers.Clients.V2
+namespace OsiguSDK.Providers.Clients.v2
 {
     public class AuthorizationsClient: BaseClient
     {
@@ -13,11 +12,11 @@ namespace OsiguSDK.Providers.Clients.V2
         {
         }
 
-        public AuthorizationV2 GetSingleAuthorization(string id)
+        public Models.v2.Authorization GetSingleAuthorization(string id)
         {
             var urlBuilder = new StringBuilder("/v2/providers/").Append(Configuration.Slug).Append("/authorizations/").Append(id);
             var requestData = new RequestData(urlBuilder.ToString(), Method.GET, null, null);
-            return ExecuteMethod<AuthorizationV2>(requestData);
+            return ExecuteMethod<Models.v2.Authorization>(requestData);
         }
     }
 }

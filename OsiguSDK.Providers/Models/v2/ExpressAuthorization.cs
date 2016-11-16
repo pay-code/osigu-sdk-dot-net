@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace OsiguSDK.Providers.Models
+namespace OsiguSDK.Providers.Models.v2
 {
-    public class ExpressAuthorizationV2 
+    public class ExpressAuthorization
     {
         /// <summary>
         /// Osigu express authorization code
@@ -122,9 +122,9 @@ namespace OsiguSDK.Providers.Models
             /// </summary>
             [JsonProperty(PropertyName = "pbm_substitutes")]
 
-            public List<PbmSubstitutesInfo> PbmSubstitutes { get; set; }
+            public List<PbmSubstitute> PbmSubstitutes { get; set; }
 
-            public class PbmSubstitutesInfo
+            public class PbmSubstitute
             {
                 /// <summary>
                 /// 

@@ -5,9 +5,10 @@ using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Requests;
 using OsiguSDK.Providers.Models;
 using OsiguSDK.Providers.Models.Requests;
+using OsiguSDK.Providers.Models.Requests.v1;
 using RestSharp;
 
-namespace OsiguSDK.Providers.Clients.V1
+namespace OsiguSDK.Providers.Clients.v1
 {
     public class ExpressAuthorizationClient : BaseClient
     {

@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace OsiguSDK.Providers.Models.Requests
+namespace OsiguSDK.Providers.Models.Requests.v1
 {
     public class SubmitProductRequest
     {
