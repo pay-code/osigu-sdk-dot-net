@@ -1,18 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using OsiguSDK.Insurers.Models.V1;
+using OsiguSDK.Insurers.Models.v1;
 
-namespace OsiguSDK.Insurers.Models.Requests
+namespace OsiguSDK.Insurers.Models.Requests.v1
 {
-    public class CreateAuthorizationRequest 
+    public class ModifyAuthorizationRequest 
     {
-        /// <summary>
-        /// Insurer's unique authorization code/number 
-        /// </summary>
-        [JsonProperty(PropertyName = "reference_id")]
-        public string ReferenceId { get; set; }
-
+        
         /// <summary>
         /// Date and time when authorized
         /// </summary>

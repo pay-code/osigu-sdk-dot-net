@@ -1,6 +1,6 @@
 ﻿using OsiguSDK.Core.Config;
 
-namespace OsiguSDK.Insurers.Clients.V1
+namespace OsiguSDK.Insurers.Clients.v1
 {
     public class Client
     {
@@ -8,7 +8,7 @@ namespace OsiguSDK.Insurers.Clients.V1
         {
             Authorizations = new AuthorizationsClient(configuration);
             Claims = new ClaimsClient(configuration);
-            ExpressAuthorizations= new ExpressAuthorizationClient(configuration);
+            ExpressAuthorizations= new ExpressAuthorizationsClient(configuration);
             Products = new ProductsClient(configuration);
             Settlements = new SettlementsClient(configuration);
         }
@@ -17,7 +17,7 @@ namespace OsiguSDK.Insurers.Clients.V1
 
         public ClaimsClient Claims { get; }
 
-        public ExpressAuthorizationClient ExpressAuthorizations { get; }
+        public ExpressAuthorizationsClient ExpressAuthorizations { get; }
         
         public ProductsClient Products { get; }
 

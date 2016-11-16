@@ -4,8 +4,9 @@ using AutoMapper;
 using OsiguSDK.Core.Config;
 using OsiguSDK.Insurers.Models.Requests;
 using IConfiguration = OsiguSDK.Core.Config.IConfiguration;
-using OsiguSDK.Insurers.Models.V1;
-using OsiguSDK.Insurers.Clients.V1;
+using OsiguSDK.Insurers.Models.v1;
+using OsiguSDK.Insurers.Clients.v1;
+using OsiguSDK.Insurers.Models.Requests.v1;
 
 namespace OsiguSDKExamples
 {
@@ -124,7 +125,7 @@ namespace OsiguSDKExamples
             var getSingleAuthorizationResponse = expressAuthExamples.GetSingleAuthorization("EXP-GT-12345");
 
             //GET LIST OF AUTHORIZATION EXPRESS
-            var getExpressAuthorizationListResponse = expressAuthExamples.GetListOfAuthorizationExpress(ExpressAuthorizationClient.ExpressAuthorizationStatus.INSURER_PENDING_REVIEW);
+            var getExpressAuthorizationListResponse = expressAuthExamples.GetListOfAuthorizationExpress(ExpressAuthorizationsClient.ExpressAuthorizationStatus.INSURER_PENDING_REVIEW);
 
             //APPROVE AN EXPRESS AUTHORIZATION
             //expressAuthExamples.ApproveExpressAuthorization("EXP-GT-12345");

@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-
-namespace OsiguSDK.Insurers.Models.Requests
+namespace OsiguSDK.Insurers.Models.Requests.v1
 {
     public class ApproveClaimRequest
     {

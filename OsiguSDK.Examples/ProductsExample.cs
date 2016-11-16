@@ -1,10 +1,11 @@
 ﻿using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Models;
 using OsiguSDK.Insurers.Clients;
-using OsiguSDK.Insurers.Clients.V1;
+using OsiguSDK.Insurers.Clients.v1;
 using OsiguSDK.Insurers.Models;
 using OsiguSDK.Insurers.Models.Requests;
-using OsiguSDK.Insurers.Models.V1;
+using OsiguSDK.Insurers.Models.Requests.v1;
+using OsiguSDK.Insurers.Models.v1;
 
 namespace OsiguSDKExamples
 {
@@ -28,7 +29,7 @@ namespace OsiguSDKExamples
                 Type = "drug"
             };
 
-            _client.SubmitProduct(request);
+            _client.SubmitNew(request);
         }
 
         public void SubmitRemoval(string productId)

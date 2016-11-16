@@ -71,27 +71,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clients\V1\Client.cs" />
-    <Compile Include="Clients\V1\ExpressAuthorizationClient.cs" />
-    <Compile Include="Clients\V1\AuthorizationsClient.cs" />
-    <Compile Include="Clients\V1\ClaimsClient.cs" />
-    <Compile Include="Clients\V1\ProductsClient.cs" />
-    <Compile Include="Clients\V1\SettlementsClient.cs" />
-    <Compile Include="Clients\V2\ExpressAuthorizationClient.cs" />
-    <Compile Include="Models\V1\Diagnosis.cs" />
-    <Compile Include="Models\V1\Doctor.cs" />
-    <Compile Include="Models\V1\Policy.cs" />
-    <Compile Include="Models\Requests\ApproveClaimRequest.cs" />
-    <Compile Include="Models\Requests\ModifyAuthorizationRequest.cs" />
-    <Compile Include="Models\Requests\CreateAuthorizationRequest.cs" />
-    <Compile Include="Models\Requests\ApproveExpressRequest.cs" />
-    <Compile Include="Models\Requests\RejectRequest.cs" />
-    <Compile Include="Models\Requests\SubmitProductRequest.cs" />
-    <Compile Include="Models\V1\ExpressAuthorization.cs" />
-    <Compile Include="Models\V1\Authorization.cs" />
-    <Compile Include="Models\V1\Claim.cs" />
-    <Compile Include="Models\V1\Product.cs" />
-    <Compile Include="Models\V2\Policy.cs" />
+    <Compile Include="Clients\v1\Client.cs" />
+    <Compile Include="Clients\v1\ExpressAuthorizationsClient.cs" />
+    <Compile Include="Clients\v1\AuthorizationsClient.cs" />
+    <Compile Include="Clients\v1\ClaimsClient.cs" />
+    <Compile Include="Clients\v1\ProductsClient.cs" />
+    <Compile Include="Clients\v1\SettlementsClient.cs" />
+    <Compile Include="Clients\v2\AuthorizationsClient.cs" />
+    <Compile Include="Models\Requests\v2\CreateAuthorizationRequest.cs" />
+    <Compile Include="Models\v1\Diagnosis.cs" />
+    <Compile Include="Models\v1\Doctor.cs" />
+    <Compile Include="Models\v1\Policy.cs" />
+    <Compile Include="Models\Requests\v1\ApproveClaimRequest.cs" />
+    <Compile Include="Models\Requests\v1\ModifyAuthorizationRequest.cs" />
+    <Compile Include="Models\Requests\v1\CreateAuthorizationRequest.cs" />
+    <Compile Include="Models\Requests\v1\ApproveExpressRequest.cs" />
+    <Compile Include="Models\Requests\v1\RejectRequest.cs" />
+    <Compile Include="Models\Requests\v1\SubmitProductRequest.cs" />
+    <Compile Include="Models\v1\ExpressAuthorization.cs" />
+    <Compile Include="Models\v1\Authorization.cs" />
+    <Compile Include="Models\v1\Claim.cs" />
+    <Compile Include="Models\v1\Product.cs" />
+    <Compile Include="Models\v2\Policy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -99,7 +100,9 @@
     <None Include="log4net.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models\Requests\NewFolder1\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

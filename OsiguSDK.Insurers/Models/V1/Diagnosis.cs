@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace OsiguSDK.Insurers.Models.V1
+namespace OsiguSDK.Insurers.Models.v1
 {
     public class Diagnosis
     {

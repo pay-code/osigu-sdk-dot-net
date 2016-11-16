@@ -3,11 +3,12 @@ using OsiguSDK.Core.Client;
 using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Models;
 using OsiguSDK.Core.Requests;
-using OsiguSDK.Insurers.Models.V1;
+using OsiguSDK.Insurers.Models.v1;
 using OsiguSDK.Insurers.Models.Requests;
+using OsiguSDK.Insurers.Models.Requests.v1;
 using RestSharp;
 
-namespace OsiguSDK.Insurers.Clients.V1
+namespace OsiguSDK.Insurers.Clients.v1
 {
     public class ClaimsClient : BaseClient
 
@@ -16,14 +17,14 @@ namespace OsiguSDK.Insurers.Clients.V1
         {
         }
 
-        public Pagination<Claim> GetListOfClaims(string authorizationId, int? page = 0, int? size = 25)
+        public Pagination<Claim> GetList(string authorizationId, int? page = 0, int? size = 25)
         {
             var urlBuilder = new StringBuilder("/v1/insurers/").Append(Configuration.Slug).Append("/authorizations/").Append(authorizationId).Append("/claims").Append("?page=").Append(page).Append("&size=").Append(size);
             var requestData = new RequestData(urlBuilder.ToString(), Method.GET, null, null);
             return ExecuteMethod<Pagination<Claim>>(requestData);
         }
 
-        public Claim GetSingleClaim(string authorizationId, int claimId)
+        public Claim GetSingle(string authorizationId, int claimId)
         {
             var urlBuilder = new StringBuilder("/v1/insurers/").Append(Configuration.Slug).Append("/authorizations/").Append(authorizationId).Append("/claims/").Append(claimId);
             var requestData = new RequestData(urlBuilder.ToString(), Method.GET, null, null);

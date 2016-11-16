@@ -3,47 +3,10 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 
 
-namespace OsiguSDK.Insurers.Models.V2
+namespace OsiguSDK.Insurers.Models.v2
 {
-    public class Policy
+    public class Policy : v1.Policy
     {
-
-        /// <summary>
-        /// 2-character IS0-3166-1 code (EJ. GT, US)
-        /// </summary>
-        [JsonProperty(PropertyName = "country_code")]
-        public string CountryCode { get; set; }
-
-        /// <summary>
-        /// Policy number
-        /// </summary>
-        [JsonProperty(PropertyName = "number")]
-        public string Number { get; set; }
-
-        /// <summary>
-        /// Policy certificate number
-        /// </summary>
-        [JsonProperty(PropertyName = "certificate")]
-        public string Certificate { get; set; }
-
-        /// <summary>
-        /// Policy expiration date
-        /// </summary>
-        [JsonProperty(PropertyName = "expiration_date")]
-        public DateTime ExpirationDate { get; set; }
-
-        /// <summary>
-        /// Insurer's company code
-        /// </summary>
-        [JsonProperty(PropertyName = "insurance_company_code")]
-        public string InsuranceCompanyCode { get; set; }
-
-        /// <summary>
-        /// Insurer's company name
-        /// </summary>
-        [JsonProperty(PropertyName = "insurance_company_name")]
-        public string InsuranceCompanyName { get; set; }
-
         /// <summary>
         /// Insurer's pbm Enabled
         /// </summary>

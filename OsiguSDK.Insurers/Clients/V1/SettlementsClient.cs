@@ -1,14 +1,11 @@
 ﻿using System.Text;
-using Newtonsoft.Json;
 using OsiguSDK.Core.Client;
 using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Requests;
-using OsiguSDK.Insurers.Models;
-using OsiguSDK.Insurers.Models.Requests;
 using RestSharp;
 
 
-namespace OsiguSDK.Insurers.Clients.V1
+namespace OsiguSDK.Insurers.Clients.v1
 {
     public class SettlementsClient: BaseClient
     {

@@ -3,11 +3,12 @@ using OsiguSDK.Core.Client;
 using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Models;
 using OsiguSDK.Core.Requests;
-using OsiguSDK.Insurers.Models.V1;
+using OsiguSDK.Insurers.Models.v1;
 using OsiguSDK.Insurers.Models.Requests;
+using OsiguSDK.Insurers.Models.Requests.v1;
 using RestSharp;
 
-namespace OsiguSDK.Insurers.Clients.V1
+namespace OsiguSDK.Insurers.Clients.v1
 {
     public class ProductsClient : BaseClient
     {
@@ -15,7 +16,7 @@ namespace OsiguSDK.Insurers.Clients.V1
         {
         }
 
-        public void SubmitProduct(SubmitProductRequest request)
+        public void SubmitNew(SubmitProductRequest request)
         {
             var urlBuilder = new StringBuilder("/v1/insurers/").Append(Configuration.Slug).Append("/products");
             var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, request);
