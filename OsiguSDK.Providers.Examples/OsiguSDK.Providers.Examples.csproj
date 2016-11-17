@@ -45,14 +45,6 @@
       <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="OsiguSDK.Core, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Osigu.Providers.1.0.5\lib\OsiguSDK.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="OsiguSDK.Providers, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\OsiguSDK.Providers\bin\Debug\OsiguSDK.Providers.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.105.2.3\lib\net452\RestSharp.dll</HintPath>
       <Private>True</Private>
@@ -72,13 +64,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="log4net.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="packages.config" />
     <None Include="provider-test.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OsiguSDK.Providers\OsiguSDK.Providers.csproj">
+      <Project>{55F0F8D8-DA6A-421C-8F01-FC8A6D5457DA}</Project>
+      <Name>OsiguSDK.Providers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OsiguSDK\OsiguSDK.Core.csproj">
+      <Project>{F2F02262-31EF-4D91-BDBF-852495F55ED6}</Project>
+      <Name>OsiguSDK.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

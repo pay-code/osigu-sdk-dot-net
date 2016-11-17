@@ -4,6 +4,9 @@ using OsiguSDK.Core.Config;
 using OsiguSDK.Insurers.Clients;
 using OsiguSDK.Insurers.Models;
 using OsiguSDK.Insurers.Models.Requests;
+using OsiguSDK.Insurers.Clients.v1;
+using OsiguSDK.Insurers.Models.Requests.v1;
+using OsiguSDK.Insurers.Models.v1;
 
 namespace OsiguSDKExamples
 {

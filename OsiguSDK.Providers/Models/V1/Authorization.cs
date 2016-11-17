@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Newtonsoft.Json;
 
-namespace OsiguSDK.Insurers.Models.Requests
-{
-    public class CreateAuthorizationRequest 
+namespace OsiguSDK.Providers.Models
+{    
+    public class Authorization
     {
         /// <summary>
-        /// Insurer's unique authorization code/number 
+        /// Osigu authorization code
         /// </summary>
-        [JsonProperty(PropertyName = "reference_id")]
-        public string ReferenceId { get; set; }
+        [JsonProperty(PropertyName = "id")]
+        public string Id { get; set; }
 
         /// <summary>
         /// Date and time when authorized
@@ -25,17 +26,22 @@ namespace OsiguSDK.Insurers.Models.Requests
         public DateTime ExpiresAt { get; set; }
 
         /// <summary>
-        /// Medical diagnosis
+        /// Status of the authorization
         /// </summary>
-        [JsonProperty(PropertyName = "diagnoses")]
-        public List<Diagnosis> Diagnoses { get; set; }
-
+        [JsonProperty(PropertyName = "status")]
+        public string Status { get; set; }
 
         /// <summary>
-        /// Doctor responsible of the diagnosis
+        /// Date and time when the resource was created
         /// </summary>
-        [JsonProperty(PropertyName = "doctor")]
-        public Doctor Doctor { get; set; }
+        [JsonProperty(PropertyName = "created_at")]
+        public DateTime CreatedAt { get; set; }
+
+        /// <summary>
+        /// Date and time when the resource was last updated
+        /// </summary>
+        [JsonProperty(PropertyName = "updated_at")]
+        public DateTime UpdatedAt { get; set; }
 
         /// <summary>
         /// Policy information
@@ -51,17 +57,31 @@ namespace OsiguSDK.Insurers.Models.Requests
 
         public class Item
         {
+
+            /// <summary>
+            /// osigu authorized product code
+            /// </summary>
+            [JsonProperty(PropertyName = "osigu_product_id")]
+            public string OsiguProductId { get; set; }
+
             /// <summary>
             /// insurer authorized product code
             /// </summary>
             [JsonProperty(PropertyName = "product_id")]
-            public string ProductId { get; set; }          
+            public string ProductId { get; set; }
+
+            /// <summary>
+            /// Product name
+            /// </summary>
+            [JsonProperty(PropertyName = "name")]
+            public string Name { get; set; }
 
             /// <summary>
             /// quantity authorized
             /// </summary>
             [JsonProperty(PropertyName = "quantity")]
             public decimal Quantity { get; set; }
+
         }
     }
 }

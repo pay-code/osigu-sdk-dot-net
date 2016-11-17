@@ -47,8 +47,20 @@
       <HintPath>..\packages\log4net-loggly.7.1.0\lib\net40\log4net-loggly.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OsiguSDK.Core, Version=1.0.6.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Osigu.Providers.1.0.6.3\lib\OsiguSDK.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="OsiguSDK.Providers, Version=1.0.6.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Osigu.Providers.1.0.6.3\lib\OsiguSDK.Providers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net45\RestSharp.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -77,17 +89,10 @@
       <Project>{923ebc43-1fce-4a9b-8078-c719dd57690f}</Project>
       <Name>OsiguSDK.Insurers</Name>
     </ProjectReference>
-    <ProjectReference Include="..\OsiguSDK.Providers\OsiguSDK.Providers.csproj">
-      <Project>{55f0f8d8-da6a-421c-8f01-fc8a6d5457da}</Project>
-      <Name>OsiguSDK.Providers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\OsiguSDK\OsiguSDK.Core.csproj">
-      <Project>{f2f02262-31ef-4d91-bdbf-852495f55ed6}</Project>
-      <Name>OsiguSDK.Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="log4net.config" />
     <None Include="provider-test.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

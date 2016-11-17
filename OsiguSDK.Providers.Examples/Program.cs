@@ -1,11 +1,14 @@
-﻿using System;
+﻿using OsiguSDK.Core.Config;
+using OsiguSDK.Providers.Clients;
+using OsiguSDK.Providers.Clients.v1;
+using OsiguSDK.Providers.Models;
+using OsiguSDK.Providers.Models.Requests;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
-using OsiguSDK.Core.Config;
-using OsiguSDK.Providers.Clients;
-using OsiguSDK.Providers.Models;
-using OsiguSDK.Providers.Models.Requests;
+using OsiguSDK.Providers.Models.Requests.v1;
+
 
 namespace OsiguSDK.Providers.Examples
 {

@@ -18,7 +18,7 @@ namespace OsiguSDK.Core.Config
         public Configuration()
         {
             Authentication = new Authentication.Authentication();
-            BaseUrl = "https://api.paycodenetwork.com/v1";
+            BaseUrl = "https://api.paycodenetwork.com";
         }
 
         /// <summary>
