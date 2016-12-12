@@ -1,8 +1,7 @@
 ﻿using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Models;
-using OsiguSDK.Insurers.Clients;
 using OsiguSDK.Insurers.Clients.v1;
-using OsiguSDK.Insurers.Models;
+
 using OsiguSDK.Insurers.Models.v1;
 
 namespace OsiguSDKExamples
@@ -18,12 +17,12 @@ namespace OsiguSDKExamples
 
         public ExpressAuthorization GetSingleAuthorization(string id)
         {
-            return _client.GetSingleAuthorization(id);
+            return _client.GetSingle(id);
         }
 
         public Pagination<ExpressAuthorization> GetListOfAuthorizationExpress(ExpressAuthorizationsClient.ExpressAuthorizationStatus status = ExpressAuthorizationsClient.ExpressAuthorizationStatus.INSURER_PENDING_REVIEW, int? page = 0, int? size = 25)
         {
-            return _client.GetListOfAuthorizationsExpress(status, page, size);
+            return _client.GetList(status, page, size);
         }
 
 

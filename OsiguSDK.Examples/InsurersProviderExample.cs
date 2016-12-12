@@ -1,6 +1,6 @@
 ﻿using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Models;
-using OsiguSDK.Providers.Clients;
+using OsiguSDK.Providers.Clients.v1;
 using OsiguSDK.Providers.Models;
 
 namespace OsiguSDKExamples

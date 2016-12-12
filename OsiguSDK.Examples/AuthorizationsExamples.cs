@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using OsiguSDK.Core.Config;
-using OsiguSDK.Insurers.Clients;
-using OsiguSDK.Insurers.Models;
-using OsiguSDK.Insurers.Models.Requests;
+using OsiguSDK.Insurers.Clients.v1;
+using OsiguSDK.Insurers.Models.v1;
+using OsiguSDK.Insurers.Models.Requests.v1;
 using OsiguSDK.Insurers.Clients.v1;
 using OsiguSDK.Insurers.Models.Requests.v1;
 using OsiguSDK.Insurers.Models.v1;
@@ -81,26 +81,26 @@ namespace OsiguSDKExamples
             };
 
 
-            var response = _client.CreateAuthorization(createAuthRequest);
+            var response = _client.Create(createAuthRequest);
             return response;
         }
 
 
         public Authorization GetRecentlyCreatedAuthorization(string id)
         {
-            var response = _client.GetSingleAuthorization(id);
+            var response = _client.GetSingle(id);
             return response;
         }
 
         public Authorization ModifyTheAuthorization(string id, CreateAuthorizationRequest createAuthorizationObj)
         {
-            var response = _client.ModifyAuthorization(id, createAuthorizationObj);
+            var response = _client.Modify(id, createAuthorizationObj);
             return response;
         }
 
         public void VoidTheAuthorization(string id)
         {
-            _client.VoidAuthorization(id);            
+            _client.Void(id);            
         }
 
     }
