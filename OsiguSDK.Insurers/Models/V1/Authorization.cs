@@ -89,6 +89,12 @@ namespace OsiguSDK.Insurers.Models.v1
             public string ProductId { get; set; }
 
             /// <summary>
+            /// osigu-product-type 
+            /// valid values are, drugs, laboratory, diagnostic test medical procedure
+            /// </summary>
+            [JsonProperty(PropertyName = "product_type")]
+            public string ProductType { get; set; }
+            /// <summary>
             /// Product name
             /// </summary>
             [JsonProperty(PropertyName = "name")]
