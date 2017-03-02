@@ -19,6 +19,12 @@ namespace OsiguSDK.Providers.Models.v2
         public string InsurerName { get; set; }
 
         /// <summary>
+        /// Verification Code
+        /// </summary>
+        [JsonProperty(PropertyName = "verification_code")]
+        public string VerificationCode { get; set; }
+
+        /// <summary>
         /// Policy holder information
         /// </summary>
         [JsonProperty(PropertyName = "policy_holder")]
@@ -129,7 +135,7 @@ namespace OsiguSDK.Providers.Models.v2
                 /// <summary>
                 /// 
                 /// </summary>
-                [JsonProperty(PropertyName = "product_id")]
+                [JsonProperty(PropertyName = "provider_product_id")]
                 public string ProductId { get; set; }
 
                 /// <summary>
