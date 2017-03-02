@@ -10,8 +10,8 @@ namespace OsiguSDK.Providers.Models
         /// <summary>
         /// Osigu authorization code
         /// </summary>
-        [JsonProperty(PropertyName = "id")]
-        public string Id { get; set; }
+        //[JsonProperty(PropertyName = "id")]
+        //public string Id { get; set; }
 
         /// <summary>
         /// Date and time when authorized

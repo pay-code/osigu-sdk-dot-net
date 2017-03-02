@@ -16,11 +16,11 @@ namespace OsiguSDK.Providers.Clients.v1
         }
 
 
-        public Product GetDiagnosis(string diagnosisId)
+        public Pagination<Diagnosis> GetDiagnosis(string diagnosisId)
         {
-            var urlBuilder = new StringBuilder("/v1/diagnoses/").Append(diagnosisId);
+            var urlBuilder = new StringBuilder("/v1/diagnoses/search?name=").Append(diagnosisId);
             var requestData = new RequestData(urlBuilder.ToString(), Method.GET, null, null);
-            return ExecuteMethod<Product>(requestData);
+            return ExecuteMethod<Pagination<Diagnosis>>(requestData);
         }
 
 

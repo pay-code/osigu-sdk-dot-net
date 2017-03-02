@@ -19,6 +19,13 @@ namespace OsiguSDK.Providers.Models
         public string InsurerName { get; set; }
 
         /// <summary>
+        /// Verification Code
+        /// </summary>
+        [JsonProperty(PropertyName = "verification_code")]
+        public string VerificationCode { get; set; }
+
+
+        /// <summary>
         /// Policy holder information
         /// </summary>
         [JsonProperty(PropertyName = "policy_holder")]
@@ -143,6 +150,12 @@ namespace OsiguSDK.Providers.Models
             /// </summary>
             [JsonProperty(PropertyName = "amount")]
             public Decimal Amount { get; set; }
+
+            /// <summary>
+            /// Digital Signature
+            /// </summary>
+            [JsonProperty(PropertyName = "digital_signature")]
+            public Decimal DigitalSignature { get; set; }
         }
     }
 
