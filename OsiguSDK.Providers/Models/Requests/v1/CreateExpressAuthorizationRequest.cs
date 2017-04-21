@@ -17,6 +17,12 @@ namespace OsiguSDK.Providers.Models.Requests.v1
         [JsonProperty(PropertyName = "policy_holder")]
         public PolicyHolderInfo PolicyHolder { get; set; }
 
+        /// <summary>
+        /// Insurer's Illness_onset
+        /// </summary>
+        [JsonProperty(PropertyName = "illness_onset")]
+        public DateTime IllnessOnset { get; set; }
+
     }
 
 
