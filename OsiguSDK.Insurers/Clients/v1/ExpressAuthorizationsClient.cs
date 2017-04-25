@@ -54,7 +54,7 @@ namespace OsiguSDK.Insurers.Clients.v1
             ExecuteMethod(requestData);
         }
 
-        public void Reject(string id, RejectRequest request)
+        public void Reject(string id, ExpressRejectRequest request)
         {
             var urlBuilder = new StringBuilder("/v1/insurers/").Append(Configuration.Slug).Append("/authorizations/express/").Append(id).Append("/reject");
             var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, request);

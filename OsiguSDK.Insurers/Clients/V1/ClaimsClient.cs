@@ -46,7 +46,7 @@ namespace OsiguSDK.Insurers.Clients.v1
             ExecuteMethod(requestData);
         }
 
-        public void Reject(int id, RejectRequest request)
+        public void Reject(int id, ClaimRejectRequest request)
         {
             var urlBuilder = new StringBuilder("/v1/insurers/").Append(Configuration.Slug).Append("/claims/").Append(id).Append("/reject");
             var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, request);

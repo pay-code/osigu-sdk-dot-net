@@ -2,7 +2,7 @@
 
 namespace OsiguSDK.Insurers.Models.Requests.v1
 {
-    public class RejectRequest
+    public class ExpressRejectRequest
     {
         /// <summary>
         /// Insurer's rejection reason extracted from 
