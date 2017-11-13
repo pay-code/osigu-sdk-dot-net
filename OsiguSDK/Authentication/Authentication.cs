@@ -6,7 +6,6 @@ namespace OsiguSDK.Core.Authentication
     {
         public enum AuthType
         {
-            //BASIC,
             OAUTH
         }
 

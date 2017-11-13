@@ -71,6 +71,7 @@
     <Compile Include="Clients\v2\ExpressAuthorizationClient.cs" />
     <Compile Include="Models\v1\Authorization.cs" />
     <Compile Include="Models\v1\Claim.cs" />
+    <Compile Include="Models\v1\Diagnoses.cs" />
     <Compile Include="Models\v1\ExpressAuthorization.cs" />
     <Compile Include="Models\v1\Invoice.cs" />
     <Compile Include="Models\v1\Insurer.cs" />
