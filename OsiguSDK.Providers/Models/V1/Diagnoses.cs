@@ -9,7 +9,7 @@ namespace OsiguSDK.Providers.Models
         /// Dianosis ID
         /// </summary>
         [JsonProperty(PropertyName = "id")]
-        public decimal Id { get; set; }
+        public long Id { get; set; }
 
         /// <summary>
         /// Diagnosis

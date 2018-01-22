@@ -94,11 +94,6 @@ namespace OsiguSDKExamples
         {
             return _client.GetListOfClaims();
         }
-
-        public void VoidClaim(string claimdId)
-        {
-            
-            
-        }
+      
     }
 }

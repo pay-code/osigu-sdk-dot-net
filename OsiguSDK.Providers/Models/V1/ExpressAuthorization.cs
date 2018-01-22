@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace OsiguSDK.Providers.Models
 {
-    public class ExpressAuthorization 
+    public class ExpressAuthorization  
     {
         /// <summary>
         /// Osigu express authorization code
@@ -36,7 +36,7 @@ namespace OsiguSDK.Providers.Models
         /// </summary>
         [JsonProperty(PropertyName = "diagnoses")]
 
-        public List<Diagnosis> Diagnoses{ get; set; }
+        public List<Diagnoses> Diagnoses{ get; set; }
 
         /// <summary>
         /// List of items in the transaction

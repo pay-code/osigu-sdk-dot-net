@@ -25,11 +25,5 @@ namespace OsiguSDKExamples
         {
             return _client.GetSingle(authorizationId, claimId);
         }
-
-        public Claim VoidClaim(String authorizationId)
-        {
-            return _client.
-        }
-
     }
 }
