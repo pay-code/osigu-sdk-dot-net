@@ -9,8 +9,8 @@ namespace OsiguSDK.Core.Models
         /// <summary>
         /// Number of pages available
         /// </summary>
-        [JsonProperty(PropertyName = "total_pages")]
-        public int TotalPages { get; set; }
+            [JsonProperty(PropertyName = "total_pages")]
+            public int TotalPages { get; set; }
 
 
         /// <summary>

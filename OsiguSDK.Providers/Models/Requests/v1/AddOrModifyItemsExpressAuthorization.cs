@@ -9,11 +9,10 @@ namespace OsiguSDK.Providers.Models.Requests.v1
         /// <summary>
         /// Dianosis given
         /// </summary>
-        [JsonProperty(PropertyName = "Diagnoses")]
+        [JsonProperty(PropertyName = "diagnoses")]
 
-        public List<Diagnosis> Diagnoses { get; set; }
-
-
+        public List<Diagnoses> Diagnoses { get; set; }
+        
         /// <summary>
         /// List of claimed items 
         /// </summary>

@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace OsiguSDK.Providers.Models
 {
-    public class ExpressAuthorization 
+    public class ExpressAuthorization  
     {
         /// <summary>
         /// Osigu express authorization code
@@ -36,7 +36,7 @@ namespace OsiguSDK.Providers.Models
         /// </summary>
         [JsonProperty(PropertyName = "diagnoses")]
 
-        public List<Diagnosis> Diagnoses{ get; set; }
+        public List<Diagnoses> Diagnoses{ get; set; }
 
         /// <summary>
         /// List of items in the transaction
@@ -62,7 +62,15 @@ namespace OsiguSDK.Providers.Models
         /// </summary>
         [JsonProperty(PropertyName = "total_coinsurance")]
         public decimal TotalCoInsurance { get; set; }
+
+        /// <summary>
+        ///  IVR
+        /// </summary>
+        [JsonProperty(PropertyName = "verification_code")]
+        public string VerificationCode { get; set; }
+
         
+
         /// <summary>
         /// Date and time when the resource was created
         /// </summary>
@@ -89,6 +97,12 @@ namespace OsiguSDK.Providers.Models
             /// </summary>
             [JsonProperty(PropertyName = "date_of_birth")]
             public DateTime DateOfBirth { get; set; }
+
+            /// <summary>
+            /// Insurer's Illness_onset
+            /// </summary>
+            [JsonProperty(PropertyName = "illness_onset")]
+            public DateTime IllnessOnset { get; set; }
         }
 
         public class Item

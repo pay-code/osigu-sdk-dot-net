@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace OsiguSDK.Providers.Models
 {
-    public class Diagnosis
+    public class Diagnoses
     {
         /// <summary>
         /// Dianosis ID
@@ -14,8 +14,8 @@ namespace OsiguSDK.Providers.Models
         /// <summary>
         /// Diagnosis
         /// </summary>
-        [JsonProperty(PropertyName = "name")]
-        public string name { get; set; }
+        [JsonProperty(PropertyName = "description")]
+        public string Description { get; set; }
 
     }
 }
