@@ -36,7 +36,9 @@ namespace OsiguSDK.Providers.Clients.v1
             var locationUrl = GetLocationHeader(response);
 
             //return only the id of the queue resource
-            return GetIdFromResourceUrl(locationUrl);
+            //return GetIdFromResourceUrl(locationUrl);
+            //Need the whole url of the location. //DMARENCO
+            return locationUrl;
         }
 
         public Claim ChangeClaimItems(string claimId, CreateClaimRequest request)
