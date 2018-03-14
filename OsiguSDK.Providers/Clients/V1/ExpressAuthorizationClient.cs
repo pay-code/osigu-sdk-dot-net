@@ -16,6 +16,7 @@ namespace OsiguSDK.Providers.Clients.v1
         {
         }
 
+       
         public String CreateExpressAuthorization(CreateExpressAuthorizationRequest request)
         {
             var urlBuilder = new StringBuilder("/v1/providers/").Append(Configuration.Slug).Append("/authorizations/express");
@@ -28,8 +29,11 @@ namespace OsiguSDK.Providers.Clients.v1
             var locationUrl = GetLocationHeader(response);
 
             //return only the id of the queue resource
-            return GetIdFromResourceUrl(locationUrl);
+            //return GetIdFromResourceUrl(locationUrl);
+
+            return locationUrl;
         }
+        
 
         public ExpressAuthorization AddOrModifyItemsExpressAuthorization(string expressAuthorizationId, AddOrModifyItemsExpressAuthorization request)
         {
