@@ -4,7 +4,6 @@ using OsiguSDK.Core.Client;
 using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Requests;
 using OsiguSDK.Providers.Models;
-using OsiguSDK.Providers.Models.Requests;
 using OsiguSDK.Providers.Models.Requests.v1;
 using RestSharp;
 
@@ -16,20 +15,24 @@ namespace OsiguSDK.Providers.Clients.v1
         {
         }
 
+       
         public String CreateExpressAuthorization(CreateExpressAuthorizationRequest request)
         {
             var urlBuilder = new StringBuilder("/v1/providers/").Append(Configuration.Slug).Append("/authorizations/express");
             var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, request);
-
             var response = SendRequest(requestData);
+
             ValidateResponse(response);
 
             //after passing the validations return the url             
             var locationUrl = GetLocationHeader(response);
 
             //return only the id of the queue resource
-            return GetIdFromResourceUrl(locationUrl);
+            //return GetIdFromResourceUrl(locationUrl);
+
+            return locationUrl;
         }
+        
 
         public ExpressAuthorization AddOrModifyItemsExpressAuthorization(string expressAuthorizationId, AddOrModifyItemsExpressAuthorization request)
         {

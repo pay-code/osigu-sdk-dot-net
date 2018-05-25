@@ -12,15 +12,16 @@ namespace OsiguSDK.Providers.Clients.v1
     {
         public QueueClient(IConfiguration configuration) : base(configuration)
         {
+
         }
 
-        public QueueStatus CheckQueueStatus(string queueId)
+        public QueueStatus CheckQueueStatus(string location)
         {
-            var urlBuilder = new StringBuilder("/v1/queue/").Append(queueId);
-            var requestData = new RequestData(urlBuilder.ToString(), Method.GET, null, null);
+            
+            var requestData = new RequestData(location, Method.GET, null, null);
 
             var response = SendRequest(requestData);
-            
+
             //if the result is 303 (SEE OTHER) means that the resource was created successfully
             if (response.StatusCode == HttpStatusCode.SeeOther)
             {

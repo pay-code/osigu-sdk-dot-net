@@ -54,14 +54,14 @@ namespace OsiguSDKExamples
             ////////////////////////////////////////////
             // Providers
             ////////////////////////////////////////////
-            var authorizationProviderId = AuthorizationProviderExamples(configProvider);
-
+            //var authorizationProviderId = AuthorizationProviderExamples(configProvider);
+            /*
             InsurersProviderExamples(configProvider);
 
             ClaimsProviderExamples(configProvider, authorizationProviderId);
 
             ProductsProviderExample(configProvider);
-
+            */
             //ExpressAuthorizationsProviderExamples(configProvider);
         }
 
@@ -109,16 +109,16 @@ namespace OsiguSDKExamples
             var insurersResponse = insurersExamples.GetInsurers();
         }
 
-        private static string AuthorizationProviderExamples(IConfiguration config)
+        /*private static string AuthorizationProviderExamples(IConfiguration config)
         {
             var authorizationProvidersExamples = new AuthorizationsProviderExample(config);
             //CREATE AUTHORIZATION
             var authorizationProviderResponse = authorizationProvidersExamples.GetSingleAuthorization("1234566554");
 
-            return authorizationProviderResponse.Id;
+            //return authorizationProviderResponse.Id;
         }
 
-        private static void ExpressAuthorizationInsurerExamples(IConfiguration config)
+*/        private static void ExpressAuthorizationInsurerExamples(IConfiguration config)
         {
             var expressAuthExamples = new ExpressAuthorizationClientExample(config);
 

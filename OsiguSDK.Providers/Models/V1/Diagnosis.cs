@@ -9,13 +9,13 @@ namespace OsiguSDK.Providers.Models
         /// Dianosis ID
         /// </summary>
         [JsonProperty(PropertyName = "id")]
-        public string ProductId { get; set; }
+        public long Id { get; set; }
 
         /// <summary>
         /// Diagnosis
         /// </summary>
         [JsonProperty(PropertyName = "name")]
-        public string Name { get; set; }
+        public string name { get; set; }
 
     }
 }

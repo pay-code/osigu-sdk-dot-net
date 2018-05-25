@@ -1,4 +1,5 @@
-﻿using OsiguSDK.Core.Config;
+﻿using System;
+using OsiguSDK.Core.Config;
 using OsiguSDK.Core.Models;
 using OsiguSDK.Insurers.Clients.v1;
 using OsiguSDK.Insurers.Clients.v1;
@@ -24,6 +25,5 @@ namespace OsiguSDKExamples
         {
             return _client.GetSingle(authorizationId, claimId);
         }
-
     }
 }

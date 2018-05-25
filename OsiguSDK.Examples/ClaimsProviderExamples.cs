@@ -94,5 +94,6 @@ namespace OsiguSDKExamples
         {
             return _client.GetListOfClaims();
         }
+      
     }
 }

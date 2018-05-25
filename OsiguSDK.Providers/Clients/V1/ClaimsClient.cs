@@ -30,13 +30,16 @@ namespace OsiguSDK.Providers.Clients.v1
             var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, request);
             var s = JsonConvert.SerializeObject(request);
             var response = SendRequest(requestData);
-            ValidateResponse(response);
+                ValidateResponse(response);
 
             //after passing the validations return the url             
             var locationUrl = GetLocationHeader(response);
 
             //return only the id of the queue resource
-            return GetIdFromResourceUrl(locationUrl);
+            //return GetIdFromResourceUrl(locationUrl);
+            //Need the whole url of the location. //DMARENCO
+
+            return locationUrl;
         }
 
         public Claim ChangeClaimItems(string claimId, CreateClaimRequest request)
@@ -58,7 +61,7 @@ namespace OsiguSDK.Providers.Clients.v1
         public Claim GetSingleClaim(string claimId)
         {
             var urlBuilder = new StringBuilder("/v1/providers/").Append(Configuration.Slug).Append("/claims/").Append(claimId);
-            var requestData = new RequestData(urlBuilder.ToString(), Method.GET, null,null);
+            var requestData = new RequestData(urlBuilder.ToString(), Method.GET, null, null);
 
             return ExecuteMethod<Claim>(requestData);
         }
@@ -71,5 +74,12 @@ namespace OsiguSDK.Providers.Clients.v1
             return ExecuteMethod<Pagination<Claim>>(requestData);
         }
 
+        public void VoidClaim(string claimId)
+        {
+            var urlBuilder = new StringBuilder("/v1/providers/").Append(Configuration.Slug).Append("/claims/").Append(claimId).Append("/void");
+            var requestData = new RequestData(urlBuilder.ToString(), Method.POST, null, null);
+
+            ExecuteMethod<Claim>(requestData);
+        }
     }
 }

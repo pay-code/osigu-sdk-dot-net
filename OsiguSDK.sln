@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OsiguSDK.Core", "OsiguSDK\OsiguSDK.Core.csproj", "{F2F02262-31EF-4D91-BDBF-852495F55ED6}"
 EndProject
@@ -19,6 +19,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2DC1E8
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OsiguSDK.Providers.Examples", "OsiguSDK.Providers.Examples\OsiguSDK.Providers.Examples.csproj", "{6904ADED-0C7F-4BA3-965D-D4369427D476}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OsiguSDK.Prescription", "OsiguSDK.Prescription\OsiguSDK.Prescription.csproj", "{4DE222F2-04CD-427C-BA68-300993ABF85B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OsiguSDK.Providers.Test", "Osigu.Provider.Test\OsiguSDK.Providers.Test.csproj", "{9A6CDF3E-B70A-4AB5-B65C-B0458D1E76D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,6 +50,14 @@ Global
 		{6904ADED-0C7F-4BA3-965D-D4369427D476}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6904ADED-0C7F-4BA3-965D-D4369427D476}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6904ADED-0C7F-4BA3-965D-D4369427D476}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DE222F2-04CD-427C-BA68-300993ABF85B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DE222F2-04CD-427C-BA68-300993ABF85B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DE222F2-04CD-427C-BA68-300993ABF85B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DE222F2-04CD-427C-BA68-300993ABF85B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A6CDF3E-B70A-4AB5-B65C-B0458D1E76D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A6CDF3E-B70A-4AB5-B65C-B0458D1E76D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A6CDF3E-B70A-4AB5-B65C-B0458D1E76D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A6CDF3E-B70A-4AB5-B65C-B0458D1E76D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,8 @@
+﻿{
+  "baseUrl": "https://api.paycodenetwork.com",
+  "slug": "meykos",
+  "authentication": {
+    "type": "OAUTH",
+    "accessToken": "eyJhbGciOiJIUzI1NiJ9.eyJlbnRpdHlfdHlwZSI6IlBST1ZJREVSX0JSQU5DSCIsInVzZXJfbmFtZSI6IlBST1ZJREVSX0JSQU5DSC0zNTgiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZW50aXR5X2lkIjozNTgsImF1dGhvcml0aWVzIjpbIlJPTEVfUFJPVklERVJfQlJBTkNIIl0sImp0aSI6IjE0M2RjNGJmLTk1ODUtNGViYy1hMzZjLTY0YmZiMDU1ZmYxZSIsInNsdWciOiJtZXlrb3MiLCJjbGllbnRfaWQiOiJvc2lndV9pbnN1cmVyc19hcHAifQ.8vx-5csLMMmYvATMEX4utEOaIxeE47T2TBaEC1eFcJc"
+  }
+}
